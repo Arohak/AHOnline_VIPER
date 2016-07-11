@@ -60,6 +60,7 @@ let CLEAR                               = UIColor.clearColor()
 let RCOLORS                             = [UIColor.blueColor(), UIColor.redColor(), UIColor.orangeColor(), UIColor.greenColor()]
 
 //MARK: - All Pages
+typealias CollectionCallback            = (indexPath: NSIndexPath) -> Void
 typealias PickerCallback                = (value: String) -> Void
 typealias ACPickerCallback              = (value: String, index: Int) -> Void
 typealias challenge                     = (session: NSURLSession!, challenge: NSURLAuthenticationChallenge) -> (NSURLSessionAuthChallengeDisposition, NSURLCredential?)
@@ -81,39 +82,13 @@ let LINK_FONT                           = UIFont.systemFontOfSize(DeviceType.IS_
 let BA_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
 let TITLE_BTN_FONT                      = UIFont.boldSystemFontOfSize(DeviceType.IS_IPAD ? 16     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 16     : DeviceType.IS_IPHONE_6 ? 16   * IPHONE_6_SCALE : 16   * IPHONE_5_SCALE)
 let TR_LBL_FONT                         = UIFont.systemFontOfSize(DeviceType.IS_IPAD ? 16     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 16     : DeviceType.IS_IPHONE_6 ? 16   * IPHONE_6_SCALE : 16   * IPHONE_5_SCALE)
+let TITLE_FONT                          = UIFont.boldSystemFontOfSize(DeviceType.IS_IPAD ? 22     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 22     : DeviceType.IS_IPHONE_6 ? 22   * IPHONE_6_SCALE : 22   * IPHONE_5_SCALE)
+let DESC_FONT                           = UIFont.boldSystemFontOfSize(DeviceType.IS_IPAD ? 12     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 12     : DeviceType.IS_IPHONE_6 ? 12   * IPHONE_6_SCALE : 12   * IPHONE_5_SCALE)
 
-
-//MARK: - Slide Constants
-let MENU_WIDTH : CGFloat                = DeviceType.IS_IPAD ? 250    * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 250    : DeviceType.IS_IPHONE_6 ? 250  * IPHONE_6_SCALE : 250  * IPHONE_5_SCALE
-
-
-//MARK: - Menu Constants
-let MU_CELL_HEIGHT : CGFloat            = DeviceType.IS_IPAD ? 50     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 50     : DeviceType.IS_IPHONE_6 ? 50   * IPHONE_6_SCALE : 50   * IPHONE_5_SCALE
-
-//MARK: - Transaction Constants
-let TR_INSET : CGFloat                  = DeviceType.IS_IPAD ? 20     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 20     : DeviceType.IS_IPHONE_6 ? 20   * IPHONE_6_SCALE : 20   * IPHONE_5_SCALE
-let TR_HEIGHT : CGFloat                 = DeviceType.IS_IPAD ? 40     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 40     : DeviceType.IS_IPHONE_6 ? 40   * IPHONE_6_SCALE : 40   * IPHONE_5_SCALE
-
-//MARK: - Transaction History Constants
-let TRS_CELL_HEIGHT : CGFloat           = DeviceType.IS_IPAD ? 150    * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 150    : DeviceType.IS_IPHONE_6 ? 150  * IPHONE_6_SCALE : 150  * IPHONE_5_SCALE
-let TRS_BTN_HEIGHT : CGFloat            = DeviceType.IS_IPAD ? 30     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 30     : DeviceType.IS_IPHONE_6 ? 30   * IPHONE_6_SCALE : 30   * IPHONE_5_SCALE
-
-//MARK: - Exchange Constants
-let EX_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
-let EX_CELL_HEIGHT : CGFloat            = DeviceType.IS_IPAD ? 70     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 70     : DeviceType.IS_IPHONE_6 ? 70   * IPHONE_6_SCALE : 70   * IPHONE_5_SCALE
-
-
-//MARK: - Account Constants
-let AC_INSET : CGFloat                  = DeviceType.IS_IPAD ? 20     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 20     : DeviceType.IS_IPHONE_6 ? 20   * IPHONE_6_SCALE : 20   * IPHONE_5_SCALE
-let AC_HEIGHT : CGFloat                 = DeviceType.IS_IPAD ? 70     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 70     : DeviceType.IS_IPHONE_6 ? 70   * IPHONE_6_SCALE : 70   * IPHONE_5_SCALE
 
 //MARK: - Deposit Constants
 let HO_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
 let HO_CELL_HEIGHT : CGFloat            = DeviceType.IS_IPAD ? 90     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 90     : DeviceType.IS_IPHONE_6 ? 90   * IPHONE_6_SCALE : 90   * IPHONE_5_SCALE
-
-//MARK: - Loan Constants
-let LO_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
-let LO_FOOTER_HEIGHT : CGFloat          = DeviceType.IS_IPAD ? 200    * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 200    : DeviceType.IS_IPHONE_6 ? 200  * IPHONE_6_SCALE : 200   * IPHONE_5_SCALE
 
 let codes = [
     "_AF"      : "+93",

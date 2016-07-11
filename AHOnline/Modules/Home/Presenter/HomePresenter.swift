@@ -23,11 +23,14 @@ extension HomePresenter: HomeModuleInput {
 extension HomePresenter: HomeViewOutput {
     
     func viewIsReady() {
-
+        interactor.getRestaurantsHome()
     }
 }
 
 //MARK: - extension for HomeInteractorOutput -
 extension HomePresenter: HomeInteractorOutput {
  
+    func homeDataIsReady(home: Home) {
+        view.setupInitialState(home)
+    }
 }

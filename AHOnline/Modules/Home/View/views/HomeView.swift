@@ -12,7 +12,9 @@ class HomeView: BaseView {
         let view = UITableView(frame: CGRectZero, style: .Grouped)
         view.separatorStyle = .None
         view.backgroundColor = CLEAR
-        
+//        view.estimatedRowHeight = 44
+//        view.rowHeight = UITableViewAutomaticDimension
+
         return view
     }()
     

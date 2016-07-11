@@ -18,8 +18,8 @@ class HomeCollectionCell: UICollectionViewCell {
         cellContentView.autoPinEdgesToSuperviewEdges()
     }
     
-    func setValues(item: Category) {
-
+    func setValues(restaurant: Restaurant) {
+        cellContentView.setValues(restaurant)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -31,17 +31,24 @@ class HomeCollectionCell: UICollectionViewCell {
 class HomeCollectionCellContentView: UIView {
     
     //MARK: - Create UIElements -
+    lazy var bgImageView: UIImageView = {
+        let view = UIImageView.newAutoLayoutView()
+        view.contentMode = .ScaleAspectFit
+
+        return view
+    }()
+    
     lazy var imageView: UIImageView = {
         let view = UIImageView.newAutoLayoutView()
-        view.clipsToBounds = true
+        view.contentMode = .ScaleAspectFit
         
         return view
     }()
     
     lazy var nameLabel: HOLabel = {
         let view = HOLabel.newAutoLayoutView()
-        view.textColor = WHITE
-        view.text = "Name"
+        view.textColor = GRAY
+        view.numberOfLines = 0
         
         return view
     }()
@@ -50,7 +57,7 @@ class HomeCollectionCellContentView: UIView {
     init() {
         super.init(frame: CGRectZero)
         
-        backgroundColor = GREEN
+        backgroundColor = GRAY_239
         addAllUIElements()
     }
     
@@ -60,6 +67,7 @@ class HomeCollectionCellContentView: UIView {
     
     //MARK: - Private Methods -
     private func addAllUIElements() {
+        addSubview(bgImageView)
         addSubview(imageView)
         addSubview(nameLabel)
         
@@ -68,11 +76,32 @@ class HomeCollectionCellContentView: UIView {
     
     //MARK: - Constraints -
     func setConstraints() {
-        imageView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 0)
-        imageView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), excludingEdge: .Bottom)
+        bgImageView.autoPinEdgesToSuperviewEdges()
         
-        nameLabel.autoPinEdgeToSuperviewEdge(.Bottom)
-        nameLabel.autoAlignAxisToSuperviewAxis(.Vertical)
+        imageView.autoPinEdgeToSuperviewEdge(.Top, withInset: 0)
+        imageView.autoPinEdgeToSuperviewEdge(.Left, withInset: 0)
+        imageView.autoPinEdgeToSuperviewEdge(.Right, withInset: 0)
+        imageView.autoMatchDimension(.Height, toDimension: .Width, ofView: imageView, withMultiplier: 0.4)
+        
+        nameLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: imageView, withOffset: HO_INSET/2)
+        nameLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: 0)
+        nameLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: 0)
+    }
+    
+    //MARK: - Public Methods -
+    func setValues(restaurant: Restaurant) {
+        if restaurant.img.isEmpty {
+            imageView.hidden = false
+            bgImageView.hidden = true
+            imageView.kf_setImageWithURL(NSURL(string: restaurant.src)!)
+            nameLabel.text = restaurant.label
+            
+        } else {
+            bgImageView.hidden = false
+            imageView.hidden = true
+            bgImageView.image = UIImage(named: restaurant.img)
+            nameLabel.text = ""
+        }
     }
 }
 

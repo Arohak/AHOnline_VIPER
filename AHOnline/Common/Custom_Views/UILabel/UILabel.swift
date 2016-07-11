@@ -13,7 +13,37 @@ class HOLabel: UILabel {
         super.init(frame: CGRectZero)
         
         font = TITLE_BTN_FONT
-        textColor = RED
+        textColor = GRAY
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class TitleLabel: UILabel {
+    
+    //MARK: - Initialize -
+    init() {
+        super.init(frame: CGRectZero)
+        
+        font = TITLE_FONT
+        textColor = BLACK
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class DescLabel: UILabel {
+    
+    //MARK: - Initialize -
+    init() {
+        super.init(frame: CGRectZero)
+        
+        font = DESC_FONT
+        textColor = GRAY
     }
     
     required init?(coder aDecoder: NSCoder) {

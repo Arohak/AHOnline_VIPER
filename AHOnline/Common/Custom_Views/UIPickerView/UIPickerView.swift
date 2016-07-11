@@ -173,12 +173,12 @@ class DUCPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource 
         view.addSubview(titleLabel)
         
         imageView.autoAlignAxisToSuperviewAxis(.Horizontal)
-        imageView.autoPinEdgeToSuperviewEdge(.Left, withInset: EX_INSET)
-        imageView.autoSetDimensionsToSize(CGSize(width: EX_INSET*2, height: EX_INSET*2))
+        imageView.autoPinEdgeToSuperviewEdge(.Left, withInset: 0)
+        imageView.autoSetDimensionsToSize(CGSize(width: 40, height: 40))
         
         titleLabel.autoAlignAxisToSuperviewAxis(.Horizontal)
-        titleLabel.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: EX_INSET)
-        titleLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: EX_INSET)
+        titleLabel.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: 0)
+        titleLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: 40)
         
         return view
     }

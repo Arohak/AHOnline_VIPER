@@ -46,7 +46,7 @@
 		526EE7331D30F3BE00F77974 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EE7051D30F3BE00F77974 /* Preferences.swift */; };
 		526EE7341D30F3BE00F77974 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EE7061D30F3BE00F77974 /* UIHelper.swift */; };
 		526EE7351D30F3BE00F77974 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EE7071D30F3BE00F77974 /* Utils.swift */; };
-		526EE7361D30F3BE00F77974 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EE7091D30F3BE00F77974 /* Account.swift */; };
+		526EE7361D30F3BE00F77974 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EE7091D30F3BE00F77974 /* Restaurant.swift */; };
 		526EE7371D30F3BE00F77974 /* NavigationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EE70B1D30F3BE00F77974 /* NavigationProtocol.swift */; };
 		526EE7391D30F3BE00F77974 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 526EE7121D30F3BE00F77974 /* Localizable.strings */; };
 		526EE73C1D30F3BE00F77974 /* UISettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EE71B1D30F3BE00F77974 /* UISettings.swift */; };
@@ -85,6 +85,10 @@
 		948BBD1B7FB7848BAF293FDC /* CartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073CC43320C685BBD68564B7 /* CartPresenter.swift */; };
 		992C45334F1E2E48B2201F73 /* CategoriesModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C59EFE916A0DB3EF7C2AC2B /* CategoriesModuleInput.swift */; };
 		9A33CC37AEEA35C0BBDC6A70 /* AccountConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B8088B97FCBEE717103AB1 /* AccountConfigurator.swift */; };
+		A1379FFA1D339535000D022A /* HomeAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1379FF71D339535000D022A /* HomeAPIManager.swift */; };
+		A1379FFB1D339535000D022A /* HomeDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1379FF81D339535000D022A /* HomeDBManager.swift */; };
+		A1379FFD1D3398C6000D022A /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1379FFC1D3398C6000D022A /* Home.swift */; };
+		A1379FFF1D33D9D7000D022A /* img_all.png in Resources */ = {isa = PBXBuildFile; fileRef = A1379FFE1D33D9D7000D022A /* img_all.png */; };
 		A4768A65A04A920829674604 /* CategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576C7C0A31A7E67FB908040F /* CategoriesPresenter.swift */; };
 		A93726E7B59FBB9F86D18CD1 /* AccountModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE3E02F476EE77A6EFBDAA7 /* AccountModuleInput.swift */; };
 		AB07D4C6FD510EBAFF73E96F /* HomeInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D13F66B7BE50462E0AF9A /* HomeInitializer.swift */; };
@@ -183,7 +187,7 @@
 		526EE7051D30F3BE00F77974 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		526EE7061D30F3BE00F77974 /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		526EE7071D30F3BE00F77974 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		526EE7091D30F3BE00F77974 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		526EE7091D30F3BE00F77974 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		526EE70B1D30F3BE00F77974 /* NavigationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationProtocol.swift; sourceTree = "<group>"; };
 		526EE7131D30F3BE00F77974 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		526EE7141D30F3BE00F77974 /* hy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hy; path = hy.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -218,6 +222,10 @@
 		9E8ABE9EC0C17017CEC89D7A /* CartViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		9FB5EC9D671C7189FFFE55DC /* HomePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		A1281D013265BAAA9F5C8362 /* CartRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CartRouterInput.swift; sourceTree = "<group>"; };
+		A1379FF71D339535000D022A /* HomeAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeAPIManager.swift; sourceTree = "<group>"; };
+		A1379FF81D339535000D022A /* HomeDBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDBManager.swift; sourceTree = "<group>"; };
+		A1379FFC1D3398C6000D022A /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		A1379FFE1D33D9D7000D022A /* img_all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_all.png; sourceTree = "<group>"; };
 		A572BDDFE1914D182E50E0AE /* CartInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CartInitializer.swift; sourceTree = "<group>"; };
 		BA9649F692CBB79747743B17 /* MapInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MapInitializer.swift; sourceTree = "<group>"; };
 		BDC420FF88B8837B8847ADD2 /* CategoriesViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategoriesViewInput.swift; sourceTree = "<group>"; };
@@ -279,6 +287,7 @@
 				73A596E4E30674D88ADE795F /* Interactor */,
 				78C3686594FC8184EAE6871B /* Router */,
 				67EB9B40771590A9EE049586 /* Configurator */,
+				A1379FF51D339535000D022A /* Common */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -582,7 +591,8 @@
 			isa = PBXGroup;
 			children = (
 				526EE73D1D30F94F00F77974 /* Result.swift */,
-				526EE7091D30F3BE00F77974 /* Account.swift */,
+				A1379FFC1D3398C6000D022A /* Home.swift */,
+				526EE7091D30F3BE00F77974 /* Restaurant.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -634,6 +644,7 @@
 				52012AEB1D32BB340002140C /* 1.png */,
 				52012AEC1D32BB340002140C /* 2.png */,
 				52ED7BA41D31361500C75F69 /* img_bg.png */,
+				A1379FFE1D33D9D7000D022A /* img_all.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -826,6 +837,31 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		A1379FF51D339535000D022A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A1379FF61D339535000D022A /* Manager */,
+				A1379FF91D339535000D022A /* Protocol */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		A1379FF61D339535000D022A /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				A1379FF71D339535000D022A /* HomeAPIManager.swift */,
+				A1379FF81D339535000D022A /* HomeDBManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		A1379FF91D339535000D022A /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		A3C8D38F8D922F1B0E991CF9 /* Configurator */ = {
 			isa = PBXGroup;
 			children = (
@@ -982,7 +1018,7 @@
 				TargetAttributes = {
 					526239D11D30EC9F00481FC5 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = WK8C7HUHMZ;
+						DevelopmentTeam = DY57644UJ2;
 					};
 					526239E51D30EC9F00481FC5 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1022,6 +1058,7 @@
 				52012AEF1D32BB340002140C /* 2.png in Resources */,
 				526EE7391D30F3BE00F77974 /* Localizable.strings in Resources */,
 				52012AED1D32BB340002140C /* 0.png in Resources */,
+				A1379FFF1D33D9D7000D022A /* img_all.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1154,13 +1191,14 @@
 				526EE7201D30F3BE00F77974 /* ActionSheetPickerViewController.swift in Sources */,
 				526EE7231D30F3BE00F77974 /* WebViewController.swift in Sources */,
 				526EE7261D30F3BE00F77974 /* UIDatePicker.swift in Sources */,
+				A1379FFA1D339535000D022A /* HomeAPIManager.swift in Sources */,
 				526EE72E1D30F3BE00F77974 /* UIView.swift in Sources */,
 				526EE72D1D30F3BE00F77974 /* UITextView.swift in Sources */,
 				526EE7371D30F3BE00F77974 /* NavigationProtocol.swift in Sources */,
 				52AB26231D324567007CAB56 /* HomeCollectionCell.swift in Sources */,
 				526EE7271D30F3BE00F77974 /* UILabel.swift in Sources */,
 				526EE7281D30F3BE00F77974 /* UIPickerView.swift in Sources */,
-				526EE7361D30F3BE00F77974 /* Account.swift in Sources */,
+				526EE7361D30F3BE00F77974 /* Restaurant.swift in Sources */,
 				526EE72C1D30F3BE00F77974 /* UITextField.swift in Sources */,
 				526EE7341D30F3BE00F77974 /* UIHelper.swift in Sources */,
 				52ED7BAB1D31373900C75F69 /* CategoriesView.swift in Sources */,
@@ -1183,6 +1221,7 @@
 				B48B32A7F2364DEFE1B29767 /* CategoriesViewOutput.swift in Sources */,
 				615B735CB3D9834268E9360A /* CategoriesViewController.swift in Sources */,
 				992C45334F1E2E48B2201F73 /* CategoriesModuleInput.swift in Sources */,
+				A1379FFB1D339535000D022A /* HomeDBManager.swift in Sources */,
 				A4768A65A04A920829674604 /* CategoriesPresenter.swift in Sources */,
 				E6A8E0CBA7989C559E13F389 /* CategoriesInteractorInput.swift in Sources */,
 				ED0F9FDA17656C33BD088B4F /* CategoriesInteractorOutput.swift in Sources */,
@@ -1206,6 +1245,7 @@
 				D007D10F7CC9D395F9072C57 /* MapViewInput.swift in Sources */,
 				50CB2F3181E624700098A0CE /* MapViewOutput.swift in Sources */,
 				1AD7E9F10BA7E3843AF6954D /* MapViewController.swift in Sources */,
+				A1379FFD1D3398C6000D022A /* Home.swift in Sources */,
 				B22236799FA17D257FEBE1A7 /* MapModuleInput.swift in Sources */,
 				F3A3C5DEF5F009690EE4677E /* MapPresenter.swift in Sources */,
 				EF5BFE7D5491A34D62C92B62 /* MapInteractorInput.swift in Sources */,

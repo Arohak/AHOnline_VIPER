@@ -8,23 +8,24 @@
 
 let apiHelper = APIHelper.sharedInstance
 
-let HTTPS   = "https://"
-let IP      = "10.7.0.77"
-let PORT    = ":8443"
-let AHO     = "/online/service/v3/"
+let HTTPS   = "http://"
+let IP      = "localhost"
+let PORT    = ":3000/"
+let AHO     = "api/v1/"
 let baseURL = HTTPS + IP + PORT + AHO
 
 class APIHelper {
     
     static let sharedInstance = APIHelper()
-    
-    lazy var manager: Manager = {
-        let serverTrustPolicies: [String: ServerTrustPolicy] = [ IP : .DisableEvaluation ]
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuration.HTTPAdditionalHeaders = Alamofire.Manager.defaultHTTPHeaders
-        
-        return Manager(configuration: configuration, serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicies))
-    }()
+    let manager = Manager()
+
+//    lazy var manager: Manager = {
+//        let serverTrustPolicies: [String: ServerTrustPolicy] = [ IP : .DisableEvaluation ]
+//        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+//        configuration.HTTPAdditionalHeaders = Alamofire.Manager.defaultHTTPHeaders
+//        
+//        return Manager(configuration: configuration, serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicies))
+//    }()
 
     //MARK: - Request -
     func rx_Request(method: Alamofire.Method,
@@ -118,7 +119,7 @@ class APIHelper {
     //MARK: - Private Methods -
     private func handleResponse(response: AnyObject) -> JSON {
         let data = JSON(response)
-        let result = Result(data: data)
+        let result = Result(data: data["result"])
         
         switch result.status {
         case "SUCCESS":

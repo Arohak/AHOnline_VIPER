@@ -26,8 +26,15 @@ class HomeCell: BaseTableViewCell {
         cellContentView.autoPinEdgesToSuperviewEdges()
     }
     
-    func setValues(title: String, desc: String, items: [AnyObject], height: CGFloat = ScreenSize.HEIGHT*0.3) {
-        cellContentView.setValues(title, desc: desc, items: items, height: height)
+    func setValues(section: Int,
+                   title: String,
+                   desc: String,
+                   items: [Restaurant],
+                   height: CGFloat = ScreenSize.HEIGHT*0.3,
+                   inset: CGFloat = 0,
+                   callBack: CollectionCallback) {
+        
+        cellContentView.setValues(section, title: title, desc: desc, items: items, height: height, inset: inset, callBack: callBack)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -43,21 +50,24 @@ class HomeCellContentView: UIView {
     var title: String!
     var desc: String!
 
-    var collectionItems = []
+    var collectionItems: [Restaurant] = []
     var collectionSize = CGSizeZero
-    var collectionInsets = UIEdgeInsetsZero    
+    var collectionInsets = UIEdgeInsetsZero
+    
+    var section: Int = 0
+    var callBack: CollectionCallback?
 
     //MARK: - Create UIElements -
-    lazy var titleLabel: HOLabel = {
-        let view = HOLabel.newAutoLayoutView()
+    lazy var titleLabel: TitleLabel = {
+        let view = TitleLabel.newAutoLayoutView()
         view.numberOfLines = 0
         view.textAlignment = .Center
 
         return view
     }()
     
-    lazy var descriptionLabel: HOLabel = {
-        let view = HOLabel.newAutoLayoutView()
+    lazy var descriptionLabel: DescLabel = {
+        let view = DescLabel.newAutoLayoutView()
         view.numberOfLines = 0
         view.textAlignment = .Center
 
@@ -71,6 +81,7 @@ class HomeCellContentView: UIView {
         view.dataSource = self
         view.delegate = self
         view.registerClass(HomeCollectionCell.self, forCellWithReuseIdentifier: self.collectionCellIdentifire)
+        view.showsHorizontalScrollIndicator = false
         
         return view
     }()
@@ -132,11 +143,13 @@ class HomeCellContentView: UIView {
     }
     
     //MARK: - Public Methods -
-    func setValues(title: String,
+    func setValues(section: Int,
+                   title: String,
                    desc: String,
-                   items: [AnyObject],
+                   items: [Restaurant],
                    height: CGFloat = ScreenSize.HEIGHT*0.3,
-                   inset: CGFloat = HO_INSET)
+                   inset: CGFloat = 0,
+                   callBack: CollectionCallback)
     {
         
         if !title.isEmpty { setupTitle(title) }
@@ -144,8 +157,11 @@ class HomeCellContentView: UIView {
         setupCollectionView()
         
         collectionItems = items
-        collectionSize = CGSize(width: height, height: height)
-        collectionInsets = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)        
+        collectionSize = CGSize(width: height, height: height*0.7)
+        collectionInsets = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
+        
+        self.section = section
+        self.callBack = callBack
     }
 }
 
@@ -159,12 +175,15 @@ extension HomeCellContentView: UICollectionViewDataSource, UICollectionViewDeleg
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionCellIdentifire, forIndexPath: indexPath) as! HomeCollectionCell
+        let restaurant = collectionItems[indexPath.row]
+        cell.setValues(restaurant)
         
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
+        let indexPath = NSIndexPath(forRow: indexPath.row, inSection: section)
+        callBack!(indexPath: indexPath)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {

@@ -15,7 +15,7 @@ class HomeViewController: BaseViewController {
     let cellIdentifire = "cellIdentifire"
     var titles: [String] = []
     var descs: [String] = []
-    var items: [[AnyObject]] = [[]]
+    var items: [[Restaurant]] = []
     var heights: [CGFloat] = []
 
     // MARK: - Life cycle -
@@ -39,24 +39,36 @@ class HomeViewController: BaseViewController {
     
     //MARK: - Private Methods -
     private func setup() {
-        titles = ["AAA", "BBB", "CCC"]
-        descs = ["aaa", "", "ccc"]
-        heights = [ScreenSize.HEIGHT*0.15, ScreenSize.HEIGHT*0.25, ScreenSize.HEIGHT*0.35]
 
-        items.append([AnyObject]())
-        items.append([AnyObject]())
-        items.append([AnyObject]())
-        items[0] = ["", "", "", "", ""]
-        items[1] = ["", "", "", "", ""]
-        items[2] = ["", "", "", "", ""]
+    }
+    
+    //MARK: - CallBacks Methods -
+    func didSelectCollectionAtIndexPath(indexPath: NSIndexPath) {
+//        let restaurant = items[indexPath.section][indexPath.row]
     }
 }
 
 //MARK: - extension for HomeViewInput -
 extension HomeViewController: HomeViewInput {
     
-    func setupInitialState() {
-
+    func setupInitialState(home: Home) {
+        titles = ["New Restaurants", "Rate Restaurants", "Open Restaurants"]
+        descs = ["", "", ""]
+        heights = [ScreenSize.HEIGHT*0.25, ScreenSize.HEIGHT*0.25, ScreenSize.HEIGHT*0.3]
+        
+        items.append([Restaurant]())
+        items.append([Restaurant]())
+        items.append([Restaurant]())
+        
+        let existRestaurant = Restaurant(data: JSON(["img" : "img_all"]))
+        items[0] = Array(home.newRestaurants)
+        items[0].append(existRestaurant)
+        items[1] = Array(home.rateRestaurants)
+        items[1].append(existRestaurant)
+        items[2] = Array(home.openRestaurants)
+        items[2].append(existRestaurant)
+        
+        homeView.tableView.reloadData()
     }
 }
 
@@ -65,15 +77,18 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 3
+        return items.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifire) as! HomeCell
-        cell.setValues(titles[indexPath.row],
-                       desc: descs[indexPath.row],
-                       items: items[indexPath.row],
-                       height: heights[indexPath.row])
+        cell.setValues(indexPath.row,
+                       title:   titles[indexPath.row],
+                       desc:    descs[indexPath.row],
+                       items:   items[indexPath.row],
+                       height:  heights[indexPath.row],
+                       inset:   0,
+                       callBack: didSelectCollectionAtIndexPath)
         
         return cell
     }

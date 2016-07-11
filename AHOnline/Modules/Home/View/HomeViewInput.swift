@@ -8,5 +8,5 @@
 
 protocol HomeViewInput: class {
 
-    func setupInitialState()
+    func setupInitialState(home: Home)
 }

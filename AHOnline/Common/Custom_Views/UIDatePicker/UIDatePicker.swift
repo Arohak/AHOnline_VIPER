@@ -79,15 +79,15 @@ class DatePickerView: UIView {
         headerView.autoPinEdgeToSuperviewEdge(.Top)
         headerView.autoPinEdgeToSuperviewEdge(.Right)
         headerView.autoPinEdgeToSuperviewEdge(.Left)
-        headerView.autoSetDimension(.Height, toSize: TR_HEIGHT*1.5)
+        headerView.autoSetDimension(.Height, toSize: 50)
         
         saveButton.autoPinEdgeToSuperviewEdge(.Right)
         saveButton.autoPinEdgeToSuperviewEdge(.Top)
-        saveButton.autoSetDimensionsToSize(CGSize(width: TR_HEIGHT*2.5, height: TR_HEIGHT*1.5))
+        saveButton.autoSetDimensionsToSize(CGSize(width: 150, height: 150))
         
         cancelButton.autoPinEdgeToSuperviewEdge(.Left)
         cancelButton.autoPinEdgeToSuperviewEdge(.Top)
-        cancelButton.autoSetDimensionsToSize(CGSize(width: TR_HEIGHT*2.5, height: TR_HEIGHT*1.5))
+        cancelButton.autoSetDimensionsToSize(CGSize(width: 150, height: 150))
     }
     
     //MARK: - Actions -

@@ -8,4 +8,5 @@
 
 protocol HomeInteractorInput {
 
+    func getRestaurantsHome()
 }

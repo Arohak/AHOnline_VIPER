@@ -20,7 +20,8 @@ class HomeView: BaseView {
     
     lazy var carousel: iCarousel = {
         let view = iCarousel.newAutoLayoutView()
-        view.type = .CoverFlow2
+        view.pagingEnabled = true
+        view.type = .Linear
         
         return view
     }()

@@ -8,4 +8,5 @@
 
 protocol CategoriesInteractorOutput: class {
 
+    func categoriesDataIsReady(categories: [Category])
 }

@@ -7,7 +7,32 @@
 //
 
 class BaseViewController: UIViewController {
+    
+    // MARK: - Life cycle -
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        baseConfig()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updateLocalizedStrings()
+    }
+    
+    // MARK: - Internal Method -
+    internal func baseConfig() {
 
+    }
+    
+    internal func updateLocalizedStrings() {
+
+    }
+}
+
+class BaseSearchViewController: UIViewController {
+    
     init() {
         super.init(nibName: nil, bundle: nil)
         
@@ -33,15 +58,15 @@ class BaseViewController: UIViewController {
     
     // MARK: - Internal Method -
     internal func baseConfig() {
-
+        
     }
     
     internal func updateLocalizedStrings() {
-
+        
     }
     
     //MARK: - Actions -
     func searchAction() {
-
+        
     }
 }

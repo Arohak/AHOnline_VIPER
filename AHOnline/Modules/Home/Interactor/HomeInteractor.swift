@@ -16,10 +16,10 @@ class HomeInteractor {
 extension HomeInteractor: HomeInteractorInput {
     
     func getRestaurantsHome() {
-        _ = HomeAPIManager.getRestaurantsHome()
-            .subscribe(onNext: { data in
-                if data != nil {
-                    let home = Home(data: data["data"])
+        _ = APIManager.getRestaurantsHome()
+            .subscribe(onNext: { result in
+                if result != nil {
+                    let home = Home(data: result["data"])
                     self.output.homeDataIsReady(home)
                 }
             })

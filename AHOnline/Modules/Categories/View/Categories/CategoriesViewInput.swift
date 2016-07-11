@@ -8,5 +8,5 @@
 
 protocol CategoriesViewInput: class {
 
-    func setupInitialState()
+    func setupInitialState(viewControllers: [UIViewController], categories: [Category])
 }

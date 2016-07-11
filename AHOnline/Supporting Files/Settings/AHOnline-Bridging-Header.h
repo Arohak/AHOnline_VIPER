@@ -7,6 +7,7 @@
 
 @import UIKit;
 @import Foundation;
+@import CarbonKit;
 @import EventCenter;
 @import RealmSwift;
 @import SwiftyJSON;

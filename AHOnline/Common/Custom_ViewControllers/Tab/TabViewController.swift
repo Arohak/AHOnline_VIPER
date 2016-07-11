@@ -31,7 +31,7 @@ class TabBarViewController: UITabBarController {
         
         let categoriesVC = CategoriesViewController()
         _ = CategoriesModuleInitializer(viewController: categoriesVC)
-        tempViewControllers.append(UINavigationController(rootViewController: categoriesVC))
+        tempViewControllers.append(categoriesVC)
         
         let cartVC = CartViewController()
         _ = CartModuleInitializer(viewController: cartVC)

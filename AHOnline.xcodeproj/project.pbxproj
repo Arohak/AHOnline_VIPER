@@ -51,18 +51,34 @@
 		526EE7391D30F3BE00F77974 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 526EE7121D30F3BE00F77974 /* Localizable.strings */; };
 		526EE73C1D30F3BE00F77974 /* UISettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EE71B1D30F3BE00F77974 /* UISettings.swift */; };
 		526EE73E1D30F94F00F77974 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EE73D1D30F94F00F77974 /* Result.swift */; };
+		528D184D1D3428C40041370E /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 528D184C1D3428C40041370E /* 3.png */; };
+		528D18671D3435F40041370E /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528D18521D3435F40041370E /* CategoriesViewController.swift */; };
+		528D18681D3435F40041370E /* CategoriesViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528D18531D3435F40041370E /* CategoriesViewInput.swift */; };
+		528D18691D3435F40041370E /* CategoriesViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528D18541D3435F40041370E /* CategoriesViewOutput.swift */; };
+		528D186A1D3435F40041370E /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528D18561D3435F40041370E /* CategoriesView.swift */; };
+		528D186B1D3435F40041370E /* FlowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528D18581D3435F40041370E /* FlowerViewController.swift */; };
+		528D186C1D3435F40041370E /* FlowerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528D185A1D3435F40041370E /* FlowerView.swift */; };
+		528D186D1D3435F40041370E /* HotelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528D185C1D3435F40041370E /* HotelViewController.swift */; };
+		528D186E1D3435F40041370E /* HotelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528D185E1D3435F40041370E /* HotelView.swift */; };
+		528D186F1D3435F40041370E /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528D18601D3435F40041370E /* RestaurantViewController.swift */; };
+		528D18701D3435F40041370E /* RestaurantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528D18621D3435F40041370E /* RestaurantView.swift */; };
+		528D18711D3435F40041370E /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528D18641D3435F40041370E /* ShopViewController.swift */; };
+		528D18721D3435F40041370E /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528D18661D3435F40041370E /* ShopView.swift */; };
+		52A4E0D01D34484900DDAC54 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A4E0CE1D34484900DDAC54 /* APIManager.swift */; };
+		52A4E0D11D34484900DDAC54 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A4E0CF1D34484900DDAC54 /* DBManager.swift */; };
+		52A4E0D41D344E3900DDAC54 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A4E0D21D344E3900DDAC54 /* Category.swift */; };
+		52A4E0D51D344E3900DDAC54 /* SubCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A4E0D31D344E3900DDAC54 /* SubCategory.swift */; };
+		52A4E0DA1D3455BE00DDAC54 /* BaseCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A4E0D71D3455BE00DDAC54 /* BaseCategoryViewController.swift */; };
+		52A4E0DB1D3455BE00DDAC54 /* BaseCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A4E0D91D3455BE00DDAC54 /* BaseCategoryView.swift */; };
 		52AB26211D323BB3007CAB56 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB26201D323BB3007CAB56 /* HomeCell.swift */; };
 		52AB26231D324567007CAB56 /* HomeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AB26221D324567007CAB56 /* HomeCollectionCell.swift */; };
 		52ED7BA31D3129D500C75F69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52ED7BA21D3129D500C75F69 /* Assets.xcassets */; };
 		52ED7BA51D31361500C75F69 /* img_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 52ED7BA41D31361500C75F69 /* img_bg.png */; };
 		52ED7BA91D3136F100C75F69 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ED7BA81D3136F100C75F69 /* HomeView.swift */; };
-		52ED7BAB1D31373900C75F69 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ED7BAA1D31373900C75F69 /* CategoriesView.swift */; };
 		52ED7BAE1D3137A600C75F69 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ED7BAD1D3137A600C75F69 /* BaseViewController.swift */; };
 		576F4CA1FA8CB080AA1B8B66 /* AccountInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6519839B0AE82B1F131AF0C0 /* AccountInteractor.swift */; };
 		5AB6352802A757B530DF23EB /* MapInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40504CE435135C70D66AA3E6 /* MapInteractorOutput.swift */; };
-		5B0BD6F8698E2D8AF7BDB246 /* CategoriesViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC420FF88B8837B8847ADD2 /* CategoriesViewInput.swift */; };
 		5B16BCD92519A02D8EB7BD10 /* MapConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38E5784AC89DAB0273C6938 /* MapConfigurator.swift */; };
-		615B735CB3D9834268E9360A /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4345ED7CA36D3A46E9EB7F8F /* CategoriesViewController.swift */; };
 		616565005ABD8A2461498CF4 /* AccountInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADC7ED3803EFA1A4694A8FB /* AccountInteractorOutput.swift */; };
 		66756D8E0EEDCABDC611070B /* CategoriesInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC36F0051D9F786D26C74AF1 /* CategoriesInitializer.swift */; };
 		6981AF3C2786B92F24179D74 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBE3724932E44B877DA8E28 /* AccountViewController.swift */; };
@@ -85,8 +101,6 @@
 		948BBD1B7FB7848BAF293FDC /* CartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073CC43320C685BBD68564B7 /* CartPresenter.swift */; };
 		992C45334F1E2E48B2201F73 /* CategoriesModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C59EFE916A0DB3EF7C2AC2B /* CategoriesModuleInput.swift */; };
 		9A33CC37AEEA35C0BBDC6A70 /* AccountConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B8088B97FCBEE717103AB1 /* AccountConfigurator.swift */; };
-		A1379FFA1D339535000D022A /* HomeAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1379FF71D339535000D022A /* HomeAPIManager.swift */; };
-		A1379FFB1D339535000D022A /* HomeDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1379FF81D339535000D022A /* HomeDBManager.swift */; };
 		A1379FFD1D3398C6000D022A /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1379FFC1D3398C6000D022A /* Home.swift */; };
 		A1379FFF1D33D9D7000D022A /* img_all.png in Resources */ = {isa = PBXBuildFile; fileRef = A1379FFE1D33D9D7000D022A /* img_all.png */; };
 		A4768A65A04A920829674604 /* CategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576C7C0A31A7E67FB908040F /* CategoriesPresenter.swift */; };
@@ -94,7 +108,6 @@
 		AB07D4C6FD510EBAFF73E96F /* HomeInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D13F66B7BE50462E0AF9A /* HomeInitializer.swift */; };
 		B22236799FA17D257FEBE1A7 /* MapModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A00F61B0E7A497D537D4C /* MapModuleInput.swift */; };
 		B2824102B86E54E81840288D /* HomeViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6B6B1B8654644E57B660E6 /* HomeViewOutput.swift */; };
-		B48B32A7F2364DEFE1B29767 /* CategoriesViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01C7CE32FE726ED85A09AA5 /* CategoriesViewOutput.swift */; };
 		BB28D0E738C1FEC51DC97D26 /* CartInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27A526A68C4EDF651590CD1 /* CartInteractor.swift */; };
 		C0406F14A9573FEC06B2579A /* MapRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F547C3BDA0FF5049BD1DF392 /* MapRouterInput.swift */; };
 		C6F952ACE75C592F676D94F7 /* CategoriesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC310679FE87A8D9D27A1AF4 /* CategoriesInteractor.swift */; };
@@ -149,7 +162,6 @@
 		3C59EFE916A0DB3EF7C2AC2B /* CategoriesModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategoriesModuleInput.swift; sourceTree = "<group>"; };
 		40504CE435135C70D66AA3E6 /* MapInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MapInteractorOutput.swift; sourceTree = "<group>"; };
 		42D4570F309DD2BE0918F9E0 /* AccountViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountViewOutput.swift; sourceTree = "<group>"; };
-		4345ED7CA36D3A46E9EB7F8F /* CategoriesViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		479334EBFC3F56D6AF7A3B06 /* CartInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CartInteractorOutput.swift; sourceTree = "<group>"; };
 		49593C2741273587891FCCCD /* CartInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CartInteractorInput.swift; sourceTree = "<group>"; };
 		4AB14C5459E718917813A510 /* CategoriesInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategoriesInteractorInput.swift; sourceTree = "<group>"; };
@@ -197,12 +209,30 @@
 		526EE71A1D30F3BE00F77974 /* AHOnline-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AHOnline-Bridging-Header.h"; sourceTree = "<group>"; };
 		526EE71B1D30F3BE00F77974 /* UISettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISettings.swift; sourceTree = "<group>"; };
 		526EE73D1D30F94F00F77974 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		528D184C1D3428C40041370E /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		528D18521D3435F40041370E /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		528D18531D3435F40041370E /* CategoriesViewInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewInput.swift; sourceTree = "<group>"; };
+		528D18541D3435F40041370E /* CategoriesViewOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewOutput.swift; sourceTree = "<group>"; };
+		528D18561D3435F40041370E /* CategoriesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
+		528D18581D3435F40041370E /* FlowerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowerViewController.swift; sourceTree = "<group>"; };
+		528D185A1D3435F40041370E /* FlowerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowerView.swift; sourceTree = "<group>"; };
+		528D185C1D3435F40041370E /* HotelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelViewController.swift; sourceTree = "<group>"; };
+		528D185E1D3435F40041370E /* HotelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelView.swift; sourceTree = "<group>"; };
+		528D18601D3435F40041370E /* RestaurantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
+		528D18621D3435F40041370E /* RestaurantView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantView.swift; sourceTree = "<group>"; };
+		528D18641D3435F40041370E /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		528D18661D3435F40041370E /* ShopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
+		52A4E0CE1D34484900DDAC54 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		52A4E0CF1D34484900DDAC54 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		52A4E0D21D344E3900DDAC54 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		52A4E0D31D344E3900DDAC54 /* SubCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategory.swift; sourceTree = "<group>"; };
+		52A4E0D71D3455BE00DDAC54 /* BaseCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCategoryViewController.swift; sourceTree = "<group>"; };
+		52A4E0D91D3455BE00DDAC54 /* BaseCategoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCategoryView.swift; sourceTree = "<group>"; };
 		52AB26201D323BB3007CAB56 /* HomeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		52AB26221D324567007CAB56 /* HomeCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCollectionCell.swift; sourceTree = "<group>"; };
 		52ED7BA21D3129D500C75F69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52ED7BA41D31361500C75F69 /* img_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_bg.png; sourceTree = "<group>"; };
 		52ED7BA81D3136F100C75F69 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		52ED7BAA1D31373900C75F69 /* CategoriesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		52ED7BAD1D3137A600C75F69 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		56A43419F1009E159147A9E8 /* Pods_AHOnlineTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AHOnlineTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		576C7C0A31A7E67FB908040F /* CategoriesPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategoriesPresenter.swift; sourceTree = "<group>"; };
@@ -222,20 +252,16 @@
 		9E8ABE9EC0C17017CEC89D7A /* CartViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		9FB5EC9D671C7189FFFE55DC /* HomePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		A1281D013265BAAA9F5C8362 /* CartRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CartRouterInput.swift; sourceTree = "<group>"; };
-		A1379FF71D339535000D022A /* HomeAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeAPIManager.swift; sourceTree = "<group>"; };
-		A1379FF81D339535000D022A /* HomeDBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDBManager.swift; sourceTree = "<group>"; };
 		A1379FFC1D3398C6000D022A /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		A1379FFE1D33D9D7000D022A /* img_all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_all.png; sourceTree = "<group>"; };
 		A572BDDFE1914D182E50E0AE /* CartInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CartInitializer.swift; sourceTree = "<group>"; };
 		BA9649F692CBB79747743B17 /* MapInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MapInitializer.swift; sourceTree = "<group>"; };
-		BDC420FF88B8837B8847ADD2 /* CategoriesViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategoriesViewInput.swift; sourceTree = "<group>"; };
 		BF2D13F66B7BE50462E0AF9A /* HomeInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeInitializer.swift; sourceTree = "<group>"; };
 		C389B8C5C38E4BF7A6266349 /* HomeInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeInteractorInput.swift; sourceTree = "<group>"; };
 		CC310679FE87A8D9D27A1AF4 /* CategoriesInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategoriesInteractor.swift; sourceTree = "<group>"; };
 		D42ED3D50032EDF5D8078596 /* HomeModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeModuleInput.swift; sourceTree = "<group>"; };
 		D66A00F61B0E7A497D537D4C /* MapModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MapModuleInput.swift; sourceTree = "<group>"; };
 		DADC7ED3803EFA1A4694A8FB /* AccountInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountInteractorOutput.swift; sourceTree = "<group>"; };
-		E01C7CE32FE726ED85A09AA5 /* CategoriesViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategoriesViewOutput.swift; sourceTree = "<group>"; };
 		E3869B0FA11E8D51401F199D /* HomeRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeRouterInput.swift; sourceTree = "<group>"; };
 		EBE3E02F476EE77A6EFBDAA7 /* AccountModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountModuleInput.swift; sourceTree = "<group>"; };
 		F045EF9C45C2FB470CFE1DAA /* MapRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MapRouter.swift; sourceTree = "<group>"; };
@@ -287,7 +313,6 @@
 				73A596E4E30674D88ADE795F /* Interactor */,
 				78C3686594FC8184EAE6871B /* Router */,
 				67EB9B40771590A9EE049586 /* Configurator */,
-				A1379FF51D339535000D022A /* Common */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -408,6 +433,7 @@
 				526EE6E91D30F3BE00F77974 /* Custom_Views */,
 				526EE7001D30F3BE00F77974 /* Helpers */,
 				526EE7081D30F3BE00F77974 /* Models */,
+				52A4E0CD1D34484900DDAC54 /* Managers */,
 				526EE70A1D30F3BE00F77974 /* Protocols */,
 			);
 			path = Common;
@@ -591,6 +617,8 @@
 			isa = PBXGroup;
 			children = (
 				526EE73D1D30F94F00F77974 /* Result.swift */,
+				52A4E0D21D344E3900DDAC54 /* Category.swift */,
+				52A4E0D31D344E3900DDAC54 /* SubCategory.swift */,
 				A1379FFC1D3398C6000D022A /* Home.swift */,
 				526EE7091D30F3BE00F77974 /* Restaurant.swift */,
 			);
@@ -640,6 +668,7 @@
 		526EE7101D30F3BE00F77974 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				528D184C1D3428C40041370E /* 3.png */,
 				52012AEA1D32BB340002140C /* 0.png */,
 				52012AEB1D32BB340002140C /* 1.png */,
 				52012AEC1D32BB340002140C /* 2.png */,
@@ -675,10 +704,115 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		52ED7BA61D3136CE00C75F69 /* views */ = {
+		528D18511D3435F40041370E /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				52ED7BAA1D31373900C75F69 /* CategoriesView.swift */,
+				528D18521D3435F40041370E /* CategoriesViewController.swift */,
+				528D18531D3435F40041370E /* CategoriesViewInput.swift */,
+				528D18541D3435F40041370E /* CategoriesViewOutput.swift */,
+				528D18551D3435F40041370E /* views */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		528D18551D3435F40041370E /* views */ = {
+			isa = PBXGroup;
+			children = (
+				528D18561D3435F40041370E /* CategoriesView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		528D18571D3435F40041370E /* Flower */ = {
+			isa = PBXGroup;
+			children = (
+				528D18581D3435F40041370E /* FlowerViewController.swift */,
+				528D18591D3435F40041370E /* views */,
+			);
+			path = Flower;
+			sourceTree = "<group>";
+		};
+		528D18591D3435F40041370E /* views */ = {
+			isa = PBXGroup;
+			children = (
+				528D185A1D3435F40041370E /* FlowerView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		528D185B1D3435F40041370E /* Hotel */ = {
+			isa = PBXGroup;
+			children = (
+				528D185C1D3435F40041370E /* HotelViewController.swift */,
+				528D185D1D3435F40041370E /* views */,
+			);
+			path = Hotel;
+			sourceTree = "<group>";
+		};
+		528D185D1D3435F40041370E /* views */ = {
+			isa = PBXGroup;
+			children = (
+				528D185E1D3435F40041370E /* HotelView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		528D185F1D3435F40041370E /* Restaurant */ = {
+			isa = PBXGroup;
+			children = (
+				528D18601D3435F40041370E /* RestaurantViewController.swift */,
+				528D18611D3435F40041370E /* views */,
+			);
+			path = Restaurant;
+			sourceTree = "<group>";
+		};
+		528D18611D3435F40041370E /* views */ = {
+			isa = PBXGroup;
+			children = (
+				528D18621D3435F40041370E /* RestaurantView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		528D18631D3435F40041370E /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				528D18641D3435F40041370E /* ShopViewController.swift */,
+				528D18651D3435F40041370E /* views */,
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
+		528D18651D3435F40041370E /* views */ = {
+			isa = PBXGroup;
+			children = (
+				528D18661D3435F40041370E /* ShopView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		52A4E0CD1D34484900DDAC54 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				52A4E0CE1D34484900DDAC54 /* APIManager.swift */,
+				52A4E0CF1D34484900DDAC54 /* DBManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		52A4E0D61D3455BE00DDAC54 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				52A4E0D71D3455BE00DDAC54 /* BaseCategoryViewController.swift */,
+				52A4E0D81D3455BE00DDAC54 /* views */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		52A4E0D81D3455BE00DDAC54 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				52A4E0D91D3455BE00DDAC54 /* BaseCategoryView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -829,37 +963,14 @@
 		99E6BA8090191AC154A46C30 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BDC420FF88B8837B8847ADD2 /* CategoriesViewInput.swift */,
-				E01C7CE32FE726ED85A09AA5 /* CategoriesViewOutput.swift */,
-				4345ED7CA36D3A46E9EB7F8F /* CategoriesViewController.swift */,
-				52ED7BA61D3136CE00C75F69 /* views */,
+				52A4E0D61D3455BE00DDAC54 /* Base */,
+				528D18511D3435F40041370E /* Categories */,
+				528D185F1D3435F40041370E /* Restaurant */,
+				528D18631D3435F40041370E /* Shop */,
+				528D18571D3435F40041370E /* Flower */,
+				528D185B1D3435F40041370E /* Hotel */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		A1379FF51D339535000D022A /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				A1379FF61D339535000D022A /* Manager */,
-				A1379FF91D339535000D022A /* Protocol */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		A1379FF61D339535000D022A /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				A1379FF71D339535000D022A /* HomeAPIManager.swift */,
-				A1379FF81D339535000D022A /* HomeDBManager.swift */,
-			);
-			path = Manager;
-			sourceTree = "<group>";
-		};
-		A1379FF91D339535000D022A /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Protocol;
 			sourceTree = "<group>";
 		};
 		A3C8D38F8D922F1B0E991CF9 /* Configurator */ = {
@@ -1055,6 +1166,7 @@
 				52012AEE1D32BB340002140C /* 1.png in Resources */,
 				52ED7BA51D31361500C75F69 /* img_bg.png in Resources */,
 				52ED7BA31D3129D500C75F69 /* Assets.xcassets in Resources */,
+				528D184D1D3428C40041370E /* 3.png in Resources */,
 				52012AEF1D32BB340002140C /* 2.png in Resources */,
 				526EE7391D30F3BE00F77974 /* Localizable.strings in Resources */,
 				52012AED1D32BB340002140C /* 0.png in Resources */,
@@ -1172,6 +1284,7 @@
 				526EE7321D30F3BE00F77974 /* Extensions.swift in Sources */,
 				526EE7251D30F3BE00F77974 /* UICollectionView.swift in Sources */,
 				526EE72B1D30F3BE00F77974 /* UITableViewCell.swift in Sources */,
+				528D18701D3435F40041370E /* RestaurantView.swift in Sources */,
 				526EE73C1D30F3BE00F77974 /* UISettings.swift in Sources */,
 				52ED7BAE1D3137A600C75F69 /* BaseViewController.swift in Sources */,
 				526EE71D1D30F3BE00F77974 /* Wireframe.swift in Sources */,
@@ -1180,6 +1293,8 @@
 				526EE7351D30F3BE00F77974 /* Utils.swift in Sources */,
 				526EE71F1D30F3BE00F77974 /* EventViewController.swift in Sources */,
 				526EE7211D30F3BE00F77974 /* DatePikerViewController.swift in Sources */,
+				52A4E0D41D344E3900DDAC54 /* Category.swift in Sources */,
+				528D18691D3435F40041370E /* CategoriesViewOutput.swift in Sources */,
 				526EE71E1D30F3BE00F77974 /* BaseClosedActionViewController.swift in Sources */,
 				526EE7291D30F3BE00F77974 /* UIScrollView.swift in Sources */,
 				526EE72F1D30F3BE00F77974 /* APIHelper.swift in Sources */,
@@ -1188,12 +1303,13 @@
 				526EE7221D30F3BE00F77974 /* TabViewController.swift in Sources */,
 				526EE7311D30F3BE00F77974 /* Events.swift in Sources */,
 				526EE7331D30F3BE00F77974 /* Preferences.swift in Sources */,
+				528D18671D3435F40041370E /* CategoriesViewController.swift in Sources */,
 				526EE7201D30F3BE00F77974 /* ActionSheetPickerViewController.swift in Sources */,
 				526EE7231D30F3BE00F77974 /* WebViewController.swift in Sources */,
 				526EE7261D30F3BE00F77974 /* UIDatePicker.swift in Sources */,
-				A1379FFA1D339535000D022A /* HomeAPIManager.swift in Sources */,
 				526EE72E1D30F3BE00F77974 /* UIView.swift in Sources */,
 				526EE72D1D30F3BE00F77974 /* UITextView.swift in Sources */,
+				52A4E0D01D34484900DDAC54 /* APIManager.swift in Sources */,
 				526EE7371D30F3BE00F77974 /* NavigationProtocol.swift in Sources */,
 				52AB26231D324567007CAB56 /* HomeCollectionCell.swift in Sources */,
 				526EE7271D30F3BE00F77974 /* UILabel.swift in Sources */,
@@ -1201,27 +1317,28 @@
 				526EE7361D30F3BE00F77974 /* Restaurant.swift in Sources */,
 				526EE72C1D30F3BE00F77974 /* UITextField.swift in Sources */,
 				526EE7341D30F3BE00F77974 /* UIHelper.swift in Sources */,
-				52ED7BAB1D31373900C75F69 /* CategoriesView.swift in Sources */,
 				526EE7241D30F3BE00F77974 /* UIButton.swift in Sources */,
+				528D18721D3435F40041370E /* ShopView.swift in Sources */,
+				528D186B1D3435F40041370E /* FlowerViewController.swift in Sources */,
 				38C688DB19B4726F857D3B3E /* HomeViewInput.swift in Sources */,
 				B2824102B86E54E81840288D /* HomeViewOutput.swift in Sources */,
 				52AB26211D323BB3007CAB56 /* HomeCell.swift in Sources */,
+				528D18681D3435F40041370E /* CategoriesViewInput.swift in Sources */,
 				7E55A668D564BE39A09AD26B /* HomeViewController.swift in Sources */,
 				E58C0A7D66452C527397FBC6 /* HomeModuleInput.swift in Sources */,
 				8580730AD0C4FA7F97251EA5 /* HomePresenter.swift in Sources */,
 				72E7B64B261F9203A6CBCE6D /* HomeInteractorInput.swift in Sources */,
 				FF0FFBDF9B01D7EF14D1A379 /* HomeInteractorOutput.swift in Sources */,
 				80BFC7C2A32BF1B3AA5F4660 /* HomeInteractor.swift in Sources */,
+				528D18711D3435F40041370E /* ShopViewController.swift in Sources */,
+				52A4E0DA1D3455BE00DDAC54 /* BaseCategoryViewController.swift in Sources */,
 				52ED7BA91D3136F100C75F69 /* HomeView.swift in Sources */,
 				F00EFF72FEE7B6D206669A7C /* HomeRouterInput.swift in Sources */,
 				832CFCCD818A93A4E1320E6B /* HomeRouter.swift in Sources */,
 				46E4D71FA1214E7E9A4C7B67 /* HomeConfigurator.swift in Sources */,
+				528D186D1D3435F40041370E /* HotelViewController.swift in Sources */,
 				AB07D4C6FD510EBAFF73E96F /* HomeInitializer.swift in Sources */,
-				5B0BD6F8698E2D8AF7BDB246 /* CategoriesViewInput.swift in Sources */,
-				B48B32A7F2364DEFE1B29767 /* CategoriesViewOutput.swift in Sources */,
-				615B735CB3D9834268E9360A /* CategoriesViewController.swift in Sources */,
 				992C45334F1E2E48B2201F73 /* CategoriesModuleInput.swift in Sources */,
-				A1379FFB1D339535000D022A /* HomeDBManager.swift in Sources */,
 				A4768A65A04A920829674604 /* CategoriesPresenter.swift in Sources */,
 				E6A8E0CBA7989C559E13F389 /* CategoriesInteractorInput.swift in Sources */,
 				ED0F9FDA17656C33BD088B4F /* CategoriesInteractorOutput.swift in Sources */,
@@ -1239,6 +1356,7 @@
 				92721D7D51CC54AD5E40F0E7 /* CartInteractorOutput.swift in Sources */,
 				BB28D0E738C1FEC51DC97D26 /* CartInteractor.swift in Sources */,
 				C7934A85B85E8F10C7D0B8A0 /* CartRouterInput.swift in Sources */,
+				52A4E0D11D34484900DDAC54 /* DBManager.swift in Sources */,
 				0006B2A1B2F1C7EDD81E6160 /* CartRouter.swift in Sources */,
 				F5856990D72F1EDEADA3AA70 /* CartConfigurator.swift in Sources */,
 				83C36E304081508F001AD6E9 /* CartInitializer.swift in Sources */,
@@ -1249,8 +1367,10 @@
 				B22236799FA17D257FEBE1A7 /* MapModuleInput.swift in Sources */,
 				F3A3C5DEF5F009690EE4677E /* MapPresenter.swift in Sources */,
 				EF5BFE7D5491A34D62C92B62 /* MapInteractorInput.swift in Sources */,
+				528D186F1D3435F40041370E /* RestaurantViewController.swift in Sources */,
 				5AB6352802A757B530DF23EB /* MapInteractorOutput.swift in Sources */,
 				6AF7FDCB2FE7A26F87ADA65E /* MapInteractor.swift in Sources */,
+				528D186E1D3435F40041370E /* HotelView.swift in Sources */,
 				C0406F14A9573FEC06B2579A /* MapRouterInput.swift in Sources */,
 				CB83A4648EDC4514B7A32EB4 /* MapRouter.swift in Sources */,
 				5B16BCD92519A02D8EB7BD10 /* MapConfigurator.swift in Sources */,
@@ -1258,13 +1378,17 @@
 				699880F741C52D49FEA82759 /* AccountViewInput.swift in Sources */,
 				D774CA6EA80BCA5FEAE0E5B9 /* AccountViewOutput.swift in Sources */,
 				6981AF3C2786B92F24179D74 /* AccountViewController.swift in Sources */,
+				52A4E0DB1D3455BE00DDAC54 /* BaseCategoryView.swift in Sources */,
 				A93726E7B59FBB9F86D18CD1 /* AccountModuleInput.swift in Sources */,
 				86881128C07B4D9CD6532470 /* AccountPresenter.swift in Sources */,
 				9164B4C6C679B92A3F085AE2 /* AccountInteractorInput.swift in Sources */,
 				616565005ABD8A2461498CF4 /* AccountInteractorOutput.swift in Sources */,
+				52A4E0D51D344E3900DDAC54 /* SubCategory.swift in Sources */,
+				528D186A1D3435F40041370E /* CategoriesView.swift in Sources */,
 				576F4CA1FA8CB080AA1B8B66 /* AccountInteractor.swift in Sources */,
 				E2BD8B984F1987DF2A5A3FE7 /* AccountRouterInput.swift in Sources */,
 				0AE8176AACD508A9FBDE06E7 /* AccountRouter.swift in Sources */,
+				528D186C1D3435F40041370E /* FlowerView.swift in Sources */,
 				9A33CC37AEEA35C0BBDC6A70 /* AccountConfigurator.swift in Sources */,
 				8925870A8843A2E3509E0FD8 /* AccountInitializer.swift in Sources */,
 			);

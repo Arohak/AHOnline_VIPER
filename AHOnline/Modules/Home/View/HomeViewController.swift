@@ -17,12 +17,12 @@ class HomeViewController: BaseViewController {
     var descs: [String] = []
     var items: [[Restaurant]] = []
     var heights: [CGFloat] = []
+    var carouselTimer: NSTimer!
 
     // MARK: - Life cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Home".localizedString
         output.viewIsReady()
     }
     
@@ -34,17 +34,23 @@ class HomeViewController: BaseViewController {
         homeView.tableView.delegate = self
         homeView.tableView.registerClass(HomeCell.self, forCellReuseIdentifier: cellIdentifire)
         
-        setup()
+        scheduleCarouselScrolingTimer()
     }
     
     //MARK: - Private Methods -
-    private func setup() {
-
+    private func scheduleCarouselScrolingTimer() {
+        carouselTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(scrollCarousel), userInfo: nil, repeats: true)
+    }
+    
+    //MARK: - Timer Methods -
+    func scrollCarousel() {
+        homeView.carousel.scrollToItemAtIndex(homeView.carousel.currentItemIndex + 1, animated: true)
     }
     
     //MARK: - CallBacks Methods -
     func didSelectCollectionAtIndexPath(indexPath: NSIndexPath) {
-//        let restaurant = items[indexPath.section][indexPath.row]
+        let restaurant = items[indexPath.section][indexPath.row]
+        print(restaurant.id)
     }
 }
 
@@ -124,15 +130,16 @@ extension HomeViewController: iCarouselDataSource, iCarouselDelegate {
     
     func numberOfItemsInCarousel(carousel: iCarousel) -> Int {
         
-        return 3
+        return 10
     }
 
     func carousel(carousel: iCarousel, viewForItemAtIndex index: Int, reusingView view: UIView?) -> UIView {
         let itemView: UIView!
+        var imageView: UIImageView!
         
         if (view == nil) {
-            itemView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-            let imageView = UIImageView.newAutoLayoutView()
+            itemView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenSize.WIDTH - HO_INSET*2, height: ScreenSize.HEIGHT*0.3))
+            imageView = UIImageView.newAutoLayoutView()
             itemView.addSubview(imageView)
             imageView.image = UIImage(named: "\(index).png")
             imageView.autoPinEdgesToSuperviewEdges()
@@ -148,5 +155,14 @@ extension HomeViewController: iCarouselDataSource, iCarouselDelegate {
             return value * 1.1
         }
         return value
+    }
+    
+    func carouselWillBeginDecelerating(carousel: iCarousel) {
+        carouselTimer.invalidate()
+        carouselTimer = nil
+    }
+    
+    func carouselDidEndDecelerating(carousel: iCarousel) {
+        scheduleCarouselScrolingTimer()
     }
 }

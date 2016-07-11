@@ -6,6 +6,7 @@ target 'AHOnline' do
 
     pod 'AsyncDisplayKit'
     pod 'ALThreeCircleSpinner'
+    pod 'CarbonKit'
     pod 'EventCenter'
     pod 'GoogleMaps'
     pod 'Kingfisher'

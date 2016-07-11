@@ -13,6 +13,7 @@ class BaseTableView: UITableView {
         super.init(frame: frame, style: style)
         
         separatorStyle = .None
+        backgroundColor = CLEAR
     }
     
     convenience init() {

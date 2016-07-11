@@ -8,4 +8,5 @@
 
 protocol CategoriesInteractorInput {
 
+    func getCategories()
 }

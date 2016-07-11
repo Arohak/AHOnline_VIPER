@@ -1,0 +1,525 @@
+// Common
+//"DoocatCaption" = "Мобильный Банкинг и Мобильная Коммерция";
+"DoocatCaption" = "Doocat";
+"RenameAccountName" = "Переименовать счет";
+"NewName" = "New name";
+"Debit" = "Дебит:";
+"Credit" = "Кредит:";
+"Description:" = "Описание:";
+
+"OK" = "OK";
+"YES" = "ДА";
+"JOIN"="ДА";
+"NO" = "НЕТ";
+"Next" = "Далее";
+"Back" = "Назад";
+"Home" = "Главная";
+"Confirm" = "Подтвердить";
+"OtpConfirm" = "Подтвердить пароль единичного пользования";
+"OtpConfirmLbl" = "Подтвердить пароль единичного пользования";
+"Reject" = "Отмена";
+"Amount" = "Сумма";
+"Amount:" = "Сумма";
+"ItemDescription" = "Описание";
+"Comment" = "Комментарии";
+"Currency" = "Валюта";
+"CardName" = "Имя";
+"Type" = "Тип";
+"AccountType" = "Тип счета";
+"SelectAccountType" = "Выберите тип счета";
+"CardNumber" = "Номер";
+"Add" = "Добавить";
+"LoadMore" = "Загрузить еще";
+"Merchant" = "Продавец";
+"Merchant:" = "Продавец:";
+"Client" = "Клиент";
+"Client:" = "Клиент";
+"emptyHistory"="Нет больше транзакций для загрузки";
+"emptyList"="История пуста";
+"reset" = "Сброс";
+"Limited" = "Возможно вы стали жертвой подделки программы";
+"fillAllFields"="Пожалуйста, заполните все поля";
+"ConfirmTransaction?" = "Вы собираетесь совершить перевод с Вашего счета.\nНажмите OK для подтверждения.";
+"RejectTransaction?" = "Вы собираетесь отклонить заказ.\nЧтобы подтвердить, пожалуйста, нажмите OK.";
+"ConfirmOrderTransaction?" = "Вы собираетесь принять заказ.\nЧтобы подтвердить, пожалуйста, нажмите OK.";
+"ConfirmTransactionNoEqual?" = "Вы собираетесь выполнить перевод между различными валютами, и это вызовет конвертацию Нажмите ОК для подтверждения";
+"InvalidEmail" = "Неверный адрес электронной почты";
+
+"TRANSFER" = "ТРАНСФЕР";
+"ORDER" = "ЗАКАЗ";
+"UTILITIES" = "Оплата услуг";
+"Generate" = "Сгенерировать";
+
+// Certificate
+"Certificate" = "Сертификат";
+"getCertificate" = "Загрузить";
+"AskYourBankLblText" = "Посетите Конверс Банк для запуска программы"; //TODO change
+"EnterYourEmailLblText" = "Введите Ваш адрес эл. почты, номер мобильного телефона и код сертификата";
+"ProvideMobileNumber" = "Введите номер своего мобильного телефона который вы предоставили Конверс Банку";
+"ProvidePinCode" = "Введите присланный банком код сертификата";
+"CertificateExpired" = "Срок действия Вашего сертификат безопасности истек. Пожалуйста, обратитесь в Doocat для получения нового сертификата.";
+"RelauchApp" = "\nПожалуйста, перезапустите приложение.";
+
+// Login
+"LoginCaption" = "Вход";
+"SignIn" = "Войти";
+"VCardNumber" = "Номер карточного счета";
+"Password" = "Пароль";
+"VerifyPassword" = "Подтвердить пароль";
+"RegEmployee" = "Регистрация в качестве сотрудника";
+"RegLabel" = "Нет учетной записи?";
+"CVCLabel" = "Нет виртуальной карты?";
+"Register" = "Регистрация";
+"CreateVCard" = "Создать виртуальную карту";
+"LoginLblText" = "Войдите, чтобы получить доступ к приложению";
+"SaveEmailLblText" = "Запомнить эл. почту";
+"ForgotPassword" = "Забыли пароль?";
+"SendForgPass" = "Отправить";
+"CheckYourEmail" = "Проверьте вашу электронную почту";
+"UserNotFound" = "Пользователь не найден";
+"SetupAccount" = "Установить счет";
+"AsDefaultAccount" = "Как счет по умолчанию";
+"AsMerchantAccount" = "Как счета продавца";
+"SetPassInfo" = "Укажите пароль, чтоб использовать его для входа в свой аккаунт Doocat.";
+"DefaultAccounRequird" = "Пожалуйста, выберите основной счет";
+"MerchantAccounRequird" = "Пожалуйста, выберите счет продавца";
+"oldNewMessage" = "";
+
+
+
+// Registration - menu
+"SetPassword" = "Установить пароль";
+"Registration" = "Регистрация";
+"RegClient" = "Регистрация в качестве клиента";
+"RegMerchant" = "Регистрация в качестве продавца";
+"RegCompany" = "Регистрация в качестве мульти-продавец";
+"RegBuyerMerchant" = "Регистрация в качестве продавца";
+"RegisterBuyerAndMerchant" = "Регистрация в качестве продавца и клиента";
+
+
+// Registration - Client/Seller/Company
+"PasswordsDontMatch" = "Пароли не совпадают";
+"Name" = "Имя";
+"NameForCompany" = "Наименование";
+"Surname" = "Фамилия";
+"BirthDate" = "Дата рождения";
+"MobilePhone" = "Номер моб. телефона";
+"pinCode" = "Код сертификата";
+"eMail" = "Эл. почта";
+"MerchantAccount" = "Счет продавца";
+"HVHH" = "ИНН";
+"LegalAddress" = "Юр. адрес";
+"PhysicalAddress" = "Фактический адрес";
+
+// Registration result
+//"CertResult" = "Вы успешно установили сертификат. Пожалуйста, нажмите ОК, чтобы продолжить.";
+"CertResult" = "Вы успешно ввели сертификат.";
+"CertResultError" = "Не удалoсь установить сертификат";
+"RegResult" = "Поздравляем! Ваша учетаня запись успешно создана. Теперь вы можете создать виртуальную карту";
+"WrongBirthDay" = "Вы выбрали неверные даты";
+"MobilePhoneHelpText" = "Пожалуйста, введите номер мобильного телефона, на котором вы собираетесь использовать Doocat";
+"MerchantAccountHelpText" = "Пожалуйста, прикрепите Ваш банковский или карточный счет.";
+"SecurityCodeHelpText" = "Пожалуйста, используйте код безопасности, предоставленный Конверс Банком";
+
+
+// Create Virtual Card - step 2
+"ExpirationDate" = "Срок действия";
+"ConfirmPassword" = "Подтвердить пароль";
+"PasswordMismatch" = "Пароли не совпадают";
+//"PasswordTooSmall" = "Пароль должен содержать не менее 6 символов";
+"PasswordBadFormat" = "Пароль должен содержать не менее 6 символов(буквы и цифры)";
+"PasswordBadFormat2" = "Пароль должен содержать не менее 6 символов";
+
+// Virtual Card Settings
+"CountPerDay" = "Число транзакций за сутки";
+"AmountPerDay" = "Сумма за сутки";
+"AmountPerMonth" = "Сумма за месяц";
+"TotalAmount" = "Общая сумма";
+"SaveChanges" = "Сохранить изменения";
+"save" = "Сохранить";
+"cancel" = "Отмена";
+
+"InvalidValues" = "Сумма за день не может превышать сумму за месяц"; // ammount validation
+//-"CVCUpdate" = "Сохранение новых настроек";
+//-"CVCResult" = "Поздравляем! Ваша В-Карта создана. Вы можете войти в систему используя номер В-Карты и пароль";
+"CVCDescr" = "Создайте В-Карту, указав номер счета, пароль, срок действия и настройки";
+
+// MCommerce
+"MobileCommerce" = "Мобильная коммерция";
+"PendingPaymentOrders" = "Неоплаченные платежные поручения";
+"PendingPaymentOrdersBuyer" = "Невыполненные платежи";
+"LatestOrdersHistory" = "История последних заказов";
+"LastConfirmedOrders" = "Подтвержденные платежные поручения";
+"LastConfirmedOrdersBuyer" = "Подтвержденные платежи";
+"LastRejectedOrders" = "Отклоненные платежные поручения";
+"LastRejectedOrdersBuyer" = "Отклоненные платежи";
+"CreatePaymentOrder" = "Создать платежное поручение";
+"CreatedOrdersHistory" = "Оформленные заказы";
+"readQR" = "Сканировать QR код";
+"viewReceipt" = "Просмотр квитанции";
+"sendToEmail" = "Отправить на эл. почту";
+
+// MCommerce - Create Order step 1
+"CreateOrder" = "Оформление заказа";
+"ItemName" = "Название";
+"ItemCodeLbl" = "Код товара";
+"Seller" = "Продавец";
+"OrderDateTime:" = "Дата/время заказа";
+"OrderExpirationDateTime:" = "Срок действия заказа";
+"OrderExpirationDateTime" = "Срок действия заказа";
+
+// MCommerce - Create Order step 2
+"item:" = "Название";
+"ClientsPhone" = "Номер или эл. почта";
+"SendOrder" = "Отправить";
+//-"OrderSent" = "Добавлен новый заказ";
+
+// MCommerce - Order History/Details
+"OrderDetails" = "Подробности заказа";
+"PendingOrders" = "Заказы в ожидании";
+"LastOrdersHistory" = "Последние заказы";
+"ConfirmedTransactions" = "Подтвержденные заказы";
+"RejectedTransactions" = "Отклоненные заказы";
+"ExpirationDate:" = "Срок действия";
+"Status:" = "Статус";
+
+// MCommerce - Order Payment
+"OrderPayment" = "Оплатить заказ";
+"AccountText" = "Вы собираетесь заплатить за продукт с Вашего банковского счета";
+"(default)" = "(Основной)";
+"Change" = "Изменить";
+//-"PaymentConfirmed" = "Платеж подтвержден";
+//"OrderRejected" = "Заказ отклонен";
+"SELLERU:" = "Продавец";
+"COMPANYU:" = "Мульти-продавец";
+
+// MBanking
+"MobileBanking" = "Мобильный банк";
+"CheckBalance" = "Проверить баланс";
+"Check" = "Проверить";
+"AtmLocations" = "Расположение банкоматов";
+"Atms" = "Банкоматы";
+"ExchangeRates" = "Курсы валют";
+"Converter" = "Конвертер";
+"Convert" = "Конвертировать";
+"ManageAccounts" = "Управление счетами";
+"SmartTransfer" = "Смарт трансфер";
+"QrCodeError" = "Ошибка QR кода";
+"AccountStatement" = "Выписка со счета";
+"AccountStatementFilter" = "Фильтр выписок со счетов";
+"AccountStatementHistory" = "Выписка счета";
+"Filter" = "Фильтр";
+"Print" = "Отправить на эл. почту";
+"TransactionsHistory" = "История транзакций";
+"TransferToAccount" = "Перевод внутри банка";
+"TransferToBank" = "Перевод в другой банк";
+"CardDetails" = "Подробности счета";
+"SelectAccount" = "Выберите счет";
+"Cash" = "Наличные";
+"NonCash" = "Безналичные";
+"To" = "До";
+"From" = "От";
+"InvalidAccountNumber" = "Пожалуйста, введите действительный номер учетной записи (длина должна быть от 11 до 16).";
+"OpenSettings" = "---";
+"GetByMobileNumber" = "Найти";
+
+// MBanking - Exchange Rates
+"Today" = "Сегодня";
+"Yesterday" = "Вчера";
+"Sell" = "Продать";
+"Buy" = "Купить";
+"LastUpdated" = "Обновление ";
+
+// MBanking - Transfer to my account
+"MbFromAccount" = "Счет отправителя";
+"ToAccount" = "Счет получателя";
+"My" = "Мой";
+"Other"= "Другой";
+"Transfer" = "Перевод";
+"YourTransactionExceeds500000" = "Ваша транзакция превышает 500,000, банк подтвердит транзакцию в рабочие дни с 09:00-17:00. Нажмите OK для продолжения.";
+"YourTransactionExceeds50000" = "Ваша транзакция превышает 50,000, банк подтвердит транзакцию в рабочие дни с 09:00-17:00. Нажмите OK для продолжения.";
+//-"Transferred" = "Запрос на транзакцию принят";
+
+// MBanking - Transfer to other bank
+"NameSurname" = "Имя/Фамилия";
+"ChooseBank" = "Выберите банк";
+"BankCode" = "Код банка";
+
+//MBanking - Transactions detail
+"TransactionDetails" = "Подробности";
+"Account:" = "Номер счета";
+"Balance:" = "Остаток";
+"Type:" = "Тип";
+"transDescr" = "Примечание"; //"Описание";
+"CancelTransaction" = "Отменить";
+
+// Utility/Unipay Payment
+"UtilityPayment" = "Оплата коммунальных услуг";
+"OtherPayments" = "Другие платежи";
+"PayForUnipay" = "Платежи по сервису UNIPAY";
+"UnipayCode" = "Код UNIPAY";
+"UnipayCode:" = "Код UNIPAY:";
+"ContractID" = "Номер контракта";
+"UtFromAccount" = "Номер счета отправителя";
+"Pay" = "Платить";
+"Contract#:" = "Номер контракта";
+"Customer:" = "Клиент";
+"Date of:" = "Дата";
+"ConfirmPayment" = "Подтвердить";
+//-"UtilityPayed" = "Запрос на транзакцию принят";
+//"UnipayPayed" = "Запрос на транзакцию принят";
+"Owner:" = "Клиент";
+
+//Reports
+"RepTransferToAccount" = "Переводы на мои счета";
+"RepTransferToBank" = "Переводы в другой банк";
+"RepOrders" = "Заказы";
+"RepUtilities" = "Оплата счетов";
+"fromDateIncorrect" = "Неверный временной интервал";
+"EmptyTransactions" = "История транзакций пуста";
+
+//Recurring
+"EmptyRecuring" = "Для настройки периодических платежей перейдите в Избранное";
+"Once" = "Одноразовый";
+"Weekly" = "Еженедельный";
+"Monthly" = "Ежемесячный";
+"os_Payment_Started" = "Оплата начата";
+"os_Payment_Completed" = "Оплата завершена";
+"CUSTOM" = "Одноразовый";
+"WEEKLY" = "Еженедельный";
+"MONTHLY" = "Ежемесячный";
+"NoDataFound" = "Данные не найдены";
+
+// Favorites
+//-"FavoriteAdded" = "Добавлено в избранное";
+"ConfirmRemoveFv" = "Удалить?";
+"AddFavorite" = "В Избранное";
+"Order" = "Заказ";
+"PhoneNumber" = "Номер мобильного";
+"RemoveFavorite" = "Удалить";
+"AlreadyRemoved" = "Уже удаленo";
+"TransferFrom:" = "Счет отправителя";
+"TransferTo:" = "Счет получателя";
+"NameSurname:" = "Имя/Фамилия";
+"BankBranch:" = "Филиал банка";
+"Payed" = "Payed";
+"Fee" = "Плата за сделку";
+"Total" = "Общий";
+"MakeRecurring" = "Автоматический платеж";
+"FirstPaymentDate" = "Первый день оплаты";
+"PaymentType" = "Тип оплаты";
+"IsDefaultAccount" = "Основной счет";
+
+
+// Settings
+"VCardInfo" = "Данные В-Карты";
+"AddBankAccount" = "Добавить банковский счет";
+"AddCardAccount" = "Добавить кредитный счет";
+"AddAccount" = "Добавление счета";
+"EditAccounts" = "Просмотр/Удаление счетов"; //"Manage accounts"
+"VCardSettings" = "Ограничения аккаунта";
+"manageAccounts" = "Управление счетами";
+"DeleteVCard" = "Удалить В-Карту";
+"DeleteVCard?" = "Удалить В-Карту?";
+"DeleteContact?" = "Удалить контакт?";
+"Send" = "Отправить";
+"CurrentPass" = "Текущий пароль";
+"ChangePass" = "Изменить пароль";
+"DeleteCertificate" = "Удалить сертификат безопасности";
+"DeleteCertificate?" = "Вы уверены, что хотите удалить сертификат безопасности?\n";
+
+"QRCode" = "Мой QR код";
+"AppSettings" = "Настройки приложения";
+"SessionExpTime" = "Время истечения сессии";
+"SessionExpTime_1" = "1 минутa";
+"SessionExpTime_3" = "3 минуты";
+"SessionExpTime_5" = "5 минут";
+"SessionExpTime_10" = "10 минут";
+"SessionExpTime_20" = "20 минут";
+"SessionExpTime_30" = "30 минут";
+"SessionExpTime_1_hour" = "1 час";
+"SessionExpTime_3_hour" = "3 часа";
+"SessionExpTime_6_hour" = "6 часов";
+
+"Contacts" = "Контакты";
+"Newcontact" = "Новый контакт";
+"Name" = "Имя";
+"Phone" = "Телефон";
+"accountNumber" = "Номер счета";
+"accountName" = "Название счета";
+"email" = "Эл. почта";
+"Contact" = "Детали контакта";
+"VCard Info"   = "Данные В-Карты";
+"VCard_number" = "Номер счета";
+"VCardExpDateTime:" = "Срок действия";
+
+"ContactUs" = "Контакты";
+"Language" = "Язык";
+
+"not_expire" = "Без лимита";
+"pleaseRestart"="Для применения изменений перезапустите приложение";
+"About" = "Об Doocat";
+"MakeDefault" = "По умолчанию";
+"default" = "[основной] ";
+"deactive" = "[Деактивирован] ";
+//"AccountAdded" = "Добавлен новый счет";
+"DelDefAccount" = "Ошибка: нельзя удалить основной счет";
+"Delete" = "Удалить";
+"DeleteAccount" = "Удалить счет?";
+"Rename" = "Переименовать";
+"LogOut" = "Выход";
+"SetAsMerchant" = "Установить счет продавца";
+"Sync" = "Синхронизировать";
+"Activate" = "Активировать";
+"Deactivate" = "Деактивировать";
+"Deactivated" = "Деактивирован";
+"MoreSettings"  = "Больше";
+"ManageAccount" = "Управление счетом";
+
+//FAvorites
+"favTransferToSameBank"="Перевод внутри банка";
+"favTransferToOtherBank"="Перевод в другой банк";
+"favOrder"="Заказ";
+"favUtilities"="Оплата коммунальных услуг";
+
+//Loyalty
+"LoyaltyPrograms" = "Скидки";
+"LoyaltyProg" = "Программа лояльности";
+"StartDate:" = "Дата запуска";
+"ExpirationDateTime:" = "Срок действия";
+"Discount:" = "Скидки";
+"Discount" = "Скидки";
+"Accept" = "Принять";
+"Decline" = "Отклонить";
+"NewLoyalty" = "Продавец запустил новую программу лояльности!\nЖелаете принять участие?";
+
+// Helpers
+"PleaseWait" = "Пожалуйста, подождите";
+"DONE" = "Готово";
+"Cancel" = "Отмена";
+"Loading" = "Загрузка...";
+"RestResultErrorHeader" = "Ошибка:";
+"RestResultErrorExpired" = "Время Вашего сеанса истекло";
+"NetworkProtocolError" = "Ошибка сети";
+"NetworkError" = "Ошибка сети";
+"securityCode" = "Код безопасности" ;
+"captchaCode" = "Captcha код";
+"RefreshCode" = "Обновить код"; //Captcha code
+"ChooseName" = "Название"; //favorite name
+
+"ContactUsPhone:" = "Тел.:";
+"ContactUsMailTxt" = "Эл. почта: info@doocat.com";
+"ContactUsFirstNumTxt" = "+1-617-395-7777";
+"ContactUsSecondNumTxt" = "";
+
+//"aboutTxt" = "\nmConverse - разработанное для клиентов Конверс банка (как физических, так и юридических лиц) приложение мобильного банка и мобильной коммерции. Система mConverse позволяет управлять счетами Конверс Банка, осуществлять денежные перeводы, проверять курс валют и оплачивать коммунальные услуги. Через приложение также возможно осуществлять платежи за приобретенные товары в магазинах.\n\nБизнесмены владельцы магазинов могут принимать мобильные платежи через простой в использовании интуитивный интерфейс приложения mConverse. Платеж незамедлительно утверждается и деньги переводятся на счет продавца в Конверс Банке сразу, как только клиент подтвердит запрос о платеже, отправленный продавцом. Система mConverse берет за основу новейшие стандарты безопасности мобильной и интернет сети для защиты всех сторон сделки. Система создана на основе платформы  мобильного банкинга и мобильной торговли  DOOCAT, разработанной компанией Energize Global Services CJSC. Вы, как пользователь этого приложения, соглашаетесь, что любая его часть, и его дизайн, организация и технологический процесс работ, использованные символы и экраны являются коммерческой тайной и интеллектуальной собственностью компании Energize Global Services CJSC., и вы обязуетесь не использовать любые похожие элементы или организацию и технологический процесс работ, будь то производная работа или другое, в конкурентных целях. Вы соглашаетесь не копировать, не разбирать или не перепроектировать это приложение или любой из его компонентов.";
+"aboutTxt" = "About Doocat";
+
+//Recurring
+"FirstPaymnet:"="Первый платеж:";
+"Period:"="Период:";
+"MaxAmount:"="Максимальная сумма:";
+"PersonalId:"="Номер контракта:";
+"Templates"="Избранное";
+"TargetAccount:"="Счет получателя:";
+
+//Transaction statuses
+"tr_COMPLETED" = "Выполнено";
+"tr_FAILED"="Не удалось";
+"tr_OTP_REQUIRED"="Требуется код";
+"tr_LIMIT_EXCEEDED"="Превышен лимит";
+"tr_STARTED"="Выполняется";
+"tr_INVALID_SIGNATURE" = "Неверная подпись";
+"tr_CANCELED" = "Отменен";
+
+
+//Order statuses
+"os_Pending"="В ожидании";
+"os_Canceled"="Отменен";
+"os_Accepted"="Принят";
+"os_Rejected"="Отклонен";
+"os_Failed"="Неудавшийся";
+"os_Expired"="Истекший";
+
+//Transaction types
+/*"tt_TRANSFER_TO_SAME_BANK"="Перевод внутри банка";
+ "tt_ORDER"="Заказ";
+ "tt_UTILITIES"="Оплата услуг";
+ "tt_UNIPAY"="Коммунальные";
+ "tt_TRANSFER_TO_OTHER_BANK"="Перевод в другой банк";
+ "tt_P2P" = "Смарт трансфер";//"P to P";
+ "tr_MODULE_ACTIVATION" = "Активация модуля";
+ "tr_TRANSACTION_FEE" = "Плата за обслуживание";
+ "tr_TRANSACTION_GROUP_FEE" = "Плата за групповой перевод";*/
+
+"TRANSFER_TO_SAME_BANK"="Перевод внутри банка";
+"ORDER"="Заказ";
+"UTILITIES"="Оплата услуг";
+"tt_UNIPAY"="Коммунальные";
+"TRANSFER_TO_OTHER_BANK"="Перевод в другой банк";
+"P2P_TRANSFER" = "Смарт трансфер";//"P to P";
+"MODULE_ACTIVATION" = "Активация модуля";
+"TRANSACTION_FEE" = "Плата за обслуживание";
+"TRANSACTION_GROUP_FEE" = "Плата за групповой перевод";
+"PAYMENT_SERVICE" = "Платежи";
+
+"mBanking" = "М-Банкинг";
+"mCommerce" = "М-Коммерция";
+"BillPayment" = "Оплата счетов";
+"Favorites" = "Избранное";
+"Discounts" = "Скидки";
+"RecurringMenu" = "Авто-платежи";
+"Recurring" = "Авто-платежи";
+"Reports" = "Отчеты";
+"Settings" = "Настройки";
+
+"PaymentServices" = "Платежи";
+"FieldError" = "Поле \"%@\" содержит ошибку, правильный формат: \"%@\"";
+
+"change_language_message" = "Изменение будет применено после повторного входа.";
+"ALL" = "Все";
+
+//Loan, deposit
+"Loan" = "Кредит";
+"Loans" = "Кредиты";
+"Deposit" = "Вклад";
+"Deposits" = "Вклады";
+"NextPayment" = "Дата платежа";
+"TotalAmount" = "Всего";
+"Start" = "Дата начала";
+"Next" = "Следующий";
+"LoanRepayment" = "Погашение кредита";
+"principal" = "Начальная сумма";
+"interest" = "Сумма по процентам";
+"penalty" = "Штраф";
+"otherPayments" = "Другие платежи";
+"contractNumber" = "Номер контракта";
+"interestRate" = "Процентная ставка";
+"payed" = "Выплачено всего";
+
+"SelectFilterType" = "Выберите тип";
+"FilterSettings" = "Настройки фильтра";
+"PrintSettings" = "Настройки экспорта";
+"LOAN_PAYMENT" = "Платеж по кредиту";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

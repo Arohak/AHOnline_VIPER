@@ -1,0 +1,137 @@
+//
+//  HomeViewController.swift
+//  AHOnline
+//
+//  Created by AroHak on 09/07/2016.
+//  Copyright © 2016 AroHak LLC. All rights reserved.
+//
+
+//MARK: - class HomeViewController -
+class HomeViewController: BaseViewController {
+
+    var output: HomeViewOutput!
+    
+    var homeView = HomeView()
+    let cellIdentifire = "cellIdentifire"
+    var titles: [String] = []
+    var descs: [String] = []
+    var items: [[AnyObject]] = [[]]
+    var heights: [CGFloat] = []
+
+    // MARK: - Life cycle -
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        title = "Home".localizedString
+        output.viewIsReady()
+    }
+    
+    // MARK: - Internal Method -
+    override func baseConfig() {
+        self.view = homeView
+        
+        homeView.tableView.dataSource = self
+        homeView.tableView.delegate = self
+        homeView.tableView.registerClass(HomeCell.self, forCellReuseIdentifier: cellIdentifire)
+        
+        setup()
+    }
+    
+    //MARK: - Private Methods -
+    private func setup() {
+        titles = ["AAA", "BBB", "CCC"]
+        descs = ["aaa", "", "ccc"]
+        heights = [ScreenSize.HEIGHT*0.15, ScreenSize.HEIGHT*0.25, ScreenSize.HEIGHT*0.35]
+
+        items.append([AnyObject]())
+        items.append([AnyObject]())
+        items.append([AnyObject]())
+        items[0] = ["", "", "", "", ""]
+        items[1] = ["", "", "", "", ""]
+        items[2] = ["", "", "", "", ""]
+    }
+}
+
+//MARK: - extension for HomeViewInput -
+extension HomeViewController: HomeViewInput {
+    
+    func setupInitialState() {
+
+    }
+}
+
+//MARK: - extension for UITableView -
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return 3
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifire) as! HomeCell
+        cell.setValues(titles[indexPath.row],
+                       desc: descs[indexPath.row],
+                       items: items[indexPath.row],
+                       height: heights[indexPath.row])
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        return heights[indexPath.row]
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        return ScreenSize.HEIGHT*0.3
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.addSubview(homeView.carousel)
+        homeView.carousel.dataSource = self
+        homeView.carousel.delegate = self
+        homeView.carousel.clipsToBounds = true
+        homeView.carousel.autoPinEdgesToSuperviewEdges()
+        
+        return view
+    }
+}
+
+//MARK: - extension for iCarousel -
+extension HomeViewController: iCarouselDataSource, iCarouselDelegate {
+    
+    func numberOfItemsInCarousel(carousel: iCarousel) -> Int {
+        
+        return 3
+    }
+
+    func carousel(carousel: iCarousel, viewForItemAtIndex index: Int, reusingView view: UIView?) -> UIView {
+        let itemView: UIView!
+        
+        if (view == nil) {
+            itemView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+            let imageView = UIImageView.newAutoLayoutView()
+            itemView.addSubview(imageView)
+            imageView.image = UIImage(named: "\(index).png")
+            imageView.autoPinEdgesToSuperviewEdges()
+        } else {
+            itemView = view
+        }
+        
+        return itemView
+    }
+    
+    func carousel(carousel: iCarousel, valueForOption option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
+        if (option == .Spacing) {
+            return value * 1.1
+        }
+        return value
+    }
+}

@@ -1,0 +1,519 @@
+// Common
+//"DoocatCaption" = "Mobile Banking & Commerce";
+"DoocatCaption" = "Doocat";
+"RenameAccountName" = "Վերանվանել հաշիվը";
+"NewName" = "Նոր Անուն";
+"Debit" = "Դեբետ:";
+"Credit" = "Կրեդիտ:";
+"Description:" = "Նկարագրություն:";
+
+"OK" = "Այո";
+"YES" = "Այո";
+"JOIN"="Այո";
+"NO" = "Ոչ";
+"Next" = "Հաջորդ";
+"Back" = "Նախորդ";
+"Home" = "Գլխավոր";
+"Confirm" = "Հաստատել";
+"OtpConfirm" = "Մեկանգամյա օգտագործման գաղտնաբառ";
+"OtpConfirmLbl" = "Հաստատել մեկանգամյա օգտագործման գաղտանբառը";
+"Reject" = "Մերժել";
+"Amount" = "Գումար";
+"Amount:" = "Գումար";
+"ItemDescription" = "Ապրանքատեսակի նկարագրություն";
+"Comment" = "Մեկնաբանություն";
+"Type" = "Տեսակ";
+"Currency" = "Արժույթ";
+"CardName" = "Անվանում";
+"AccountType" = "Հաշվի տեսակ";
+"SelectAccountType" = "Ընտրեք հաշվի տեսակը";
+"CardNumber" = "Հաշիվ";
+"Add" = "Ավելացնել";
+"LoadMore" = "Բեռնել";
+"Merchant" = "Վաճառող";
+"Client" = "Հաճախորդ";
+"Client:" = "Հաճախորդ";
+"emptyHistory"="Այլևս գործարքներ չկան";
+"emptyList"="Պատմությունը դատարկ է";
+"reset" = "Վերագործարկել";
+"fillAllFields"="Խնդրում ենք լրացնել բոլոր դաշտերը";
+"ConfirmTransaction?" = "Դուք պատրաստվում եք փոխանցում կատարել Ձեր հաշվից:\nՀաստատելու համար սեղմեք Այո:";
+"RejectTransaction?" = "Դուք պատրաստվում եք մերժել պատվերը:\nՀաստատելու համար սեղմեք Այո:";
+"ConfirmOrderTransaction?" = "Դուք պատրաստվում եք ընդունել պատվերը:\nՀաստատելու համար սեղմեք Այո:";
+"ConfirmTransactionNoEqual?" = "Դուք պատրաստվում եք փոխանցում կատարել տարբեր արժույթներով, և դա կառաջացնի արտարժույթի փոխարկում: Սեղմեք Այո հաստատելու համար";
+"InvalidEmail" = "Անվավեր էլ. փոստ";
+"Limited" = "Առկա է ծրագրային ապահովման կեղծարարության վտանգ";
+"Generate" = "Գեներացնել";
+
+// Certificate
+"Certificate" = "Վկայականի տվյալներ";
+"getCertificate" = "Գործարկել";
+"AskYourBankLblText" = "Այցելեք Կոնվերս Բանկ ծրագիրն ակտիվացնելու համար";
+"EnterYourEmailLblText" = "Մուտքագրեք Ձեր էլ.փոստը, բջջ. հեռախոսահամարը և վկայականի կոդը";
+"ProvideMobileNumber" = "Մուտքագրեք Ձեր հեռախոսահամարը, որը տրամադրել էիք Կոնվերս Բանկին";
+"ProvidePinCode" = "Մուտքագրեք Կոնվերս Բանկի կողմից Ձեզ ուղարկված վկայականի կոդը";
+"CertificateExpired" = "Ձեր անվտանգության վկայականի ժամկետը լրացել է: Խնդրում ենք դիմել Doocat նոր վկայական ստանալու համար:";
+"RelauchApp" = "\nԽնդրում ենք վերագործարկել հավելվածը:";
+
+// Login
+"SignIn" = "Մուտք";
+"LoginCaption" = "Մուտք";
+"VCardNumber" = "Վ-Քարտի համար";
+"Password" = "Գաղտնաբառ";
+"VerifyPassword" = "Հաստատել գաղտնաբառը";
+"RegEmployee" = "Գրանցվել որպես աշխատակից";
+"RegLabel" = "Չունե՞ք հաշիվ";
+"CVCLabel" = "Չունե՞ք Վ-Քարտ";
+"Register" =   "Գրանցում";
+"DefaultAccounRequird" = "Խնդրում ենք ընտրել հիմնական հաշիվը";
+"MerchantAccounRequird" = "Խնդրում ենք ընտրել վաճառողի հաշիվը";
+"oldNewMessage" = "Arm text";
+
+//"Register" = "Ստեղծել Վ-Քարտ";
+"CreateVCard" = "Ստեղծել Վ-Քարտ";
+"LoginLblText" = "Հավելվածից օգտվելու համար խնդրում ենք մուտք գործել համակարգ";
+"SaveEmailLblText" = "Հիշել էլ. փոստը";
+"ForgotPassword" = "Մոռացե՞լ եք գաղտնաբառը:";
+"SendForgPass" = "Ուղարկել";
+"CheckYourEmail" = "Ստուգեք Ձեր էլփոստը";
+"UserNotFound" = "Օգտագործողը չի գտնվել";
+"SetupAccount" = "Կարգավորել հաշիվը";
+"AsDefaultAccount" = "Որպես հիմնական հաշիվ";
+"AsMerchantAccount" = "Որպես վաճառողի հաշիվ";
+"SetPassInfo" = "Ստեղծեք գաղտնաբառ, որը կօգտագործեք Doocat համակարգ մուտք գործելու համար:";
+
+
+// Registration - menu
+"SetPassword" = "Ստեղծեք գաղտնաբառը";
+"Registration" = "Գրանցում";
+"RegClient" = "Գրանցվել որպես գնորդ";
+"RegMerchant" = "Գրանցվել որպես վաճառող";
+"RegCompany" = "Գրանցվել որպես մուլտի-վաճառող";
+"RegBuyerMerchant" = "Գրանցվել որպես վաճառող";
+"RegisterBuyerAndMerchant" = "Գրանցվել որպես գնորդ և վաճառող";
+
+// Registration - Client/Seller/Company
+"PasswordsDontMatch" = "Գաղտնաբառերը չեն համընկնում";
+"Name" = "Անուն";
+"NameForCompany" = "Անվանում";
+"Surname" = "Ազգանուն";
+"BirthDate" = "Ծննդյան ամսաթիվ";
+"MobilePhone" = "Բջջային հեռախոսահամար";
+"pinCode" = "Վկայականի կոդ";
+"eMail" = "Էլեկտրոնային փոստ";
+"MerchantAccount" = "Վաճառողի հաշիվ";
+"HVHH" = "ՀՎՀՀ";
+"LegalAddress" = "Իրավաբանական հասցե";
+"PhysicalAddress" = "Գործունեության հասցե";
+
+// Registration result
+//"CertResult" = "Դուք հաջողությամբ տեղադրել եք վկայականը: Խնդրում ենք սեղմեք OK շարունակելու համար:";
+"CertResult" = "Դուք հաջողությամբ լրացրել եք վկայականը:";
+"CertResultError" = "Վկայականի տեղադրումը չհաջողվեց";
+"RegResult" = "Շնորհավորում ենք. Ձեր հաշիվը հաջողությամբ ստեղծվել է: Այժմ Դուք կարող եք ստեղծել վիրտուալ քարտ";
+"WrongBirthDay" = "Ընտրված ամսաթվերը ճիշտ չեն";
+"MobilePhoneHelpText" = "Մուտքագրել Ձեր հեռախոսահամարը, որը տրամադրել էիք Կոնվերս Բանկին";
+"MerchantAccountHelpText" = "Խնդրում ենք կցել Ձեր բանկային կամ քարտային հաշիվները.";
+"SecurityCodeHelpText" = "Խնդրում ենք օգտագործել Կոնվերս Բանկի կողմից տրամադրված անվտանգության կոդը";
+
+// Create Virtual Card - step 2
+"ExpirationDate" = "Վավերականության ժամկետ";
+"ConfirmPassword" = "Հաստատել գաղտնաբառը";
+"PasswordMismatch" = "Գաղտնաբառերը չեն համընկնում";
+//"PasswordTooSmall" = "Գաղտնաբառը պետք է լինի առնվազն 6 նշան";
+"PasswordBadFormat" = "Գաղտնաբառը պետք է պարունակի առնվազն 6 նշան և բաղկացած լինի տառերից ու թվերից";
+"PasswordBadFormat2" = "Գաղտնաբառը պետք է պարունակի առնվազն 6 նշան";
+
+// Virtual Card Settings
+"CountPerDay" = "Օրական քանակ";
+"AmountPerDay" = "Օրական գումար";
+"AmountPerMonth" = "Ամսական գումար";
+"TotalAmount" = "Ընդհանուր գումար";
+"SaveChanges" = "Պահպանել";
+"save" = "Պահպանել";
+"cancel" = "Չեղարկել";
+"InvalidValues" = "Օրական գումարը չի կարող գերազանցել ամսեկանը";
+//-"CVCUpdate" = "Վ-Քարտի կարգավորումները հաջողությամբ պահպանվեցին";
+//-"CVCResult" = "Շնորհավորում ենք. Ձեր նոր հաշիվը հաջողությամբ ստեղծվեց: Այժմ Դուք կարող եք մուտք գործել Ձեր քարտի համարի և ծածկագրի միջոցով";
+"CVCDescr" = "Ստեղծեք Ձեր Վ-Քարտը՝ մուտքագրելով հաշիվը, գաղտնաբառը և վավերականության ժամկետը: Կատարեք և պահպանեք կարգավորումները";
+
+// MCommerce
+"MobileCommerce" = "Մոբայլ Առևտուր";
+"PendingPaymentOrders" = "Չվճարված հայտեր";
+"PendingPaymentOrdersBuyer" = "Չկատարված վճարումներ";
+"LatestOrdersHistory" = "Պատվերների պատմություն";
+"LastConfirmedOrders" = "Հաստատված հայտեր";
+"LastConfirmedOrdersBuyer" = "Հաստատված վճարումներ";
+"LastRejectedOrders" = "Մերժված հայտեր";
+"LastRejectedOrdersBuyer" = "Մերժված վճարումներ";
+"CreatePaymentOrder" = "Ստեղծել վճարման հայտ";
+"CreatedOrdersHistory" = "Ստեղծած պատվերներ";
+"readQR" = "Կարդալ QR կոդը";
+"viewReceipt" = "Դիտել անդորրագիրը";
+"sendToEmail" = "Ուղարկել էլ. փոստին";
+
+// MCommerce - Create Order step 1
+"CreateOrder" = "Ստեղծել վճարման հայտեր";
+"ItemName" = "Ապրանքատեսակի անվանում";
+"ItemCodeLbl" = "Ապրանքի կոդ";
+"Seller" = "Վաճառող";
+"OrderDateTime:" = "Պատվերի ամսաթիվ";
+"OrderExpirationDateTime:" = "Վերջնաժամկետ";
+"OrderExpirationDateTime" = "Վերջնաժամկետ";
+
+// MCommerce - Create Order step 2
+"item:" = "Ապրանքատեսակ";
+"Merchant:" = "Վաճառող";
+"ClientsPhone" = "Հեռախոսահամար կամ Էլ. փոստ";
+"SendOrder" = "Ուղարկել պատվեր";
+//-"OrderSent" = "Պատվերը հաջողությամբ ուղարկվեց";
+
+// MCommerce - Order History/Details
+"OrderDetails" = "Պատվերի տվյալներ";
+"PendingOrders" = "Վճարմանը սպասող պատվերներ";
+"LastOrdersHistory" = "Պատվերների պատմություն";
+"ConfirmedTransactions" = "Հաստատված փոխանցումներ";
+"RejectedTransactions" = "Մերժված փոխանցումներ";
+"ExpirationDate:" = "Վերջնաժամկետ";
+"Status:" = "Կարգավիճակ";
+
+// MCommerce - Order Payment
+"OrderPayment" = "Պատվերի վճարում";
+"AccountText" = "Դուք պատրաստվում եք վճարել Ձեր հետևյալ բանկային հաշվից";
+"(default)" = "(Հիմնական)";
+"Change" = "Փոփոխել";
+//-"PaymentConfirmed" = "Վճարումը հաստատված է";
+//"OrderRejected" = "Պատվերը մերժված է";
+"SELLERU:" = "Վաճառող";
+"COMPANYU:" = "Մուլտի-վաճառող";
+
+// MBanking
+"MobileBanking" = "Մոբայլ Բանկ";
+"CheckBalance" = "Ստուգել մնացորդը";
+"Check" = "Ստուգել";
+"AtmLocations" = "Բանկոմատների հասցեներ";
+"Atms" = "Բանկոմատների հասցեներ";
+"ExchangeRates" = "Տարադրամի փոխարժեքներ";
+"Converter" = "Փոխարկիչ";
+"Convert" = "Փոխարկել";
+"ManageAccounts" = "Հաշիվների կառավարում";
+"SmartTransfer" = "Սմարթ տրանսֆեր";
+"QrCodeError" = "Անվավեր QR կոդ";
+"AccountStatement" = "Հաշվի քաղվածք";
+"AccountStatementFilter" = "Քաղվածք ըստ հաշվի";
+"AccountStatementHistory" = "Հաշվի քաղվածք";
+"Filter" = "Ֆիլտր";
+"Print" = "Ուղարկել էլ. փոստին";
+"TransactionsHistory" = "Գործարքների պատմություն";
+"TransferToAccount" = "Փոխանցում բանկի ներսում";
+"TransferToBank" = "Փոխանցում այլ բանկ";
+"CardDetails" = "Հաշվի տվյալներ";
+"SelectAccount" = "Ընտրել հաշիվը";
+"Cash" = "Կանխիկ";
+"NonCash" = "Անկանխիկ";
+"To" = "Մինչև";
+"From" = "Սկսած";
+"InvalidAccountNumber" = "Խնդրում ենք մուտքագրել վավեր հաշվեհամար (երկարությունը պետք է լինի 11-ից 16):";
+"OpenSettings" = "---";
+"GetByMobileNumber" = "Փնտրել";
+"Loan" = "Վարկ";
+"Deposit" = "Ավանդ";
+
+// MBanking - Exchange Rates
+"Today" = "Այսօր";
+"Yesterday" = "Երեկ";
+"Sell" = "Վաճառել";
+"Buy" = "Գնել";
+"LastUpdated" = "Թարմացվել է ";
+
+// MBanking - Transfer to my account
+"MbFromAccount" = "Հաշվից";
+"ToAccount" = "Հաշվին";
+"My" = "Իմ";
+"Other"= "Այլ";
+"Transfer" = "Փոխանցում";
+"YourTransactionExceeds500000" = "Ձեր գործարքը գերազանցում է 500,000, բանկը կհաստատի գործարքը է աշխատանքային օրերին ժամը 09:00-17:00: Սեղմեք Այո շարունակելու համար:";
+"YourTransactionExceeds50000" = "Ձեր գործարքը գերազանցում է 50,000, բանկը կհաստատի գործարքը է աշխատանքային օրերին ժամը 09:00-17:00: Սեղմեք Այո շարունակելու համար:";
+//-"Transferred" = "Փոխանցման հարցումը ընդունված է";
+
+// MBanking - Transfer to other bank
+"NameSurname" = "Անուն/Ազգանուն";
+"ChooseBank" = "Ընտրել բանկը";
+"BankCode" = "Բանկի կոդը";
+
+//MBanking - Transactions detailes
+"TransactionDetails" = "Փոխանցման տվյալներ";
+"Account:" = "Հաշիվ";
+"Balance:" = "Մնացորդ";
+"Type:" = "Տեսակ";
+"transDescr" = "Նշում"; //"Փոխանցման նպատակ";
+"CancelTransaction" = "Չեղարկել";
+
+// Utility/Unipay Payment
+"UtilityPayment" = "Կոմունալ վճարումներ";
+"BillPayment" = "Վճարումներ";
+"OtherPayments" = "Այլ կոմունալ վճարումներ";
+"PayForUnipay" = "Կոմունալ վճարումներ - UNIPAY";
+"UnipayCode" = "Կոմունալ վճարման կոդ";
+"ContractID" = "Պայմանագրի ID";
+"UtFromAccount" = "Վճարել հաշվից";
+"Pay" = "Վճարել";
+"Contract#:" = "Պայմանագրի համար";
+"Customer:" = "Գնորդ";
+"Date of:" = "Ամսաթիվ";
+"ConfirmPayment" = "Հաստատել վճարումը";
+//-"UtilityPayed" = "Փոխանցման հարցումը ընդունված է";
+"UnipayPayed" = "Փոխանցման հարցումը ընդունված է";
+"UnipayCode:" = "Unipay Code";
+"Owner:" = "Օգտագործող";
+
+//Reports
+"RepTransferToAccount" = "Փոխանցում բանկի ներսում";
+"RepTransferToBank" = "Փոխանցում այլ բանկ";
+"RepOrders" = "Պատվերներ";
+"RepUtilities" = "Վճարումներ";
+"fromDateIncorrect" = "Սկզբնական ամսաթիվը մեծ է վերջնականից";
+"EmptyTransactions" = "Դուք չունեք կատարված գործարքներ";
+
+//Recurring
+"Recurring" = "Պարբերական վճարումներ";
+"EmptyRecuring" = "Խնդրում ենք մուտք գործել Նախընտրելիներ և կարգավորել պարբերական վճարումները";
+"Once" = "Միանվագ";
+"Weekly" = "Շաբաթական";
+"Monthly" = "Ամսական";
+"CUSTOM" = "Միանվագ";
+"WEEKLY" = "Շաբաթական";
+"MONTHLY" = "Ամսական";
+"NoDataFound" = "Տվյալները չեն գտնվել";
+
+// Favorites
+//-"FavoriteAdded" = "Ավելացվել է նախընտրելիների մեջ";
+"ConfirmRemoveFv" = "Հեռացնե՞լ նախընտրելիներից";
+"AddFavorite" = "Ավելացնել նախընտրելիների մեջ";
+"Order" = "Պատվեր";
+"PhoneNumber" = "Հեռախոսահամար";
+"RemoveFavorite" = "Հեռացնել նախընտրելիներից";
+"AlreadyRemoved" = "Արդեն հեռացված է";
+"TransferFrom:" = "Փոխանցել հաշվից";
+"TransferTo:" = "Փոխանցել հաշվին";
+"NameSurname:" = "Անուն/Ազգանուն:";
+"BankBranch:" = "Բանկի մասնաճյուղ";
+"Limited" = "Հնարավոր է Դուք ծրագրային կեղծարարության զոհ եք դարձել";
+"Payed" = "Վճարված";
+"Fee" = "Միջնորդավճար";
+"Total" = "Ընդհանուր";
+"MakeRecurring" = "Պարբերական վճարում";
+"FirstPaymentDate" = "Առաջին վճարման օր";
+"PaymentType" = "Վճարման տեսակ";
+"IsDefaultAccount" = "Հիմնական հաշիվ";
+
+
+// Settings
+"VCardInfo" = "Վ-Քարտի տվյալներ";
+"AddBankAccount" = "Ավելացնել նոր բանկային հաշիվ";
+"AddCardAccount" = "Ավելացնել նոր քարտային հաշիվ";
+"AddAccount" = "Ավելացնել նոր հաշիվ";
+"EditAccounts" = "Դիտել/Ջնջել հաշիվները"; //"Manage accounts"
+"VCardSettings" = "Հաշվի սահմանափակումներ";
+"manageAccounts" = "Հաշիվների կառավարում";
+"DeleteVCard" = "Հեռացնել Վ-Քարտը";
+"DeleteVCard?" = "Հեռացնե՞լ Վ-Քարտը";
+"DeleteContact?" = "Հեռացնե՞լ կոնտակտը";
+"Send" = "Ուղարկել";
+"CurrentPass" = "Ընթացիկ գաղտնաբառը";
+"ChangePass" = "Փոխել գաղտնաբառը";
+"DeleteCertificate" = "Ջնջել անվտանգության վկայականը";
+"DeleteCertificate?" = "Դուք համոզվա՞ծ եք, որ ցանկանում եք ջնջել անվտանգության վկայականը:\n";
+
+"QRCode" = "QR կոդ";
+"AppSettings" = "Կարգավորում";
+"SessionExpTime" = "Սեանսի սպառման ժամանակ";
+"SessionExpTime_1" = "1 րոպե";
+"SessionExpTime_3" = "3 րոպե";
+"SessionExpTime_5" = "5 րոպե";
+"SessionExpTime_10" = "10 րոպե";
+"SessionExpTime_20" = "20 րոպե";
+"SessionExpTime_30" = "30 րոպե";
+"SessionExpTime_1_hour" = "1 ժամ";
+"SessionExpTime_3_hour" = "3 ժամ";
+"SessionExpTime_6_hour" = "6 ժամ";
+
+"Contacts" = "Կոնտակտներ";
+"Newcontact" = "Նոր կոնտակտ";
+"Name" = "Անուն";
+"Phone" = "Հեռախոս";
+"accountNumber" = "Հաշիվ";
+"accountName" = "Հաշվի անվանում";
+"email" = "Էլ. փոստ";
+"Contact" = "Կոնտակտային տվյալներ";
+"VCard Info"   = "Վ-Քարտի տվյալներ";
+"VCard_number" = "Վ-Քարտի համար";
+"VCardExpDateTime:" = "Վավերականության ժամկետ";
+
+"ContactUs" = "Հետադարձ կապ";
+"Language" = "Լեզուներ";
+
+"not_expire" = "Անսահմանափակ";
+"pleaseRestart"="Փոփոխությունը կիրառելու համար վերագործարկել հավելվածը";
+"About" = "Doocat-ի մասին";
+"MakeDefault" = "Հիմնական";
+"default" = "[Հիմնական] ";//"Հիմնական"
+"deactive" = "[Ապաակտիվացված] ";
+//"AccountAdded" = "Նոր հաշվեհամարը հաջողությամբ ավելացվել է";
+"DelDefAccount" = "Դուք չեք կարող հեռացնել Ձեր հիմնական ընտրված հաշիվը";
+"Delete" = "Հեռացնել";
+"DeleteAccount" = "Հեռացնե՞լ հաշիվը";
+"Rename" = "Անվանափոխել";
+"LogOut" = "Ելք";
+"SetAsMerchant" = "Սահմանել վաճառողի հաշիվը";
+"Sync" = "Սինքրոնացնել";
+"Activate" = "Ակտիվացնել";
+"Deactivate" = "Ապաակտիվացնել";
+"Deactivated" = "Ապաակտիվացված";
+"MoreSettings" = "Ավելին";
+"ManageAccount" = "Հաշվի կառավարում";
+
+//FAvorites
+"favTransferToSameBank"="Փոխանցում բանկի ներսում";
+"favTransferToOtherBank"="Փոխանցում այլ բանկ";
+"favOrder"="Պատվեր";
+"favUtilities"="Կոմունալ ծառայություններ";
+
+//Loyalty
+"LoyaltyPrograms" = "Զեղչեր";
+"LoyaltyProg" = "Զեղչային ծրագիր";
+"StartDate:" = "Մեկնարկի ամսաթիվ";
+"ExpirationDateTime:" = "Վերջնաժամկետ";
+"Discount:" = "Զեղչեր";
+"Discount" = "Զեղչ";
+"Accept" = "Մասնակցել";
+"Decline" = "Հրաժարվել";
+"NewLoyalty" = "Վաճառողը հայտարարել է նոր զեղչային ծրագրի սկիզբ\nՑանկանու՞մ եք մասնակցել";
+
+// Helpers
+"PleaseWait" = "Խնդրում ենք սպասել";
+"DONE" = "Կատարված";
+"Cancel" = "Չեղարկել";
+"Loading" = "Բեռնում ...";
+"RestResultErrorHeader" = "Սխալ";
+"RestResultErrorExpired" = "Ձեր սեանսը սպառվել է";
+"NetworkProtocolError" = "Ցանցի սխալ";
+"NetworkError" = "Ցանցը անհասանելի է";
+"securityCode" = "Անվտանգության կոդ" ;
+"captchaCode" = "Captcha կոդ";
+"RefreshCode" = "Թարմացնել կոդը"; //Captcha code
+"ChooseName" = "Ընտրեք անվանումը"; //favorite name
+
+"ContactUsPhone:" = "Հեռախոս`";
+"ContactUsMailTxt" = "Էլ. հասցե` info@doocat.com";
+"ContactUsFirstNumTxt" = "+1-617-395-7777";
+"ContactUsSecondNumTxt" = "";
+
+//"aboutTxt" = "mConverse-ը մոբայլ բանկային գործարքներ և մոբայլ առևտուր կատարելու համակարգ է՝ նախատեսված Կոնվերս Բանկի հաճախորդների համար(ինչպես ֆիզիկական, այնպես էլ իրավաբանական անձանց): mConverse համակարգի միջոցով հաճախորդները կարող են կառավարել իրենց հաշիվները Կոնվերս Բանկում, իրականացնել փոխանցումներ, ստուգել արտարժույթի փոխարժեքները և կատարել կոմունալ վճարումներ, վճարել խանութներից գնված ապրանքների դիմաց:\n\nՎաճառակետերը նույնպես կարող են օգտվել mConverse մոբայլ բանկ համակարգից և ընդունել վճարումներ: Համակարգն ունի բավական պարզ ինտերֆեյս: Վաճառողի կողմից mConverse համակարգում ներկայացված վճարման պատվերը գնորդի կողմից հաստատելուց անմիջապես հետո գումարը փոխանցվում է վաճառողի Կոնվերս Բանկում բացված հաշվին: mConverse համակարգը կիրառում է վերջին սերնդի շարժական կապի և ինտերնետ անվտանգության ստանդարտները՝ հավասարապես պաշտպանելու գործարք կատարող բոլոր կողմերին: Այս համակարգը հիմնված է DOOCAT մոբայլ բանկ և մոբայլ  առևտուր սպասարկող պլատֆորմի վրա, որը նախագծվել և մշակվել է Energize Global Services CJSC. ընկերության կողմից: Դուք, որպես այս ծրագրի օգտվող համաձայնվում եք, որ ծրագրի ցանկացած մաս, և դիզայնը, աշխատանքների տեխնիկական ընթացքը և կազմակերպումը, օգտագործված նշաններն ու էկրանները հանդիսանում են առևտրային գաղտնիք և Energize Global Services CJSC. ընկերության մտավոր սեփականությունն են, և դուք համաձայն եք չօգտագործել ցանկացած նման տարրեր և աշխատանքների տեխնիկական ընթացքը և կազմակերպումը, լինի դա ածանցյալ աշխատանք կամ այլ, մրցակցային նպատակներով: Դուք համաձայնվում եք չկրկնօրինակել, չվերծանել կամ չվերածրագրավորել այս ծրագիրը կամ նրա բաղադրիչներից ցանկացածը:";
+"aboutTxt" = "About Doocat";
+
+//Recurring
+"FirstPaymnet:"="Առաջին վճարում";
+"Period:"="Ժամկետ";
+"MaxAmount:"="Առավելագույն գումարը";
+"PersonalId:"="Պայմանագրի համար";
+"Templates"="Նմուշներ";
+"TargetAccount:"="Ստացողի հաշիվը";
+
+//Transaction statuses
+"tr_COMPLETED" = "Կատարված";
+"tr_FAILED" = "Չհաջողված";
+"tr_OTP_REQUIRED" = "Ծածկագրի պահանջ";
+"tr_LIMIT_EXCEEDED" = "Սահմաչափի գերազանցում";
+"tr_STARTED" = "Ընթացքում";
+"tr_INVALID_SIGNATURE" = "Անվավեր ստորագրություն";
+"tr_CANCELED" = "Չեղարկված";
+
+//Order statuses
+"os_Pending"="Ընթացքում";
+"os_Canceled"="Չեղարկված";
+"os_Accepted"="Ընդունված";
+"os_Rejected"="Մերժված";
+"os_Failed"="Չհաջողված";
+"os_Expired"="Ժամկետանց";
+"os_Payment_Started" = "Վճ. սկսված է";
+"os_Payment_Completed" = "Վճ. ավարտված է";
+
+
+//Transaction types
+/*"tt_TRANSFER_TO_SAME_BANK"="Փոխանցում բանկի ներսում";
+ "tt_ORDER"="Պատվեր";
+ "tt_UTILITIES"="Կոմունալ ծառայություններ";
+ "tt_UNIPAY"="Կոմունալ վճարում";
+ "tt_TRANSFER_TO_OTHER_BANK"="Փոխանցում այլ բանկ";
+ "tt_P2P" = "Սմարթ տրանսֆեր";//"P to P";
+ "tr_MODULE_ACTIVATION" = "Մոդուլի ակտիվացում";
+ "tr_TRANSACTION_FEE" = "Փոխանցման վճար";
+ "tr_TRANSACTION_GROUP_FEE" = "Փոխանցման խմբային վճար";*/
+
+"TRANSFER_TO_SAME_BANK"="Փոխանցում բանկի ներսում";
+"ORDER"="Պատվեր";
+"UTILITIES"="Կոմունալ ծառայություններ";
+"tt_UNIPAY"="Կոմունալ վճարում";
+"TRANSFER_TO_OTHER_BANK"="Փոխանցում այլ բանկ";
+"P2P_TRANSFER" = "Սմարթ տրանսֆեր";//"P to P";
+"MODULE_ACTIVATION" = "Մոդուլի ակտիվացում";
+"TRANSACTION_FEE" = "Փոխանցման վճար";
+"TRANSACTION_GROUP_FEE" = "Փոխանցման խմբային վճար";
+"PAYMENT_SERVICE" = "Վճարումներ";
+
+"mBanking" = "Մ-Բանկ";
+"mCommerce" = "Մ-Առեւտուր";
+"BillPayment" = "Վճարումներ";
+"Favorites" = "Նախընտրելի";
+"Discounts" = "Զեղչեր";
+"RecurringMenu" = "Պարբերական";
+"Reports" = "Հաշվետվություն";
+"Settings" = "Կարգավորում";
+
+
+"PaymentServices" = "Վճարումներ";
+"FieldError" = "\"%@\" դաշտը պարունակում է սխալ, ճիշտ ձեւաչափն է` \"%@\"";
+
+"change_language_message" = "Փոփոխությունը կկիրառվի կրկին մուտք գործելիս:";
+"ALL" = "Ամբողջը";
+
+//Loan, deposit
+"Loan" = "Վարկ";
+"Loans" = "Վարկեր";
+"Deposit" = "Ավանդ";
+"Deposits" = "Ավանդներ";
+"NextPayment" = "Վճարման ամսաթիվ";
+"TotalAmount" = "Ընդամենը";
+"Start" = "Սկզբի ամսաթիվ";
+"Next" = "Հաջորդ";
+"LoanRepayment" = "Վարկի մարում";
+"principal" = "Մայր գումար";
+"interest" = "Տոկոսագումար";
+"penalty" = "Տուգանք";
+"otherPayments" = "Այլ վճարումներ";
+"contractNumber" = "Պայմանագրի համար";
+"interestRate" = "Տոկոսադրույք";
+"payed" = "Վվճարված է ընդամենը";
+
+"SelectFilterType" = "Ընտրել տեսակը";
+"FilterSettings" = "Ֆիլտրի կարգավորումները";
+"PrintSettings" = "կարգավորումներ";
+"LOAN_PAYMENT" = "Վարկի վճարում";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

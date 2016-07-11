@@ -1,0 +1,47 @@
+//
+//  BaseViewController.swift
+//  AHOnline
+//
+//  Created by Ara Hakobyan on 7/9/16.
+//  Copyright © 2016 AroHak LLC. All rights reserved.
+//
+
+class BaseViewController: UIViewController {
+
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        
+        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(image: UIImage(named: "img_search"), style: .Plain, target: self, action: #selector(searchAction)), animated: true)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Life cycle -
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        baseConfig()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updateLocalizedStrings()
+    }
+    
+    // MARK: - Internal Method -
+    internal func baseConfig() {
+
+    }
+    
+    internal func updateLocalizedStrings() {
+
+    }
+    
+    //MARK: - Actions -
+    func searchAction() {
+
+    }
+}

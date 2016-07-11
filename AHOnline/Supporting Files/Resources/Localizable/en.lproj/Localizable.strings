@@ -1,0 +1,496 @@
+// Common
+"DoocatCaption" = "Doocat";
+"RenameAccountName" = "Rename account";
+"NewName" = "New name";
+"Debit" = "Debit:";
+"Credit" = "Credit:";
+"Description:" = "Note";
+
+//"DoocatCaption" = "Mobile Banking & Commerce";
+"OK" = "OK";
+"YES" = "Yes";
+"JOIN"="Join";
+"NO" = "No";
+"Next" = "Next";
+"Back" = "Back";
+"Home" = "Home";
+"Confirm" = "Confirm";
+"OtpConfirm" = "Confirm OTP";
+"OtpConfirmLbl" = "Confirm One Time Password";
+"Reject" = "Reject";
+"Amount" = "Amount";
+"Amount:" = "Amount";
+"ItemDescription" = "Item description";
+"Comment" = "Comment";
+"Currency" = "Currency";
+"CardName" = "Title";
+"Type" = "Type";
+"AccountType" = "Account type";
+"SelectAccountType" = "Select account type";
+"CardNumber" = "Number";
+"Add" = "Add";
+"LoadMore" = "Load more";
+"Merchant" = "Merchant";
+"Client" = "Client";
+"emptyHistory"="No more items to load";
+"emptyList"="No items found";
+"reset" = "Reset";
+"Limited" = "You may be a victim of software counterfeiting";
+"fillAllFields"="Please, fill in all the fields";
+"ConfirmTransaction?" = "You are going to transfer from your account.\nPress OK for confirmation.";
+"RejectTransaction?" = "You are going to reject an order.\nTo confirm please press Yes.";
+"ConfirmOrderTransaction?" = "You are going to accept an order.\nTo confirm please press Yes.";
+"ConfirmTransactionNoEqual?" = "You are going to make transfer between different currencies and it will cause a currency conversion. Press OK for confirmation";
+"InvalidEmail" = "Invalid email address";
+"Generate" = "Generate";
+
+// Certificate
+"Certificate" = "Certificate";
+"getCertificate" = "Apply the certificate";
+"AskYourBankLblText" = "Enter your email, mobile number and certificate code which Doocat emailed you.";
+"EnterYourEmailLblText" = "Enter your email, mobile number and certificate code";
+"ProvideMobileNumber" = "Enter the mobile number you provided to Doocat which will be used in Doocat";
+"ProvidePinCode" = "Enter the certificate code the bank emailed you";
+"CertificateExpired" = "Your security certificate has expired. Please contact Doocat to get a new certificate. ";
+"RelauchApp" = "\nPlease, relaunch the application.";
+
+// Login
+"SignIn" = "Log In";
+"LoginCaption" = "LogIn";
+"VCardNumber" = "VCard number";
+"Password" = "Password";
+"VerifyPassword" = "Confirm password";
+"RegEmployee" = "Register as an employee";
+"RegLabel" = "Don't have an account?";
+"CVCLabel" = "Don't have a VCard?";
+"Register" = "Registration";
+"CreateVCard" = "Create VCard";
+"LoginLblText" = "Please, login to get access to Doocat mBanking and mCommerce platforms";
+"SaveEmailLblText" = "Remember email";
+"ForgotPassword" = "Forgot your password?";
+"SendForgPass" = "Send";
+"CheckYourEmail" = "Check your Email";
+"UserNotFound" = "User with that email not found";
+"SetupAccount" = "Setup account";
+"AsDefaultAccount" = "As default account";
+"AsMerchantAccount" = "As merchant account";
+"SetPassInfo" = "Set up a password to use it for logging into your Doocat account.";
+"DefaultAccounRequird" = "Please choose default account";
+"MerchantAccounRequird" = "Please choose merchant account";
+"oldNewMessage" = "Old and new password should not be the same";
+
+// Registration - menu
+"SetPassword" = "Set password";
+"Registration" = "Register";
+"RegClient" = "Register as a buyer";
+"RegMerchant" = "Register as a merchant";
+"RegCompany" = "Register as a multi-merchant";
+"RegBuyerMerchant" = "Register as a merchant";
+"RegisterBuyerAndMerchant" = "Register as a buyer and a merchant";
+
+// Registration - Client/Seller/Company
+"PasswordsDontMatch" = "Passwords don't match";
+"Name" = "Name";
+"NameForCompany" = "Name";
+"Surname" = "Surname";
+"BirthDate" = "Date of birth";
+"MobilePhone" = "Mobile phone";
+"pinCode" = "Certificate code";
+"eMail" = "Email";
+"MerchantAccount" = "Merchant account";
+"HVHH" = "ITIN";
+"LegalAddress" = "Legal address";
+"PhysicalAddress" = "Actual address";
+
+// Registration result
+"CertResult" = "You have successfully installed the certificate.";
+"CertResultError" = "Certificate installation failed.";
+"RegResult" = "Congratulations! Your account is successfully created.\nYou can now create your VCard.";
+"WrongBirthDay" = "Date must be later than the current date.";
+"MobilePhoneHelpText" = "Please provide mobile number on which you are going to use Doocat.";
+"MerchantAccountHelpText" = "Please, attach bank or card accounts.";
+"SecurityCodeHelpText" = "Please, use the security password provided by Doocat.";
+
+// Create Virtual Card - step 2
+"ExpirationDate" = "Expiration date";
+"ConfirmPassword" = "Confirm password";
+"PasswordMismatch" = "Passwords don\'t match";
+//"PasswordTooSmall" = "Password must be at least 6 characters long";
+"PasswordBadFormat" = "Password must contain at least 6 letters or numbers";
+"PasswordBadFormat2" = "Password must contain at least 6 characters";
+
+// Virtual Card Settings
+"CountPerDay" = "Count per day";
+"AmountPerDay" = "Amount per day";
+"AmountPerMonth" = "Amount per month";
+"TotalAmount" = "Total amount";
+"SaveChanges" = "Save changes";
+"save" = "Save";
+"cancel" = "Cancel";
+"InvalidValues" = "Amount per day must not be grater than amount per month";
+//-"CVCUpdate" = "Virtual Card settings are saved successfully";
+//-"CVCResult" = "Congratulations! Your new Virtual Card is successfully created.\nYou can now sign in using your Card number and password";
+"CVCDescr" = "Create your VCard by entering account number, password and expiration date, set the settings and save it";
+
+// MCommerce
+"MobileCommerce" = "Mobile Commerce";
+"PendingPaymentOrders" = "Pending payment orders";
+"PendingPaymentOrdersBuyer" = "Pending payment orders";
+"LatestOrdersHistory" = "Latest order history";
+"LastConfirmedOrders" = "Confirmed payment orders";
+"LastConfirmedOrdersBuyer" = "Confirmed payment orders";
+"LastRejectedOrders" = "Rejected payment orders";
+"LastRejectedOrdersBuyer" = "Rejected payment orders";
+"CreatePaymentOrder" = "Create payment order";
+"CreatedOrdersHistory" = "Created order history";
+
+// MCommerce - Create Order step 1
+"CreateOrder" = "Create Order";
+"ItemName" = "Item name";
+"ItemCodeLbl" = "Item code";
+"Seller" = "Merchant";
+"OrderDateTime:" = "Order date/time";
+"OrderExpirationDateTime:" = "Expiration date/time";
+"OrderExpirationDateTime" = "Expiration date/time";
+
+// MCommerce - Create Order step 2
+"item:" = "Item";
+"Merchant:" = "Merchant";
+"Client:" = "Client";
+"ClientsPhone" = "Client's phone or Email";
+"SendOrder" = "Send order";
+//-"OrderSent" = "Order is sent successfully";
+
+// MCommerce - Order History/Details
+"OrderDetails" = "Order details";
+"PendingOrders" = "Pending orders";
+"LastOrdersHistory" = "Order history";
+"ConfirmedTransactions" = "Confirmed transactions";
+"RejectedTransactions" = "Rejected transactions";
+"ExpirationDate:" = "Expiration date";
+"Status:" = "Status";
+"readQR" = "Read QR code";
+"viewReceipt" = "View receipt";
+"sendToEmail" = "Send to email";
+
+// MCommerce - Order Payment
+"OrderPayment" = "Order payment";
+"AccountText" = "You are going to pay for the item from your bank account";
+"(default)" = "(Default)";
+"Change" = "Change";
+//-"PaymentConfirmed" = "Payment confirmed";
+//"OrderRejected" = "Order rejected";
+"SELLERU:" = "Merchant";
+"COMPANYU:" = "Multi-merchant";
+
+// MBanking
+"MobileBanking" = "Mobile bank";
+"CheckBalance" = "Check balance";
+"Check" = "Check";
+"AtmLocations" = "ATM locations";
+"Atms" = "ATM locations";
+"ExchangeRates" = "Exchange rates";
+"Converter" = "Converter";
+"Convert" = "Convert";
+"ManageAccounts" = "Manage accounts";
+"SmartTransfer" = "Smart transfer";
+"QrCodeError" = "QR code error";
+"AccountStatement" = "Account statement";
+"AccountStatementFilter" = "Account statement filter";
+"AccountStatementHistory" = "Account Statement";
+"Filter" = "Filter";
+"Print" = "Send to email";
+"TransactionsHistory" = "Transaction history";
+"TransferToAccount" = "Transfer inside bank";
+"TransferToBank" = "Transfer to another bank";
+"CardDetails" = "Account details";
+"SelectAccount" = "Select account";
+"Cash" = "Cash";
+"NonCash" = "Non-Cash";
+"To" = "To";
+"From" = "From";
+"InvalidAccountNumber" = "Please enter valid account number (length should be  from 11 to 16).";
+"OpenSettings" = "OpenSettings and allow camera access!";
+"GetByMobileNumber" = "Find";
+
+// MBanking - Exchange Rates
+"Today" = "Today";
+"Yesterday" = "Yesterday";
+"Sell" = "Sell";
+"Buy" = "Buy";
+"LastUpdated" = "Last updated ";
+
+// MBanking - Transfer to my account
+"MbFromAccount" = "Transfer from account";
+"ToAccount" = "Transfer to account";
+"My" = "My";
+"Other"= "Other";
+"Transfer" = "Transfer";
+"YourTransactionExceeds500000" = "Your transaction exceeds 500,000, the bank will confirm the transaction on working days from 09:00-17:00. Click Yes to continue.";
+"YourTransactionExceeds50000" = "Your transaction exceeds 50,000, the bank will confirm the transaction on working days from 09:00-17:00. Click Yes to continue.";
+
+// MBanking - Transfer to other bank
+"NameSurname" = "Name/Surname";
+"ChooseBank" = "Choose the bank";
+"BankCode" = "Bank code";
+
+//MBanking - Transactions detailes
+"TransactionDetails" = "Transaction details";
+"Account:" = "Account";
+"Balance:" = "Balance";
+"Type:" = "Type";
+"transDescr" = "Note"; //"Description";
+"CancelTransaction" = "Cancel";
+
+// Utility/Unipay Payment
+"UtilityPayment" = "Utility payments";
+"OtherPayments" = "Other utility services";
+"PayForUnipay" = "Make a group payment by Unipay";
+"UnipayCode" = "Unipay code";
+"ContractID" = "Contract ID";
+"UtFromAccount" = "Pay from account";
+"Pay" = "Pay";
+"Contract#:" = "Contract number";
+"Customer:" = "Customer";
+"Date of:" = "Date of";
+"ConfirmPayment" = "Confirm payment";
+//-"UtilityPayed" = "Transaction request accepted";
+"UnipayPayed" = "Transaction request accepted";
+"UnipayCode:" = "Unipay code";
+"Owner:" = "Owner";
+
+//Reports
+"RepTransferToAccount" = "Transfers inside bank";
+"RepTransferToBank" = "Transfers to another bank";
+"RepOrders" = "Orders";
+"RepUtilities" = "Bill payments";
+"fromDateIncorrect" = "Date from is greater than date to";
+"EmptyTransactions" = "Your transaction history is empty";
+
+//Recurring
+"EmptyRecuring" = "Please, go to Favorites to set up recurring";
+"Once" = "Once";
+"Weekly" = "Weekly";
+"Monthly" = "Monthly";
+
+"CUSTOM" = "Once";
+"WEEKLY" = "Weekly";
+"MONTHLY" = "Monthly";
+"NoDataFound" = "No Data Found";
+
+// Favorites
+"ConfirmRemoveFv" = "Remove from favorites?";
+"AddFavorite" = "Add to favorites";
+"Order" = "Order";
+"PhoneNumber" = "Phone number";
+"RemoveFavorite" = "Remove from favorites";
+"AlreadyRemoved" = "The item has already been removed";
+"TransferFrom:" = "Transfer from";
+"TransferTo:" = "Transfer to";
+"NameSurname:" = "Name/Surname";
+"BankBranch:" = "Bank branch";
+"Payed" = "Paid";
+"Fee" = "Fee";
+"Total" = "Total";
+"MakeRecurring" = "Make recurring";
+"FirstPaymentDate" = "First payment date";
+"PaymentType" = "Payment type";
+"IsDefaultAccount" = "Default account";
+
+// Settings
+"VCardInfo" = "VCard info";
+"AddBankAccount" = "Add new bank account";
+"AddCardAccount" = "Add new card account";
+"AddAccount" = "Add new account";
+"EditAccounts" = "Manage accounts";
+"VCardSettings" = "Account limitations";
+"manageAccounts" = "Manage accounts";
+"DeleteVCard" = "Remove VCard";
+"DeleteVCard?" = "Delete VCard?";
+"DeleteContact?" = "Delete Contact?";
+"Send" = "Send";
+"CurrentPass" = "Current password";
+"ChangePass" = "Change password";
+"DeleteCertificate" = "Delete the security certificate";
+"DeleteCertificate?" = "Are you sure you want to delete the security certificate?\n";
+
+"QRCode" = "QR code";
+"AppSettings" = "Application settings";
+"SessionExpTime" = "Session expiration time";
+"SessionExpTime_1" = "1 minute";
+"SessionExpTime_3" = "3 minutes";
+"SessionExpTime_5" = "5 minutes";
+"SessionExpTime_10" = "10 minutes";
+"SessionExpTime_20" = "20 minutes";
+"SessionExpTime_30" = "30 minutes";
+"SessionExpTime_1_hour" = "1 hour";
+"SessionExpTime_3_hour" = "3 hours";
+"SessionExpTime_6_hour" = "6 hours";
+"Contacts" = "Contacts";
+"Newcontact" = "New contact";
+"Name" = "Name";
+"Phone" = "Phone";
+"accountNumber" = "Account number";
+"accountName" = "Account title";
+"email" = "Email";
+"Contact" = "Contact details";
+"VCard_number" = "VCard number";
+"VCard Info"   = "VCard info";
+"VCardExpDateTime:" = "Expiration date/time";
+
+"ContactUs" = "Contact us";
+"Language" = "Language";
+
+"not_expire" = "Unlimited";
+"pleaseRestart"="Please, restart the app to apply changes";
+"About" = "About";
+"MakeDefault" = "Make default";
+"default" = "[Default] ";
+"deactive" = "[Deactive] ";
+"DelDefAccount" = "You cannot remove your default account";
+"Delete" = "Delete";
+"DeleteAccount" =  "Are you sure you want to remove this account?"; //"Delete the account?";
+"Rename" = "Rename";
+"LogOut" = "Log Out";
+"SetAsMerchant" = "Set as merchant account";
+"Sync" = "Synchronize";
+"Activate" = "Activate";
+"Deactivate" = "Deactivate";
+"Deactivated" = "Deactivated";
+"MoreSettings"  = "More";
+"ManageAccount" = "Manage Account";
+
+//Favorites
+"favTransferToSameBank"="Transfer inside bank";
+"favTransferToOtherBank"="Transfer to another bank";
+"favOrder"="Order";
+"favUtilities"="Utilities";
+"" = "";
+
+
+//Loyalty
+"LoyaltyPrograms" = "Loyalty programs";
+"LoyaltyProg" = "Loyalty program";
+"StartDate:" = "Start date";
+"ExpirationDateTime:" = "Expiration date/time";
+"Discount:" = "Discount";
+"Discount" = "Discount";
+"Accept" = "Accept";
+"Decline" = "Decline";
+"NewLoyalty" = "The merchant has announced a new loyalty program!\nWould you like to join?";
+
+// Helpers
+"PleaseWait" = "Please wait";
+"DONE" = "Done";
+"Cancel" = "Cancel";
+"Loading" = "Loading ...";
+"RestResultErrorHeader" = "Error";
+"RestResultErrorExpired" = "Your session has expired";
+"NetworkProtocolError" = "Network protocol error";
+"NetworkError" = "Unable to connect to the server";
+"securityCode" = "Bank password" ;
+"captchaCode" = "Captcha code";
+"RefreshCode" = "Refresh the code"; //Captcha code
+"ChooseName" = "Choose the title"; //favorite name
+
+"ContactUsPhone:" = "Phone number:";
+"ContactUsMailTxt" = "Email: info@doocat.com";
+"ContactUsFirstNumTxt" = "+1-617-395-7777";
+"ContactUsSecondNumTxt" = "";
+
+//"aboutTxt" = "\nmConverse is a mobile banking and mobile commerce application for the use of Converse Bank customers (both legal entity companies and individuals). With mConverse, customers can manage their Converse Bank accounts, initiate transfers, check exchange rates and make utility payments. They can also pay for goods purchased at physical stores via mobile commerce.\n\nMerchants can also use mConverse to accept mobile payments with very simple-to-use and intuitive interface.Payments are immediately confirmed and funds transferred to the merchant’s Converse Bank accountas soon as the buyer approves the payment request sent by the merchant.\n\nmConverse uses the latest mobile and internet security standards to protect all parts of the transaction. It is based on the DOOCAT mobile banking and mobile commerce platform, developed by Energize Global Services CJSC. You, as the user of this application, agree that any part of it, and its design, flow and organization, symbols and screens are trade secrets and proprietary information of  Energize Global Services CJSC., and you agree not to use any such items or flow and organization, whether derivative work or other, for competitive purposes. You agree not to copy, disassemble or reverse-engineer this application or any of its components.";
+
+"aboutTxt" = "About Doocat";
+
+//Recurring
+"FirstPaymnet:"="First payment";
+"Period:"="Period";
+"MaxAmount:"="Maximal amount:";
+"PersonalId:"="Personal ID";
+"Templates"="Templates";
+"TargetAccount:"="Target account";
+
+//Transaction statuses
+"tr_COMPLETED" = "Completed";
+"tr_FAILED"="Failed";
+"tr_OTP_REQUIRED"="OTP required";
+"tr_LIMIT_EXCEEDED"="Limit exceeded";
+"tr_STARTED"="Started";
+"tr_INVALID_SIGNATURE" = "Invalid signature";
+"tr_CANCELED" = "Canceled";
+
+
+//Order statuses
+"os_Pending"="Pending";
+"os_Canceled"="Canceled";
+"os_Accepted"="Accepted";
+"os_Rejected"="Rejected";
+"os_Failed"="Failed";
+"os_Expired"="Expired";
+"os_Payment_Started" = "Payment started";
+"os_Payment_Completed" = "Payment completed";
+
+//Transaction types
+/*"tt_TRANSFER_TO_SAME_BANK"="Transfer inside bank";
+ "tt_ORDER"="Order";
+ "tt_UTILITIES"="Utilities";
+ "tt_UNIPAY"="Unipay";
+ "tt_TRANSFER_TO_OTHER_BANK"="Transfer to another bank";
+ "tt_P2P" = "Smart transfer"; //"P to P";
+ "tr_MODULE_ACTIVATION" = "Module activation";
+ "tr_TRANSACTION_FEE" = "Transaction fee";
+ "tr_TRANSACTION_GROUP_FEE" = "Transaction group fee";*/
+
+"TRANSFER_TO_SAME_BANK"="Transfer inside bank";
+"ORDER"="Order";
+"UTILITIES"="Utilities";
+"tt_UNIPAY"="Unipay";
+"TRANSFER_TO_OTHER_BANK"="Transfer to another bank";
+"P2P_TRANSFER" = "Smart transfer"; //"P to P";
+"MODULE_ACTIVATION" = "Module activation";
+"TRANSACTION_FEE" = "Transaction fee";
+"TRANSACTION_GROUP_FEE" = "Transaction group fee";
+"PAYMENT_SERVICE" = "Payment services";
+
+"mBanking" = "M-Banking";
+"mCommerce" = "mCommerce";
+"BillPayment" = "Bill payments";
+"Favorites" = "Favorites";
+"Discounts" = "Discounts";
+"RecurringMenu" = "Recurring";
+"Recurring" = "Recurring";
+"Reports" = "Reports";
+"Settings" = "Settings";
+
+
+"PaymentServices" = "Payment Services";
+"FieldError" = "The field \"%@\" contains an error, the right format is: \"%@\"";
+
+"change_language_message" = "The change will be applied after re-login.";
+"ALL" = "All";
+
+
+//Loan, deposit
+"Loan" = "Loan";
+"Loans" = "Loans";
+"Deposit" = "Deposit";
+"Deposits" = "Deposits";
+"NextPayment" = "Payment date";
+"TotalAmount" = "Total";
+"Start" = "Start date";
+"Next" = "Next";
+"LoanRepayment" = "Loan repayment";
+"principal" = "Principal";
+"interest" = "Interest";
+"penalty" = "Penalty";
+"otherPayments" = "Other Payments";
+"contractNumber" = "Contract number";
+"interestRate" = "Interest rate";
+"payed" = "Total interest";
+
+"SelectFilterType" = "Select Type";
+"FilterSettings" = "Filter Settings";
+"PrintSettings" = "Print Settings";
+"LOAN_PAYMENT" = "Loan payment";
+
+

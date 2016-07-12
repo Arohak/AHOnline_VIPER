@@ -33,22 +33,23 @@ class CategoriesViewController: UIViewController {
     //MARK: -  Private Methods -
     private func baseConfig() {
         var items: [String] = []
-        for category in categories { items.append(category.name) }
+        for category in categories { items.append(category.name)  }
         
         if !items.isEmpty {
             tabNavigation = CarbonTabSwipeNavigation(items: items as [AnyObject], delegate: self)
             tabNavigation.insertIntoRootViewController(self)
-            
             styleTab()
         }
     }
     
     private func styleTab() {
-        tabNavigation.setIndicatorColor(RED)
-        tabNavigation.toolbar.translucent = false
-        tabNavigation.setTabExtraWidth(40)
-        tabNavigation.setNormalColor(BLACK.colorWithAlphaComponent(0.6))
-        tabNavigation.setSelectedColor(RED, font: UIFont.boldSystemFontOfSize(14))
+        if let tabNavigation = tabNavigation {
+            tabNavigation.setIndicatorColor(RED)
+            tabNavigation.toolbar.translucent = false
+            tabNavigation.setTabExtraWidth(40)
+            tabNavigation.setNormalColor(BLACK.colorWithAlphaComponent(0.6))
+            tabNavigation.setSelectedColor(RED, font: UIFont.boldSystemFontOfSize(14))
+        }
     }
 }
 

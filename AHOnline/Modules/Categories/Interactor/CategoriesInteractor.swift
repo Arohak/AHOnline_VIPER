@@ -21,6 +21,7 @@ extension CategoriesInteractor: CategoriesInteractorInput {
         _ = APIManager.getCategories()
             .subscribe(onNext: { result in
                 if result != nil {
+                    self.categories.removeAll()
                     for item in result["data"].arrayValue {
                        self.categories.append(Category(data: item))
                     }

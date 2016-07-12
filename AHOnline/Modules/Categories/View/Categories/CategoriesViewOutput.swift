@@ -9,4 +9,5 @@
 protocol CategoriesViewOutput {
 
     func viewIsReady()
+    func didSelectRow(json: JSON)
 }

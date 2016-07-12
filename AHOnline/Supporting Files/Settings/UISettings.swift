@@ -66,6 +66,7 @@ typealias ACPickerCallback              = (value: String, index: Int) -> Void
 typealias challenge                     = (session: NSURLSession!, challenge: NSURLAuthenticationChallenge) -> (NSURLSessionAuthChallengeDisposition, NSURLCredential?)
 
 let NAV_HEIGHT: CGFloat                 = 64
+let TAB_HEIGHT: CGFloat                 = 44
 let FONT_NAVBAR                         = UIFont.systemFontOfSize(DeviceType.IS_IPAD ? 25 : 18)
 let FONT_TABBAR                         = UIFont.systemFontOfSize(DeviceType.IS_IPAD ? 14 : 10)
 

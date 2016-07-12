@@ -103,6 +103,9 @@
 		9A33CC37AEEA35C0BBDC6A70 /* AccountConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B8088B97FCBEE717103AB1 /* AccountConfigurator.swift */; };
 		A1379FFD1D3398C6000D022A /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1379FFC1D3398C6000D022A /* Home.swift */; };
 		A1379FFF1D33D9D7000D022A /* img_all.png in Resources */ = {isa = PBXBuildFile; fileRef = A1379FFE1D33D9D7000D022A /* img_all.png */; };
+		A137A0011D35201F000D022A /* AHObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A137A0001D35201F000D022A /* AHObject.swift */; };
+		A137A0061D352171000D022A /* ObjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A137A0031D352171000D022A /* ObjectsViewController.swift */; };
+		A137A0071D352171000D022A /* ObjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A137A0051D352171000D022A /* ObjectsView.swift */; };
 		A4768A65A04A920829674604 /* CategoriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576C7C0A31A7E67FB908040F /* CategoriesPresenter.swift */; };
 		A93726E7B59FBB9F86D18CD1 /* AccountModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE3E02F476EE77A6EFBDAA7 /* AccountModuleInput.swift */; };
 		AB07D4C6FD510EBAFF73E96F /* HomeInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2D13F66B7BE50462E0AF9A /* HomeInitializer.swift */; };
@@ -254,6 +257,9 @@
 		A1281D013265BAAA9F5C8362 /* CartRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CartRouterInput.swift; sourceTree = "<group>"; };
 		A1379FFC1D3398C6000D022A /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		A1379FFE1D33D9D7000D022A /* img_all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_all.png; sourceTree = "<group>"; };
+		A137A0001D35201F000D022A /* AHObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AHObject.swift; sourceTree = "<group>"; };
+		A137A0031D352171000D022A /* ObjectsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectsViewController.swift; sourceTree = "<group>"; };
+		A137A0051D352171000D022A /* ObjectsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectsView.swift; sourceTree = "<group>"; };
 		A572BDDFE1914D182E50E0AE /* CartInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CartInitializer.swift; sourceTree = "<group>"; };
 		BA9649F692CBB79747743B17 /* MapInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MapInitializer.swift; sourceTree = "<group>"; };
 		BF2D13F66B7BE50462E0AF9A /* HomeInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeInitializer.swift; sourceTree = "<group>"; };
@@ -621,6 +627,7 @@
 				52A4E0D31D344E3900DDAC54 /* SubCategory.swift */,
 				A1379FFC1D3398C6000D022A /* Home.swift */,
 				526EE7091D30F3BE00F77974 /* Restaurant.swift */,
+				A137A0001D35201F000D022A /* AHObject.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -963,6 +970,7 @@
 		99E6BA8090191AC154A46C30 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A137A0021D352171000D022A /* Objects */,
 				52A4E0D61D3455BE00DDAC54 /* Base */,
 				528D18511D3435F40041370E /* Categories */,
 				528D185F1D3435F40041370E /* Restaurant */,
@@ -971,6 +979,23 @@
 				528D185B1D3435F40041370E /* Hotel */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A137A0021D352171000D022A /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				A137A0031D352171000D022A /* ObjectsViewController.swift */,
+				A137A0041D352171000D022A /* views */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		A137A0041D352171000D022A /* views */ = {
+			isa = PBXGroup;
+			children = (
+				A137A0051D352171000D022A /* ObjectsView.swift */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 		A3C8D38F8D922F1B0E991CF9 /* Configurator */ = {
@@ -1315,6 +1340,7 @@
 				526EE7271D30F3BE00F77974 /* UILabel.swift in Sources */,
 				526EE7281D30F3BE00F77974 /* UIPickerView.swift in Sources */,
 				526EE7361D30F3BE00F77974 /* Restaurant.swift in Sources */,
+				A137A0011D35201F000D022A /* AHObject.swift in Sources */,
 				526EE72C1D30F3BE00F77974 /* UITextField.swift in Sources */,
 				526EE7341D30F3BE00F77974 /* UIHelper.swift in Sources */,
 				526EE7241D30F3BE00F77974 /* UIButton.swift in Sources */,
@@ -1359,6 +1385,7 @@
 				52A4E0D11D34484900DDAC54 /* DBManager.swift in Sources */,
 				0006B2A1B2F1C7EDD81E6160 /* CartRouter.swift in Sources */,
 				F5856990D72F1EDEADA3AA70 /* CartConfigurator.swift in Sources */,
+				A137A0061D352171000D022A /* ObjectsViewController.swift in Sources */,
 				83C36E304081508F001AD6E9 /* CartInitializer.swift in Sources */,
 				D007D10F7CC9D395F9072C57 /* MapViewInput.swift in Sources */,
 				50CB2F3181E624700098A0CE /* MapViewOutput.swift in Sources */,
@@ -1374,6 +1401,7 @@
 				C0406F14A9573FEC06B2579A /* MapRouterInput.swift in Sources */,
 				CB83A4648EDC4514B7A32EB4 /* MapRouter.swift in Sources */,
 				5B16BCD92519A02D8EB7BD10 /* MapConfigurator.swift in Sources */,
+				A137A0071D352171000D022A /* ObjectsView.swift in Sources */,
 				DE3F8A040A7EBF4385CC18A2 /* MapInitializer.swift in Sources */,
 				699880F741C52D49FEA82759 /* AccountViewInput.swift in Sources */,
 				D774CA6EA80BCA5FEAE0E5B9 /* AccountViewOutput.swift in Sources */,

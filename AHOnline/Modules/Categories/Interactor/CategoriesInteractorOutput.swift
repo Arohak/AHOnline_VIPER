@@ -9,4 +9,5 @@
 protocol CategoriesInteractorOutput: class {
 
     func categoriesDataIsReady(categories: [Category])
+    func objectsDataIsReady(objects: [AHObject])
 }

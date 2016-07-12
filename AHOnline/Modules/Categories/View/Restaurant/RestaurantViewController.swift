@@ -40,7 +40,7 @@ extension RestaurantViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifire)
         let item = items[indexPath.row]
-        cell!.imageView?.kf_setImageWithURL(NSURL(string: item.image)!)
+        cell!.imageView?.kf_setImageWithURL(NSURL(string: item.src)!)
         cell!.textLabel?.text = item.name
         
         return cell!

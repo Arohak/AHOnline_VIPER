@@ -22,11 +22,11 @@ struct Wireframe {
 
     }
     
-    static func root() -> UINavigationController {
-        let rootViewController = window!.rootViewController as! UINavigationController
+    static func root() -> TabBarViewController {
+        let rootViewController = window!.rootViewController as! TabBarViewController
         var navigationController = rootViewController
         if let nav = rootViewController.presentedViewController as? UINavigationController {
-            navigationController = nav
+//            navigationController = nav
         }
         
         return navigationController
@@ -50,7 +50,7 @@ struct Wireframe {
     }
     
     static func pushViewController(vc: UIViewController) {
-        root().pushViewController(vc, animated: true)
+//        root().pushViewController(vc, animated: true)
     }
 }
 

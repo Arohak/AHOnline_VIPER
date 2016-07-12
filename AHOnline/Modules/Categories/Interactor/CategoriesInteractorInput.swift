@@ -9,4 +9,5 @@
 protocol CategoriesInteractorInput {
 
     func getCategories()
+    func getObjects(json: JSON)
 }

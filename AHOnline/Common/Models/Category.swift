@@ -8,6 +8,7 @@
 
 class Category: Object {
     
+    dynamic var id = 0
     dynamic var name: String!
     var subCategories = List<SubCategory>()
     
@@ -18,9 +19,10 @@ class Category: Object {
     convenience init(data: JSON) {
         self.init()
         
+        self.id         = data["id"].intValue
         self.name       = data["name"].stringValue
         
-        for item in data["sub_categories"].arrayValue {
+        for item in data["subcategories"].arrayValue {
             subCategories.append(SubCategory(data: item))
         }
     }

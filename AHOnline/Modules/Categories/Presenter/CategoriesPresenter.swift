@@ -38,16 +38,15 @@ class CategoriesPresenter {
     }
 }
 
-//MARK: - extension for CategoriesModuleInput -
-extension CategoriesPresenter: CategoriesModuleInput {
-
-}
-
 //MARK: - extension for CategoriesViewOutput -
 extension CategoriesPresenter: CategoriesViewOutput {
     
     func viewIsReady() {
         interactor.getCategories()
+    }
+    
+    func didSelectRow(json: JSON) {
+        interactor.getObjects(json)
     }
 }
 
@@ -64,10 +63,20 @@ extension CategoriesPresenter: CategoriesInteractorOutput {
         for category in categories {
             let vc = BaseCategoryViewController()
             vc.output = self
+            vc.category = category
             vc.subCategories = Array(category.subCategories)
             viewControllers.append(vc)
         }
         
         return viewControllers
+    }
+    
+    func objectsDataIsReady(objects: [AHObject]) {
+        let vc = ObjectsViewController()
+        vc.objects = objects
+        
+        let category = Wireframe.root().viewControllers![1] as! UINavigationController
+        category.pushViewController(vc, animated: true)
+//        category.presentViewController(UINavigationController(rootViewController: vc), animated: true, completion: nil)
     }
 }

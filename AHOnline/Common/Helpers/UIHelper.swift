@@ -16,9 +16,9 @@ struct UIHelper {
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         
         let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.setBackgroundImage(UIImage(), forBarMetrics: .Default)
-        navBarAppearance.shadowImage = UIImage()
-        navBarAppearance.translucent = true
+//        navBarAppearance.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+//        navBarAppearance.shadowImage = UIImage()
+//        navBarAppearance.translucent = true
         navBarAppearance.tintColor = RED
         navBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: RED, NSFontAttributeName : FONT_NAVBAR]
         

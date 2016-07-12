@@ -16,7 +16,7 @@ class ObjectsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     //MARK: -  Internal Methods -

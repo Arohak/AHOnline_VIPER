@@ -8,6 +8,8 @@
 
 class ObjectsViewController: BaseViewController {
     
+    var output: CategoriesViewOutput!
+
     var objectsView = ObjectsView()
     let cellIdentifire = "cellIdentifire"
     var objects: [AHObject] = []
@@ -48,6 +50,7 @@ extension ObjectsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        let object = objects[indexPath.row]
+        output.didSelectObjectRow(object)
     }
 }

@@ -45,8 +45,16 @@ extension CategoriesPresenter: CategoriesViewOutput {
         interactor.getCategories()
     }
     
-    func didSelectRow(json: JSON) {
-        interactor.getObjects(json)
+    func didSelectCategory(category: Category) {
+        interactor.selectCategory(category)
+    }
+    
+    func didSelectSubcategoryRow(subcategory: Subcategory) {
+        interactor.getObjects(subcategory)
+    }
+    
+    func didSelectObjectRow(object: AHObject) {
+        interactor.getObjectCategories(object)
     }
 }
 
@@ -64,7 +72,7 @@ extension CategoriesPresenter: CategoriesInteractorOutput {
             let vc = BaseCategoryViewController()
             vc.output = self
             vc.category = category
-            vc.subCategories = Array(category.subCategories)
+            vc.subcategories = Array(category.subcategories)
             viewControllers.append(vc)
         }
         
@@ -73,10 +81,22 @@ extension CategoriesPresenter: CategoriesInteractorOutput {
     
     func objectsDataIsReady(objects: [AHObject]) {
         let vc = ObjectsViewController()
+        vc.output = self
         vc.objects = objects
         
         let category = Wireframe.root().viewControllers![1] as! UINavigationController
         category.pushViewController(vc, animated: true)
-//        category.presentViewController(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+    }
+    
+    func objectCategoriesDataIsReady(object: AHObject, objectCategories: [ObjectCategory]) {
+        var items: [String] = []
+        for objectCategory in objectCategories { items.append(objectCategory.name)  }
+        let objectDetail = ObjectDetail(object: object, items: items)
+        
+        let vc = ObjectDetailViewController(title: "", detail: objectDetail)
+        vc.output = self
+        
+        let objectCategory = Wireframe.root().viewControllers![1] as! UINavigationController
+        objectCategory.pushViewController(vc, animated: true)
     }
 }

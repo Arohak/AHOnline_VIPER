@@ -1,16 +1,16 @@
 //
-//  Category.swift
+//  Subcategory.swift
 //  AHOnline
 //
 //  Created by Ara Hakobyan on 7/9/16.
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-class Category: Object {
+class Subcategory: Object {
     
     dynamic var id = 0
     dynamic var name: String!
-    var subcategories = List<Subcategory>()
+    dynamic var src: String!
     
     override static func primaryKey() -> String {
         return "name"
@@ -21,9 +21,6 @@ class Category: Object {
         
         self.id         = data["id"].intValue
         self.name       = data["name"].stringValue
-        
-        for item in data["subcategories"].arrayValue {
-            subcategories.append(Subcategory(data: item))
-        }
+        self.src        = data["src"].stringValue
     }
 }

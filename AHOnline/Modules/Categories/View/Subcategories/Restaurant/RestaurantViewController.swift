@@ -12,7 +12,7 @@ class RestaurantViewController: BaseViewController {
     
     var restaurantView = RestaurantView()
     let cellIdentifire = "cellIdentifire"
-    var items: [SubCategory] = []
+    var items: [Subcategory] = []
     
     // MARK: - Life cycle -
     override func viewDidLoad() {

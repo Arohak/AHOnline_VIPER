@@ -13,7 +13,7 @@ class BaseCategoryViewController: BaseViewController {
     var baseCategoryView = BaseCategoryView()
     let cellIdentifire = "cellIdentifire"
     var category: Category!
-    var subCategories: [SubCategory] = []
+    var subcategories: [Subcategory] = []
     
     // MARK: - Life cycle -
     override func viewDidLoad() {
@@ -35,12 +35,12 @@ extension BaseCategoryViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return subCategories.count
+        return subcategories.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifire) as! BaseTableViewCell
-        let item = subCategories[indexPath.row]
+        let item = subcategories[indexPath.row]
         cell.imageView?.kf_setImageWithURL(NSURL(string: item.src)!, placeholderImage: Image(named: "img_all"))
         cell.textLabel?.text = item.name
         
@@ -48,11 +48,7 @@ extension BaseCategoryViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let subCategory = subCategories[indexPath.row]
-        let json = JSON([
-            "category_id"           : category.id,
-            "subcategory_id"        : subCategory.id])
-        
-        output.didSelectRow(json)
+        let subcategory = subcategories[indexPath.row]
+        output.didSelectSubcategoryRow(subcategory)
     }
 }

@@ -28,6 +28,46 @@ class BaseView: UIView {
     }
 }
 
+class BaseDetailView: UIView {
+    
+    lazy var bgImageView: UIImageView = {
+        let view = UIImageView.newAutoLayoutView()
+        view.image = UIImage(named: "bg")
+        
+        return view
+    }()
+    
+    lazy var tableView: BaseTableView = {
+        let view = BaseTableView.newAutoLayoutView()
+        
+        return view
+    }()
+    
+    lazy var refresh: CarbonSwipeRefresh = {
+        let view = CarbonSwipeRefresh(scrollView: self.tableView)
+        view.colors = RCOLORS
+        
+        return view
+    }()
+    
+    //MARK: - Initialize -
+    init() {
+        super.init(frame: CGRectZero)
+        
+        addSubview(bgImageView)
+        addSubview(tableView)
+        addSubview(refresh)
+        
+        bgImageView.autoPinEdgesToSuperviewEdges()
+        tableView.autoPinEdgesToSuperviewEdges()
+        refresh.setMarginTop(0)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 class BaseNode: ASDisplayNode {
     
     lazy var bgImage: ASImageNode = {

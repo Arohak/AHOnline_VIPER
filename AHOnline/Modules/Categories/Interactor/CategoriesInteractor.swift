@@ -11,7 +11,10 @@ class CategoriesInteractor {
 
     weak var output: CategoriesInteractorOutput!
     
-    var categories: [Category] = []
+    var selectedCategory: Category!
+    var selectedSubcategory: Subcategory!
+    var selectedObject: AHObject!
+    var selectedObjectCategory: ObjectCategory!
 }
 
 //MARK: - extension for CategoriesInteractorInput -
@@ -21,17 +24,27 @@ extension CategoriesInteractor: CategoriesInteractorInput {
         _ = APIManager.getCategories()
             .subscribe(onNext: { result in
                 if result != nil {
-                    self.categories.removeAll()
+                    var categories: [Category] = []
                     for item in result["data"].arrayValue {
-                       self.categories.append(Category(data: item))
+                       categories.append(Category(data: item))
                     }
                     
-                    self.output.categoriesDataIsReady(self.categories)
+                    self.output.categoriesDataIsReady(categories)
                 }
             })
     }
     
-    func getObjects(json: JSON) {
+    func selectCategory(category: Category) {
+        selectedCategory = category
+    }
+    
+    func getObjects(subcategory: Subcategory) {
+        selectedSubcategory = subcategory
+        
+        let json = JSON([
+            "category_id"       : selectedCategory.id,
+            "subcategory_id"    : selectedSubcategory.id])
+        
         _ = APIManager.getObjects(json)
             .subscribe(onNext: { result in
                 if result != nil {
@@ -41,6 +54,25 @@ extension CategoriesInteractor: CategoriesInteractorInput {
                     }
                     
                     self.output.objectsDataIsReady(objects)
+                }
+            })
+    }
+    
+    func getObjectCategories(object: AHObject) {
+        selectedObject = object
+        
+        let json = JSON([
+            "object_id"         : selectedObject.id])
+        
+        _ = APIManager.getObjectCategories(json)
+            .subscribe(onNext: { result in
+                if result != nil {
+                    var objectCategories: [ObjectCategory] = []
+                    for item in result["data"].arrayValue {
+                        objectCategories.append(ObjectCategory(data: item))
+                    }
+                    
+                    self.output.objectCategoriesDataIsReady(self.selectedObject, objectCategories: objectCategories)
                 }
             })
     }

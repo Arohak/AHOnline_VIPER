@@ -1,12 +1,11 @@
 //
-//  CategoriesViewController.swift
+//  CategoryTabViewController.swift
 //  AHOnline
 //
 //  Created by AroHak on 09/07/2016.
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-//MARK: - class CategoriesViewController -
 class CategoriesViewController: UIViewController {
 
     var output: CategoriesViewOutput!
@@ -73,5 +72,6 @@ extension CategoriesViewController: CarbonTabSwipeNavigationDelegate {
     
     func carbonTabSwipeNavigation(carbonTabSwipeNavigation: CarbonTabSwipeNavigation, didMoveAtIndex index: UInt) {
         selectedViewController = viewControllers[Int(index)]
+        output.didSelectCategory(categories[Int(index)])
     }
 }

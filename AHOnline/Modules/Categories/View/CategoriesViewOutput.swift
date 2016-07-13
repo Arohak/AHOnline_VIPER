@@ -9,5 +9,7 @@
 protocol CategoriesViewOutput {
 
     func viewIsReady()
-    func didSelectRow(json: JSON)
+    func didSelectCategory(category: Category)
+    func didSelectSubcategoryRow(subcategory: Subcategory)
+    func didSelectObjectRow(object: AHObject)
 }

@@ -76,4 +76,23 @@ extension CategoriesInteractor: CategoriesInteractorInput {
                 }
             })
     }
+    
+    func getProducts(objectCategory: ObjectCategory) {
+        selectedObjectCategory = objectCategory
+        
+        let json = JSON([
+            "categoryitem_id"   : selectedObjectCategory.id])
+        
+        _ = APIManager.getProducts(json)
+            .subscribe(onNext: { result in
+                if result != nil {
+                    var products: [Product] = []
+                    for item in result["data"].arrayValue {
+                        products.append(Product(data: item))
+                    }
+                    
+                    self.output.productsDataIsReady(products)
+                }
+            })
+    }
 }

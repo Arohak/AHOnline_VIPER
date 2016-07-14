@@ -56,6 +56,10 @@ extension CategoriesPresenter: CategoriesViewOutput {
     func didSelectObjectRow(object: AHObject) {
         interactor.getObjectCategories(object)
     }
+    
+    func didSelectObjectCategoriesRow(objectCategory: ObjectCategory) {
+        interactor.getProducts(objectCategory)
+    }
 }
 
 //MARK: - extension for CategoriesInteractorOutput -
@@ -89,12 +93,19 @@ extension CategoriesPresenter: CategoriesInteractorOutput {
     }
     
     func objectCategoriesDataIsReady(object: AHObject, objectCategories: [ObjectCategory]) {
-        var items: [String] = []
-        for objectCategory in objectCategories { items.append(objectCategory.name)  }
-        let objectDetail = ObjectDetail(object: object, items: items)
+        let objectDetail = ObjectDetail(object: object, objectCategories: objectCategories)
         
         let vc = ObjectDetailViewController(title: "", detail: objectDetail)
         vc.output = self
+        
+        let object = Wireframe.root().viewControllers![1] as! UINavigationController
+        object.pushViewController(vc, animated: true)
+    }
+    
+    func productsDataIsReady(products: [Product]) {
+        let vc = ProductsViewController()
+        vc.output = self
+        vc.products = products
         
         let objectCategory = Wireframe.root().viewControllers![1] as! UINavigationController
         objectCategory.pushViewController(vc, animated: true)

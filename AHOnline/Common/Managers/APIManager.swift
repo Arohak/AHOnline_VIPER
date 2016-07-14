@@ -14,6 +14,7 @@ struct APIManager {
         static let GET_CATEGORIES                           = "categories"
         static let GET_OBJECTS                              = "categories/%@/subcategories/%@"
         static let GET_OBJECT_CATEGORIES                    = "restaurants/%@/categoryitems"
+        static let GET_PRODUCTS                             = "categoryitems/%@/products"
     }
     
     static func getRestaurantsHome() -> Observable<JSON> {
@@ -34,6 +35,12 @@ struct APIManager {
     static func getObjectCategories(json: JSON) -> Observable<JSON> {
         let url = String(format: ROUTERS.GET_OBJECT_CATEGORIES,
                          json["object_id"].stringValue)
+        return apiHelper.request(.GET, url: url)
+    }
+    
+    static func getProducts(json: JSON) -> Observable<JSON> {
+        let url = String(format: ROUTERS.GET_PRODUCTS,
+                         json["categoryitem_id"].stringValue)
         return apiHelper.request(.GET, url: url)
     }
 }

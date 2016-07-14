@@ -11,4 +11,5 @@ protocol CategoriesInteractorOutput: class {
     func categoriesDataIsReady(categories: [Category])
     func objectsDataIsReady(objects: [AHObject])
     func objectCategoriesDataIsReady(object: AHObject, objectCategories: [ObjectCategory])
+    func productsDataIsReady(products: [Product])
 }

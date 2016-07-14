@@ -9,10 +9,10 @@
 class ObjectDetail {
     
     var object: AHObject!
-    var items = [String]()
+    var objectCategories = [ObjectCategory]()
     
-    init(object: AHObject, items: [String]) {
-        self.object     = object
-        self.items      = items
+    init(object: AHObject, objectCategories: [ObjectCategory]) {
+        self.object             = object
+        self.objectCategories   = objectCategories
     }
 }

@@ -13,7 +13,7 @@ class HOLabel: UILabel {
         super.init(frame: CGRectZero)
         
         font = TITLE_BTN_FONT
-        textColor = GRAY
+        textColor = BLACK
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -12,14 +12,14 @@ class ObjectDetailViewController: BaseViewController {
 
     var objectDetailView: ObjectDetailView!
     let cellIdentifire = "cellIdentifire"
-    var items = [String]()
+    var objectCategories = [ObjectCategory]()
     
     //MARK: - Initilize -
     init(title: String, detail: ObjectDetail, headerHeight: CGFloat = ScreenSize.HEIGHT*0.3) {
         super.init(nibName: nil, bundle: nil)
         
         objectDetailView = ObjectDetailView(detail: detail, headerRect: CGRect(x: 0, y: 0, width: ScreenSize.WIDTH, height: headerHeight))
-        self.items = detail.items
+        self.objectCategories = detail.objectCategories
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -62,20 +62,20 @@ extension ObjectDetailViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return items.count
+        return objectCategories.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifire) as! BaseTableViewCell
-        let item = items[indexPath.row]
-        cell.textLabel?.text = item
+        let objectCategory = objectCategories[indexPath.row]
+        cell.textLabel?.text = objectCategory.name
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        let subcategory = items[indexPath.row]
-//        output.didSelectSubcategoryRow(subcategory)
+        let objectCategory = objectCategories[indexPath.row]
+        output.didSelectObjectCategoriesRow(objectCategory)
     }
 }
 

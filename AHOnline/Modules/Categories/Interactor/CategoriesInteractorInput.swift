@@ -12,4 +12,5 @@ protocol CategoriesInteractorInput {
     func selectCategory(category: Category)
     func getObjects(subcategory: Subcategory)
     func getObjectCategories(object: AHObject)
+    func getProducts(objectCategory: ObjectCategory)
 }

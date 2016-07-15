@@ -8,4 +8,7 @@
 
 protocol CartInteractorInput {
 
+    func getOrders()
+    func updateOrder(product: Product, count: Int)
+    func removeOrder(product: Product)
 }

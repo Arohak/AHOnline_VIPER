@@ -15,7 +15,7 @@ class Product: Object {
     dynamic var menu = 0
     dynamic var restaurant_menu_categories = 0
     dynamic var new = false
-    dynamic var label: String!
+    dynamic var name: String!
     dynamic var content: String!
     dynamic var item_number = 0
     dynamic var inventory = 0
@@ -26,7 +26,17 @@ class Product: Object {
     dynamic var alias: String!
     dynamic var keywords: String!
     dynamic var src: String!
-
+    
+    dynamic var amount: String = "$"
+    dynamic var countBuy = 1
+    dynamic var isBuy: Bool {
+        return countBuy > 0
+    }
+    
+    override static func primaryKey() -> String {
+        return "id"
+    }
+    
     convenience init(data: JSON) {
         self.init()
 
@@ -37,7 +47,7 @@ class Product: Object {
         self.menu                           = data["menu"].intValue
         self.restaurant_menu_categories     = data["restaurant_menu_categories"].intValue
         self.new                            = data["new"].boolValue
-        self.label                          = data["label"].stringValue
+        self.name                           = data["label"].stringValue
         self.content                        = data["content"].stringValue
         self.item_number                    = data["item_number"].intValue
         self.inventory                      = data["inventory"].intValue

@@ -12,7 +12,7 @@ class ObjectCategory: Object {
     dynamic var name: String!
     
     override static func primaryKey() -> String {
-        return "name"
+        return "id"
     }
     
     convenience init(data: JSON) {

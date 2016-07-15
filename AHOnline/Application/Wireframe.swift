@@ -12,10 +12,12 @@ struct Wireframe {
     
     static func start() {
         let tabBar = TabBarViewController()
-        
+
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window!.rootViewController = tabBar
         window!.makeKeyAndVisible()
+        
+        setBadgeValue(DBManager.getOrderCounts())
     }
     
     static func login() {
@@ -24,12 +26,13 @@ struct Wireframe {
     
     static func root() -> TabBarViewController {
         let rootViewController = window!.rootViewController as! TabBarViewController
-        var navigationController = rootViewController
-        if let nav = rootViewController.presentedViewController as? UINavigationController {
-//            navigationController = nav
-        }
-        
-        return navigationController
+        return rootViewController
+    }
+    
+    static func setBadgeValue(value: Int) {
+        let tabArray = root().tabBar.items as NSArray!
+        let tabItem = tabArray.objectAtIndex(2) as! UITabBarItem
+        tabItem.badgeValue = "\(value)"
     }
     
     static func instantiateViewControllerWith(identifier: String) -> UIViewController {

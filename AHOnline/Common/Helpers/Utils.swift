@@ -107,11 +107,11 @@ struct Utils {
     }
     
     static func isOnlyNumber(text: String) -> Bool {
-        let inverseSet = NSCharacterSet(charactersInString:"0123456789").invertedSet
+        let inverseSet = NSCharacterSet(charactersInString:"123456789").invertedSet
         let components = text.componentsSeparatedByCharactersInSet(inverseSet)
         let filtered = components.joinWithSeparator("")
         
-        return text == filtered
+        return text == filtered && Int(text) < 21
     }
 }
 

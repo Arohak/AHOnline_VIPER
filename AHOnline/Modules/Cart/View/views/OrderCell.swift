@@ -26,8 +26,8 @@ class OrderCell: BaseTableViewCell {
         cellContentView.autoPinEdgesToSuperviewEdges()
     }
     
-    func setValues() {
-        cellContentView.setValues()
+    func setValues(product: Product) {
+        cellContentView.setValues(product)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -58,7 +58,6 @@ class OrderCellContentView: UIView {
     lazy var nameLabel: TitleLabel = {
         let view = TitleLabel.newAutoLayoutView()
         view.numberOfLines = 1
-        view.text = "Name"
         
         return view
     }()
@@ -72,24 +71,23 @@ class OrderCellContentView: UIView {
     
     lazy var textField: UITextField = {
         let view = UITextField.newAutoLayoutView()
-        view.text = "2"
-        view.hidden = true
-        
+        view.keyboardType = .NumberPad
+        view.textAlignment = .Center
+        view.font = TITLE_BTN_FONT
+        view.backgroundColor = WHITE
+
         return view
     }()
     
     lazy var countLabel: HOLabel = {
         let view = HOLabel.newAutoLayoutView()
-        view.font = TITLE_LBL_FONT
-        view.text = ""
-        
+        view.textAlignment = .Center
+
         return view
     }()
     
     lazy var totalPriceLabel: HOLabel = {
         let view = HOLabel.newAutoLayoutView()
-        view.font = TITLE_LBL_FONT
-        view.text = "Price: $ 321"
 
         return view
     }()
@@ -97,7 +95,6 @@ class OrderCellContentView: UIView {
     lazy var priceLabel: HOLabel = {
         let view = HOLabel.newAutoLayoutView()
         view.font = TITLE_LBL_FONT
-        view.text = "Price: $ 321"
         
         return view
     }()
@@ -123,7 +120,7 @@ class OrderCellContentView: UIView {
         addSubview(bgImageView)
         addSubview(imageView)
         addSubview(nameLabel)
-        addSubview(orderGroupView)
+//        addSubview(orderGroupView)
         addSubview(totalPriceLabel)
         addSubview(priceLabel)
         addSubview(countLabel)
@@ -147,23 +144,42 @@ class OrderCellContentView: UIView {
         priceLabel.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: 10)
         priceLabel.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: imageView)
         
-        countLabel.autoPinEdge(.Left, toEdge: .Right, ofView: priceLabel, withOffset: 10)
+        countLabel.autoPinEdge(.Left, toEdge: .Right, ofView: priceLabel, withOffset: 0)
         countLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: priceLabel)
+        countLabel.autoSetDimension(.Width, toSize: 30)
         
         textField.autoPinEdge(.Left, toEdge: .Right, ofView: priceLabel, withOffset: 10)
         textField.autoAlignAxis(.Horizontal, toSameAxisOfView: priceLabel)
-        
+        textField.autoSetDimension(.Width, toSize: 20)
+
 //        orderGroupView.autoPinEdge(.Top, toEdge: .Top, ofView: orderGroupView.addButton)
 //        orderGroupView.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: 10)
 //        orderGroupView.autoPinEdge(.Right, toEdge: .Left, ofView: priceLabel, withOffset: -10)
 //        orderGroupView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: imageView)
         
-        totalPriceLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: orderGroupView)
+        totalPriceLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: priceLabel)
         totalPriceLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: 10)
     }
     
     //MARK: - Public Methods -
-    func setValues()  {
+    func setValues(product: Product)  {
+        imageView.kf_setImageWithURL(NSURL(string: product.src)!, placeholderImage: Image(named: "img_all"))
+        nameLabel.text = product.name
+        priceLabel.text = "Price " + product.amount + " \(product.price)"
 
+        updateValues(false, product: product)
+    }
+    
+    func updateValues(state: Bool, product: Product)  {
+        textField.hidden = !state
+        countLabel.hidden = state
+        
+        if product.countBuy != 1 {
+            countLabel.text = "x" + "\(product.countBuy)"
+        } else {
+            countLabel.text = ""
+        }
+        textField.text = "\(product.countBuy)"
+        totalPriceLabel.text = "Total " + product.amount + " \(product.price * product.countBuy)"
     }
 }

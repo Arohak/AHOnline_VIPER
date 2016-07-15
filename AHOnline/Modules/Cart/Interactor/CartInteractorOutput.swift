@@ -8,4 +8,5 @@
 
 protocol CartInteractorOutput: class {
 
+    func ordersDataIsReady(orders: [Product])
 }

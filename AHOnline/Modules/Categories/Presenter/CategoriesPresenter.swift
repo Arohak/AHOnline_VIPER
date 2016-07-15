@@ -103,8 +103,8 @@ extension CategoriesPresenter: CategoriesInteractorOutput {
     }
     
     func productsDataIsReady(products: [Product]) {
-        let vc = ProductsViewController()
-        vc.output = self
+        let vc = ProductViewController()
+        _ = ProductModuleInitializer(viewController: vc)
         vc.products = products
         
         let objectCategory = Wireframe.root().viewControllers![1] as! UINavigationController

@@ -9,4 +9,6 @@
 protocol CartViewOutput {
 
     func viewIsReady()
+    func updateOrder(product: Product, count: Int)
+    func removeOrder(product: Product)
 }

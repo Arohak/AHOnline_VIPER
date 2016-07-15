@@ -6,7 +6,7 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-class DUButton: UIButton {
+class HOButton: UIButton {
     
     var indexPath = NSIndexPath(forRow: 0, inSection: 0)
     

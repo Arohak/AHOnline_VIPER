@@ -37,7 +37,7 @@ struct UIHelper {
         PKHUD.sharedHUD.contentView = PKHUDTextView(text: message)
         PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled = true
         PKHUD.sharedHUD.show()
-        PKHUD.sharedHUD.hide(afterDelay: 2.0);
+        PKHUD.sharedHUD.hide(afterDelay: 2.0)
     }
     
     static func showAlert(message: String) {
@@ -61,12 +61,28 @@ struct UIHelper {
 //        ALThreeCircleSpinner.hide()
     }
     
+    static func isValidCountTextField(textField: UITextField, range: NSRange, string: String) -> Bool {
+        var isValid = false
+        var text = textField.text! as NSString
+        text = text.stringByReplacingCharactersInRange(range, withString: string)
+        var numvber: Int = 1
+        if let text = Int(text as String) {
+            numvber = text
+        }
+        let inverseSet = NSCharacterSet(charactersInString:"0123456789").invertedSet
+        let components = string.componentsSeparatedByCharactersInSet(inverseSet)
+        let filtered = components.joinWithSeparator("")
+        (string == filtered) && numvber < 100 && numvber != 0 ? isValid = true : shakeWithView(textField)
+        
+        return isValid
+    }
+    
     static func isValidTextField(field: UITextField) -> Bool {
         var isValid = false
         let kText = field.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         !(kText == "") ? isValid = true : shakeWithView(field)
         
-        return isValid;
+        return isValid
     }
     
     static func isValidTextView(view: UITextView) -> Bool {
@@ -74,7 +90,7 @@ struct UIHelper {
         let kText = view.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         !(kText == "") ? isValid = true : shakeWithView(view)
         
-        return isValid;
+        return isValid
     }
     
     static func isValidEmail(text: String) -> Bool {

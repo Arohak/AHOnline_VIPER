@@ -1,12 +1,11 @@
 //
-//  CartViewInput.swift
+//  ProductInteractorOutput.swift
 //  AHOnline
 //
 //  Created by AroHak on 09/07/2016.
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-protocol CartViewInput: class {
+protocol ProductInteractorOutput: class {
 
-    func setupInitialState(orders: [Product])
 }

@@ -43,8 +43,8 @@ extension ProductsViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifire) as! BaseTableViewCell
         let product = products[indexPath.row]
         cell.imageView?.kf_setImageWithURL(NSURL(string: product.src)!, placeholderImage: Image(named: "img_all"))
-        cell.textLabel?.text = product.label
-        cell.detailTextLabel?.text = product.label
+        cell.textLabel?.text = product.name
+        cell.detailTextLabel?.text = product.name
         
         return cell
     }

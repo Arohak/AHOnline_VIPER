@@ -1,0 +1,78 @@
+//
+//  ProductViewController.swift
+//  AHOnline
+//
+//  Created by AroHak on 09/07/2016.
+//  Copyright © 2016 AroHak LLC. All rights reserved.
+//
+
+class ProductViewController: BaseViewController {
+    
+    var output: ProductViewOutput!
+
+    var productView = ProductView()
+    let cellIdentifire = "cellIdentifire"
+    var products: [Product] = []
+    
+    // MARK: - Life cycle -
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    //MARK: -  Internal Methods -
+    override func baseConfig() {
+        self.view = productView
+
+        productView.collectionView.dataSource = self
+        productView.collectionView.delegate = self
+        productView.collectionView.registerClass(ProductCell.self, forCellWithReuseIdentifier: cellIdentifire)
+    }
+    
+    //MARK: - Actions -
+    func addAction(sender: HOButton) {
+        let product = products[sender.indexPath.row]
+        output.increaseProductBuy(product)
+        let cell = productView.collectionView.cellForItemAtIndexPath(sender.indexPath) as! ProductCell
+        cell.cellContentView.updateCount(product)
+    }
+}
+
+//MARK: - extension for ProductViewInput -
+extension ProductViewController: ProductViewInput {
+
+}
+
+//MARK: - extension for UICollectionView -
+extension ProductViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return products.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let product = products[indexPath.row]
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifire, forIndexPath: indexPath) as! ProductCell
+        cell.cellContentView.addButton.addTarget(self, action: #selector(addAction(_:)), forControlEvents: .TouchUpInside)
+        cell.cellContentView.addButton.indexPath = indexPath
+        cell.setValues(product)
+        
+        return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        return CGSize(width: 200, height: 300)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsetsZero
+    }
+}

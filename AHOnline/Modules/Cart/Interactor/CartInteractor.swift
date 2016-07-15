@@ -15,4 +15,16 @@ class CartInteractor {
 //MARK: - extension for CartInteractorInput -
 extension CartInteractor: CartInteractorInput {
     
+    func getOrders() {
+        let orders = DBManager.getOrders()
+        output.ordersDataIsReady(Array(orders))
+    }
+    
+    func updateOrder(product: Product, count: Int) {
+        DBManager.updateOrder(product, count: count)
+    }
+    
+    func removeOrder(product: Product) {
+        DBManager.removeOrder(product)
+    }
 }

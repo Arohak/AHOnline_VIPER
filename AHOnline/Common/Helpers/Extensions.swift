@@ -27,3 +27,20 @@ extension NSDate {
         return "\(Int64(self.timeIntervalSince1970*1000))"
     }
 }
+
+extension Double {
+    var format: String {
+        let formatter = NSNumberFormatter()
+        formatter.locale = NSLocale(localeIdentifier: "en_US")
+//        formatter.maximumFractionDigits = 1
+//        formatter.minimumFractionDigits = 1
+//        formatter.paddingPosition = .BeforePrefix
+//        formatter.paddingCharacter = "0"
+        formatter.numberStyle = .DecimalStyle
+        formatter.groupingSeparator = ","
+        formatter.usesGroupingSeparator = true
+        let num = formatter.numberFromString("\(self)")
+        
+        return num == nil ? "" : formatter.stringFromNumber(num!)!
+    }
+}

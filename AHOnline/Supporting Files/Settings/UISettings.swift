@@ -62,7 +62,7 @@ let RCOLORS                             = [UIColor.blueColor(), UIColor.redColor
 //MARK: - All Pages
 typealias CollectionCallback            = (indexPath: NSIndexPath) -> Void
 typealias PickerCallback                = (value: String) -> Void
-typealias ACPickerCallback              = (value: String, index: Int) -> Void
+typealias DeliveryPickerCallback        = (value: Delivery, index: Int) -> Void
 typealias challenge                     = (session: NSURLSession!, challenge: NSURLAuthenticationChallenge) -> (NSURLSessionAuthChallengeDisposition, NSURLCredential?)
 
 let NAV_HEIGHT: CGFloat                 = 64
@@ -81,15 +81,24 @@ let LINK_FONT                           = UIFont.systemFontOfSize(DeviceType.IS_
 
 //MARK: - Base Constants
 let BA_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
-let TITLE_BTN_FONT                      = UIFont.boldSystemFontOfSize(DeviceType.IS_IPAD ? 16     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 16     : DeviceType.IS_IPHONE_6 ? 16   * IPHONE_6_SCALE : 16   * IPHONE_5_SCALE)
+let TITLE_BTN_FONT                      = UIFont.boldSystemFontOfSize(DeviceType.IS_IPAD ? 14     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 14     : DeviceType.IS_IPHONE_6 ? 14   * IPHONE_6_SCALE : 14   * IPHONE_5_SCALE)
 let TITLE_LBL_FONT                      = UIFont.systemFontOfSize(DeviceType.IS_IPAD ? 16     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 16     : DeviceType.IS_IPHONE_6 ? 16   * IPHONE_6_SCALE : 16   * IPHONE_5_SCALE)
-let TITLE_FONT                          = UIFont.boldSystemFontOfSize(DeviceType.IS_IPAD ? 22     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 22     : DeviceType.IS_IPHONE_6 ? 22   * IPHONE_6_SCALE : 22   * IPHONE_5_SCALE)
+let TITLE_FONT                          = UIFont.systemFontOfSize(DeviceType.IS_IPAD ? 18     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 18     : DeviceType.IS_IPHONE_6 ? 18   * IPHONE_6_SCALE : 18   * IPHONE_5_SCALE)
+let CA_TITLE_FONT                       = UIFont.boldSystemFontOfSize(DeviceType.IS_IPAD ? 18     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 18     : DeviceType.IS_IPHONE_6 ? 18   * IPHONE_6_SCALE : 18   * IPHONE_5_SCALE)
 let DESC_FONT                           = UIFont.boldSystemFontOfSize(DeviceType.IS_IPAD ? 12     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 12     : DeviceType.IS_IPHONE_6 ? 12   * IPHONE_6_SCALE : 12   * IPHONE_5_SCALE)
 
 
-//MARK: - Deposit Constants
+//MARK: - Home Constants
 let HO_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
 let HO_CELL_HEIGHT : CGFloat            = DeviceType.IS_IPAD ? 90     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 90     : DeviceType.IS_IPHONE_6 ? 90   * IPHONE_6_SCALE : 90   * IPHONE_5_SCALE
+
+//MARK: - Product Constants
+let PR_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
+let PR_LAYOUT_WIDTH : CGFloat           = (ScreenSize.WIDTH - PR_INSET*4)/2
+
+//MARK: - Cart Constants
+let CA_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
+let CA_CELL_HEIGHT : CGFloat            = DeviceType.IS_IPAD ? 80     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 80     : DeviceType.IS_IPHONE_6 ? 80   * IPHONE_6_SCALE : 80   * IPHONE_5_SCALE
 
 let codes = [
     "_AF"      : "+93",

@@ -24,9 +24,10 @@ class DatePickerView: UIView {
         view.backgroundColor = WHITE
         view.locale = NSLocale(localeIdentifier: "en_GB")
         view.setValue(BLACK, forKey: "textColor")
-        view.datePickerMode = .Date
+//        view.datePickerMode = .Date
         view.date = self.date
-        view.maximumDate = NSDate()
+        view.minimumDate = NSDate()
+        view.datePickerMode = .CountDownTimer
         
         return view
     }()

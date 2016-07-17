@@ -15,9 +15,10 @@ class ObjectDetailViewController: BaseViewController {
     var objectCategories = [ObjectCategory]()
     
     //MARK: - Initilize -
-    init(title: String, detail: ObjectDetail, headerHeight: CGFloat = ScreenSize.HEIGHT*0.3) {
+    init(detail: ObjectDetail, headerHeight: CGFloat = ScreenSize.HEIGHT*0.3) {
         super.init(nibName: nil, bundle: nil)
         
+        title = detail.object.label
         objectDetailView = ObjectDetailView(detail: detail, headerRect: CGRect(x: 0, y: 0, width: ScreenSize.WIDTH, height: headerHeight))
         self.objectCategories = detail.objectCategories
     }

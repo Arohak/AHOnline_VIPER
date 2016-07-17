@@ -8,5 +8,7 @@
 
 protocol CartViewInput: class {
 
-    func setupInitialState(orders: [Product])
+    func deliveriesComing(deliveries: [Delivery])
+    func ordersComing(orders: [Product], ordersPrice: Double)
+    func ordersTotalPrice(ordersPrice: Double)
 }

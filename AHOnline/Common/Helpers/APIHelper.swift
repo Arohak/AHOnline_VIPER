@@ -12,20 +12,13 @@ let HTTPS   = "http://"
 let IP      = "localhost"
 let PORT    = ":3000/"
 let AHO     = "api/v1/"
-let baseURL = HTTPS + IP + PORT + AHO
+//let baseURL = HTTPS + IP + PORT + AHO
+let baseURL = "http://buyonline-arohak.c9users.io/api/v1/"
 
 class APIHelper {
     
     static let sharedInstance = APIHelper()
     let manager = Manager()
-
-//    lazy var manager: Manager = {
-//        let serverTrustPolicies: [String: ServerTrustPolicy] = [ IP : .DisableEvaluation ]
-//        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-//        configuration.HTTPAdditionalHeaders = Alamofire.Manager.defaultHTTPHeaders
-//        
-//        return Manager(configuration: configuration, serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicies))
-//    }()
 
     //MARK: - Request -
     func rx_Request(method: Alamofire.Method,

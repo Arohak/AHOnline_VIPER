@@ -88,18 +88,15 @@ extension CategoriesPresenter: CategoriesInteractorOutput {
         vc.output = self
         vc.objects = objects
         
-        let category = Wireframe.root().viewControllers![1] as! UINavigationController
-        category.pushViewController(vc, animated: true)
+        router.pushViewController(vc)
     }
     
     func objectCategoriesDataIsReady(object: AHObject, objectCategories: [ObjectCategory]) {
         let objectDetail = ObjectDetail(object: object, objectCategories: objectCategories)
-        
-        let vc = ObjectDetailViewController(title: "", detail: objectDetail)
+        let vc = ObjectDetailViewController(detail: objectDetail)
         vc.output = self
         
-        let object = Wireframe.root().viewControllers![1] as! UINavigationController
-        object.pushViewController(vc, animated: true)
+        router.pushViewController(vc)
     }
     
     func productsDataIsReady(products: [Product]) {
@@ -107,7 +104,6 @@ extension CategoriesPresenter: CategoriesInteractorOutput {
         _ = ProductModuleInitializer(viewController: vc)
         vc.products = products
         
-        let objectCategory = Wireframe.root().viewControllers![1] as! UINavigationController
-        objectCategory.pushViewController(vc, animated: true)
+        router.pushViewController(vc)
     }
 }

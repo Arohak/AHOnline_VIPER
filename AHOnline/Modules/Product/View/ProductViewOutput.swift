@@ -8,5 +8,5 @@
 
 protocol ProductViewOutput {
 
-    func increaseProductBuy(product: Product)
+    func addProductBuy(product: Product)
 }

@@ -21,6 +21,12 @@ class ProductViewController: BaseViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        productView.collectionView.reloadData()
+    }
+    
     //MARK: -  Internal Methods -
     override func baseConfig() {
         self.view = productView
@@ -33,7 +39,7 @@ class ProductViewController: BaseViewController {
     //MARK: - Actions -
     func addAction(sender: HOButton) {
         let product = products[sender.indexPath.row]
-        output.increaseProductBuy(product)
+        output.addProductBuy(product)
         let cell = productView.collectionView.cellForItemAtIndexPath(sender.indexPath) as! ProductCell
         cell.cellContentView.updateCount(product)
     }
@@ -68,11 +74,11 @@ extension ProductViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        return CGSize(width: 200, height: 300)
+        return CGSize(width: PR_LAYOUT_WIDTH, height: PR_LAYOUT_WIDTH*1.2)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         
-        return UIEdgeInsetsZero
+        return UIEdgeInsets(top: PR_INSET, left: PR_INSET, bottom: PR_INSET, right: PR_INSET)
     }
 }

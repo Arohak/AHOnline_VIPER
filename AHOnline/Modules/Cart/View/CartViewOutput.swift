@@ -6,9 +6,11 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-protocol CartViewOutput {
+protocol CartViewOutput: PresentViewControllerProtocol {
 
     func viewIsReady()
+    func addOrder()
     func updateOrder(product: Product, count: Int)
     func removeOrder(product: Product)
+    func removeOrders(products: [Product])
 }

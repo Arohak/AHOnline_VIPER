@@ -18,16 +18,8 @@ class OrderCell: BaseTableViewCell {
         cellContentView.autoPinEdgesToSuperviewEdges()
     }
     
-    init(style: UITableViewCellStyle, reuseIdentifier: String?, title: String = "", description: String = "") {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        let cellContentView = HomeCellContentView(title: title, description: description)
-        contentView.addSubview(cellContentView)
-        cellContentView.autoPinEdgesToSuperviewEdges()
-    }
-    
-    func setValues(product: Product) {
-        cellContentView.setValues(product)
+    func setValues(state: Bool, product: Product) {
+        cellContentView.setValues(state, product: product)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -42,7 +34,6 @@ class OrderCellContentView: UIView {
     lazy var bgImageView: UIImageView = {
         let view = UIImageView.newAutoLayoutView()
         view.contentMode = .ScaleAspectFit
-//        view.backgroundColor = GRAY
         
         return view
     }()
@@ -59,13 +50,6 @@ class OrderCellContentView: UIView {
         let view = TitleLabel.newAutoLayoutView()
         view.numberOfLines = 1
         
-        return view
-    }()
-    
-    lazy var orderGroupView: OrderGroupView = {
-        let view = OrderGroupView.newAutoLayoutView()
-        view.backgroundColor = WHITE
-
         return view
     }()
     
@@ -86,16 +70,18 @@ class OrderCellContentView: UIView {
         return view
     }()
     
-    lazy var totalPriceLabel: HOLabel = {
-        let view = HOLabel.newAutoLayoutView()
-
+    lazy var totalPriceGroupView: PriceGroupView = {
+        let view = PriceGroupView.newAutoLayoutView()
+        
         return view
     }()
     
-    lazy var priceLabel: HOLabel = {
-        let view = HOLabel.newAutoLayoutView()
-        view.font = TITLE_LBL_FONT
-        
+    lazy var priceGroupView: PriceGroupView = {
+        let view = PriceGroupView.newAutoLayoutView()
+        view.titleLabel.text = "Price "
+        view.titleLabel.font = DESC_FONT
+        view.priceLabel.font = DESC_FONT
+
         return view
     }()
 
@@ -120,9 +106,8 @@ class OrderCellContentView: UIView {
         addSubview(bgImageView)
         addSubview(imageView)
         addSubview(nameLabel)
-//        addSubview(orderGroupView)
-        addSubview(totalPriceLabel)
-        addSubview(priceLabel)
+        addSubview(totalPriceGroupView)
+        addSubview(priceGroupView)
         addSubview(countLabel)
         addSubview(textField)
 
@@ -134,40 +119,36 @@ class OrderCellContentView: UIView {
         bgImageView.autoPinEdgesToSuperviewEdges()
         
         imageView.autoAlignAxisToSuperviewAxis(.Horizontal)
-        imageView.autoPinEdgeToSuperviewEdge(.Left, withInset: 10)
-        imageView.autoSetDimensionsToSize(CGSize(width: 60, height: 60))
+        imageView.autoPinEdgeToSuperviewEdge(.Left, withInset: CA_INSET)
+        imageView.autoSetDimensionsToSize(CGSize(width: CA_INSET*6, height: CA_INSET*6))
         
-        nameLabel.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: 10)
+        nameLabel.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: CA_INSET)
         nameLabel.autoPinEdge(.Top, toEdge: .Top, ofView: imageView)
-        nameLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: 10)
+        nameLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: CA_INSET)
 
-        priceLabel.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: 10)
-        priceLabel.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: imageView)
+        priceGroupView.autoPinEdge(.Top, toEdge: .Top, ofView: priceGroupView.amountImagView)
+        priceGroupView.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: CA_INSET)
+        priceGroupView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: imageView)
         
-        countLabel.autoPinEdge(.Left, toEdge: .Right, ofView: priceLabel, withOffset: 0)
-        countLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: priceLabel)
-        countLabel.autoSetDimension(.Width, toSize: 30)
+        countLabel.autoPinEdge(.Left, toEdge: .Right, ofView: priceGroupView, withOffset: 0)
+        countLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: priceGroupView)
+        countLabel.autoSetDimension(.Width, toSize: CA_INSET*3)
         
-        textField.autoPinEdge(.Left, toEdge: .Right, ofView: priceLabel, withOffset: 10)
-        textField.autoAlignAxis(.Horizontal, toSameAxisOfView: priceLabel)
-        textField.autoSetDimension(.Width, toSize: 20)
-
-//        orderGroupView.autoPinEdge(.Top, toEdge: .Top, ofView: orderGroupView.addButton)
-//        orderGroupView.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: 10)
-//        orderGroupView.autoPinEdge(.Right, toEdge: .Left, ofView: priceLabel, withOffset: -10)
-//        orderGroupView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: imageView)
+        textField.autoPinEdge(.Left, toEdge: .Right, ofView: priceGroupView, withOffset: CA_INSET)
+        textField.autoAlignAxis(.Horizontal, toSameAxisOfView: priceGroupView)
+        textField.autoSetDimension(.Width, toSize: CA_INSET*2)
         
-        totalPriceLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: priceLabel)
-        totalPriceLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: 10)
+        totalPriceGroupView.autoAlignAxis(.Horizontal, toSameAxisOfView: priceGroupView)
+        totalPriceGroupView.autoPinEdgeToSuperviewEdge(.Right, withInset: CA_INSET)
     }
     
     //MARK: - Public Methods -
-    func setValues(product: Product)  {
+    func setValues(state: Bool, product: Product)  {
         imageView.kf_setImageWithURL(NSURL(string: product.src)!, placeholderImage: Image(named: "img_all"))
         nameLabel.text = product.name
-        priceLabel.text = "Price " + product.amount + " \(product.price)"
+        priceGroupView.setPrice(product.price)
 
-        updateValues(false, product: product)
+        updateValues(state, product: product)
     }
     
     func updateValues(state: Bool, product: Product)  {
@@ -180,6 +161,6 @@ class OrderCellContentView: UIView {
             countLabel.text = ""
         }
         textField.text = "\(product.countBuy)"
-        totalPriceLabel.text = "Total " + product.amount + " \(product.price * product.countBuy)"
+        totalPriceGroupView.setPrice(product.price * Double(product.countBuy))
     }
 }

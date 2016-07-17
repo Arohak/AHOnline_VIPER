@@ -53,12 +53,12 @@ struct UIHelper {
     }
     
     static func showSpinner() {
-//        ALThreeCircleSpinner.config()
-//        ALThreeCircleSpinner.show()
+        ALThreeCircleSpinner.config()
+        ALThreeCircleSpinner.show()
     }
     
     static func hideSpinner() {
-//        ALThreeCircleSpinner.hide()
+        ALThreeCircleSpinner.hide()
     }
     
     static func isValidCountTextField(textField: UITextField, range: NSRange, string: String) -> Bool {

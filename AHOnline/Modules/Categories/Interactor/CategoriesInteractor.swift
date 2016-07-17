@@ -88,7 +88,14 @@ extension CategoriesInteractor: CategoriesInteractorInput {
                 if result != nil {
                     var products: [Product] = []
                     for item in result["data"].arrayValue {
-                        products.append(Product(data: item))
+                        let product = Product(data: item)
+                        let findProduct = DBManager.getOrders().filter { $0.id == product.id }.first
+                        if let findProduct = findProduct {
+                            products.append(findProduct)
+                        } else {
+                            products.append(product)
+
+                        }
                     }
                     
                     self.output.productsDataIsReady(products)

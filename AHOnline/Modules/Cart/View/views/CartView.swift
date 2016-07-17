@@ -8,10 +8,31 @@
 
 class CartView: BaseView {
     
+    var heightTableViewConstraint: NSLayoutConstraint!
+
     lazy var tableView: BaseTableView = {
         let view = BaseTableView(frame: CGRectZero, style: .Plain)
-        view.estimatedRowHeight = 44
-        view.rowHeight = UITableViewAutomaticDimension
+        view.hidden = true
+        
+        return view
+    }()
+    
+    lazy var footerView: CAFooterView = {
+        let view = CAFooterView.newAutoLayoutView()
+        view.backgroundColor = WHITE
+        
+        return view
+    }()
+    
+    lazy var emptyView: UIView = {
+        let view = UIView.newAutoLayoutView()
+        let titleLabel = TitleLabel.newAutoLayoutView()
+        view.addSubview(titleLabel)
+        titleLabel.text = "Please Add Order"
+        titleLabel.textAlignment = .Center
+        titleLabel.autoCenterInSuperview()
+        view.backgroundColor = CLEAR
+        view.hidden = true
         
         return view
     }()
@@ -21,10 +42,18 @@ class CartView: BaseView {
         super.init()
         
         addSubview(tableView)
+        addSubview(footerView)
+        addSubview(emptyView)
+
         tableView.autoPinEdgeToSuperviewEdge(.Top, withInset: NAV_HEIGHT)
         tableView.autoPinEdgeToSuperviewEdge(.Left, withInset: 0)
         tableView.autoPinEdgeToSuperviewEdge(.Right, withInset: 0)
-        tableView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: TAB_HEIGHT)
+        heightTableViewConstraint = tableView.autoSetDimension(.Height, toSize: ScreenSize.HEIGHT - (NAV_HEIGHT + TAB_HEIGHT + CA_CELL_HEIGHT*1.5))
+        
+        footerView.autoPinEdge(.Top, toEdge: .Bottom, ofView: tableView)
+        footerView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 0, left: 0, bottom: TAB_HEIGHT, right: 0), excludingEdge: .Top)
+        
+        emptyView.autoPinEdgesToSuperviewEdges()
     }
     
     required init?(coder aDecoder: NSCoder) {

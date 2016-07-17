@@ -14,4 +14,11 @@ class CartRouter {
 //MARK: - extension for CartRouterInput -
 extension CartRouter: CartRouterInput {
     
+    func presentViewController(vc: UIViewController) {
+        Wireframe.presentViewController(vc)
+    }
+    
+    func changeInCategoryTab() {
+        Wireframe.selectTabControllerForIndex(1)
+    }
 }

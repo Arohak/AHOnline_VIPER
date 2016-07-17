@@ -8,5 +8,7 @@
 
 protocol CartInteractorOutput: class {
 
-    func ordersDataIsReady(orders: [Product])
+    func deliveriesDataIsReady(deliveries: [Delivery])
+    func ordersDataIsReady(orders: [Product], ordersPrice: Double)
+    func ordersPriceDataIsReady(ordersPrice: Double)
 }

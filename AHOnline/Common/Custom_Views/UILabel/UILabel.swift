@@ -50,3 +50,33 @@ class DescLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+class DeliveryLabel: UILabel {
+    
+    //MARK: - Initialize -
+    init() {
+        super.init(frame: CGRectZero)
+        
+        font = TITLE_BTN_FONT
+        textColor = BLACK
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class DeliveryTitleLabel: UILabel {
+    
+    //MARK: - Initialize -
+    init() {
+        super.init(frame: CGRectZero)
+        
+        font = CA_TITLE_FONT
+        textColor = RED
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}

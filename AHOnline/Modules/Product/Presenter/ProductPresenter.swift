@@ -21,7 +21,7 @@ extension ProductPresenter: ProductViewOutput {
 
     }
     
-    func increaseProductBuy(product: Product) {
+    func addProductBuy(product: Product) {
         interactor.addProductBuy(product)
     }
 }

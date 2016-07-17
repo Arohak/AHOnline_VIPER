@@ -39,12 +39,14 @@ struct DBManager {
     
     static func addProduct(product: Product) {
         let orders = getOrders()
-        let findProduct = orders.filter { $0.id == product }.first
-        if let product = findProduct {
-            let count = product.countBuy + 1
-            updateOrder(product, count: count)
+        let findProduct = orders.filter { $0.id == product.id }.first
+        if let findProduct = findProduct {
+            let count = findProduct.countBuy + 1
+            updateOrder(findProduct, count: count)
         } else {
+            let count = product.countBuy + 1
             storeProduct(product)
+            updateOrder(product, count: count)
         }
     }
     
@@ -72,5 +74,15 @@ struct DBManager {
         }
         
         return count
+    }
+    
+    static func getOrdersTotalPrice() -> Double {
+        var price = 0.0
+        let orders = getOrders()
+        for order in orders {
+            price += (Double(order.countBuy) * order.price)
+        }
+        
+        return price
     }
 }

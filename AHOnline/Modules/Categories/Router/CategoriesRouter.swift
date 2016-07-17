@@ -17,4 +17,8 @@ extension CategoriesRouter: CategoriesRouterInput {
     func presentNavigationViewController(vc: UIViewController) {
         Wireframe.presentNavigationController(vc)
     }
+    
+    func pushViewController(vc: UIViewController) {
+        Wireframe.pushViewController(Wireframe.categoryNavigationController(), vc: vc)
+    }
 }

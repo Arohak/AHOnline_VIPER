@@ -60,8 +60,9 @@ class ProductCellContentView: UIView {
         return view
     }()
     
-    lazy var priceLabel: HOLabel = {
-        let view = HOLabel.newAutoLayoutView()
+    lazy var priceGroupView: PriceGroupView = {
+        let view = PriceGroupView.newAutoLayoutView()
+        view.titleLabel.text = "Price "
 
         return view
     }()
@@ -70,7 +71,7 @@ class ProductCellContentView: UIView {
         let view = HOButton.newAutoLayoutView()
         view.setTitle("ADD", forState: .Normal)
         view.backgroundColor = WHITE
-        view.layer.cornerRadius = 5
+        view.layer.cornerRadius = PR_INSET
         view.layer.borderColor = BLACK.CGColor
         view.layer.borderWidth = 1
         view.backgroundColor = GREEN
@@ -81,10 +82,11 @@ class ProductCellContentView: UIView {
     lazy var countLabel: HOLabel = {
         let view = HOLabel.newAutoLayoutView()
         view.textAlignment = .Center
-        view.layer.cornerRadius = 7
+        view.textColor = WHITE
+        view.layer.cornerRadius = PR_INSET
         view.layer.borderColor = BLACK.CGColor
         view.layer.borderWidth = 0.5
-        view.backgroundColor = GRAY
+        view.backgroundColor = BLACK
         view.clipsToBounds = true
 
         return view
@@ -112,7 +114,7 @@ class ProductCellContentView: UIView {
         addSubview(imageView)
         imageView.addSubview(favoriteButton)
         addSubview(nameLabel)
-        addSubview(priceLabel)
+        addSubview(priceGroupView)
         addSubview(addButton)
         addSubview(countLabel)
 
@@ -124,33 +126,33 @@ class ProductCellContentView: UIView {
         bgImageView.autoPinEdgesToSuperviewEdges()
         
         imageView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), excludingEdge: .Bottom)
-        imageView.autoPinEdge(.Bottom, toEdge: .Top, ofView: nameLabel, withOffset: -10)
+        imageView.autoPinEdge(.Bottom, toEdge: .Top, ofView: nameLabel, withOffset: -PR_INSET)
         
-        favoriteButton.autoPinEdgeToSuperviewEdge(.Right, withInset: 10)
-        favoriteButton.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 10)
-        favoriteButton.autoSetDimensionsToSize(CGSize(width: 25, height: 25))
+        favoriteButton.autoPinEdgeToSuperviewEdge(.Right, withInset: PR_INSET)
+        favoriteButton.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 0)
+        favoriteButton.autoSetDimensionsToSize(CGSize(width: PR_INSET*3, height: PR_INSET*3))
         
-        nameLabel.autoPinEdge(.Bottom, toEdge: .Top, ofView: addButton, withOffset: -10)
-        nameLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: 10)
-        nameLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: 10)
+        nameLabel.autoPinEdge(.Bottom, toEdge: .Top, ofView: addButton, withOffset: -PR_INSET)
+        nameLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: PR_INSET)
+        nameLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: PR_INSET)
 
-        priceLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: addButton)
-        priceLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: 10)
+        priceGroupView.autoAlignAxis(.Horizontal, toSameAxisOfView: addButton)
+        priceGroupView.autoPinEdgeToSuperviewEdge(.Left, withInset: PR_INSET)
         
-        addButton.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 10)
-        addButton.autoPinEdgeToSuperviewEdge(.Right, withInset: 10)
-        addButton.autoSetDimensionsToSize(CGSize(width: 50, height: 20))
+        addButton.autoPinEdgeToSuperviewEdge(.Bottom, withInset: PR_INSET)
+        addButton.autoPinEdgeToSuperviewEdge(.Right, withInset: PR_INSET)
+        addButton.autoSetDimensionsToSize(CGSize(width: PR_INSET*7, height: PR_INSET*3))
         
-        countLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: addButton, withOffset: -10)
-        countLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: 10)
-        countLabel.autoSetDimensionsToSize(CGSize(width: 16, height: 16))
+        countLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: addButton, withOffset: -PR_INSET)
+        countLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: PR_INSET)
+        countLabel.autoSetDimensionsToSize(CGSize(width: PR_INSET*2, height: PR_INSET*2))
     }
     
     //MARK: - Public Methods -
     func setValues(product: Product)  {
         imageView.kf_setImageWithURL(NSURL(string: product.src)!, placeholderImage: Image(named: "img_all"))
         nameLabel.text = product.name
-        priceLabel.text = "Price " + product.amount + " \(product.price)"
+        priceGroupView.setPrice(product.price)
 
         updateCount(product)
     }

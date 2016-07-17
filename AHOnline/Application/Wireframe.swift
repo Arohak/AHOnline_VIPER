@@ -29,10 +29,20 @@ struct Wireframe {
         return rootViewController
     }
     
+    static func homeNavigationController() -> UINavigationController {
+        let nav = root().viewControllers![0] as! UINavigationController
+        return nav
+    }
+    
+    static func categoryNavigationController() -> UINavigationController {
+        let nav = root().viewControllers![1] as! UINavigationController
+        return nav
+    }
+    
     static func setBadgeValue(value: Int) {
         let tabArray = root().tabBar.items as NSArray!
         let tabItem = tabArray.objectAtIndex(2) as! UITabBarItem
-        tabItem.badgeValue = "\(value)"
+        tabItem.badgeValue = value == 0 ? nil : "\(value)"
     }
     
     static func instantiateViewControllerWith(identifier: String) -> UIViewController {
@@ -52,8 +62,12 @@ struct Wireframe {
         root().presentViewController(nav, animated: true, completion: nil)
     }
     
-    static func pushViewController(vc: UIViewController) {
-//        root().pushViewController(vc, animated: true)
+    static func pushViewController(from: UINavigationController, vc: UIViewController) {
+        from.pushViewController(vc, animated: true)
+    }
+    
+    static func selectTabControllerForIndex(index: Int) {
+        root().selectedIndex = index
     }
 }
 

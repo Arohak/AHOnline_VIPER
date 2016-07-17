@@ -18,7 +18,12 @@ class CartPresenter {
 extension CartPresenter: CartViewOutput {
     
     func viewIsReady() {
+        interactor.getDeliveries()
         interactor.getOrders()
+    }
+    
+    func addOrder() {
+        router.changeInCategoryTab()
     }
     
     func updateOrder(product: Product, count: Int) {
@@ -28,12 +33,34 @@ extension CartPresenter: CartViewOutput {
     func removeOrder(product: Product) {
         interactor.removeOrder(product)
     }
+    
+    func removeOrders(products: [Product]) {
+        interactor.removeOrders(products)
+    }
 }
 
 //MARK: - extension for CartInteractorOutput -
 extension CartPresenter: CartInteractorOutput {
  
-    func ordersDataIsReady(orders: [Product]) {
-        view.setupInitialState(orders)
+    func deliveriesDataIsReady(deliveries: [Delivery]) {
+        view.deliveriesComing(deliveries)
+    }
+    
+    func ordersDataIsReady(orders: [Product], ordersPrice: Double) {
+        view.ordersComing(orders, ordersPrice: ordersPrice)
+    }
+    
+    func ordersPriceDataIsReady(ordersPrice: Double) {
+        view.ordersTotalPrice(ordersPrice)
     }
 }
+
+//MARK: - extension for PresentViewControllerProtocol -
+extension CartPresenter: PresentViewControllerProtocol {
+    
+    func presentViewController(vc: UIViewController) {
+        router.presentViewController(vc)
+    }
+}
+
+

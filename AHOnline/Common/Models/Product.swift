@@ -21,14 +21,14 @@ class Product: Object {
     dynamic var inventory = 0
     dynamic var instock = 0
     dynamic var desired_stock = 0
-    dynamic var price = 0
+    dynamic var price = 0.0
     dynamic var type: String!
     dynamic var alias: String!
     dynamic var keywords: String!
     dynamic var src: String!
     
     dynamic var amount: String = "$"
-    dynamic var countBuy = 1
+    dynamic var countBuy = 0
     dynamic var isBuy: Bool {
         return countBuy > 0
     }
@@ -53,7 +53,7 @@ class Product: Object {
         self.inventory                      = data["inventory"].intValue
         self.instock                        = data["instock"].intValue
         self.desired_stock                  = data["desired_stock"].intValue
-        self.price                          = data["price"].intValue
+        self.price                          = data["price"].doubleValue
         self.type                           = data["type_"].stringValue
         self.alias                          = data["alias"].stringValue
         self.keywords                       = data["keywords"].stringValue

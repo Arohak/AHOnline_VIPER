@@ -6,6 +6,6 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-protocol CategoriesRouterInput: PresentNavigationViewControllerProtocol {
+protocol CategoriesRouterInput: PresentNavigationViewControllerProtocol, PushViewControllerProtocol {
 
 }

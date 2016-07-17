@@ -24,7 +24,14 @@ class AHObject: Object {
     dynamic var totalHours = 0
     dynamic var new = false
     
+    dynamic var latitude: Double = 0.0
+    dynamic var longitude: Double = 0.0
     dynamic var img: String!
+    var menu = List<ObjectMenu>()
+    
+    override static func primaryKey() -> String {
+        return "id"
+    }
 
     convenience init(data: JSON) {
         self.init()
@@ -46,5 +53,8 @@ class AHObject: Object {
         self.new                    = data["new"].boolValue
         
         self.img                    = data["img"].stringValue
+        for item in data["categoryitems"].arrayValue {
+            menu.append(ObjectMenu(data: item))
+        }
     }
 }

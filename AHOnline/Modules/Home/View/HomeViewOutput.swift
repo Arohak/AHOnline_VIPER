@@ -9,4 +9,5 @@
 protocol HomeViewOutput {
 
     func viewIsReady()
+    func didSelectObject(object: AHObject)
 }

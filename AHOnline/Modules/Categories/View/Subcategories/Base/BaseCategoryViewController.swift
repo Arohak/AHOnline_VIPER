@@ -24,31 +24,41 @@ class BaseCategoryViewController: BaseViewController {
     override func baseConfig() {
         self.view = baseCategoryView
         
-        baseCategoryView.tableView.dataSource = self
-        baseCategoryView.tableView.delegate = self
-        baseCategoryView.tableView.registerClass(BaseTableViewCell.self, forCellReuseIdentifier: cellIdentifire)
+        baseCategoryView.collection.dataSource = self
+        baseCategoryView.collection.delegate = self
+        baseCategoryView.collection.registerClass(SubcategoryCell.self, forCellWithReuseIdentifier: cellIdentifire)
     }
 }
 
-//MARK: - extension for UITableView -
-extension BaseCategoryViewController: UITableViewDataSource, UITableViewDelegate {
+    //MARK: - extension for UICollectionView -
+extension BaseCategoryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return subcategories.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifire) as! BaseTableViewCell
-        let item = subcategories[indexPath.row]
-        cell.imageView?.kf_setImageWithURL(NSURL(string: item.src)!, placeholderImage: Image(named: "img_all"))
-        cell.textLabel?.text = item.name
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifire, forIndexPath: indexPath) as! SubcategoryCell
+        let subcategory = subcategories[indexPath.row]
+        cell.setValues(subcategory)
         
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let subcategory = subcategories[indexPath.row]
         output.didSelectSubcategoryRow(subcategory)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let size = CGSize(width: SB_CELL_WIDTH, height: SB_CELL_WIDTH*1.2)
+        
+        return size
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: SB_INSET, left: SB_INSET, bottom: SB_INSET, right: SB_INSET)
     }
 }

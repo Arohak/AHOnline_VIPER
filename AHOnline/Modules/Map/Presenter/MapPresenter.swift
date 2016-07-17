@@ -25,6 +25,10 @@ extension MapPresenter: MapViewOutput {
     func viewIsReady() {
 
     }
+    
+    func getNearestObjects() {
+        
+    }
 }
 
 //MARK: - extension for MapInteractorOutput -

@@ -9,4 +9,5 @@
 protocol HomeInteractorInput {
 
     func getRestaurantsHome()
+    func getObject(object: AHObject)
 }

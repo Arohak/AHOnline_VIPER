@@ -24,4 +24,14 @@ extension HomeInteractor: HomeInteractorInput {
                 }
             })
     }
+    
+    func getObject(object: AHObject) {
+        _ = APIManager.getObject("\(object.id)")
+            .subscribe(onNext: { result in
+                if result != nil {
+                    let object = AHObject(data: result["data"])
+                    self.output.objectDataIsReady(object)
+                }
+            })
+    }
 }

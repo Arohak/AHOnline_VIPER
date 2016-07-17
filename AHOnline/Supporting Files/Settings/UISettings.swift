@@ -92,6 +92,14 @@ let DESC_FONT                           = UIFont.boldSystemFontOfSize(DeviceType
 let HO_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
 let HO_CELL_HEIGHT : CGFloat            = DeviceType.IS_IPAD ? 90     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 90     : DeviceType.IS_IPHONE_6 ? 90   * IPHONE_6_SCALE : 90   * IPHONE_5_SCALE
 
+//MARK: - Subcategory Constants
+let SB_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
+let SB_CELL_WIDTH : CGFloat            = (ScreenSize.WIDTH - 6*SB_INSET)/3
+
+//MARK: - Objects Constants
+let OB_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
+let OB_CELL_HEIGHT : CGFloat            = DeviceType.IS_IPAD ? 110    * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 110    : DeviceType.IS_IPHONE_6 ? 110  * IPHONE_6_SCALE : 110  * IPHONE_5_SCALE
+
 //MARK: - Product Constants
 let PR_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
 let PR_LAYOUT_WIDTH : CGFloat           = (ScreenSize.WIDTH - PR_INSET*4)/2
@@ -99,6 +107,12 @@ let PR_LAYOUT_WIDTH : CGFloat           = (ScreenSize.WIDTH - PR_INSET*4)/2
 //MARK: - Cart Constants
 let CA_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
 let CA_CELL_HEIGHT : CGFloat            = DeviceType.IS_IPAD ? 80     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 80     : DeviceType.IS_IPHONE_6 ? 80   * IPHONE_6_SCALE : 80   * IPHONE_5_SCALE
+
+//MARK: - MapView Constants
+let MP_INSET : CGFloat                  = DeviceType.IS_IPAD ? 20     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 20     : DeviceType.IS_IPHONE_6 ? 20   * IPHONE_6_SCALE : DeviceType.IS_IPHONE_5 ? 20    * IPHONE_5_SCALE : 20   * IPHONE_4_SCALE
+let MP_BTN_SIZE : CGFloat               = DeviceType.IS_IPAD ? 60     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 60     : DeviceType.IS_IPHONE_6 ? 60   * IPHONE_6_SCALE : DeviceType.IS_IPHONE_5 ? 60    * IPHONE_5_SCALE : 60   * IPHONE_4_SCALE
+let MP_INFOWINDOW_SIZE : CGFloat        = DeviceType.IS_IPAD ? 65     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 65     : DeviceType.IS_IPHONE_6 ? 65   * IPHONE_6_SCALE : DeviceType.IS_IPHONE_5 ? 65    * IPHONE_5_SCALE : 65   * IPHONE_4_SCALE
+let MP_PIN_CIRCLE_RECT                  = CGRectMake(13.5, 12, 24, 24)
 
 let codes = [
     "_AF"      : "+93",

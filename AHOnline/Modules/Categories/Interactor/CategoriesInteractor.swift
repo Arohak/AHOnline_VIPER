@@ -14,7 +14,7 @@ class CategoriesInteractor {
     var selectedCategory: Category!
     var selectedSubcategory: Subcategory!
     var selectedObject: AHObject!
-    var selectedObjectCategory: ObjectCategory!
+    var selectedObjectMenu: ObjectMenu!
 }
 
 //MARK: - extension for CategoriesInteractorInput -
@@ -54,51 +54,6 @@ extension CategoriesInteractor: CategoriesInteractorInput {
                     }
                     
                     self.output.objectsDataIsReady(objects)
-                }
-            })
-    }
-    
-    func getObjectCategories(object: AHObject) {
-        selectedObject = object
-        
-        let json = JSON([
-            "object_id"         : selectedObject.id])
-        
-        _ = APIManager.getObjectCategories(json)
-            .subscribe(onNext: { result in
-                if result != nil {
-                    var objectCategories: [ObjectCategory] = []
-                    for item in result["data"].arrayValue {
-                        objectCategories.append(ObjectCategory(data: item))
-                    }
-                    
-                    self.output.objectCategoriesDataIsReady(self.selectedObject, objectCategories: objectCategories)
-                }
-            })
-    }
-    
-    func getProducts(objectCategory: ObjectCategory) {
-        selectedObjectCategory = objectCategory
-        
-        let json = JSON([
-            "categoryitem_id"   : selectedObjectCategory.id])
-        
-        _ = APIManager.getProducts(json)
-            .subscribe(onNext: { result in
-                if result != nil {
-                    var products: [Product] = []
-                    for item in result["data"].arrayValue {
-                        let product = Product(data: item)
-                        let findProduct = DBManager.getOrders().filter { $0.id == product.id }.first
-                        if let findProduct = findProduct {
-                            products.append(findProduct)
-                        } else {
-                            products.append(product)
-
-                        }
-                    }
-                    
-                    self.output.productsDataIsReady(products)
                 }
             })
     }

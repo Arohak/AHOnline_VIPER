@@ -52,14 +52,6 @@ extension CategoriesPresenter: CategoriesViewOutput {
     func didSelectSubcategoryRow(subcategory: Subcategory) {
         interactor.getObjects(subcategory)
     }
-    
-    func didSelectObjectRow(object: AHObject) {
-        interactor.getObjectCategories(object)
-    }
-    
-    func didSelectObjectCategoriesRow(objectCategory: ObjectCategory) {
-        interactor.getProducts(objectCategory)
-    }
 }
 
 //MARK: - extension for CategoriesInteractorOutput -
@@ -85,24 +77,8 @@ extension CategoriesPresenter: CategoriesInteractorOutput {
     
     func objectsDataIsReady(objects: [AHObject]) {
         let vc = ObjectsViewController()
-        vc.output = self
+        _ = ObjectsModuleInitializer(viewController: vc)
         vc.objects = objects
-        
-        router.pushViewController(vc)
-    }
-    
-    func objectCategoriesDataIsReady(object: AHObject, objectCategories: [ObjectCategory]) {
-        let objectDetail = ObjectDetail(object: object, objectCategories: objectCategories)
-        let vc = ObjectDetailViewController(detail: objectDetail)
-        vc.output = self
-        
-        router.pushViewController(vc)
-    }
-    
-    func productsDataIsReady(products: [Product]) {
-        let vc = ProductViewController()
-        _ = ProductModuleInitializer(viewController: vc)
-        vc.products = products
         
         router.pushViewController(vc)
     }

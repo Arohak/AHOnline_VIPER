@@ -2,13 +2,14 @@
 //  ObjectsViewController.swift
 //  AHOnline
 //
-//  Created by AroHak on 09/07/2016.
+//  Created by AroHak on 17/07/2016.
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
+//MARK: - class ObjectsViewController -
 class ObjectsViewController: BaseViewController {
-    
-    var output: CategoriesViewOutput!
+
+    var output: ObjectsViewOutput!
 
     var objectsView = ObjectsView()
     let cellIdentifire = "cellIdentifire"
@@ -18,6 +19,7 @@ class ObjectsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Restaurants"
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -27,8 +29,13 @@ class ObjectsViewController: BaseViewController {
         
         objectsView.tableView.dataSource = self
         objectsView.tableView.delegate = self
-        objectsView.tableView.registerClass(BaseTableViewCell.self, forCellReuseIdentifier: cellIdentifire)
+        objectsView.tableView.registerClass(ObjectsCell.self, forCellReuseIdentifier: cellIdentifire)
     }
+}
+
+//MARK: - extension for ObjectsViewInput -
+extension ObjectsViewController: ObjectsViewInput {
+    
 }
 
 //MARK: - extension for UITableView -
@@ -40,11 +47,9 @@ extension ObjectsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifire) as! BaseTableViewCell
-        let item = objects[indexPath.row]
-        cell.imageView?.kf_setImageWithURL(NSURL(string: item.src)!, placeholderImage: Image(named: "img_all"))
-        cell.textLabel?.text = item.label
-        cell.detailTextLabel?.text = item.label
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifire) as! ObjectsCell
+        let object = objects[indexPath.row]
+        cell.setValues(object)
         
         return cell
     }
@@ -54,3 +59,4 @@ extension ObjectsViewController: UITableViewDataSource, UITableViewDelegate {
         output.didSelectObjectRow(object)
     }
 }
+

@@ -93,6 +93,20 @@ struct Utils {
         return num == nil ? "" : formatter.stringFromNumber(num!)!
     }
     
+    static func maskImage(image: UIImage, withMask maskImage: UIImage) -> UIImage {
+        let newSize = CGSizeMake(image.size.width, image.size.height)
+        
+        UIGraphicsBeginImageContextWithOptions(newSize, false, UIScreen.mainScreen().scale)
+        
+        image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
+        maskImage.drawInRect(MP_PIN_CIRCLE_RECT, blendMode: .Normal, alpha: 1.0)
+        let maskedImage = UIGraphicsGetImageFromCurrentImageContext();
+        
+        UIGraphicsEndImageContext();
+        
+        return maskedImage
+    }
+    
     static func localizedLanguage(key: String, languageCode: String) -> String {
         var path = NSBundle.mainBundle().pathForResource(languageCode, ofType: "lproj")
         path = path != nil ? path : ""

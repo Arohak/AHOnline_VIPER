@@ -9,4 +9,5 @@
 protocol MapViewOutput {
 
     func viewIsReady()
+    func getNearestObjects()
 }

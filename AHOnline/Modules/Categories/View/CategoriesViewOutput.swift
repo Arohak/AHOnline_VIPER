@@ -11,6 +11,4 @@ protocol CategoriesViewOutput {
     func viewIsReady()
     func didSelectCategory(category: Category)
     func didSelectSubcategoryRow(subcategory: Subcategory)
-    func didSelectObjectRow(object: AHObject)
-    func didSelectObjectCategoriesRow(objectCategory: ObjectCategory)
 }

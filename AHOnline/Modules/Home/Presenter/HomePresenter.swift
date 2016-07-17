@@ -14,16 +14,15 @@ class HomePresenter {
     var router: HomeRouterInput!
 }
 
-//MARK: - extension for HomeModuleInput -
-extension HomePresenter: HomeModuleInput {
-
-}
-
 //MARK: - extension for HomeViewOutput -
 extension HomePresenter: HomeViewOutput {
     
     func viewIsReady() {
         interactor.getRestaurantsHome()
+    }
+    
+    func didSelectObject(object: AHObject) {
+        interactor.getObject(object)
     }
 }
 
@@ -32,5 +31,12 @@ extension HomePresenter: HomeInteractorOutput {
  
     func homeDataIsReady(home: Home) {
         view.setupInitialState(home)
+    }
+    
+    func objectDataIsReady(object: AHObject) {
+        let vc = ObjectViewController(object: object)
+        _ = ObjectModuleInitializer(viewController: vc)
+        
+        router.pushViewController(vc)
     }
 }

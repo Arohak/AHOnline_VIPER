@@ -8,10 +8,8 @@
 
 class BaseCategoryView: BaseView {
     
-    lazy var tableView: BaseTableView = {
-        let view = BaseTableView(frame: CGRectZero, style: .Plain)
-        view.estimatedRowHeight = 44
-        view.rowHeight = UITableViewAutomaticDimension
+    lazy var collection: BaseCollectionView = {
+        let view = BaseCollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
         
         return view
     }()
@@ -20,8 +18,8 @@ class BaseCategoryView: BaseView {
     override init() {
         super.init()
         
-        addSubview(tableView)
-        tableView.autoPinEdgesToSuperviewEdges()
+        addSubview(collection)
+        collection.autoPinEdgesToSuperviewEdges()
     }
     
     required init?(coder aDecoder: NSCoder) {

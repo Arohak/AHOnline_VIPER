@@ -10,11 +10,11 @@ struct APIManager {
     
     private struct ROUTERS
     {
-        static let GET_RESTAURANTS_HOME                     = "restaurants/home"
+        static let GET_RESTAURANTS_HOME                     = "home"
         static let GET_CATEGORIES                           = "categories"
         static let GET_DELIVERIES                           = "deliveries"
         static let GET_OBJECTS                              = "categories/%@/subcategories/%@"
-        static let GET_OBJECT_CATEGORIES                    = "restaurants/%@/categoryitems"
+        static let GET_OBJECT                               = "restaurants/%@"
         static let GET_PRODUCTS                             = "categoryitems/%@/products"
     }
     
@@ -37,15 +37,13 @@ struct APIManager {
         return apiHelper.request(.GET, url: url)
     }
     
-    static func getObjectCategories(json: JSON) -> Observable<JSON> {
-        let url = String(format: ROUTERS.GET_OBJECT_CATEGORIES,
-                         json["object_id"].stringValue)
+    static func getObject(id: String) -> Observable<JSON> {
+        let url = String(format: ROUTERS.GET_OBJECT, id)
         return apiHelper.request(.GET, url: url)
     }
     
-    static func getProducts(json: JSON) -> Observable<JSON> {
-        let url = String(format: ROUTERS.GET_PRODUCTS,
-                         json["categoryitem_id"].stringValue)
+    static func getProducts(id: String) -> Observable<JSON> {
+        let url = String(format: ROUTERS.GET_PRODUCTS, id)
         return apiHelper.request(.GET, url: url)
     }
 }

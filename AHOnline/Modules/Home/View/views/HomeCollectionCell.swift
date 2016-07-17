@@ -18,7 +18,7 @@ class HomeCollectionCell: UICollectionViewCell {
         cellContentView.autoPinEdgesToSuperviewEdges()
     }
     
-    func setValues(restaurant: Restaurant) {
+    func setValues(restaurant: AHObject) {
         cellContentView.setValues(restaurant)
     }
     
@@ -89,7 +89,7 @@ class HomeCollectionCellContentView: UIView {
     }
     
     //MARK: - Public Methods -
-    func setValues(restaurant: Restaurant) {
+    func setValues(restaurant: AHObject) {
         if restaurant.img.isEmpty {
             imageView.hidden = false
             bgImageView.hidden = true

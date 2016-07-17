@@ -45,7 +45,7 @@ class CategoriesViewController: UIViewController {
         if let tabNavigation = tabNavigation {
             tabNavigation.setIndicatorColor(RED)
             tabNavigation.toolbar.translucent = false
-            tabNavigation.setTabExtraWidth(40)
+            tabNavigation.setTabExtraWidth(50)
             tabNavigation.setNormalColor(BLACK.colorWithAlphaComponent(0.6))
             tabNavigation.setSelectedColor(RED, font: UIFont.boldSystemFontOfSize(14))
         }

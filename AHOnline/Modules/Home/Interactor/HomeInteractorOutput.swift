@@ -9,4 +9,5 @@
 protocol HomeInteractorOutput: class {
 
     func homeDataIsReady(home: Home)
+    func objectDataIsReady(object: AHObject)
 }

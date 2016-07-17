@@ -15,7 +15,7 @@ class HomeViewController: BaseViewController {
     let cellIdentifire = "cellIdentifire"
     var titles: [String] = []
     var descs: [String] = []
-    var items: [[Restaurant]] = []
+    var items: [[AHObject]] = []
     var heights: [CGFloat] = []
     var carouselTimer: NSTimer!
 
@@ -24,6 +24,12 @@ class HomeViewController: BaseViewController {
         super.viewDidLoad()
 
         output.viewIsReady()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     // MARK: - Internal Method -
@@ -49,8 +55,8 @@ class HomeViewController: BaseViewController {
     
     //MARK: - CallBacks Methods -
     func didSelectCollectionAtIndexPath(indexPath: NSIndexPath) {
-        let restaurant = items[indexPath.section][indexPath.row]
-        print(restaurant.id)
+        let object = items[indexPath.section][indexPath.row]
+        output.didSelectObject(object)
     }
 }
 
@@ -62,11 +68,11 @@ extension HomeViewController: HomeViewInput {
         descs = ["", "", ""]
         heights = [ScreenSize.HEIGHT*0.25, ScreenSize.HEIGHT*0.25, ScreenSize.HEIGHT*0.3]
         
-        items.append([Restaurant]())
-        items.append([Restaurant]())
-        items.append([Restaurant]())
+        items.append([AHObject]())
+        items.append([AHObject]())
+        items.append([AHObject]())
         
-        let existRestaurant = Restaurant(data: JSON(["img" : "img_all"]))
+        let existRestaurant = AHObject(data: JSON(["img" : "img_all"]))
         items[0] = Array(home.newRestaurants)
         items[0].append(existRestaurant)
         items[1] = Array(home.rateRestaurants)
@@ -158,7 +164,7 @@ extension HomeViewController: iCarouselDataSource, iCarouselDelegate {
     }
     
     func carouselWillBeginDecelerating(carousel: iCarousel) {
-        carouselTimer.invalidate()
+//        carouselTimer.invalidate()
         carouselTimer = nil
     }
     

@@ -25,6 +25,7 @@ class Restaurant: Object {
     dynamic var new = false
     
     dynamic var img: String!
+    var newRestaurants = List<Restaurant>()
 
     convenience init(data: JSON) {
         self.init()

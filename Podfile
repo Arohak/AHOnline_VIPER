@@ -14,6 +14,7 @@ target 'AHOnline' do
     pod 'PureLayout'
     pod 'RealmSwift'
     pod 'RxAlamofire'
+    pod 'AlamofireImage'
     pod 'SVPullToRefresh_Bell'
     pod 'SwiftyJSON'
     pod 'iCarousel'

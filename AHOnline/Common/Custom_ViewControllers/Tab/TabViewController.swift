@@ -27,7 +27,7 @@ class TabBarViewController: UITabBarController {
         
         let homeVC = HomeViewController()
         _ = HomeModuleInitializer(viewController: homeVC)
-        tempViewControllers.append(homeVC)
+        tempViewControllers.append(UINavigationController(rootViewController: homeVC))
         
         let categoriesVC = CategoriesViewController()
         _ = CategoriesModuleInitializer(viewController: categoriesVC)

@@ -29,7 +29,7 @@ class HomeCell: BaseTableViewCell {
     func setValues(section: Int,
                    title: String,
                    desc: String,
-                   items: [Restaurant],
+                   items: [AHObject],
                    height: CGFloat = ScreenSize.HEIGHT*0.3,
                    inset: CGFloat = 0,
                    callBack: CollectionCallback) {
@@ -50,7 +50,7 @@ class HomeCellContentView: UIView {
     var title: String!
     var desc: String!
 
-    var collectionItems: [Restaurant] = []
+    var collectionItems: [AHObject] = []
     var collectionSize = CGSizeZero
     var collectionInsets = UIEdgeInsetsZero
     
@@ -146,7 +146,7 @@ class HomeCellContentView: UIView {
     func setValues(section: Int,
                    title: String,
                    desc: String,
-                   items: [Restaurant],
+                   items: [AHObject],
                    height: CGFloat = ScreenSize.HEIGHT*0.3,
                    inset: CGFloat = 0,
                    callBack: CollectionCallback)

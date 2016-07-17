@@ -20,6 +20,22 @@ extension String {
         }
         return date
     }
+    
+    var shortTime: String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.timeZone = NSTimeZone.defaultTimeZone()
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = dateFormatter.dateFromString(self)
+        dateFormatter.dateFormat = "HH:mm"
+        
+        if let date = date {
+            return dateFormatter.stringFromDate(date)
+        } else {
+            return ""
+        }
+    }
+    
 }
 
 extension NSDate {

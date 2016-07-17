@@ -10,9 +10,9 @@ class Home: Object {
     
     dynamic var name: String!
     
-    var newRestaurants = List<Restaurant>()
-    var rateRestaurants = List<Restaurant>()
-    var openRestaurants = List<Restaurant>()
+    var newRestaurants = List<AHObject>()
+    var rateRestaurants = List<AHObject>()
+    var openRestaurants = List<AHObject>()
 
     override static func primaryKey() -> String {
         return "name"
@@ -22,13 +22,13 @@ class Home: Object {
         self.init()
         
         for item in data["news"].arrayValue {
-            newRestaurants.append(Restaurant(data: item))
+            newRestaurants.append(AHObject(data: item))
         }
         for item in data["rates"].arrayValue {
-            rateRestaurants.append(Restaurant(data: item))
+            rateRestaurants.append(AHObject(data: item))
         }
         for item in data["opens"].arrayValue {
-            openRestaurants.append(Restaurant(data: item))
+            openRestaurants.append(AHObject(data: item))
         }
     }
 }

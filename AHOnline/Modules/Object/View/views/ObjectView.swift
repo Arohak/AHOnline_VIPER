@@ -1,12 +1,12 @@
 //
-//  ObjectDetailView.swift
+//  ObjectView.swift
 //  AHOnline
 //
 //  Created by AroHak on 09/07/2016.
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-class ObjectDetailView: BaseView {
+class ObjectView: BaseView {
     
     var headerView: ParallaxHeaderView!
     
@@ -29,13 +29,13 @@ class ObjectDetailView: BaseView {
         tableView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: TAB_HEIGHT)
     }
     
-    convenience init(detail: ObjectDetail, headerRect: CGRect) {
+    convenience init(object: AHObject, headerRect: CGRect) {
         self.init()
         
         backgroundColor = WHITE
-        headerView = ParallaxHeaderView(imageURL: detail.object.src, frame: headerRect)
+        headerView = ParallaxHeaderView(imageURL: object.src, frame: headerRect)
         tableView.tableHeaderView = headerView
-        addHeaderUIElements(detail)
+        addHeaderUIElements(object)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,13 +43,16 @@ class ObjectDetailView: BaseView {
     }
     
     //MARK: - Private Methods -
-    private func addHeaderUIElements(detail: ObjectDetail) {
+    private func addHeaderUIElements(object: AHObject) {
         var bgView: UIView!
-        var infoLabel: UILabel!
+        var infoLabel: DescLabel!
         
-        if let info = detail.object.label {
-            infoLabel = UILabel.newAutoLayoutView()
-            infoLabel.text = info
+        if let _ = object.label {
+            infoLabel = DescLabel.newAutoLayoutView()
+            infoLabel.textColor = WHITE
+            let time = "Time:  " + object.openTime.shortTime + " - " + object.closeTime.shortTime
+            let rate = "Rate:  " + "\(object.rate)"
+            infoLabel.text = object.desc + "\n" + time + "\n" + rate
             infoLabel.numberOfLines = 0
             bgView = UIView.newAutoLayoutView()
             bgView.backgroundColor = BLUE_LIGHT

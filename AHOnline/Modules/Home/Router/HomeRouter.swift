@@ -14,4 +14,7 @@ class HomeRouter {
 //MARK: - extension for HomeRouterInput -
 extension HomeRouter: HomeRouterInput {
     
+    func pushViewController(vc: UIViewController) {
+        Wireframe.pushViewController(vc)
+    }
 }

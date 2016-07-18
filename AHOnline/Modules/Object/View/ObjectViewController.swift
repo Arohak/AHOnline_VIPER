@@ -65,19 +65,19 @@ extension ObjectViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return object.menu.count
+        return object.menus.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifire) as! BaseTableViewCell
-        let objectCategory = object.menu[indexPath.row]
+        let objectCategory = object.menus[indexPath.row]
         cell.textLabel?.text = objectCategory.name
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let objectMenu = object.menu[indexPath.row]
+        let objectMenu = object.menus[indexPath.row]
         output.didSelectObjectMenuRow(objectMenu)
     }
 }

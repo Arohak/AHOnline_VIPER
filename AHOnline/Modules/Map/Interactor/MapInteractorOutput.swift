@@ -8,4 +8,5 @@
 
 protocol MapInteractorOutput: class {
 
+    func objectsDataIsReady(objects: [AHObject])
 }

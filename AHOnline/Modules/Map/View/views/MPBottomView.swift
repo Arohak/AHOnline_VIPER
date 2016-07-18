@@ -16,7 +16,7 @@ class MPBottomView: UIView {
         return view
     }()
     
-    let hospitalButton: UIButton = {
+    let objectButton: UIButton = {
         let view = UIButton.newAutoLayoutView()
         view.setBackgroundImage(UIImage(named: "img_mapview_hospital"), forState: .Normal)
         
@@ -37,7 +37,7 @@ class MPBottomView: UIView {
     //MARK: - Custom Methods
     func addAllUIElements() {
         self.addSubview(locationButton)
-        self.addSubview(hospitalButton)
+        self.addSubview(objectButton)
         
         self.setConstraints()
     }
@@ -48,8 +48,8 @@ class MPBottomView: UIView {
         locationButton.autoPinEdgeToSuperviewEdge(ALEdge.Right, withInset: MP_INSET)
         locationButton.autoSetDimensionsToSize(CGSize(width: MP_BTN_SIZE, height: MP_BTN_SIZE))
         
-        hospitalButton.autoAlignAxisToSuperviewAxis(ALAxis.Horizontal)
-        hospitalButton.autoPinEdgeToSuperviewEdge(ALEdge.Left, withInset: MP_INSET)
-        hospitalButton.autoSetDimensionsToSize(CGSize(width: MP_BTN_SIZE, height: MP_BTN_SIZE))
+        objectButton.autoAlignAxisToSuperviewAxis(ALAxis.Horizontal)
+        objectButton.autoPinEdgeToSuperviewEdge(ALEdge.Left, withInset: MP_INSET)
+        objectButton.autoSetDimensionsToSize(CGSize(width: MP_BTN_SIZE, height: MP_BTN_SIZE))
     }
 }

@@ -11,6 +11,7 @@ struct APIManager {
     private struct ROUTERS
     {
         static let GET_RESTAURANTS_HOME                     = "home"
+        static let GET_RESTAURANTS_LIMIT                    = "restaurants?limit=%@"
         static let GET_CATEGORIES                           = "categories"
         static let GET_DELIVERIES                           = "deliveries"
         static let GET_OBJECTS                              = "categories/%@/subcategories/%@"
@@ -44,6 +45,11 @@ struct APIManager {
     
     static func getProducts(id: String) -> Observable<JSON> {
         let url = String(format: ROUTERS.GET_PRODUCTS, id)
+        return apiHelper.request(.GET, url: url)
+    }
+    
+    static func getObjectsForLimit(limit: String) -> Observable<JSON> {
+        let url = String(format: ROUTERS.GET_RESTAURANTS_LIMIT, limit)
         return apiHelper.request(.GET, url: url)
     }
 }

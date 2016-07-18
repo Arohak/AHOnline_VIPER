@@ -23,7 +23,7 @@ extension MapPresenter: MapModuleInput {
 extension MapPresenter: MapViewOutput {
     
     func viewIsReady() {
-
+        interactor.getObjects()
     }
     
     func getNearestObjects() {
@@ -34,4 +34,7 @@ extension MapPresenter: MapViewOutput {
 //MARK: - extension for MapInteractorOutput -
 extension MapPresenter: MapInteractorOutput {
  
+    func objectsDataIsReady(objects: [AHObject]) {
+        view.setupInitialState(objects)
+    }
 }

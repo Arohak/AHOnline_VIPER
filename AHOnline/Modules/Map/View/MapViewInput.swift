@@ -8,5 +8,5 @@
 
 protocol MapViewInput: class {
 
-    func setupInitialState()
+    func setupInitialState(objects: [AHObject])
 }

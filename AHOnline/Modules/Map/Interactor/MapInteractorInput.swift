@@ -8,4 +8,5 @@
 
 protocol MapInteractorInput {
 
+    func getObjects()
 }

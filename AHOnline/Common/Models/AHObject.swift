@@ -24,10 +24,9 @@ class AHObject: Object {
     dynamic var totalHours = 0
     dynamic var new = false
     
-    dynamic var latitude: Double = 0.0
-    dynamic var longitude: Double = 0.0
     dynamic var img: String!
-    var menu = List<ObjectMenu>()
+    var menus = List<ObjectMenu>()
+    var addresses = List<Address>()
     
     override static func primaryKey() -> String {
         return "id"
@@ -53,8 +52,12 @@ class AHObject: Object {
         self.new                    = data["new"].boolValue
         
         self.img                    = data["img"].stringValue
+        
         for item in data["categoryitems"].arrayValue {
-            menu.append(ObjectMenu(data: item))
+            menus.append(ObjectMenu(data: item))
+        }
+        for item in data["addresses"].arrayValue {
+            addresses.append(Address(data: item))
         }
     }
 }

@@ -42,9 +42,9 @@ class MapViewController: BaseViewController {
         self.view = mapView
 
         mapView.map.delegate = self
-        mapView.closeRoutButton.addTarget(self, action: #selector(clearPolyline(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        mapView.bottomView.locationButton.addTarget(self, action: #selector(goToMyLocation(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        mapView.bottomView.hospitalButton.addTarget(self, action: #selector(getNearestObjects(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        mapView.closeRoutButton.addTarget(self, action: #selector(clearPolyline(_:)), forControlEvents: .TouchUpInside)
+        mapView.bottomView.locationButton.addTarget(self, action: #selector(goToMyLocation(_:)), forControlEvents: .TouchUpInside)
+        mapView.bottomView.objectButton.addTarget(self, action: #selector(getNearestObjects(_:)), forControlEvents: .TouchUpInside)
     }
     
     //MARK: - Actions -
@@ -99,23 +99,23 @@ class MapViewController: BaseViewController {
     
     private func drawRoute(object: AHObject) {
         startUpdatingLocation { (location, error) -> Void in
-            let markerLocation = String(format: "%f,%f", object.latitude, object.longitude)
-            let originLocation = String(format: "%f,%f", location!.coordinate.latitude, location!.coordinate.longitude)
-            
-            locationHelper.getDirections(originLocation, destination: markerLocation, waypoints: nil, travelMode: nil, completionHandler: { (status, polyline, success) in
-                if success {
-                    polyline!.strokeColor = UIColor.redColor()
-                    polyline!.strokeWidth = DeviceType.IS_IPAD ? 5 : 3
-                    polyline!.map = self.mapView.map
-                    if let drewPolyline = self.drewPolyline { drewPolyline.map = nil }
-                    if self.myMarker == nil { self.showMyMarkerInMap(location) }
-                    
-                    self.drewPolyline = polyline
-                    self.mapView.closeRoutButton.hidden = false
-                } else {
-                    UIHelper.showHUD(error ?? "location_services_disabled".localizedString)
-                }
-            })
+//            let markerLocation = String(format: "%f,%f", object.latitude, object.longitude)
+//            let originLocation = String(format: "%f,%f", location!.coordinate.latitude, location!.coordinate.longitude)
+//            
+//            locationHelper.getDirections(originLocation, destination: markerLocation, waypoints: nil, travelMode: nil, completionHandler: { (status, polyline, success) in
+//                if success {
+//                    polyline!.strokeColor = UIColor.redColor()
+//                    polyline!.strokeWidth = DeviceType.IS_IPAD ? 5 : 3
+//                    polyline!.map = self.mapView.map
+//                    if let drewPolyline = self.drewPolyline { drewPolyline.map = nil }
+//                    if self.myMarker == nil { self.showMyMarkerInMap(location) }
+//                    
+//                    self.drewPolyline = polyline
+//                    self.mapView.closeRoutButton.hidden = false
+//                } else {
+//                    UIHelper.showHUD(error ?? "location_services_disabled".localizedString)
+//                }
+//            })
         }
     }
     
@@ -136,20 +136,24 @@ class MapViewController: BaseViewController {
         let myLocation = myMarker.position
         var bounds = GMSCoordinateBounds(coordinate: myLocation, coordinate: myLocation)
         for object in objects {
-            let position = CLLocationCoordinate2D(latitude: object.latitude, longitude: object.longitude)
-            bounds = bounds.includingCoordinate(position)
+            for address in object.addresses {
+                let position = CLLocationCoordinate2D(latitude: address.latitude, longitude: address.longitude)
+                bounds = bounds.includingCoordinate(position)
+            }
         }
         mapView.map.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withPadding: DeviceType.IS_IPAD ? 100 : 50))
     }
     
     private func showMarkersInMap(pins: [AHObject]) {
         for (index, value) in pins.enumerate() {
-            let marker = GMSMarker()
-            loadMarkerImage(marker, url: value.src)
-            marker.position = CLLocationCoordinate2DMake(value.latitude, value.longitude)
-            marker.map = mapView.map
-            marker.userData = index
-            allGMSMarkers.append(marker)
+            for address in Array(value.addresses) {
+                let marker = GMSMarker()
+                loadMarkerImage(marker, url: value.src)
+                marker.position = CLLocationCoordinate2DMake(address.latitude, address.longitude)
+                marker.map = mapView.map
+                marker.userData = index
+                allGMSMarkers.append(marker)
+            }
         }
         objects = pins
     }
@@ -206,8 +210,10 @@ class MapViewController: BaseViewController {
 //MARK: - extension for MapViewInput -
 extension MapViewController: MapViewInput {
     
-    func setupInitialState() {
+    func setupInitialState(objects: [AHObject]) {
+        self.objects = objects
         
+        setMarkersInMap(objects)
     }
 }
 

@@ -6,8 +6,7 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-protocol HomeInteractorInput {
+protocol HomeInteractorInput: GetObjectProtocol {
 
     func getRestaurantsHome()
-    func getObject(object: AHObject)
 }

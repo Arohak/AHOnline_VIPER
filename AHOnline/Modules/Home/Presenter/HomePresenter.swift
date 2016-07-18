@@ -22,7 +22,7 @@ extension HomePresenter: HomeViewOutput {
     }
     
     func didSelectObject(object: AHObject) {
-        interactor.getObject(object)
+        interactor.getObject(object.id)
     }
 }
 

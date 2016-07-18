@@ -6,7 +6,7 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-protocol MapInteractorInput {
+protocol MapInteractorInput: GetObjectProtocol {
 
     func getObjects()
 }

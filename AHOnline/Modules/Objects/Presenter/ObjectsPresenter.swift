@@ -17,8 +17,8 @@ class ObjectsPresenter {
 //MARK: - extension for ObjectsViewOutput -
 extension ObjectsPresenter: ObjectsViewOutput {
     
-    func didSelectObjectRow(object: AHObject) {
-        interactor.getObject(object)
+    func didSelectObject(object: AHObject) {
+        interactor.getObject(object.id)
     }
 }
 

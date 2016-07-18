@@ -6,7 +6,7 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-protocol MapInteractorOutput: class {
+protocol MapInteractorOutput: class, ObjectDataIsReadyProtocol {
 
     func objectsDataIsReady(objects: [AHObject])
 }

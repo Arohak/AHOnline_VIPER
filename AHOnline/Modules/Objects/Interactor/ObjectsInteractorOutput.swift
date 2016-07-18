@@ -6,7 +6,6 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-protocol ObjectsInteractorOutput: class {
+protocol ObjectsInteractorOutput: class, ObjectDataIsReadyProtocol {
 
-    func objectDataIsReady(object: AHObject)
 }

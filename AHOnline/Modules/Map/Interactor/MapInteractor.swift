@@ -28,4 +28,15 @@ extension MapInteractor: MapInteractorInput {
                 }
             })
     }
+    
+    func getObject(id: Int) {
+        _ = APIManager.getObject("\(id)")
+            .subscribe(onNext: { result in
+                if result != nil {
+                    let object = AHObject(data: result["data"])
+                    
+                    self.output.objectDataIsReady(object)
+                }
+            })
+    }
 }

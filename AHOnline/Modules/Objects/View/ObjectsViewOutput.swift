@@ -6,7 +6,6 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-protocol ObjectsViewOutput {
+protocol ObjectsViewOutput: DidSelectObjectProtocol {
 
-    func didSelectObjectRow(object: AHObject)    
 }

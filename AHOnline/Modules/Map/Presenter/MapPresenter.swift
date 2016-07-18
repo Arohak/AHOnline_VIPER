@@ -14,11 +14,6 @@ class MapPresenter {
     var router: MapRouterInput!
 }
 
-//MARK: - extension for MapModuleInput -
-extension MapPresenter: MapModuleInput {
-
-}
-
 //MARK: - extension for MapViewOutput -
 extension MapPresenter: MapViewOutput {
     
@@ -29,6 +24,10 @@ extension MapPresenter: MapViewOutput {
     func getNearestObjects() {
         
     }
+    
+    func didSelectObject(object: AHObject) {
+        interactor.getObject(object.id)
+    }
 }
 
 //MARK: - extension for MapInteractorOutput -
@@ -36,5 +35,12 @@ extension MapPresenter: MapInteractorOutput {
  
     func objectsDataIsReady(objects: [AHObject]) {
         view.setupInitialState(objects)
+    }
+    
+    func objectDataIsReady(object: AHObject) {
+        let vc = ObjectViewController(object: object)
+        _ = ObjectModuleInitializer(viewController: vc)
+        
+        router.pushViewController(vc)
     }
 }

@@ -13,5 +13,7 @@ class MapRouter {
 
 //MARK: - extension for MapRouterInput -
 extension MapRouter: MapRouterInput {
-    
+    func pushViewController(vc: UIViewController) {
+        Wireframe.pushViewController(vc)
+    }
 }

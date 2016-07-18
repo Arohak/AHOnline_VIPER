@@ -28,8 +28,8 @@ class MPInfoWindow: UIView {
         return view
     }()
     
-    let titleLabel: UILabel = {
-        let view = UILabel.newAutoLayoutView()
+    let titleLabel: HOLabel = {
+        let view = HOLabel.newAutoLayoutView()
         view.textColor = BLUE
         view.numberOfLines = 1
         

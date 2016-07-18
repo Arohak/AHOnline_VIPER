@@ -19,6 +19,7 @@ class MapViewController: BaseViewController {
     private var allGMSMarkers: [GMSMarker] = []
     private var selectedGMSMarker: GMSMarker?
     private var objects: [AHObject] = []
+    private var addresses: [Address] = []
     private var myUserData = 1000000
     private var callback: ((CLLocation?, String?) -> Void)?
     
@@ -97,25 +98,25 @@ class MapViewController: BaseViewController {
         }
     }
     
-    private func drawRoute(object: AHObject) {
+    private func drawRoute(address: Address) {
         startUpdatingLocation { (location, error) -> Void in
-//            let markerLocation = String(format: "%f,%f", object.latitude, object.longitude)
-//            let originLocation = String(format: "%f,%f", location!.coordinate.latitude, location!.coordinate.longitude)
-//            
-//            locationHelper.getDirections(originLocation, destination: markerLocation, waypoints: nil, travelMode: nil, completionHandler: { (status, polyline, success) in
-//                if success {
-//                    polyline!.strokeColor = UIColor.redColor()
-//                    polyline!.strokeWidth = DeviceType.IS_IPAD ? 5 : 3
-//                    polyline!.map = self.mapView.map
-//                    if let drewPolyline = self.drewPolyline { drewPolyline.map = nil }
-//                    if self.myMarker == nil { self.showMyMarkerInMap(location) }
-//                    
-//                    self.drewPolyline = polyline
-//                    self.mapView.closeRoutButton.hidden = false
-//                } else {
-//                    UIHelper.showHUD(error ?? "location_services_disabled".localizedString)
-//                }
-//            })
+            let markerLocation = String(format: "%f,%f", address.latitude, address.longitude)
+            let originLocation = String(format: "%f,%f", location!.coordinate.latitude, location!.coordinate.longitude)
+            
+            locationHelper.getDirections(originLocation, destination: markerLocation, waypoints: nil, travelMode: nil, completionHandler: { (status, polyline, success) in
+                if success {
+                    polyline!.strokeColor = UIColor.redColor()
+                    polyline!.strokeWidth = DeviceType.IS_IPAD ? 5 : 3
+                    polyline!.map = self.mapView.map
+                    if let drewPolyline = self.drewPolyline { drewPolyline.map = nil }
+                    if self.myMarker == nil { self.showMyMarkerInMap(location) }
+                    
+                    self.drewPolyline = polyline
+                    self.mapView.closeRoutButton.hidden = false
+                } else {
+                    UIHelper.showHUD(error ?? "location_services_disabled".localizedString)
+                }
+            })
         }
     }
     
@@ -144,18 +145,17 @@ class MapViewController: BaseViewController {
         mapView.map.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withPadding: DeviceType.IS_IPAD ? 100 : 50))
     }
     
-    private func showMarkersInMap(pins: [AHObject]) {
+    private func showMarkersInMap(pins: [Address]) {
         for (index, value) in pins.enumerate() {
-            for address in Array(value.addresses) {
-                let marker = GMSMarker()
-                loadMarkerImage(marker, url: value.src)
-                marker.position = CLLocationCoordinate2DMake(address.latitude, address.longitude)
-                marker.map = mapView.map
-                marker.userData = index
-                allGMSMarkers.append(marker)
-            }
+            let marker = GMSMarker()
+            let object = objects.filter { $0.id == value.restaurant_id }.first!
+            loadMarkerImage(marker, url: object.src)
+            marker.position = CLLocationCoordinate2DMake(value.latitude, value.longitude)
+            marker.map = mapView.map
+            marker.userData = index
+            allGMSMarkers.append(marker)
         }
-        objects = pins
+        addresses = pins
     }
     
     private func loadMarkerImage(marker: GMSMarker, url: String) {
@@ -184,10 +184,10 @@ class MapViewController: BaseViewController {
     }
     
     //MARK: - Public Methods
-    func setMarkersInMap(pins: [AHObject]) {
+    func setMarkersInMap(pins: [Address]) {
         self.mapView.map.clear()
         allGMSMarkers.removeAll()
-        objects.removeAll()
+        addresses.removeAll()
         mapView.closeRoutButton.hidden = true
         
         self.showMyMarkerInMap(location)
@@ -195,10 +195,10 @@ class MapViewController: BaseViewController {
         self.focusMapToShowAllMarkers()
     }
     
-    func setMarkerInMap(pin: AHObject) {
+    func setMarkerInMap(pin: Address) {
         mapView.map.clear()
         allGMSMarkers.removeAll()
-        objects.removeAll()
+        addresses.removeAll()
         mapView.closeRoutButton.hidden = true
         
         self.showMyMarkerInMap(location)
@@ -211,9 +211,16 @@ class MapViewController: BaseViewController {
 extension MapViewController: MapViewInput {
     
     func setupInitialState(objects: [AHObject]) {
+        addresses.removeAll()
         self.objects = objects
         
-        setMarkersInMap(objects)
+        for object in objects {
+            for address in object.addresses {
+                addresses.append(address)
+            }
+        }
+        
+        setMarkersInMap(addresses)
     }
 }
 
@@ -225,10 +232,11 @@ extension MapViewController: GMSMapViewDelegate {
         
         let customInfoWindow = MPInfoWindow(frame: CGRect(x: 0, y: 0, width: MP_INFOWINDOW_SIZE*4, height: MP_INFOWINDOW_SIZE + MP_INSET/2))
         if tag != myUserData {
-            let selectedMarker = objects[marker.userData as! Int]
+            let selectedMarker = addresses[marker.userData as! Int]
+            let object = objects.filter { $0.id == selectedMarker.restaurant_id }.first!
             customInfoWindow.drawRoutButton.tag = marker.userData as! Int
-            customInfoWindow.titleLabel.text = selectedMarker.label
-            customInfoWindow.descLabel.text = selectedMarker.description
+            customInfoWindow.titleLabel.text = object.label
+            customInfoWindow.descLabel.text = selectedMarker.name
         } else {
             customInfoWindow.titleLabel.numberOfLines = 2
             customInfoWindow.widthRoutConstraints.constant = 0
@@ -243,8 +251,10 @@ extension MapViewController: GMSMapViewDelegate {
     func mapView(mapView: GMSMapView, didTapInfoWindowOfMarker marker: GMSMarker) {
         let tag = marker.userData as! Int
         if tag != myUserData {
-            let pin = objects[marker.userData as! Int]
-            self.drawRoute(pin)
+            let address = addresses[marker.userData as! Int]
+            self.drawRoute(address)
+            let object = objects.filter { $0.id == address.restaurant_id }.first!
+            self.output.didSelectObject(object)
         }
     }
 }

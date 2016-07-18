@@ -6,8 +6,7 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-protocol HomeViewOutput {
+protocol HomeViewOutput: DidSelectObjectProtocol {
 
     func viewIsReady()
-    func didSelectObject(object: AHObject)
 }

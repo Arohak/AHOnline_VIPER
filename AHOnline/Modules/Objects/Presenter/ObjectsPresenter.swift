@@ -17,8 +17,16 @@ class ObjectsPresenter {
 //MARK: - extension for ObjectsViewOutput -
 extension ObjectsPresenter: ObjectsViewOutput {
     
+    func getObjects(params: JSON) {
+        interactor.getObjects(params)
+    }
+    
     func didSelectObject(object: AHObject) {
-        interactor.getObject(object.id)
+        let vc = ObjectViewController(object: object)
+        _ = ObjectModuleInitializer(viewController: vc)
+        
+        router.pushViewController(vc)
+//        interactor.getObject(object.id)
     }
 }
 
@@ -30,5 +38,9 @@ extension ObjectsPresenter: ObjectsInteractorOutput {
         _ = ObjectModuleInitializer(viewController: vc)
         
         router.pushViewController(vc)
+    }
+    
+    func objectsDataIsReady(objects: [AHObject]) {
+        view.updateObjectsData(objects)
     }
 }

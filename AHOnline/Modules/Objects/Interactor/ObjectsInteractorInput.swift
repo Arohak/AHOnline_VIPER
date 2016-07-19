@@ -8,4 +8,5 @@
 
 protocol ObjectsInteractorInput: GetObjectProtocol {
 
+    func getObjects(params: JSON)
 }

@@ -8,5 +8,4 @@
 
 protocol ObjectInteractorInput {
 
-    func getProducts(objectMenu: ObjectMenu)
 }

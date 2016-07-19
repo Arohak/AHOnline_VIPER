@@ -6,6 +6,6 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-protocol ObjectsInteractorOutput: class, ObjectDataIsReadyProtocol {
+protocol ObjectsInteractorOutput: class, ObjectDataIsReadyProtocol, ObjectsDataIsReadyProtocol {
 
 }

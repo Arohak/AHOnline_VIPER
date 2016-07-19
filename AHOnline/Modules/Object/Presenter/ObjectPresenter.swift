@@ -18,19 +18,14 @@ class ObjectPresenter {
 extension ObjectPresenter: ObjectViewOutput {
     
     func didSelectObjectMenuRow(objectMenu: ObjectMenu) {
-        interactor.getProducts(objectMenu)
+        let vc = ProductViewController(objectMenu: objectMenu)
+        _ = ProductModuleInitializer(viewController: vc)
+        
+        router.pushViewController(vc)
     }
 }
 
 //MARK: - extension for ObjectInteractorOutput -
 extension ObjectPresenter: ObjectInteractorOutput {
-    
-    func productsDataIsReady(products: [Product]) {
-        let vc = ProductViewController()
-        _ = ProductModuleInitializer(viewController: vc)
-        vc.products = products
-        
-        router.pushViewController(vc)
-    }
- 
+
 }

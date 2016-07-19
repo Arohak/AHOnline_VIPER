@@ -8,4 +8,5 @@
 
 protocol ProductViewInput: class {
 
+    func setupInitialState(products: [Product])
 }

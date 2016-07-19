@@ -24,6 +24,14 @@ extension HomePresenter: HomeViewOutput {
     func didSelectObject(object: AHObject) {
         interactor.getObject(object.id)
     }
+    
+    func didSelectObjectForType(type: ObjectsType) {
+        let vc = ObjectsViewController()
+        _ = ObjectsModuleInitializer(viewController: vc)
+        vc.setParams(type: type)
+        
+        router.pushViewController(vc)
+    }
 }
 
 //MARK: - extension for HomeInteractorOutput -

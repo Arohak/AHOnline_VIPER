@@ -35,7 +35,7 @@ extension MapInteractor: MapInteractorInput {
                 if result != nil {
                     let object = AHObject(data: result["data"])
                     
-                    self.output.objectDataIsReady(object)
+//                    self.output.objectDataIsReady(object)
                 }
             })
     }

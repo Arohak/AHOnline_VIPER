@@ -17,8 +17,8 @@ class ProductPresenter {
 //MARK: - extension for ProductViewOutput -
 extension ProductPresenter: ProductViewOutput {
     
-    func viewIsReady() {
-
+    func getProducts(objectMenu: ObjectMenu) {
+        interactor.getProducts(objectMenu)
     }
     
     func addProductBuy(product: Product) {
@@ -29,4 +29,7 @@ extension ProductPresenter: ProductViewOutput {
 //MARK: - extension for ProductInteractorOutput -
 extension ProductPresenter: ProductInteractorOutput {
 
+    func productsDataIsReady(products: [Product]) {
+        view.setupInitialState(products)
+    }
 }

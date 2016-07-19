@@ -9,6 +9,4 @@
 protocol CategoriesInteractorInput {
 
     func getCategories()
-    func selectCategory(category: Category)
-    func getObjects(subcategory: Subcategory)
 }

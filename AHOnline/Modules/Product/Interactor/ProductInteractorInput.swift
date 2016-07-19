@@ -8,5 +8,6 @@
 
 protocol ProductInteractorInput {
 
+    func getProducts(objectMenu: ObjectMenu)
     func addProductBuy(product: Product)
 }

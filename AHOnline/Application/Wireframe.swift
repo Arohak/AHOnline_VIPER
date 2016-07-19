@@ -32,16 +32,6 @@ struct Wireframe {
         return nav
     }
     
-//    static func homeNavigationController() -> UINavigationController {
-//        let nav = root().viewControllers![0] as! UINavigationController
-//        return nav
-//    }
-//    
-//    static func categoryNavigationController() -> UINavigationController {
-//        let nav = root().viewControllers![1] as! UINavigationController
-//        return nav
-//    }
-    
     static func setBadgeValue(value: Int) {
         let tabArray = root().tabBar.items as NSArray!
         let tabItem = tabArray.objectAtIndex(2) as! UITabBarItem

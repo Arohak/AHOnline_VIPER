@@ -15,6 +15,26 @@ class ProductInteractor {
 //MARK: - extension for ProductInteractorInput -
 extension ProductInteractor: ProductInteractorInput {
 
+    func getProducts(objectMenu: ObjectMenu) {
+        _ = APIManager.getProducts("\(objectMenu.id)")
+            .subscribe(onNext: { result in
+                if result != nil {
+                    var products: [Product] = []
+                    for item in result["data"].arrayValue {
+                        let product = Product(data: item)
+                        let findProduct = DBManager.getOrders().filter { $0.id == product.id }.first
+                        if let findProduct = findProduct {
+                            products.append(findProduct)
+                        } else {
+                            products.append(product)
+                        }
+                    }
+                    
+                    self.output.productsDataIsReady(products)
+                }
+            })
+    }
+    
     func addProductBuy(product: Product) {
         DBManager.addProduct(product)
     }

@@ -13,6 +13,8 @@ class CategoriesPresenter {
     var interactor: CategoriesInteractorInput!
     var router: CategoriesRouterInput!
     
+    var selectedCategory: Category!
+    
     private func createViewControllers() -> [UIViewController] {
         var viewControllers: [UIViewController] = []
         
@@ -46,11 +48,15 @@ extension CategoriesPresenter: CategoriesViewOutput {
     }
     
     func didSelectCategory(category: Category) {
-        interactor.selectCategory(category)
+        selectedCategory = category
     }
     
     func didSelectSubcategoryRow(subcategory: Subcategory) {
-        interactor.getObjects(subcategory)
+        let vc = ObjectsViewController()
+        _ = ObjectsModuleInitializer(viewController: vc)
+        vc.setParams("\(selectedCategory.id)", subcategoryID: "\(subcategory.id)")
+        
+        router.pushViewController(vc)
     }
 }
 
@@ -73,13 +79,5 @@ extension CategoriesPresenter: CategoriesInteractorOutput {
         }
         
         return viewControllers
-    }
-    
-    func objectsDataIsReady(objects: [AHObject]) {
-        let vc = ObjectsViewController()
-        _ = ObjectsModuleInitializer(viewController: vc)
-        vc.objects = objects
-        
-        router.pushViewController(vc)
     }
 }

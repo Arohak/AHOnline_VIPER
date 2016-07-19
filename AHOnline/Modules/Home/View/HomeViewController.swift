@@ -56,7 +56,22 @@ class HomeViewController: BaseViewController {
     //MARK: - CallBacks Methods -
     func didSelectCollectionAtIndexPath(indexPath: NSIndexPath) {
         let object = items[indexPath.section][indexPath.row]
-        output.didSelectObject(object)
+        if object.id != 0 {
+            output.didSelectObject(object)
+        } else {
+            var type: ObjectsType = .New
+            switch indexPath.section {
+            case 0:
+                type = .New
+            case 1:
+                type = .Rate
+            case 2:
+                type = .Open
+            default:
+                break
+            }
+            output.didSelectObjectForType(type)
+        }
     }
 }
 

@@ -8,5 +8,4 @@
 
 protocol ObjectInteractorOutput: class {
 
-    func productsDataIsReady(products: [Product])
 }

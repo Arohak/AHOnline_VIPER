@@ -8,4 +8,5 @@
 
 protocol ObjectsViewInput: class {
 
+    func updateObjectsData(objects: [AHObject])
 }

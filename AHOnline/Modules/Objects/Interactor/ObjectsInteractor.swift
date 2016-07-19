@@ -25,4 +25,19 @@ extension ObjectsInteractor: ObjectsInteractorInput {
                 }
             })
     }
+    
+    
+    func getObjects(params: JSON) {
+        _ = APIManager.getObjects(params)
+            .subscribe(onNext: { result in
+                if result != nil {
+                    var objects: [AHObject] = []
+                    for item in result["data"].arrayValue {
+                        objects.append(AHObject(data: item))
+                    }
+                    
+                    self.output.objectsDataIsReady(objects)
+                }
+            })
+    }
 }

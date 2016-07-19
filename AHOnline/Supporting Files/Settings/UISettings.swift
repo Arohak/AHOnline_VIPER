@@ -70,11 +70,8 @@ let TAB_HEIGHT: CGFloat                 = 44
 let FONT_NAVBAR                         = UIFont.systemFontOfSize(DeviceType.IS_IPAD ? 25 : 18)
 let FONT_TABBAR                         = UIFont.systemFontOfSize(DeviceType.IS_IPAD ? 14 : 10)
 
-let ONE_MONTH_SECONDS: NSTimeInterval   = 30*24*60*60
-let MONTH_AGO_DATE                      = NSDate().dateByAddingTimeInterval(-ONE_MONTH_SECONDS)
-let TRANSACTION_COUNT                   = 10
-let TRANSACTION_OFFSET                  = 0
-let TRANSACTION_STATUS                  = -1
+let OBJECT_LIMIT                        = 10
+let OBJECT_OFFSET                       = 0
 
 let LINK_FONT                           = UIFont.systemFontOfSize(DeviceType.IS_IPAD ? 14         * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 14     : DeviceType.IS_IPHONE_6 ? 14   * IPHONE_6_SCALE : 14   * IPHONE_5_SCALE)
 

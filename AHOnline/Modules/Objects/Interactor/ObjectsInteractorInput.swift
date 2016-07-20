@@ -6,7 +6,7 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-protocol ObjectsInteractorInput: GetObjectProtocol {
+protocol ObjectsInteractorInput {
 
     func getObjects(params: JSON)
 }

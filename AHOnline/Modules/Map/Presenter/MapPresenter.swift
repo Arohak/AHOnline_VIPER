@@ -26,7 +26,10 @@ extension MapPresenter: MapViewOutput {
     }
     
     func didSelectObject(object: AHObject) {
-        interactor.getObject(object.id)
+        let vc = ObjectViewController(object: object)
+        _ = ObjectModuleInitializer(viewController: vc)
+        
+        router.pushViewController(vc)
     }
 }
 
@@ -35,12 +38,5 @@ extension MapPresenter: MapInteractorOutput {
  
     func objectsDataIsReady(objects: [AHObject]) {
         view.setupInitialState(objects)
-    }
-    
-    func objectDataIsReady(object: AHObject) {
-        let vc = ObjectViewController(object: object)
-        _ = ObjectModuleInitializer(viewController: vc)
-        
-        router.pushViewController(vc)
     }
 }

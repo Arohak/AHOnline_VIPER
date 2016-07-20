@@ -10,8 +10,8 @@ class ProductViewController: BaseViewController {
     
     var output: ProductViewOutput!
 
-    var productView = ProductView()
-    let cellIdentifire = "cellIdentifire"
+    private var productView = ProductView()
+    private let cellIdentifire = "cellIdentifire"
     private var products: [Product] = []
     private var objectMenu: ObjectMenu!
     

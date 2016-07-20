@@ -16,11 +16,11 @@ class ObjectViewController: BaseViewController {
     var object: AHObject!
     
     //MARK: - Initilize -
-    init(object: AHObject, headerHeight: CGFloat = ScreenSize.HEIGHT*0.3) {
+    init(object: AHObject) {
         super.init(nibName: nil, bundle: nil)
         
         title = object.label
-        objectView = ObjectView(object: object, headerRect: CGRect(x: 0, y: 0, width: ScreenSize.WIDTH, height: headerHeight))
+        objectView = ObjectView(object: object, headerRect: CGRect(x: 0, y: 0, width: ScreenSize.WIDTH, height: ScreenSize.HEIGHT*0.3))
         self.object = object
     }
     

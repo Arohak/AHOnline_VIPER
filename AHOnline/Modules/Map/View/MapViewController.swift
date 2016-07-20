@@ -252,9 +252,9 @@ extension MapViewController: GMSMapViewDelegate {
         let tag = marker.userData as! Int
         if tag != myUserData {
             let address = addresses[marker.userData as! Int]
-            self.drawRoute(address)
+//            drawRoute(address)
             let object = objects.filter { $0.id == address.restaurant_id }.first!
-            self.output.didSelectObject(object)
+            output.didSelectObject(object)
         }
     }
 }

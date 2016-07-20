@@ -26,19 +26,11 @@ extension ObjectsPresenter: ObjectsViewOutput {
         _ = ObjectModuleInitializer(viewController: vc)
         
         router.pushViewController(vc)
-//        interactor.getObject(object.id)
     }
 }
 
 //MARK: - extension for ObjectsInteractorOutput -
 extension ObjectsPresenter: ObjectsInteractorOutput {
-    
-    func objectDataIsReady(object: AHObject) {
-        let vc = ObjectViewController(object: object)
-        _ = ObjectModuleInitializer(viewController: vc)
-        
-        router.pushViewController(vc)
-    }
     
     func objectsDataIsReady(objects: [AHObject]) {
         view.updateObjectsData(objects)

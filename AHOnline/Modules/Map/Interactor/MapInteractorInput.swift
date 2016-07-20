@@ -8,5 +8,6 @@
 
 protocol MapInteractorInput {
 
+    func getNearstObjects(json: JSON)
     func getObjects()
 }

@@ -9,5 +9,5 @@
 protocol MapViewOutput: DidSelectObjectProtocol {
 
     func viewIsReady()
-    func getNearestObjects()
+    func getNearestObjects(json: JSON)
 }

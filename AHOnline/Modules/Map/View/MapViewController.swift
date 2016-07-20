@@ -64,16 +64,14 @@ class MapViewController: BaseViewController {
     
     func getNearestObjects(sender: UIButton) {
         startUpdatingLocation { (location, error) -> Void in
-            self.output.getNearestObjects()
-//                { (marker) -> Void in
-//                let index = self.markers.indexOf({$0.id == marker.id})
-//                if let index = index { self.markers.removeAtIndex(index) }
-//                self.markers.append(marker)
-//                self.setMarkersInMap(self.markers)
-//                
-//                self.focusMapToShowMarkers([marker])
-//                self.drawRoute(marker)
-//            }
+            if let location = location {
+                let json = JSON([
+                    "latitude" : "\(location.coordinate.latitude)",
+                    "longitude" : "\(location.coordinate.longitude)",
+                    "km" : "1.5"])
+                
+                self.output.getNearestObjects(json)
+            }
         }
     }
     

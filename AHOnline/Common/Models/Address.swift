@@ -13,7 +13,8 @@ class Address: Object {
     dynamic var name: String!
     dynamic var latitude: Double = 0.0
     dynamic var longitude: Double = 0.0
-    
+    dynamic var distance: Double = 0.0
+
     override static func primaryKey() -> String {
         return "id"
     }
@@ -26,5 +27,6 @@ class Address: Object {
         self.name               = data["name"].stringValue
         self.latitude           = data["latitude"].doubleValue
         self.longitude          = data["longitude"].doubleValue
+        self.distance           = data["distance"].doubleValue
     }
 }

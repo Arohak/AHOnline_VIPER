@@ -21,8 +21,8 @@ extension MapPresenter: MapViewOutput {
         interactor.getObjects()
     }
     
-    func getNearestObjects() {
-        
+    func getNearestObjects(json: JSON) {
+        interactor.getNearstObjects(json)
     }
     
     func didSelectObject(object: AHObject) {

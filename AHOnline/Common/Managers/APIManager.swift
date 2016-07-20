@@ -19,6 +19,7 @@ struct APIManager {
         static let GET_OBJECTS_TYPE                         = "restaurants?type=%@&limit=%@&offset=%@"
         static let GET_OBJECTS_LIMIT                        = "restaurants?type=all&limit=%@&offset=0"
         static let GET_OBJECT                               = "restaurants/%@"
+        static let GET_NEARST_OBJECTS                       = "nears_objects?latitude=%@&longitude=%@&km=%@"
     }
     
     static func getRestaurantsHome() -> Observable<JSON> {
@@ -64,5 +65,14 @@ struct APIManager {
         }
 
         return apiHelper.request(.GET, url: URL)
+    }
+    
+    static func getNearsObjects(json: JSON) -> Observable<JSON> {
+        let url = String(format: ROUTERS.GET_NEARST_OBJECTS,
+                         json["latitude"].stringValue,
+                         json["longitude"].stringValue,
+                         json["km"].stringValue)
+        
+        return apiHelper.request(.GET, url: url)
     }
 }

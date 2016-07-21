@@ -100,8 +100,6 @@ class DistancePickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSo
         
         delegate = self
         dataSource = self
-        clipsToBounds = true
-        layer.cornerRadius = 5.0
     }
     
     //MARK: - Initilize -
@@ -127,23 +125,10 @@ class DistancePickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSo
         return distances.count
     }
     
-    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
-        let view = UIView()
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let distance = "\(distances[row]) km"
         
-        let distanceLabel: UILabel = {
-            let view = UILabel.newAutoLayoutView()
-            view.text = "\(distances[row]) km"
-            
-            return view
-        }()
-
-        view.addSubview(distanceLabel)
-        
-        distanceLabel.autoAlignAxisToSuperviewAxis(.Horizontal)
-        distanceLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: CA_INSET)
-        distanceLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: CA_INSET)
-        
-        return view
+        return distance
     }
     
     //MARK: - UIPickerViewDelegate -
@@ -154,6 +139,6 @@ class DistancePickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSo
     
     func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         
-        return CA_CELL_HEIGHT*0.7
+        return CA_CELL_HEIGHT*0.6
     }
 }

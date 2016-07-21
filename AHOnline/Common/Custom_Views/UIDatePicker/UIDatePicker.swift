@@ -14,7 +14,7 @@ class DatePickerView: UIView {
     //MARK: - Create UIElements -
     lazy var headerView: UIView = {
         let view = UIView.newAutoLayoutView()
-//        view.backgroundColor = GREEN
+        view.backgroundColor = GREEN
         
         return view
     }()
@@ -84,11 +84,11 @@ class DatePickerView: UIView {
         
         saveButton.autoPinEdgeToSuperviewEdge(.Right)
         saveButton.autoPinEdgeToSuperviewEdge(.Top)
-        saveButton.autoSetDimensionsToSize(CGSize(width: CA_CELL_HEIGHT*4, height: CA_CELL_HEIGHT))
+        saveButton.autoSetDimensionsToSize(CGSize(width: CA_CELL_HEIGHT*2, height: CA_CELL_HEIGHT))
         
         cancelButton.autoPinEdgeToSuperviewEdge(.Left)
         cancelButton.autoPinEdgeToSuperviewEdge(.Top)
-        cancelButton.autoSetDimensionsToSize(CGSize(width: CA_CELL_HEIGHT*4, height: CA_CELL_HEIGHT))
+        cancelButton.autoSetDimensionsToSize(CGSize(width: CA_CELL_HEIGHT*2, height: CA_CELL_HEIGHT))
     }
     
     //MARK: - Actions -

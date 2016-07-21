@@ -19,6 +19,7 @@ class MPBottomView: UIView {
     let objectButton: UIButton = {
         let view = UIButton.newAutoLayoutView()
         view.setBackgroundImage(UIImage(named: "img_mapview_hospital"), forState: .Normal)
+        view.hidden = true
         
         return view
     }()

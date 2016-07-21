@@ -87,3 +87,73 @@ class DeliveryPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSo
         return CA_CELL_HEIGHT*0.7
     }
 }
+
+//MARK: - DistancePickerView -
+class DistancePickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    var callback: DistancePickerCallback?
+    var distances: [Double] = []
+    
+    //MARK: - Initilize -
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        delegate = self
+        dataSource = self
+        clipsToBounds = true
+        layer.cornerRadius = 5.0
+    }
+    
+    //MARK: - Initilize -
+    convenience init(distances: [Double], callback: DistancePickerCallback) {
+        self.init(frame: CGRectZero)
+        
+        self.callback = callback
+        self.distances = distances
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - UIPickerViewDataSource -
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        return distances.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+        let view = UIView()
+        
+        let distanceLabel: UILabel = {
+            let view = UILabel.newAutoLayoutView()
+            view.text = "\(distances[row]) km"
+            
+            return view
+        }()
+
+        view.addSubview(distanceLabel)
+        
+        distanceLabel.autoAlignAxisToSuperviewAxis(.Horizontal)
+        distanceLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: CA_INSET)
+        distanceLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: CA_INSET)
+        
+        return view
+    }
+    
+    //MARK: - UIPickerViewDelegate -
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        callback?(value: distances[row], index: row)
+    }
+    
+    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        
+        return CA_CELL_HEIGHT*0.7
+    }
+}

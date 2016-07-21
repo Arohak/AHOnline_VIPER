@@ -10,6 +10,12 @@ class MapView: BaseView {
     
     var didUpdateConstraints = false
     
+    lazy var tableView: BaseTableView = {
+        let view = BaseTableView(frame: CGRectZero, style: .Plain)
+        
+        return view
+    }()
+    
     let map: GMSMapView = {
         let view = GMSMapView.newAutoLayoutView()
         view.settings.compassButton = true
@@ -46,6 +52,7 @@ class MapView: BaseView {
     
     //MARK: - Custom Methods
     func addAllUIElements() {
+        addSubview(tableView)
         addSubview(map)
         map.addSubview(closeRoutButton)
         map.addSubview(bottomView)
@@ -55,13 +62,19 @@ class MapView: BaseView {
     override func updateConstraints() {
         if !didUpdateConstraints {
             
-            map.autoPinEdgesToSuperviewEdges()
+            map.autoPinEdge(.Bottom, toEdge: .Top, ofView: tableView)
+            map.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: NAV_HEIGHT, left: 0, bottom: 0, right: 0), excludingEdge: .Bottom)
             
+            tableView.autoPinEdgeToSuperviewEdge(ALEdge.Bottom, withInset: TAB_HEIGHT)
+            tableView.autoPinEdgeToSuperviewEdge(ALEdge.Left)
+            tableView.autoPinEdgeToSuperviewEdge(ALEdge.Right)
+            tableView.autoSetDimension(ALDimension.Height, toSize: ScreenSize.HEIGHT*0.4)
+
             closeRoutButton.autoPinEdgeToSuperviewEdge(ALEdge.Top, withInset: MP_INSET)
             closeRoutButton.autoPinEdgeToSuperviewEdge(ALEdge.Left, withInset: MP_INSET)
             closeRoutButton.autoSetDimensionsToSize(CGSize(width: MP_BTN_SIZE, height: MP_BTN_SIZE))
             
-            bottomView.autoPinEdgeToSuperviewEdge(ALEdge.Bottom, withInset: MP_INSET*4)
+            bottomView.autoPinEdgeToSuperviewEdge(ALEdge.Bottom, withInset: MP_INSET*2)
             bottomView.autoPinEdgeToSuperviewEdge(ALEdge.Left)
             bottomView.autoPinEdgeToSuperviewEdge(ALEdge.Right)
             bottomView.autoSetDimension(ALDimension.Height, toSize: MP_BTN_SIZE)

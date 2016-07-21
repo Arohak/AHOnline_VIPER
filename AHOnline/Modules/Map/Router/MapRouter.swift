@@ -16,4 +16,8 @@ extension MapRouter: MapRouterInput {
     func pushViewController(vc: UIViewController) {
         Wireframe.pushViewController(vc)
     }
+    
+    func presentViewController(vc: UIViewController) {
+        Wireframe.presentViewController(vc)
+    }
 }

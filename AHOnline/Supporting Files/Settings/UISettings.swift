@@ -63,10 +63,11 @@ let RCOLORS                             = [UIColor.blueColor(), UIColor.redColor
 typealias CollectionCallback            = (indexPath: NSIndexPath) -> Void
 typealias PickerCallback                = (value: String) -> Void
 typealias DeliveryPickerCallback        = (value: Delivery, index: Int) -> Void
+typealias DistancePickerCallback        = (value: Double, index: Int) -> Void
 typealias challenge                     = (session: NSURLSession!, challenge: NSURLAuthenticationChallenge) -> (NSURLSessionAuthChallengeDisposition, NSURLCredential?)
 
 let NAV_HEIGHT: CGFloat                 = 64
-let TAB_HEIGHT: CGFloat                 = 44
+let TAB_HEIGHT: CGFloat                 = 45
 let FONT_NAVBAR                         = UIFont.systemFontOfSize(DeviceType.IS_IPAD ? 25 : 18)
 let FONT_TABBAR                         = UIFont.systemFontOfSize(DeviceType.IS_IPAD ? 14 : 10)
 
@@ -91,7 +92,7 @@ let HO_CELL_HEIGHT : CGFloat            = DeviceType.IS_IPAD ? 90     * IPAD_SCA
 
 //MARK: - Subcategory Constants
 let SB_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
-let SB_CELL_WIDTH : CGFloat            = (ScreenSize.WIDTH - 6*SB_INSET)/3
+let SB_CELL_WIDTH : CGFloat             = (ScreenSize.WIDTH - 6*SB_INSET)/3
 
 //MARK: - Objects Constants
 let OB_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE

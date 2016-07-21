@@ -31,6 +31,10 @@ extension MapPresenter: MapViewOutput {
         
         router.pushViewController(vc)
     }
+    
+    func presentViewController(vc: UIViewController) {
+        router.presentViewController(vc)
+    }
 }
 
 //MARK: - extension for MapInteractorOutput -

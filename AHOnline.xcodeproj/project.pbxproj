@@ -131,6 +131,7 @@
 		9721E7A13BE41DB7595B63D3 /* ObjectsInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F8CB467DB9B89F3E8BF7B2 /* ObjectsInteractorInput.swift */; };
 		982C2D37CBC7294ED006CDE4 /* SettingsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337D784355236404EEE76B95 /* SettingsConfigurator.swift */; };
 		9A33CC37AEEA35C0BBDC6A70 /* AccountConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B8088B97FCBEE717103AB1 /* AccountConfigurator.swift */; };
+		A101F0511D40E37A003A4CCA /* MapObjectsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A101F0501D40E37A003A4CCA /* MapObjectsCell.swift */; };
 		A10282731D39012200487060 /* ProductConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A102825E1D39012200487060 /* ProductConfigurator.swift */; };
 		A10282741D39012200487060 /* ProductInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A102825F1D39012200487060 /* ProductInitializer.swift */; };
 		A10282751D39012200487060 /* ProductInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10282611D39012200487060 /* ProductInteractor.swift */; };
@@ -358,6 +359,7 @@
 		9E8ABE9EC0C17017CEC89D7A /* CartViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		9FB5EC9D671C7189FFFE55DC /* HomePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		9FFD43603739BEA09E65C710 /* SettingsRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
+		A101F0501D40E37A003A4CCA /* MapObjectsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapObjectsCell.swift; sourceTree = "<group>"; };
 		A102825E1D39012200487060 /* ProductConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductConfigurator.swift; sourceTree = "<group>"; };
 		A102825F1D39012200487060 /* ProductInitializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductInitializer.swift; sourceTree = "<group>"; };
 		A10282611D39012200487060 /* ProductInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductInteractor.swift; sourceTree = "<group>"; };
@@ -970,6 +972,7 @@
 				52CD375B1D3C2604008624BE /* MapView.swift */,
 				52CD375D1D3C262D008624BE /* MPInfoWindow.swift */,
 				52CD375F1D3C2669008624BE /* MPBottomView.swift */,
+				A101F0501D40E37A003A4CCA /* MapObjectsCell.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1950,6 +1953,7 @@
 				C0406F14A9573FEC06B2579A /* MapRouterInput.swift in Sources */,
 				CB83A4648EDC4514B7A32EB4 /* MapRouter.swift in Sources */,
 				52A4E0E11D3A164100DDAC54 /* CAFooterView.swift in Sources */,
+				A101F0511D40E37A003A4CCA /* MapObjectsCell.swift in Sources */,
 				A1A6B9601D38C93B00EEA739 /* Address.swift in Sources */,
 				A10282761D39012200487060 /* ProductInteractorInput.swift in Sources */,
 				5B16BCD92519A02D8EB7BD10 /* MapConfigurator.swift in Sources */,

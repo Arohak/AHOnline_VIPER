@@ -14,34 +14,34 @@ class DatePickerView: UIView {
     //MARK: - Create UIElements -
     lazy var headerView: UIView = {
         let view = UIView.newAutoLayoutView()
-        view.backgroundColor = GREEN
+//        view.backgroundColor = GREEN
         
         return view
     }()
     
     lazy var picker: UIDatePicker = {
         let view = UIDatePicker.newAutoLayoutView()
-        view.backgroundColor = WHITE
+//        view.backgroundColor = WHITE
         view.locale = NSLocale(localeIdentifier: "en_GB")
-        view.setValue(BLACK, forKey: "textColor")
-//        view.datePickerMode = .Date
+//        view.setValue(BLACK, forKey: "textColor")
         view.date = self.date
         view.minimumDate = NSDate()
-        view.datePickerMode = .CountDownTimer
+//        view.datePickerMode = .Date
+//        view.datePickerMode = .CountDownTimer
         
         return view
     }()
     
-    lazy var saveButton: UIButton = {
-        let view = UIButton.newAutoLayoutView()
+    lazy var saveButton: HOButton = {
+        let view = HOButton.newAutoLayoutView()
         view.setTitle("save".localizedString, forState: .Normal)
         view.addTarget(self, action: #selector(save), forControlEvents: .TouchUpInside)
         
         return view
     }()
     
-    lazy var cancelButton: UIButton = {
-        let view = UIButton.newAutoLayoutView()
+    lazy var cancelButton: HOButton = {
+        let view = HOButton.newAutoLayoutView()
         view.setTitle("Cancel".localizedString, forState: .Normal)
         view.addTarget(self, action: #selector(cancel), forControlEvents: .TouchUpInside)
         
@@ -80,15 +80,15 @@ class DatePickerView: UIView {
         headerView.autoPinEdgeToSuperviewEdge(.Top)
         headerView.autoPinEdgeToSuperviewEdge(.Right)
         headerView.autoPinEdgeToSuperviewEdge(.Left)
-        headerView.autoSetDimension(.Height, toSize: 50)
+        headerView.autoSetDimension(.Height, toSize: CA_CELL_HEIGHT)
         
         saveButton.autoPinEdgeToSuperviewEdge(.Right)
         saveButton.autoPinEdgeToSuperviewEdge(.Top)
-        saveButton.autoSetDimensionsToSize(CGSize(width: 150, height: 150))
+        saveButton.autoSetDimensionsToSize(CGSize(width: CA_CELL_HEIGHT*4, height: CA_CELL_HEIGHT))
         
         cancelButton.autoPinEdgeToSuperviewEdge(.Left)
         cancelButton.autoPinEdgeToSuperviewEdge(.Top)
-        cancelButton.autoSetDimensionsToSize(CGSize(width: 150, height: 150))
+        cancelButton.autoSetDimensionsToSize(CGSize(width: CA_CELL_HEIGHT*4, height: CA_CELL_HEIGHT))
     }
     
     //MARK: - Actions -

@@ -6,6 +6,7 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
+//MARK: - String -
 extension String {
     var localizedString: String {
         return Utils.localizedLanguage(self, languageCode: Preferences.getAppLanguage())
@@ -38,12 +39,23 @@ extension String {
     
 }
 
+//MARK: - NSDate -
 extension NSDate {
     var miliseconds: String {
         return "\(Int64(self.timeIntervalSince1970*1000))"
     }
+    
+    var deliveryTimeFormat: String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.timeZone = NSTimeZone.defaultTimeZone()
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_GB")
+        dateFormatter.dateFormat = "MMM d 'at' HH:00" //"YYYY-MM-DD HH:00", "MMM d 'at' HH:m" 
+        
+        return dateFormatter.stringFromDate(self)
+    }
 }
 
+//MARK: - Double -
 extension Double {
     var format: String {
         let formatter = NSNumberFormatter()

@@ -6,7 +6,7 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-protocol MapViewOutput: DidSelectObjectProtocol {
+protocol MapViewOutput: DidSelectObjectProtocol, PresentViewControllerProtocol {
 
     func viewIsReady()
     func getNearestObjects(json: JSON)

@@ -14,7 +14,8 @@ class HOButton: UIButton {
     override init(frame : CGRect) {
         super.init(frame: frame)
         
-        self.exclusiveTouch = true
+        exclusiveTouch = true
+        setTitleColor(BLACK, forState: .Normal)
     }
     
     required init?(coder aDecoder: NSCoder) {

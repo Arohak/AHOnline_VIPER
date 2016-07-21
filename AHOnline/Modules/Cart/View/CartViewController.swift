@@ -71,6 +71,7 @@ class CartViewController: BaseViewController {
         
         let cell2 = DeliveryCell(style: .Default, reuseIdentifier: cellIdentifire2)
         cell2.cellContentView.titleLabel.text = titleDeliveries[1]
+        cell2.cellContentView.deliveryLabel.text = NSDate().deliveryTimeFormat
         cells.append(cell2)
     }
     
@@ -79,7 +80,6 @@ class CartViewController: BaseViewController {
         output.addOrder()
     }
     
-    //MARK: - Actions -
     func clearAction() {
         let alert =  UIAlertController(title: "Clear Cart", message: "Do you want to clear the cart", preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "Cancel".localizedString, style: .Cancel, handler: nil))
@@ -90,6 +90,15 @@ class CartViewController: BaseViewController {
         }))
         
         output.presentViewController(alert)
+    }
+    
+    //MARK: - Public Method -
+    func hideView() {
+        cartView.tableView.hidden = orders.count == 0
+        cartView.footerView.hidden = cartView.tableView.hidden
+        cartView.emptyView.hidden = !cartView.tableView.hidden
+        cleaButtonItem.enabled = !cartView.tableView.hidden
+        editButtonItem().enabled = !cartView.tableView.hidden
     }
     
     //MARK: - Keyboard notifications -
@@ -108,15 +117,6 @@ class CartViewController: BaseViewController {
                 self.view.layoutIfNeeded()
             })
         }
-    }
-    
-    //MARK: - Public Method -
-    func hideView() {
-        cartView.tableView.hidden = orders.count == 0
-        cartView.footerView.hidden = cartView.tableView.hidden
-        cartView.emptyView.hidden = !cartView.tableView.hidden
-        cleaButtonItem.enabled = !cartView.tableView.hidden
-        editButtonItem().enabled = !cartView.tableView.hidden
     }
 }
 
@@ -226,7 +226,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
                 output.presentViewController(actionSheet)
             case 1:
                 let datePicker = DatePickerViewController(date: NSDate()) { date in
-                    self.cells[indexPath.row].cellContentView.deliveryLabel.text = Utils.stringFromDate(date)
+                    self.cells[indexPath.row].cellContentView.deliveryLabel.text = date.deliveryTimeFormat
                     self.selectedDate = date
                 }
                 if let date = selectedDate {

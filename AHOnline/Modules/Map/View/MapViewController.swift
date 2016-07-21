@@ -12,6 +12,7 @@ class MapViewController: BaseViewController {
     
     var output: MapViewOutput!
 
+    private let cellIdentifire      = "cellIdentifire"
     private var location: CLLocation!
     private var locationAddress: String!
     private var myMarker: GMSMarker!
@@ -22,6 +23,8 @@ class MapViewController: BaseViewController {
     private var addresses: [Address] = []
     private var myUserData = 1000000
     private var callback: ((CLLocation?, String?) -> Void)?
+    private var distance = 5.0
+    private var distances: [Double] = [1, 2, 5, 10, 20, 50, 100]
     
     //MARK: - Create UIElements
     private let mapView = MapView()
@@ -30,8 +33,12 @@ class MapViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        output.viewIsReady()
+        title = "Map"
+        navigationItem.setLeftBarButtonItem(UIBarButtonItem(title: "Distance", style: .Plain, target: self, action: #selector(chooseDistanceAction)), animated: true)
+
+//        output.viewIsReady()
         startUpdatingLocation { _ in }
+        getNearestObjects()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -42,10 +49,14 @@ class MapViewController: BaseViewController {
      override func baseConfig() {
         self.view = mapView
 
+        mapView.tableView.dataSource = self
+        mapView.tableView.delegate = self
+        mapView.tableView.registerClass(MapObjectsCell.self, forCellReuseIdentifier: cellIdentifire)
+        
         mapView.map.delegate = self
         mapView.closeRoutButton.addTarget(self, action: #selector(clearPolyline(_:)), forControlEvents: .TouchUpInside)
         mapView.bottomView.locationButton.addTarget(self, action: #selector(goToMyLocation(_:)), forControlEvents: .TouchUpInside)
-        mapView.bottomView.objectButton.addTarget(self, action: #selector(getNearestObjects(_:)), forControlEvents: .TouchUpInside)
+        mapView.bottomView.objectButton.addTarget(self, action: #selector(getNearestObjects), forControlEvents: .TouchUpInside)
     }
     
     //MARK: - Actions -
@@ -62,13 +73,23 @@ class MapViewController: BaseViewController {
         }
     }
     
-    func getNearestObjects(sender: UIButton) {
+    func chooseDistanceAction() {
+        let actionSheet = DistanceActionSheetPickerViewController(distances: distances) { distance, index in
+            self.distance = distance
+            self.getNearestObjects()
+        }
+        actionSheet.pickerView.selectRow(distances.indexOf(distance)!, inComponent: 0, animated: true)
+        
+        output.presentViewController(actionSheet)
+    }
+    
+    func getNearestObjects() {
         startUpdatingLocation { (location, error) -> Void in
             if let location = location {
                 let json = JSON([
-                    "latitude" : "\(location.coordinate.latitude)",
+                    "latitude"  : "\(location.coordinate.latitude)",
                     "longitude" : "\(location.coordinate.longitude)",
-                    "km" : "1.5"])
+                    "km"        : "\(self.distance)"])
                 
                 self.output.getNearestObjects(json)
             }
@@ -127,7 +148,7 @@ class MapViewController: BaseViewController {
         if allGMSMarkers.count == 1 {
             mapView.map.animateToCameraPosition(GMSCameraPosition.cameraWithLatitude(allGMSMarkers[0].position.latitude, longitude: allGMSMarkers[0].position.longitude, zoom: 17))
         } else if  allGMSMarkers.count > 1 {
-            mapView.map.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withPadding: DeviceType.IS_IPAD ? 100 : 50))
+            mapView.map.animateWithCameraUpdate(GMSCameraUpdate.fitBounds(bounds, withPadding: DeviceType.IS_IPAD ? 100 : 70))
         }
     }
     
@@ -218,7 +239,10 @@ extension MapViewController: MapViewInput {
             }
         }
         
+        addresses = addresses.sort { $0.0.distance < $0.1.distance }
+        
         setMarkersInMap(addresses)
+        mapView.tableView.reloadData()
     }
 }
 
@@ -254,5 +278,30 @@ extension MapViewController: GMSMapViewDelegate {
             let object = objects.filter { $0.id == address.restaurant_id }.first!
             output.didSelectObject(object)
         }
+    }
+}
+
+//MARK: - extension for UITableView -
+extension MapViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return addresses.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let address = addresses[indexPath.row]
+        let object = objects.filter { $0.id == address.restaurant_id }.first!
+
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifire) as! MapObjectsCell
+        cell.setValues(NSURL(string: object.src)!, name: object.label, address: address.name, distance: String(format: "%.2f km", address.distance/1000))
+
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let address = addresses[indexPath.row]
+        let object = objects.filter { $0.id == address.restaurant_id }.first!
+        output.didSelectObject(object)
     }
 }

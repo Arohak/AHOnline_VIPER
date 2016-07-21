@@ -1,19 +1,24 @@
 //
-//  ObjectView.swift
-//  AHOnline
+//  AccountView.swift
+//  Emergency
 //
-//  Created by AroHak on 09/07/2016.
-//  Copyright © 2016 AroHak LLC. All rights reserved.
+//  Created by Ara Hakobyan on 11/3/15.
+//  Copyright © 2015 VTGSoftware LLC. All rights reserved.
 //
 
-class ObjectView: BaseView {
+class AccountView: BaseView {
     
+    //MARK: - Create UIElements -
     var headerView: ParallaxHeaderView!
+    
+    let footerView: AccountFooterView = {
+        let view = AccountFooterView(frame: CGRect(x: 0, y: 0, width: ScreenSize.WIDTH, height: OB_INSET*10))
+        
+        return view
+    }()
     
     lazy var tableView: BaseTableView = {
         let view = BaseTableView(frame: CGRectZero, style: .Plain)
-        view.estimatedRowHeight = 44
-        view.rowHeight = UITableViewAutomaticDimension
         
         return view
     }()
@@ -26,13 +31,15 @@ class ObjectView: BaseView {
         tableView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: NAV_HEIGHT, left: 0, bottom: TAB_HEIGHT, right: 0))
     }
     
-    convenience init(object: AHObject, headerRect: CGRect) {
+    convenience init(user: User, headerRect: CGRect) {
         self.init()
         
         backgroundColor = WHITE
-        headerView = ParallaxHeaderView(imageURL: object.src, frame: headerRect)
+        headerView = ParallaxHeaderView(imageURL: user.src, frame: headerRect)
         tableView.tableHeaderView = headerView
-        addHeaderUIElements(object)
+        tableView.tableFooterView = footerView
+
+        addHeaderUIElements(user)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,16 +47,16 @@ class ObjectView: BaseView {
     }
     
     //MARK: - Private Methods -
-    private func addHeaderUIElements(object: AHObject) {
+    private func addHeaderUIElements(user: User) {
         var bgView: UIView!
         var infoLabel: DescLabel!
         
-        if let _ = object.label {
+        if let _ = user.name {
             infoLabel = DescLabel.newAutoLayoutView()
             infoLabel.textColor = WHITE
-            let time = "Time:  " + object.openTime.shortTime + " - " + object.closeTime.shortTime
-            let rate = "Rate:  " + "\(object.rate)"
-            infoLabel.text = object.desc + "\n" + time + "\n" + rate
+//            let time = "Time:  " + object.openTime.shortTime + " - " + object.closeTime.shortTime
+//            let rate = "Rate:  " + "\(object.rate)"
+//            infoLabel.text = object.desc + "\n" + time + "\n" + rate
             infoLabel.numberOfLines = 0
             bgView = UIView.newAutoLayoutView()
             bgView.backgroundColor = BLUE_LIGHT

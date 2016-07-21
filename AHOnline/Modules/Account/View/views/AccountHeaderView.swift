@@ -1,12 +1,12 @@
 //
-//  MPInfoWindow.swift
+//  AccountHeaderView.swift
 //  AHOnline
 //
 //  Created by Ara Hakobyan on 7/18/16.
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-class MPInfoWindow: UIView {
+class AccountHeaderView: UIView {
     
     var widthRoutConstraints: NSLayoutConstraint!
     var titleCenterConstraints: NSLayoutConstraint!
@@ -61,7 +61,7 @@ class MPInfoWindow: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Private Methods -
+    //MARK: - Private Methods
     private func addAllUIElements() {
         addSubview(bgView)
         bgView.addSubview(drawRoutButton)

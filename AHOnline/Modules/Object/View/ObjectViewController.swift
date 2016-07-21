@@ -11,9 +11,9 @@ class ObjectViewController: BaseViewController {
 
     var output: ObjectViewOutput!
 
-    var objectView: ObjectView!
-    let cellIdentifire = "cellIdentifire"
-    var object: AHObject!
+    private var objectView: ObjectView!
+    private let cellIdentifire = "cellIdentifire"
+    private var object: AHObject!
     
     //MARK: - Initilize -
     init(object: AHObject) {

@@ -8,8 +8,7 @@
 
 class MapView: BaseView {
     
-    var didUpdateConstraints = false
-    
+    //MARK: - Create UIElements -
     lazy var tableView: BaseTableView = {
         let view = BaseTableView(frame: CGRectZero, style: .Plain)
         
@@ -35,53 +34,49 @@ class MapView: BaseView {
     let bottomView: MPBottomView = {
         let view = MPBottomView.newAutoLayoutView()
         view.backgroundColor = CLEAR
+        view.objectButton.hidden = true
         
         return view
     }()
     
-    //MARK: - Initialize
+    //MARK: - Initialize -
     override init() {
         super.init()
         
-        self.addAllUIElements()
+        addAllUIElements()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Custom Methods
-    func addAllUIElements() {
+    //MARK: - Private Methods -
+    private func addAllUIElements() {
         addSubview(tableView)
         addSubview(map)
         map.addSubview(closeRoutButton)
         map.addSubview(bottomView)
+        
+        setConstraints()
     }
     
-    //MARK: - Update Constraints
-    override func updateConstraints() {
-        if !didUpdateConstraints {
-            
-            map.autoPinEdge(.Bottom, toEdge: .Top, ofView: tableView)
-            map.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: NAV_HEIGHT, left: 0, bottom: 0, right: 0), excludingEdge: .Bottom)
-            
-            tableView.autoPinEdgeToSuperviewEdge(ALEdge.Bottom, withInset: TAB_HEIGHT)
-            tableView.autoPinEdgeToSuperviewEdge(ALEdge.Left)
-            tableView.autoPinEdgeToSuperviewEdge(ALEdge.Right)
-            tableView.autoSetDimension(ALDimension.Height, toSize: ScreenSize.HEIGHT*0.4)
-
-            closeRoutButton.autoPinEdgeToSuperviewEdge(ALEdge.Top, withInset: MP_INSET)
-            closeRoutButton.autoPinEdgeToSuperviewEdge(ALEdge.Left, withInset: MP_INSET)
-            closeRoutButton.autoSetDimensionsToSize(CGSize(width: MP_BTN_SIZE, height: MP_BTN_SIZE))
-            
-            bottomView.autoPinEdgeToSuperviewEdge(ALEdge.Bottom, withInset: MP_INSET*2)
-            bottomView.autoPinEdgeToSuperviewEdge(ALEdge.Left)
-            bottomView.autoPinEdgeToSuperviewEdge(ALEdge.Right)
-            bottomView.autoSetDimension(ALDimension.Height, toSize: MP_BTN_SIZE)
-            
-            didUpdateConstraints = true
-        }
+    //MARK: - Constraints -
+    func setConstraints() {
+        map.autoPinEdge(.Bottom, toEdge: .Top, ofView: tableView)
+        map.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: NAV_HEIGHT, left: 0, bottom: 0, right: 0), excludingEdge: .Bottom)
         
-        super.updateConstraints()
+        tableView.autoPinEdgeToSuperviewEdge(ALEdge.Bottom, withInset: TAB_HEIGHT)
+        tableView.autoPinEdgeToSuperviewEdge(ALEdge.Left)
+        tableView.autoPinEdgeToSuperviewEdge(ALEdge.Right)
+        tableView.autoSetDimension(ALDimension.Height, toSize: ScreenSize.HEIGHT*0.4)
+        
+        closeRoutButton.autoPinEdgeToSuperviewEdge(ALEdge.Top, withInset: MP_INSET)
+        closeRoutButton.autoPinEdgeToSuperviewEdge(ALEdge.Left, withInset: MP_INSET)
+        closeRoutButton.autoSetDimensionsToSize(CGSize(width: MP_BTN_SIZE, height: MP_BTN_SIZE))
+        
+        bottomView.autoPinEdgeToSuperviewEdge(ALEdge.Bottom, withInset: MP_INSET*2)
+        bottomView.autoPinEdgeToSuperviewEdge(ALEdge.Left)
+        bottomView.autoPinEdgeToSuperviewEdge(ALEdge.Right)
+        bottomView.autoSetDimension(ALDimension.Height, toSize: MP_BTN_SIZE)
     }
 }

@@ -8,7 +8,7 @@
 
 class MPBottomView: UIView {
     
-    //MARK: - Create UIElements
+    //MARK: - Create UIElements -
     let locationButton: UIButton = {
         let view = UIButton.newAutoLayoutView()
         view.setBackgroundImage(UIImage(named: "img_mapview_location"), forState: .Normal)
@@ -19,31 +19,30 @@ class MPBottomView: UIView {
     let objectButton: UIButton = {
         let view = UIButton.newAutoLayoutView()
         view.setBackgroundImage(UIImage(named: "img_mapview_hospital"), forState: .Normal)
-        view.hidden = true
         
         return view
     }()
     
-    //MARK: - Initialize
+    //MARK: - Initialize -
     override init(frame : CGRect) {
         super.init(frame: frame)
         
-        self.addAllUIElements()
+        addAllUIElements()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Custom Methods
-    func addAllUIElements() {
-        self.addSubview(locationButton)
-        self.addSubview(objectButton)
+    //MARK: - Private Methods -
+    private func addAllUIElements() {
+        addSubview(locationButton)
+        addSubview(objectButton)
         
-        self.setConstraints()
+        setConstraints()
     }
     
-    //MARK: - Set Constraints
+    //MARK: - Constraints -
     func setConstraints() {
         locationButton.autoAlignAxisToSuperviewAxis(ALAxis.Horizontal)
         locationButton.autoPinEdgeToSuperviewEdge(ALEdge.Right, withInset: MP_INSET)

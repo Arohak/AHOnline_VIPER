@@ -37,7 +37,6 @@ class ObjectsViewController: BaseViewController {
         super.viewDidLoad()
         
         title = "Restaurants"
-        navigationController?.setNavigationBarHidden(false, animated: true)
         getObjects()
     }
     

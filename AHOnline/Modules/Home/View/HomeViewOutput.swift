@@ -9,5 +9,6 @@
 protocol HomeViewOutput: DidSelectObjectProtocol {
 
     func viewIsReady()
+    func searchButtonClicked()
     func didSelectObjectForType(type: ObjectsType)
 }

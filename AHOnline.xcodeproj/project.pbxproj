@@ -148,6 +148,10 @@
 		A102827C1D39012200487060 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A102826E1D39012200487060 /* ProductCell.swift */; };
 		A102827D1D39012200487060 /* PriceGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A102826F1D39012200487060 /* PriceGroupView.swift */; };
 		A102827E1D39012200487060 /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10282701D39012200487060 /* ProductView.swift */; };
+		A105B4A41D4247C7006168C2 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A105B4A11D4247C7006168C2 /* SearchCell.swift */; };
+		A105B4A51D4247C7006168C2 /* SearchCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A105B4A21D4247C7006168C2 /* SearchCollectionCell.swift */; };
+		A105B4A61D4247C7006168C2 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A105B4A31D4247C7006168C2 /* SearchView.swift */; };
+		A105B4A81D4258F5006168C2 /* FilterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A105B4A71D4258F5006168C2 /* FilterTableView.swift */; };
 		A10D8F4E1D3772640064C6C1 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10D8F4D1D3772640064C6C1 /* Product.swift */; };
 		A10D8F571D37BB3A0064C6C1 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10D8F561D37BB3A0064C6C1 /* CartView.swift */; };
 		A10D8F591D37BF830064C6C1 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10D8F581D37BF830064C6C1 /* OrderCell.swift */; };
@@ -381,6 +385,10 @@
 		A102826E1D39012200487060 /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		A102826F1D39012200487060 /* PriceGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriceGroupView.swift; sourceTree = "<group>"; };
 		A10282701D39012200487060 /* ProductView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
+		A105B4A11D4247C7006168C2 /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		A105B4A21D4247C7006168C2 /* SearchCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionCell.swift; sourceTree = "<group>"; };
+		A105B4A31D4247C7006168C2 /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		A105B4A71D4258F5006168C2 /* FilterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableView.swift; sourceTree = "<group>"; };
 		A10D8F4D1D3772640064C6C1 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		A10D8F561D37BB3A0064C6C1 /* CartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		A10D8F581D37BF830064C6C1 /* OrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
@@ -1261,6 +1269,7 @@
 				20ECA00FD109BCFC1BAACE31 /* SearchViewInput.swift */,
 				FC24023179BC53510D89D285 /* SearchViewOutput.swift */,
 				3F99A0D5E46C0509F7CF8CC5 /* SearchViewController.swift */,
+				A105B4A01D4247C7006168C2 /* views */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1357,6 +1366,17 @@
 				A10282701D39012200487060 /* ProductView.swift */,
 				A102826E1D39012200487060 /* ProductCell.swift */,
 				A102826F1D39012200487060 /* PriceGroupView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		A105B4A01D4247C7006168C2 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				A105B4A31D4247C7006168C2 /* SearchView.swift */,
+				A105B4A71D4258F5006168C2 /* FilterTableView.swift */,
+				A105B4A11D4247C7006168C2 /* SearchCell.swift */,
+				A105B4A21D4247C7006168C2 /* SearchCollectionCell.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1911,6 +1931,7 @@
 				526EE7281D30F3BE00F77974 /* UIPickerView.swift in Sources */,
 				526EE7361D30F3BE00F77974 /* Restaurant.swift in Sources */,
 				A102827E1D39012200487060 /* ProductView.swift in Sources */,
+				A105B4A61D4247C7006168C2 /* SearchView.swift in Sources */,
 				A137A0011D35201F000D022A /* AHObject.swift in Sources */,
 				526EE72C1D30F3BE00F77974 /* UITextField.swift in Sources */,
 				A137A0391D363AE7000D022A /* ShopViewController.swift in Sources */,
@@ -1963,6 +1984,7 @@
 				D007D10F7CC9D395F9072C57 /* MapViewInput.swift in Sources */,
 				A137A0381D363AE7000D022A /* RestaurantView.swift in Sources */,
 				52A4E0EB1D3BCE7800DDAC54 /* ObjectView.swift in Sources */,
+				A105B4A81D4258F5006168C2 /* FilterTableView.swift in Sources */,
 				523C1C911D3D714500527136 /* DidSelectObjectProtocol.swift in Sources */,
 				A10D8F4E1D3772640064C6C1 /* Product.swift in Sources */,
 				50CB2F3181E624700098A0CE /* MapViewOutput.swift in Sources */,
@@ -1982,11 +2004,13 @@
 				CB83A4648EDC4514B7A32EB4 /* MapRouter.swift in Sources */,
 				52A4E0E11D3A164100DDAC54 /* CAFooterView.swift in Sources */,
 				A101F0511D40E37A003A4CCA /* MapObjectsCell.swift in Sources */,
+				A105B4A41D4247C7006168C2 /* SearchCell.swift in Sources */,
 				A1A6B9601D38C93B00EEA739 /* Address.swift in Sources */,
 				A10282761D39012200487060 /* ProductInteractorInput.swift in Sources */,
 				5B16BCD92519A02D8EB7BD10 /* MapConfigurator.swift in Sources */,
 				DE3F8A040A7EBF4385CC18A2 /* MapInitializer.swift in Sources */,
 				699880F741C52D49FEA82759 /* AccountViewInput.swift in Sources */,
+				A105B4A51D4247C7006168C2 /* SearchCollectionCell.swift in Sources */,
 				D774CA6EA80BCA5FEAE0E5B9 /* AccountViewOutput.swift in Sources */,
 				52A4E0E01D3A164100DDAC54 /* DiscountCell.swift in Sources */,
 				A10D8F571D37BB3A0064C6C1 /* CartView.swift in Sources */,

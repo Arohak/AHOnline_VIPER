@@ -12,8 +12,6 @@ class HomeView: BaseView {
         let view = UITableView(frame: CGRectZero, style: .Grouped)
         view.separatorStyle = .None
         view.backgroundColor = CLEAR
-//        view.estimatedRowHeight = 44
-//        view.rowHeight = UITableViewAutomaticDimension
 
         return view
     }()
@@ -31,8 +29,7 @@ class HomeView: BaseView {
         super.init()
         
         addSubview(tableView)
-        tableView.autoPinEdgeToSuperviewEdge(.Top, withInset: 20)
-        tableView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 0, left: 0, bottom: 44, right: 0), excludingEdge: .Top)
+        tableView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: NAV_HEIGHT, left: 0, bottom: TAB_HEIGHT, right: 0))
     }
     
     required init?(coder aDecoder: NSCoder) {

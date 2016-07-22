@@ -31,7 +31,7 @@ class AUTHTextField: UITextField {
     }
 }
 
-class DUTextField: UITextField {
+class HOTextField: UITextField {
     
     var indexPath = NSIndexPath(forRow: 0, inSection: 0)
     

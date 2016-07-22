@@ -21,6 +21,13 @@ extension HomePresenter: HomeViewOutput {
         interactor.getRestaurantsHome()
     }
     
+    func searchButtonClicked() {
+        let vc = SearchViewController()
+        _ = SearchModuleInitializer(viewController: vc)
+        
+        router.pushViewController(vc)
+    }
+    
     func didSelectObject(object: AHObject) {
         interactor.getObject(object.id)
     }

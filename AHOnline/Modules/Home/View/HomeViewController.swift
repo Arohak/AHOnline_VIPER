@@ -23,13 +23,10 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Home"
+        navigationItem.setRightBarButtonItem(UIBarButtonItem(image: UIImage(named: "img_search"), style: .Plain, target: self, action: #selector(searchAction)), animated: true)
+
         output.viewIsReady()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     // MARK: - Internal Method -
@@ -72,6 +69,11 @@ class HomeViewController: BaseViewController {
             }
             output.didSelectObjectForType(type)
         }
+    }
+    
+    //MARK: - Actions -
+    func searchAction() {
+        output.searchButtonClicked()
     }
 }
 

@@ -18,70 +18,28 @@ class SearchCell: BaseTableViewCell {
         cellContentView.autoPinEdgesToSuperviewEdges()
     }
     
-    init(style: UITableViewCellStyle, reuseIdentifier: String?, title: String = "", description: String = "") {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        let cellContentView = HomeCellContentView(title: title, description: description)
-        contentView.addSubview(cellContentView)
-        cellContentView.autoPinEdgesToSuperviewEdges()
-    }
-    
-    func setValues(section: Int,
-                   title: String,
-                   desc: String,
-                   items: [AHObject],
-                   height: CGFloat = ScreenSize.HEIGHT*0.3,
-                   inset: CGFloat = 0,
-                   callBack: CollectionCallback) {
-        
-        cellContentView.setValues(section, title: title, desc: desc, items: items, height: height, inset: inset, callBack: callBack)
-    }
-    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setValues(collectionItems: [String]) {
+       cellContentView.setValues(collectionItems)
     }
 }
 
 //MARK: - SearchCellContentView
 class SearchCellContentView: UIView {
     
-    let collectionCellIdentifire = "collectionCellIdentifire"
-    
-    var title: String!
-    var desc: String!
-
-    var collectionItems: [AHObject] = []
-    var collectionSize = CGSizeZero
-    var collectionInsets = UIEdgeInsetsZero
-    
-    var section: Int = 0
-    var callBack: CollectionCallback?
+    private let collectionCellIdentifire = "collectionCellIdentifire"
+    private var collectionItems: [String] = []
 
     //MARK: - Create UIElements -
-    lazy var titleLabel: TitleLabel = {
-        let view = TitleLabel.newAutoLayoutView()
-        view.numberOfLines = 0
-        view.textAlignment = .Center
-
-        return view
-    }()
-    
-    lazy var descriptionLabel: DescLabel = {
-        let view = DescLabel.newAutoLayoutView()
-        view.numberOfLines = 0
-        view.textAlignment = .Center
-
-        return view
-    }()
-    
     lazy var collection: BaseCollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .Horizontal
         let view = BaseCollectionView(frame: CGRectZero, collectionViewLayout: layout)
+        view.registerClass(SearchCollectionCell.self, forCellWithReuseIdentifier: self.collectionCellIdentifire)
         view.dataSource = self
         view.delegate = self
-        view.registerClass(HomeCollectionCell.self, forCellWithReuseIdentifier: self.collectionCellIdentifire)
-        view.showsHorizontalScrollIndicator = false
         
         return view
     }()
@@ -89,24 +47,12 @@ class SearchCellContentView: UIView {
     //MARK: - Initialize -
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
     }
     
     convenience init() {
         self.init(frame: CGRectZero)
-    }
-    
-    convenience init(title: String) {
-        self.init(frame: CGRectZero)
         
         setupCollectionView()
-        setupTitle(title)
-    }
-    
-    convenience init(title: String, description: String) {
-        self.init(title: title)
-        
-        setupDescription(description)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -114,54 +60,15 @@ class SearchCellContentView: UIView {
     }
     
     //MARK: - Private Methods -
-    private func setupTitle(text: String) {
-        addSubview(titleLabel)
-        titleLabel.text = text
-
-        titleLabel.autoPinEdgeToSuperviewEdge(.Top, withInset: HO_INSET*2)
-        titleLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: HO_INSET)
-        titleLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: HO_INSET)
-    }
-    
-    private func setupDescription(text: String) {
-        addSubview(descriptionLabel)
-        descriptionLabel.text = text
-
-        descriptionLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: titleLabel, withOffset: 0)
-        descriptionLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: HO_INSET)
-        descriptionLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: HO_INSET)
-    }
-    
     private func setupCollectionView() {
         addSubview(collection)
-        
-        let view = descriptionLabel.superview == nil ? titleLabel.superview == nil ? self : titleLabel : descriptionLabel
-        collection.autoPinEdge(.Top, toEdge: .Bottom, ofView: view, withOffset: HO_INSET)
-        collection.autoPinEdgeToSuperviewEdge(.Left, withInset: HO_INSET)
-        collection.autoPinEdgeToSuperviewEdge(.Right, withInset: HO_INSET)
-        collection.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 0)
+        collection.autoPinEdgesToSuperviewEdges()
     }
     
-    //MARK: - Public Methods -
-    func setValues(section: Int,
-                   title: String,
-                   desc: String,
-                   items: [AHObject],
-                   height: CGFloat = ScreenSize.HEIGHT*0.3,
-                   inset: CGFloat = 0,
-                   callBack: CollectionCallback)
-    {
+    func setValues(collectionItems: [String]) {
+        self.collectionItems = collectionItems
         
-        if !title.isEmpty { setupTitle(title) }
-        if !desc.isEmpty { setupDescription(desc) }
-        setupCollectionView()
-        
-        collectionItems = items
-        collectionSize = CGSize(width: height, height: height*0.7)
-        collectionInsets = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
-        
-        self.section = section
-        self.callBack = callBack
+        collection.reloadData()
     }
 }
 
@@ -174,25 +81,28 @@ extension SearchCellContentView: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionCellIdentifire, forIndexPath: indexPath) as! HomeCollectionCell
-        let restaurant = collectionItems[indexPath.row]
-        cell.setValues(restaurant)
+        let item = collectionItems[indexPath.row]
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionCellIdentifire, forIndexPath: indexPath) as! SearchCollectionCell
+        cell.cellContentView.button.setTitle(item, forState: .Normal)
         
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let indexPath = NSIndexPath(forRow: indexPath.row, inSection: section)
-        callBack!(indexPath: indexPath)
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! SearchCollectionCell
+        cell.cellContentView.button.selected = !cell.cellContentView.button.selected
+        
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let item = collectionItems[indexPath.row] as NSString 
+        let textSize: CGSize = item.sizeWithAttributes([NSFontAttributeName: CAC_TITLE_FONT])
         
-        return collectionSize
+        return textSize
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         
-        return collectionInsets
+        return UIEdgeInsets(top: SE_INSET/2, left: SE_INSET/2, bottom: SE_INSET/2, right: SE_INSET/2)
     }
 }

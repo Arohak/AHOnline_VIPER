@@ -13,10 +13,7 @@ class SearchViewController: BaseViewController {
 
     var searchView = SearchView()
     let cellIdentifire = "cellIdentifire"
-    var titles: [String] = []
-    var descs: [String] = []
-    var items: [[AHObject]] = []
-    var heights: [CGFloat] = []
+    var isAnimation = true
     
     // MARK: - Life cycle -
     override func viewDidLoad() {
@@ -49,28 +46,30 @@ class SearchViewController: BaseViewController {
     
     //MARK: - CallBacks Methods -
     func didSelectCollectionAtIndexPath(indexPath: NSIndexPath) {
-//        let object = items[indexPath.section][indexPath.row]
-//        if object.id != 0 {
-//            output.didSelectObject(object)
-//        } else {
-//            var type: ObjectsType = .New
-//            switch indexPath.section {
-//            case 0:
-//                type = .New
-//            case 1:
-//                type = .Rate
-//            case 2:
-//                type = .Open
-//            default:
-//                break
-//            }
-//            output.didSelectObjectForType(type)
-//        }
+
     }
     
     //MARK: - Actions -
     func filterAction() {
+        animationFilterView()
 //        output.filterButtonClicked()
+    }
+    
+    func animationFilterView() {
+        if isAnimation {
+            UIView.animateWithDuration(0.5, animations: {
+                self.searchView.filterView.alpha = 1
+            }) { finish in
+                self.isAnimation = !self.isAnimation
+            }
+        } else {
+            UIView.animateWithDuration(0.5, animations: {
+                self.searchView.filterView.alpha = 0
+            }) { finish in
+                self.isAnimation = !self.isAnimation
+            }
+        }
+
     }
 }
 
@@ -80,26 +79,6 @@ extension SearchViewController: SearchViewInput {
     func setupInitialState() {
         
     }
-
-    func setupInitialState(home: Home) {
-        titles = ["New Restaurants", "Rate Restaurants", "Open Restaurants"]
-        descs = ["", "", ""]
-        heights = [ScreenSize.HEIGHT*0.25, ScreenSize.HEIGHT*0.25, ScreenSize.HEIGHT*0.3]
-        
-        items.append([AHObject]())
-        items.append([AHObject]())
-        items.append([AHObject]())
-        
-        let existRestaurant = AHObject(data: JSON(["img" : "img_all"]))
-        items[0] = Array(home.newRestaurants)
-        items[0].append(existRestaurant)
-        items[1] = Array(home.rateRestaurants)
-        items[1].append(existRestaurant)
-        items[2] = Array(home.openRestaurants)
-        items[2].append(existRestaurant)
-        
-        searchView.tableView.reloadData()
-    }
 }
 
 //MARK: - extension for UITableView -
@@ -107,25 +86,18 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return items.count
+        return 5
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifire) as! HomeCell
-        cell.setValues(indexPath.row,
-                       title:   titles[indexPath.row],
-                       desc:    descs[indexPath.row],
-                       items:   items[indexPath.row],
-                       height:  heights[indexPath.row],
-                       inset:   0,
-                       callBack: didSelectCollectionAtIndexPath)
         
         return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        return heights[indexPath.row]
+        return SE_CELL_HEIGHT
     }
 }
 

@@ -94,7 +94,7 @@ extension HomeViewController: HomeViewInput {
         items[0].append(existRestaurant)
         items[1] = Array(home.rateRestaurants)
         items[1].append(existRestaurant)
-        items[2] = Array(home.openRestaurants)
+        items[2] = Array(home.openRestaurants.reverse())
         items[2].append(existRestaurant)
         
         homeView.tableView.reloadData()

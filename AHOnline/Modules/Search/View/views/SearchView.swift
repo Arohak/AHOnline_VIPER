@@ -8,6 +8,7 @@
 
 class SearchView: BaseView {
     
+    //MARK: - Create UIElements -
     lazy var textField: HOTextField = {
         let view = HOTextField(frame: CGRect(x: 0, y: 0, width: ScreenSize.WIDTH - 100, height: TAB_HEIGHT - 16))
         view.backgroundColor = WHITE
@@ -32,8 +33,9 @@ class SearchView: BaseView {
         return view
     }()
     
-    lazy var filterTableView: FilterTableView = {
-        let view = FilterTableView(frame: CGRectZero, style: .Plain)
+    lazy var filterView: FilterView = {
+        let view = FilterView.newAutoLayoutView()
+        view.alpha = 0
         
         return view
     }()
@@ -45,11 +47,8 @@ class SearchView: BaseView {
         addSubview(tableView)
         tableView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: NAV_HEIGHT, left: 0, bottom: TAB_HEIGHT, right: 0))
 
-        addSubview(filterTableView)
-        filterTableView.autoPinEdgeToSuperviewEdge(.Top, withInset: 100)
-        filterTableView.autoPinEdgeToSuperviewEdge(.Left, withInset: 20)
-        filterTableView.autoPinEdgeToSuperviewEdge(.Right, withInset: 20)
-        filterTableView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 100)
+        addSubview(filterView)
+        filterView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: NAV_HEIGHT, left: 0, bottom: TAB_HEIGHT, right: 0))
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -64,7 +64,7 @@ struct APIManager {
                          json["offset"].stringValue)
         }
 
-        return apiHelper.request(.GET, url: URL)
+        return apiHelper.request(.GET, url: URL, showProgress: true)
     }
     
     static func getNearsObjects(json: JSON) -> Observable<JSON> {

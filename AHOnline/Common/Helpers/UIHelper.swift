@@ -31,6 +31,9 @@ struct UIHelper {
         let tabBarItem = UITabBarItem.appearance()
         tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: GRAY, NSFontAttributeName : FONT_TABBAR], forState: .Normal)
         tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: RED, NSFontAttributeName : FONT_TABBAR], forState: .Selected)
+        
+        let cell = UITableViewCell.appearance()
+        cell.tintColor = RED
     }
     
     static func showHUD(message: String) {

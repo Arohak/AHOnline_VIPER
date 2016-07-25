@@ -44,8 +44,8 @@ class HOTextField: UITextField {
         layer.borderColor = BLACK.CGColor
         keyboardAppearance = .Dark
         font = TITLE_BTN_FONT
-        textColor = BLUE
-        tintColor = BLUE
+        textColor = RED
+        tintColor = RED
         backgroundColor = WHITE
     }
     

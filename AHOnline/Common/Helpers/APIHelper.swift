@@ -12,8 +12,8 @@ let HTTPS   = "http://"
 let IP      = "localhost"
 let PORT    = ":3000/"
 let AHO     = "api/v1/"
-//let baseURL = HTTPS + IP + PORT + AHO
-let baseURL = "http://buyonline-arohak.c9users.io/api/v1/"
+let baseURL = HTTPS + IP + PORT + AHO
+//let baseURL = "http://buyonline-arohak.c9users.io/api/v1/"
 
 class APIHelper {
     

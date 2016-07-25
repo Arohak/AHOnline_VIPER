@@ -13,11 +13,14 @@ struct APIManager {
         static let GET_RESTAURANTS_HOME                     = "home"
         static let GET_CATEGORIES                           = "categories"
         static let GET_DELIVERIES                           = "deliveries"
-        static let GET_PRODUCTS                             = "categoryitems/%@/products"
-        
+        static let GET_PRODUCTS                             = "categoryitems/%@/products?limit=%@&offset=%@"
+        static let GET_PRODUCTS_TYPE                        = "products?type=%@&limit=%@&offset=%@"
+        static let GET_PRODUCTS_SEARCH                      = "products?search=%@&limit=%@&offset=%@"
+
         static let GET_OBJECTS                              = "categories/%@/subcategories/%@?limit=%@&offset=%@"
         static let GET_OBJECTS_TYPE                         = "restaurants?type=%@&limit=%@&offset=%@"
         static let GET_OBJECTS_LIMIT                        = "restaurants?type=all&limit=%@&offset=0"
+        static let GET_OBJECTS_SEARCH                       = "restaurants?search=%@&limit=%@&offset=%@"
         static let GET_OBJECT                               = "restaurants/%@"
         static let GET_NEARST_OBJECTS                       = "nears_objects?latitude=%@&longitude=%@&km=%@"
     }
@@ -39,9 +42,28 @@ struct APIManager {
         return apiHelper.request(.GET, url: url)
     }
     
-    static func getProducts(id: String) -> Observable<JSON> {
-        let url = String(format: ROUTERS.GET_PRODUCTS, id)
-        return apiHelper.request(.GET, url: url)
+    static func getProducts(json: JSON) -> Observable<JSON> {
+        var URL = ""
+        if !json["id"].stringValue.isEmpty  {
+            URL = String(format: ROUTERS.GET_PRODUCTS,
+                         json["id"].stringValue,
+                         json["limit"].stringValue,
+                         json["offset"].stringValue)
+            
+        } else if !json["search"].stringValue.isEmpty  {
+            URL = String(format: ROUTERS.GET_PRODUCTS_SEARCH,
+                         json["search"].stringValue,
+                         json["limit"].stringValue,
+                         json["offset"].stringValue)
+            
+        } else {
+            URL = String(format: ROUTERS.GET_PRODUCTS_TYPE,
+                         json["type"].stringValue,
+                         json["limit"].stringValue,
+                         json["offset"].stringValue)
+        }
+        
+        return apiHelper.request(.GET, url: URL)
     }
     
     static func getObjectsForLimit(limit: String) -> Observable<JSON> {
@@ -51,20 +73,27 @@ struct APIManager {
     
     static func getObjects(json: JSON) -> Observable<JSON> {
         var URL = ""
-        if json["category_id"].stringValue.isEmpty  {
-            URL = String(format: ROUTERS.GET_OBJECTS_TYPE,
-                         json["type"].stringValue,
-                         json["limit"].stringValue,
-                         json["offset"].stringValue)
-        } else {
+        if !json["category_id"].stringValue.isEmpty  {
             URL = String(format: ROUTERS.GET_OBJECTS,
                          json["category_id"].stringValue,
                          json["subcategory_id"].stringValue,
                          json["limit"].stringValue,
                          json["offset"].stringValue)
+            
+        } else if !json["search"].stringValue.isEmpty  {
+            URL = String(format: ROUTERS.GET_OBJECTS_SEARCH,
+                         json["search"].stringValue,
+                         json["limit"].stringValue,
+                         json["offset"].stringValue)
+            
+        } else {
+            URL = String(format: ROUTERS.GET_OBJECTS_TYPE,
+                         json["type"].stringValue,
+                         json["limit"].stringValue,
+                         json["offset"].stringValue)
         }
 
-        return apiHelper.request(.GET, url: URL, showProgress: true)
+        return apiHelper.request(.GET, url: URL)
     }
     
     static func getNearsObjects(json: JSON) -> Observable<JSON> {

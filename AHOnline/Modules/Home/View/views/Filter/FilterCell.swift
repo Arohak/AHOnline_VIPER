@@ -1,15 +1,15 @@
 //
-//  SearchCell.swift
+//  FilterCell.swift
 //  AHOnline
 //
 //  Created by Ara Hakobyan on 7/9/16.
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-class SearchCell: BaseTableViewCell {
+class FilterCell: BaseTableViewCell {
     
     //MARK: - Create UIElements -
-    var cellContentView = SearchCellContentView()
+    var cellContentView = FilterCellContentView()
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -27,8 +27,8 @@ class SearchCell: BaseTableViewCell {
     }
 }
 
-//MARK: - SearchCellContentView
-class SearchCellContentView: UIView {
+//MARK: - FilterCellContentView
+class FilterCellContentView: UIView {
     
     private let collectionCellIdentifire = "collectionCellIdentifire"
     private var collectionItems: [String] = []
@@ -37,7 +37,7 @@ class SearchCellContentView: UIView {
     lazy var collection: BaseCollectionView = {
         let layout = UICollectionViewFlowLayout()
         let view = BaseCollectionView(frame: CGRectZero, collectionViewLayout: layout)
-        view.registerClass(SearchCollectionCell.self, forCellWithReuseIdentifier: self.collectionCellIdentifire)
+        view.registerClass(FilterCollectionCell.self, forCellWithReuseIdentifier: self.collectionCellIdentifire)
         view.dataSource = self
         view.delegate = self
         
@@ -73,7 +73,7 @@ class SearchCellContentView: UIView {
 }
 
 //MARK: - extension for UICollectionView -
-extension SearchCellContentView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension FilterCellContentView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -82,14 +82,14 @@ extension SearchCellContentView: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let item = collectionItems[indexPath.row]
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionCellIdentifire, forIndexPath: indexPath) as! SearchCollectionCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionCellIdentifire, forIndexPath: indexPath) as! FilterCollectionCell
         cell.cellContentView.button.setTitle(item, forState: .Normal)
         
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! SearchCollectionCell
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! FilterCollectionCell
         cell.cellContentView.button.selected = !cell.cellContentView.button.selected
         
     }

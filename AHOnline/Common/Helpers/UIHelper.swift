@@ -209,4 +209,26 @@ struct UIHelper {
         tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .None)
         tableView.endUpdates()
     }
+    
+    static func insertRowsInCollection<T>(collectionView: UICollectionView, objects: [T], inout inObjects: [T], reversable: Bool) {
+        var indexPaths = Array<NSIndexPath>()
+        let currentCount = inObjects.count
+        for i in 0..<objects.count {
+            indexPaths.append(NSIndexPath(forRow: currentCount+i, inSection:0))
+        }
+        let revObjects = objects.reverse()
+        inObjects = reversable ? inObjects + revObjects : inObjects + objects
+        
+        collectionView.insertItemsAtIndexPaths(indexPaths)
+    }
+    
+    static func deleteRowsFromCollection<T>(collectionView: UICollectionView, inout objects: [T]) {
+        var indexPaths = Array<NSIndexPath>()
+        for i in 0..<objects.count {
+            indexPaths.append(NSIndexPath(forRow: i, inSection:0))
+        }
+        objects.removeAll()
+        
+        collectionView.deleteItemsAtIndexPaths(indexPaths)
+    }
 }

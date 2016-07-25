@@ -21,13 +21,6 @@ extension HomePresenter: HomeViewOutput {
         interactor.getRestaurantsHome()
     }
     
-    func searchButtonClicked() {
-        let vc = SearchViewController()
-        _ = SearchModuleInitializer(viewController: vc)
-        
-        router.pushViewController(vc)
-    }
-    
     func didSelectObject(object: AHObject) {
         interactor.getObject(object.id)
     }
@@ -38,6 +31,20 @@ extension HomePresenter: HomeViewOutput {
         vc.setParams(type: type)
         
         router.pushViewController(vc)
+    }
+    
+    func search(json: JSON) {
+        let vc = ProductViewController()
+        _ = ProductModuleInitializer(viewController: vc)
+        vc.setParams(search: json["search"].stringValue)
+        
+        router.pushViewController(vc)
+        
+        //        let vc = ObjectsViewController()
+        //        _ = ObjectsModuleInitializer(viewController: vc)
+        //        vc.setParams(search: json["search"].stringValue)
+        //
+        //        router.pushViewController(vc)
     }
 }
 

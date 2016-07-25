@@ -14,4 +14,7 @@ class SearchRouter {
 //MARK: - extension for SearchRouterInput -
 extension SearchRouter: SearchRouterInput {
     
+    func pushViewController(vc: UIViewController) {
+        Wireframe.pushViewController(vc)
+    }
 }

@@ -8,6 +8,6 @@
 
 protocol ProductViewOutput {
 
-    func getProducts(objectMenu: ObjectMenu)
+    func getProducts(json: JSON)
     func addProductBuy(product: Product)
 }

@@ -13,25 +13,21 @@ class ProductViewController: BaseViewController {
     private var productView = ProductView()
     private let cellIdentifire = "cellIdentifire"
     private var products: [Product] = []
-    private var objectMenu: ObjectMenu!
     
-    //MARK: - Initilize -
-    init(objectMenu: ObjectMenu) {
-        super.init(nibName: nil, bundle: nil)
+    private var search              = ""
+    private var id                  = ""
+    private var isAddMore           = true
+    private var limit               = LIMIT
+    private var offset              = OFFSET
 
-        self.objectMenu = objectMenu
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     // MARK: - Life cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Products"
         navigationController?.setNavigationBarHidden(false, animated: true)
-        output.getProducts(objectMenu)
+        getProducts()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -47,6 +43,8 @@ class ProductViewController: BaseViewController {
         productView.collectionView.dataSource = self
         productView.collectionView.delegate = self
         productView.collectionView.registerClass(ProductCell.self, forCellWithReuseIdentifier: cellIdentifire)
+        
+        createPagination()
     }
     
     //MARK: - Actions -
@@ -56,15 +54,69 @@ class ProductViewController: BaseViewController {
         let cell = productView.collectionView.cellForItemAtIndexPath(sender.indexPath) as! ProductCell
         cell.cellContentView.updateCount(product)
     }
+    
+    private func getProducts() {
+        var params = JSON.null
+        if !id.isEmpty {
+            params = JSON([
+                "id"                : "\(id)",
+                "limit"             : "\(limit)",
+                "offset"            : "\(offset)"])
+            
+        } else if !search.isEmpty {
+            params = JSON([
+                "limit"             : "\(limit)",
+                "offset"            : "\(offset)",
+                "search"            : "\(search)"])
+            
+        }
+        
+        output.getProducts(params)
+    }
+    
+    //MARK: - Public Methods -
+    func setParams(id: String = "", search: String = "") {
+        self.id     = id
+        self.search = search
+    }
+    
+    //MARK: - Pagination -
+    func createPagination() {
+        productView.collectionView.addInfiniteScrollingWithActionHandler {
+            [weak self] in
+            if let weakSelf = self {
+                weakSelf.offset += weakSelf.limit
+                weakSelf.getProducts()
+                weakSelf.productView.collectionView.infiniteScrollingView.stopAnimating()
+            }
+        }
+    }
 }
 
 //MARK: - extension for ProductViewInput -
 extension ProductViewController: ProductViewInput {
 
     func setupInitialState(products: [Product]) {
-       self.products = products
+        handleData(products)
+//       self.products = products
+//        productView.collectionView.reloadData()
+    }
+    
+    func handleData(newProducts: [Product]) {
+        if offset == 0 {
+            UIHelper.deleteRowsFromCollection(productView.collectionView, objects: &products)
+        }
         
-        productView.collectionView.reloadData()
+        if isAddMore {
+            UIHelper.insertRowsInCollection(productView.collectionView, objects: newProducts, inObjects: &products, reversable: false)
+            
+            if newProducts.count < limit {
+                productView.collectionView.showsInfiniteScrolling = false
+                isAddMore = false
+            } else {
+                productView.collectionView.showsInfiniteScrolling = true
+            }
+        }
     }
 }
 

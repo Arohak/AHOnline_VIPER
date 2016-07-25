@@ -18,6 +18,8 @@ class HomeViewController: BaseViewController {
     var items: [[AHObject]] = []
     var heights: [CGFloat] = []
     var carouselTimer: NSTimer!
+    var isSearchAnimation = true
+    var isFilterAnimation = true
 
     // MARK: - Life cycle -
     override func viewDidLoad() {
@@ -36,6 +38,9 @@ class HomeViewController: BaseViewController {
         homeView.tableView.dataSource = self
         homeView.tableView.delegate = self
         homeView.tableView.registerClass(HomeCell.self, forCellReuseIdentifier: cellIdentifire)
+        
+        homeView.searchView.textField.delegate = self
+        homeView.searchView.filterButton.addTarget(self, action: #selector(filterAction), forControlEvents: .TouchUpInside)
         
         scheduleCarouselScrolingTimer()
     }
@@ -73,7 +78,45 @@ class HomeViewController: BaseViewController {
     
     //MARK: - Actions -
     func searchAction() {
-        output.searchButtonClicked()
+        animationSearchView()
+        if !isFilterAnimation { animationFilterView() }
+    }
+
+    func filterAction() {
+        animationFilterView()
+    }
+    
+    //MARK: - Animation -
+    func animationSearchView() {
+        if isSearchAnimation {
+            UIView.animateWithDuration(0.5, animations: {
+                self.homeView.searchView.alpha = 1
+            }) { finish in
+                self.isSearchAnimation = !self.isSearchAnimation
+            }
+        } else {
+            UIView.animateWithDuration(0.5, animations: {
+                self.homeView.searchView.alpha = 0
+            }) { finish in
+                self.isSearchAnimation = !self.isSearchAnimation
+            }
+        }
+    }
+    
+    func animationFilterView() {
+        if isFilterAnimation {
+            UIView.animateWithDuration(0.5, animations: {
+                self.homeView.filterView.alpha = 1
+            }) { finish in
+                self.isFilterAnimation = !self.isFilterAnimation
+            }
+        } else {
+            UIView.animateWithDuration(0.5, animations: {
+                self.homeView.filterView.alpha = 0
+            }) { finish in
+                self.isFilterAnimation = !self.isFilterAnimation
+            }
+        }
     }
 }
 
@@ -145,6 +188,21 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         homeView.carousel.autoPinEdgesToSuperviewEdges()
         
         return view
+    }
+}
+
+//MARK: - extension for UITextFieldDelegate -
+extension HomeViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField.text!.characters.count < 3 {
+            UIHelper.showHUD("search text min 3 simbol")
+        } else {
+            textField.resignFirstResponder()
+            let json = JSON(["search": textField.text!])
+            output.search(json)
+        }
+        return true
     }
 }
 

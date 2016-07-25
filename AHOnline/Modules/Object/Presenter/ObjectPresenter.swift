@@ -18,8 +18,9 @@ class ObjectPresenter {
 extension ObjectPresenter: ObjectViewOutput {
     
     func didSelectObjectMenuRow(objectMenu: ObjectMenu) {
-        let vc = ProductViewController(objectMenu: objectMenu)
+        let vc = ProductViewController()
         _ = ProductModuleInitializer(viewController: vc)
+        vc.setParams("\(objectMenu.id)")
         
         router.pushViewController(vc)
     }

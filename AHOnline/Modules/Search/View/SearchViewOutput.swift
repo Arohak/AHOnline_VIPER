@@ -9,4 +9,5 @@
 protocol SearchViewOutput {
 
     func viewIsReady()
+    func search(json: JSON)
 }

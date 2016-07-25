@@ -1,15 +1,15 @@
 //
-//  SearchCollectionCell.swift
+//  FilterCollectionCell.swift
 //  AHOnline
 //
 //  Created by Ara Hakobyan on 7/9/16.
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-class SearchCollectionCell: UICollectionViewCell {
+class FilterCollectionCell: UICollectionViewCell {
     
     //MARK: - Create UIElements -
-    var cellContentView = SearchCollectionCellContentView()
+    var cellContentView = FilterCollectionCellContentView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,8 +23,8 @@ class SearchCollectionCell: UICollectionViewCell {
     }
 }
 
-//MARK: - SearchCollectionCellContentView -
-class SearchCollectionCellContentView: UIView {
+//MARK: - FilterCollectionCellContentView -
+class FilterCollectionCellContentView: UIView {
     
     //MARK: - Create UIElements -
     lazy var button: HOButton = {

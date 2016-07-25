@@ -28,9 +28,9 @@ class SearchViewController: BaseViewController {
         
         configureNavigationBar()
 
-        searchView.tableView.dataSource = self
-        searchView.tableView.delegate = self
-        searchView.tableView.registerClass(HomeCell.self, forCellReuseIdentifier: cellIdentifire)
+//        searchView.tableView.dataSource = self
+//        searchView.tableView.delegate = self
+//        searchView.tableView.registerClass(HomeCell.self, forCellReuseIdentifier: cellIdentifire)
         
         searchView.textField.delegate = self
         let filterButton = navigationItem.rightBarButtonItem?.customView as! HOButton
@@ -40,7 +40,7 @@ class SearchViewController: BaseViewController {
     private func configureNavigationBar() {
         title = "Search"
         navigationItem.titleView = searchView.textField
-        navigationItem.setRightBarButtonItem(searchView.rightItem, animated: true)
+//        navigationItem.setRightBarButtonItem(searchView.rightItem, animated: true)
     }
     
     
@@ -56,20 +56,19 @@ class SearchViewController: BaseViewController {
     }
     
     func animationFilterView() {
-        if isAnimation {
-            UIView.animateWithDuration(0.5, animations: {
-                self.searchView.filterView.alpha = 1
-            }) { finish in
-                self.isAnimation = !self.isAnimation
-            }
-        } else {
-            UIView.animateWithDuration(0.5, animations: {
-                self.searchView.filterView.alpha = 0
-            }) { finish in
-                self.isAnimation = !self.isAnimation
-            }
-        }
-
+//        if isAnimation {
+//            UIView.animateWithDuration(0.5, animations: {
+//                self.searchView.filterView.alpha = 1
+//            }) { finish in
+//                self.isAnimation = !self.isAnimation
+//            }
+//        } else {
+//            UIView.animateWithDuration(0.5, animations: {
+//                self.searchView.filterView.alpha = 0
+//            }) { finish in
+//                self.isAnimation = !self.isAnimation
+//            }
+//        }
     }
 }
 
@@ -109,7 +108,9 @@ extension SearchViewController: UITextFieldDelegate {
         if textField.text!.characters.count < 3 {
             UIHelper.showHUD("search text min 3 simbol")
         } else {
-            
+            textField.resignFirstResponder()
+            let json = JSON(["search": textField.text!])
+            output.search(json)
         }
         return true
     }

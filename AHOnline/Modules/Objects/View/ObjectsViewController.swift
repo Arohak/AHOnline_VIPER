@@ -25,11 +25,12 @@ class ObjectsViewController: BaseViewController {
     private let cellIdentifire      = "cellIdentifire"
     private var objects: [AHObject] = []
     
+    private var search              = ""
     private var categoryID          = ""
     private var subcategoryID       = ""
     private var isAddMore           = true
-    private var limit               = OBJECT_LIMIT
-    private var offset              = OBJECT_OFFSET
+    private var limit               = LIMIT
+    private var offset              = OFFSET
     private var type                = ObjectsType.ALL
     
     // MARK: - Life cycle -
@@ -55,15 +56,22 @@ class ObjectsViewController: BaseViewController {
     //MARK: -  Private Methods -
     private func getObjects() {
         var params = JSON.null
-        if categoryID.isEmpty {
-            params = JSON([
-                "limit"             : "\(limit)",
-                "offset"            : "\(offset)",
-                "type"              : "\(type.rawValue)"])
-        } else {
+        if !categoryID.isEmpty {
             params = JSON([
                 "category_id"       : "\(categoryID)",
                 "subcategory_id"    : "\(subcategoryID)",
+                "limit"             : "\(limit)",
+                "offset"            : "\(offset)",
+                "type"              : "\(type.rawValue)"])
+            
+        } else if !search.isEmpty {
+            params = JSON([
+                "limit"             : "\(limit)",
+                "offset"            : "\(offset)",
+                "search"            : "\(search)"])
+            
+        } else {
+            params = JSON([
                 "limit"             : "\(limit)",
                 "offset"            : "\(offset)",
                 "type"              : "\(type.rawValue)"])
@@ -73,9 +81,10 @@ class ObjectsViewController: BaseViewController {
     }
     
     //MARK: - Public Methods -
-    func setParams(categoryID: String = "", subcategoryID: String = "", type: ObjectsType = .ALL) {
+    func setParams(categoryID: String = "", subcategoryID: String = "", search: String = "", type: ObjectsType = .ALL) {
         self.categoryID     = categoryID
         self.subcategoryID  = subcategoryID
+        self.search         = search
         self.type           = type
     }
     

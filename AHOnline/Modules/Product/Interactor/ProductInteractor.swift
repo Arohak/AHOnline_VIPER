@@ -15,8 +15,8 @@ class ProductInteractor {
 //MARK: - extension for ProductInteractorInput -
 extension ProductInteractor: ProductInteractorInput {
 
-    func getProducts(objectMenu: ObjectMenu) {
-        _ = APIManager.getProducts("\(objectMenu.id)")
+    func getProducts(json: JSON) {
+        _ = APIManager.getProducts(json)
             .subscribe(onNext: { result in
                 if result != nil {
                     var products: [Product] = []

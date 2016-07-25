@@ -14,16 +14,25 @@ class SearchPresenter {
     var router: SearchRouterInput!
 }
 
-//MARK: - extension for SearchModuleInput -
-extension SearchPresenter: SearchModuleInput {
-
-}
-
 //MARK: - extension for SearchViewOutput -
 extension SearchPresenter: SearchViewOutput {
     
     func viewIsReady() {
 
+    }
+    
+    func search(json: JSON) {
+        let vc = ProductViewController()
+        _ = ProductModuleInitializer(viewController: vc)
+        vc.setParams(search: json["search"].stringValue)
+        
+        router.pushViewController(vc)
+        
+//        let vc = ObjectsViewController()
+//        _ = ObjectsModuleInitializer(viewController: vc)
+//        vc.setParams(search: json["search"].stringValue)
+//        
+//        router.pushViewController(vc)
     }
 }
 

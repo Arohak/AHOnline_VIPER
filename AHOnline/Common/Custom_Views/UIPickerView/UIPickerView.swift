@@ -27,6 +27,7 @@ class DeliveryPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSo
     convenience init(deliveries: [Delivery], callback: DeliveryPickerCallback) {
         self.init(frame: CGRectZero)
         
+//        backgroundColor = BLUE_LIGHT
         self.callback = callback
         self.deliveries = deliveries
     }
@@ -67,11 +68,11 @@ class DeliveryPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSo
         view.addSubview(priceLabel)
         
         cityLabel.autoAlignAxisToSuperviewAxis(.Horizontal)
-        cityLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: CA_INSET)
+        cityLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: CA_INSET*3)
         cityLabel.autoPinEdge(.Right, toEdge: .Left, ofView: priceLabel, withOffset: CA_INSET)
 
         priceLabel.autoAlignAxisToSuperviewAxis(.Horizontal)
-        priceLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: CA_INSET)
+        priceLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: CA_INSET*3)
         
         return view
     }

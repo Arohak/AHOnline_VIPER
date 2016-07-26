@@ -15,7 +15,7 @@ class FilterCell: BaseTableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         contentView.addSubview(cellContentView)
-        cellContentView.autoPinEdgesToSuperviewEdges()
+        cellContentView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: SE_INSET, left: SE_INSET, bottom: 0, right: SE_INSET))
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -30,8 +30,9 @@ class FilterCell: BaseTableViewCell {
 //MARK: - FilterCellContentView
 class FilterCellContentView: UIView {
     
-    private let collectionCellIdentifire = "collectionCellIdentifire"
-    private var collectionItems: [String] = []
+    private let collectionCellIdentifire    = "collectionCellIdentifire"
+    private var collectionItems: [String]   = []
+    var selectedItems: [String]             = []
 
     //MARK: - Create UIElements -
     lazy var collection: BaseCollectionView = {
@@ -65,6 +66,15 @@ class FilterCellContentView: UIView {
         collection.autoPinEdgesToSuperviewEdges()
     }
     
+    private func addItem(item: String) {
+       selectedItems.append(item)
+    }
+    
+    private func removeItem(item: String) {
+        selectedItems.removeAtIndex(selectedItems.indexOf(item)!)
+    }
+    
+    //MARK: - Public Methods -
     func setValues(collectionItems: [String]) {
         self.collectionItems = collectionItems
         
@@ -92,6 +102,8 @@ extension FilterCellContentView: UICollectionViewDataSource, UICollectionViewDel
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! FilterCollectionCell
         cell.cellContentView.button.selected = !cell.cellContentView.button.selected
         
+        let item = collectionItems[indexPath.row]
+        cell.cellContentView.button.selected ? addItem(item) : removeItem(item)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {

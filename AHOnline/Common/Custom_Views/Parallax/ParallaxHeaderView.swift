@@ -65,7 +65,7 @@ class ParallaxHeaderView: UIView {
         addDefaultUIElements()
     }
     
-    convenience init(imageURL: String?, frame : CGRect) {
+    convenience init(imageURL: String?, frame : CGRect = CGRect(x: 0, y: 0, width: ScreenSize.WIDTH, height: ScreenSize.HEIGHT*0.3)) {
         self.init(frame: frame)
         
         self.imageURL = imageURL

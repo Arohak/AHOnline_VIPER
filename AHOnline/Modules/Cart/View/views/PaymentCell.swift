@@ -1,15 +1,15 @@
 //
-//  DeliveryCell.swift
+//  PaymentCell.swift
 //  AHOnline
 //
 //  Created by Ara Hakobyan on 7/9/16.
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-class DeliveryCell: BaseTableViewCell {
+class PaymentCell: BaseTableViewCell {
     
     //MARK: - Create UIElements -
-    var cellContentView = DeliveryCellContentView()
+    var cellContentView = PaymentCellContentView()
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -18,17 +18,13 @@ class DeliveryCell: BaseTableViewCell {
         cellContentView.autoPinEdgesToSuperviewEdges()
     }
     
-    func setValues(value: String) {
-        cellContentView.setValues(value)
-    }
-    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
-//MARK: - DeliveryCellContentView
-class DeliveryCellContentView: UIView {
+//MARK: - PaymentCellContentView
+class PaymentCellContentView: UIView {
 
     //MARK: - Create UIElements -
     lazy var bgImageView: UIImageView = {
@@ -47,13 +43,6 @@ class DeliveryCellContentView: UIView {
     
     lazy var titleLabel: TitleLabel = {
         let view = TitleLabel.newAutoLayoutView()
-        
-        return view
-    }()
-    
-    lazy var deliveryLabel: DeliveryLabel = {
-        let view = DeliveryLabel.newAutoLayoutView()
-        view.textColor = RED
         
         return view
     }()
@@ -79,7 +68,6 @@ class DeliveryCellContentView: UIView {
 //        addSubview(bgImageView)
         addSubview(imageView)
         addSubview(titleLabel)
-        addSubview(deliveryLabel)
 
         setConstraints()
     }
@@ -90,17 +78,10 @@ class DeliveryCellContentView: UIView {
 //        
         imageView.autoAlignAxisToSuperviewAxis(.Horizontal)
         imageView.autoPinEdgeToSuperviewEdge(.Left, withInset: CA_INSET)
-        imageView.autoSetDimensionsToSize(CGSize(width: CA_INSET*4, height: CA_INSET*4))
+        imageView.autoSetDimensionsToSize(CGSize(width: CA_INSET*6, height: CA_INSET*6))
         
-        titleLabel.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: CA_INSET)
         titleLabel.autoAlignAxisToSuperviewAxis(.Horizontal)
-        
-        deliveryLabel.autoAlignAxisToSuperviewAxis(.Horizontal)
-        deliveryLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: CA_INSET)
-    }
-    
-    //MARK: - Public Methods -
-    func setValues(value: String)  {
-        deliveryLabel.text = value
+        titleLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: CA_INSET)
+        titleLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: CA_INSET)
     }
 }

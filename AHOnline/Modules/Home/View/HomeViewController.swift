@@ -11,15 +11,15 @@ class HomeViewController: BaseViewController {
 
     var output: HomeViewOutput!
     
-    var homeView = HomeView()
-    let cellIdentifire = "cellIdentifire"
-    var titles: [String] = []
-    var descs: [String] = []
-    var items: [[AHObject]] = []
-    var heights: [CGFloat] = []
-    var carouselTimer: NSTimer!
-    var isSearchAnimation = true
-    var isFilterAnimation = true
+    private var homeView = HomeView()
+    private let cellIdentifire = "cellIdentifire"
+    private var titles: [String] = []
+    private var descs: [String] = []
+    private var items: [[AHObject]] = []
+    private var heights: [CGFloat] = []
+    private var carouselTimer: NSTimer!
+    private var isSearchAnimation = true
+    private var isFilterAnimation = true
 
     // MARK: - Life cycle -
     override func viewDidLoad() {
@@ -79,7 +79,9 @@ class HomeViewController: BaseViewController {
     //MARK: - Actions -
     func searchAction() {
         animationSearchView()
-        if !isFilterAnimation { animationFilterView() }
+        if !isFilterAnimation {
+            animationFilterView()
+        }
     }
 
     func filterAction() {
@@ -99,6 +101,7 @@ class HomeViewController: BaseViewController {
                 self.homeView.searchView.alpha = 0
             }) { finish in
                 self.isSearchAnimation = !self.isSearchAnimation
+                self.view.endEditing(true)
             }
         }
     }
@@ -199,8 +202,10 @@ extension HomeViewController: UITextFieldDelegate {
             UIHelper.showHUD("search text min 3 simbol")
         } else {
             textField.resignFirstResponder()
-            let json = JSON(["search": textField.text!])
-            output.search(json)
+            output.search(textField.text!,
+                          searchType: homeView.filterView.searchType,
+                          sort: homeView.filterView.sort,
+                          kitchen: homeView.filterView.kitchens)
         }
         return true
     }

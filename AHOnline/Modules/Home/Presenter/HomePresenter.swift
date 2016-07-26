@@ -33,18 +33,22 @@ extension HomePresenter: HomeViewOutput {
         router.pushViewController(vc)
     }
     
-    func search(json: JSON) {
-        let vc = ProductViewController()
-        _ = ProductModuleInitializer(viewController: vc)
-        vc.setParams(search: json["search"].stringValue)
+    func search(keyword: String, searchType: SearchType, sort: String, kitchen: [String]) {
+        var vc: UIViewController!
         
+        switch searchType {
+        case .Restaurant:
+            vc = ObjectsViewController()
+            _ = ObjectsModuleInitializer(viewController: vc)
+            (vc as! ObjectsViewController).setParams(search: keyword)
+        
+        case .Product:
+            vc = ProductViewController()
+            _ = ProductModuleInitializer(viewController: vc)
+            (vc as! ProductViewController).setParams(search: keyword)
+        }
+
         router.pushViewController(vc)
-        
-        //        let vc = ObjectsViewController()
-        //        _ = ObjectsModuleInitializer(viewController: vc)
-        //        vc.setParams(search: json["search"].stringValue)
-        //
-        //        router.pushViewController(vc)
     }
 }
 

@@ -193,9 +193,9 @@ struct UIHelper {
         let revObjects = objects.reverse()
         inObjects = reversable ? inObjects + revObjects : inObjects + objects
         
-        tableView.beginUpdates()
-        tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Fade)
-        tableView.endUpdates()
+//        tableView.beginUpdates()
+        tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .None)
+//        tableView.endUpdates()
     }
     
     static func deleteRowsFromTable<T>(tableView: UITableView, inout objects: [T]) {
@@ -205,9 +205,9 @@ struct UIHelper {
         }
         objects.removeAll()
         
-        tableView.beginUpdates()
+//        tableView.beginUpdates()
         tableView.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .None)
-        tableView.endUpdates()
+//        tableView.endUpdates()
     }
     
     static func insertRowsInCollection<T>(collectionView: UICollectionView, objects: [T], inout inObjects: [T], reversable: Bool) {

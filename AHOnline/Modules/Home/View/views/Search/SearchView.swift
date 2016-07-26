@@ -68,13 +68,12 @@ class SearchView: UIView {
         contentView.autoPinEdgeToSuperviewEdge(.Left)
         contentView.autoPinEdgeToSuperviewEdge(.Right)
         contentView.autoSetDimension(.Height, toSize: SE_SEARCH_HEIGHT)
-        textField.autoPinEdgeToSuperviewEdge(.Left, withInset: inset)
+        textField.autoPinEdgeToSuperviewEdge(.Left, withInset: inset*4)
         textField.autoPinEdge(.Right, toEdge: .Left, ofView: filterButton, withOffset: 0)
         textField.autoAlignAxisToSuperviewAxis(.Horizontal)
-        textField.autoSetDimension(.Height, toSize: SE_SEARCH_HEIGHT/2)
+        textField.autoSetDimension(.Height, toSize: 30)
         filterButton.autoPinEdgeToSuperviewEdge(.Right, withInset: inset)
-        filterButton.autoSetDimensionsToSize(CGSize(width: SE_CELL_HEIGHT, height: SE_CELL_HEIGHT))
+        filterButton.autoSetDimensionsToSize(CGSize(width: 30, height: 30))
         filterButton.autoAlignAxisToSuperviewAxis(.Horizontal)
-
     }
 }

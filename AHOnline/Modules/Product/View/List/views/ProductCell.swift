@@ -48,21 +48,20 @@ class ProductCellContentView: UIView {
     
     lazy var favoriteButton: UIButton = {
         let view = UIButton.newAutoLayoutView()
-        view.backgroundColor = RED
+        view.setBackgroundImage(UIImage(named: "img_all"), forState: .Normal)
         
         return view
     }()
     
     lazy var nameLabel: TitleLabel = {
         let view = TitleLabel.newAutoLayoutView()
-        view.numberOfLines = 0
+        view.numberOfLines = 2
         
         return view
     }()
     
     lazy var priceGroupView: PriceGroupView = {
         let view = PriceGroupView.newAutoLayoutView()
-        view.titleLabel.text = "Price "
 
         return view
     }()

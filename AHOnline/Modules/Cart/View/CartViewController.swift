@@ -12,21 +12,26 @@ class CartViewController: BaseViewController {
     var output: CartViewOutput!
 
     var cartView = CartView()
-    let cellIdentifire1 = "cellIdentifire1"
-    let cellIdentifire2 = "cellIdentifire2"
-    
-    var orders: [Product] = []
-    var cells: [DeliveryCell] = []
-    
-    var titleDeliveries: [String] = ["Choose Delivery City", "Choose Delivery Time"]
-    var deliveries: [Delivery] = []
-    var ordersTotalPrice = 0.0
-    var deliveryPrice = 0.0
-    var selectedIndex = 0
-    var selectedDate: NSDate!
-    
     var cleaButtonItem: UIBarButtonItem!
 
+    private let cellIdentifire      = ["cellIdentifire1", "cellIdentifire2", "cellIdentifire3"]
+    private let headers             = ["ORDER", "DELIVERY", "PAYMENT"]
+    private let heights: [CGFloat]  = [CA_CELL_HEIGHT, CA_CELL_HEIGHT*0.6, CA_CELL_HEIGHT*0.6]
+    
+    private var orders: [Product] = []
+    
+    private var deliveryCells: [DeliveryCell] = []
+    private var titleDeliveries = ["Choose Address", "Choose City", "Choose Time"]
+    private var deliveries: [Delivery] = []
+    private var ordersTotalPrice = 0.0
+    private var deliveryPrice = 0.0
+    private var selectedIndex = 0
+    private var selectedDate: NSDate!
+    
+    private var paymentCells: [UITableViewCell] = []
+    private var titlePayments = ["Pay on delivery", "Credit Cart", "Paypal"]
+    private var selectedPayment = "Pay on delivery"
+    
     // MARK: - Life cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,22 +62,27 @@ class CartViewController: BaseViewController {
         
         cartView.tableView.dataSource = self
         cartView.tableView.delegate = self
-        cartView.tableView.registerClass(OrderCell.self, forCellReuseIdentifier: cellIdentifire1)
-        cartView.tableView.registerClass(DeliveryCell.self, forCellReuseIdentifier: cellIdentifire2)
+        cartView.tableView.registerClass(OrderCell.self, forCellReuseIdentifier: cellIdentifire[0])
         
         configTableViewCell()
     }
     
     // MARK: - Private Method -
     private func configTableViewCell() {
-        let cell1 = DeliveryCell(style: .Default, reuseIdentifier: cellIdentifire2)
-        cell1.cellContentView.titleLabel.text = titleDeliveries[0]
-        cells.append(cell1)
+        for title in titleDeliveries {
+            let cell = DeliveryCell(style: .Default, reuseIdentifier: cellIdentifire[1])
+            cell.cellContentView.titleLabel.text = title
+            deliveryCells.append(cell)
+        }
         
-        let cell2 = DeliveryCell(style: .Default, reuseIdentifier: cellIdentifire2)
-        cell2.cellContentView.titleLabel.text = titleDeliveries[1]
-        cell2.cellContentView.deliveryLabel.text = NSDate().deliveryTimeFormat
-        cells.append(cell2)
+        for title in titlePayments {
+            let cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifire[2])
+            cell.backgroundColor = CLEAR
+            cell.textLabel?.text = title
+            cell.textLabel?.font = TITLE_FONT
+            cell.accessoryType = title == selectedPayment ? .Checkmark : .None
+            paymentCells.append(cell)
+        }
     }
     
     //MARK: - Actions -
@@ -126,7 +136,9 @@ extension CartViewController: CartViewInput {
     func deliveriesComing(deliveries: [Delivery]) {
         self.deliveries = deliveries
         
-        cells[0].cellContentView.deliveryLabel.text = deliveries.first!.city
+        deliveryCells[1].cellContentView.deliveryLabel.text = deliveries.first!.city
+        deliveryCells[2].cellContentView.deliveryLabel.text = NSDate().deliveryTimeFormat
+        
         deliveryPrice = deliveries.first!.price
         cartView.footerView.updateValues(ordersTotalPrice, delivery: deliveryPrice)
     }
@@ -151,7 +163,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
-        return 2
+        return headers.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -160,7 +172,10 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
             return orders.count
             
         case 1:
-            return cells.count
+            return deliveryCells.count
+            
+        case 2:
+            return paymentCells.count
             
         default:
             return 0
@@ -171,14 +186,17 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         switch indexPath.section {
         case 0:
             let order = orders[indexPath.row]
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifire1) as! OrderCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifire[0]) as! OrderCell
             cell.cellContentView.textField.delegate = self
             cell.setValues(editing, product: order)
 
             return cell
         case 1:
-            return cells[indexPath.row]
+            return deliveryCells[indexPath.row]
 
+        case 2:
+            return paymentCells[indexPath.row]
+            
         default:
             return UITableViewCell()
         }
@@ -186,47 +204,31 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        switch indexPath.section {
-        case 0:
-            return CA_CELL_HEIGHT
-        case 1:
-            return CA_CELL_HEIGHT*0.5
-        default:
-            break
-        }
-        
-        return 0
+        return heights[indexPath.section]
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return "ORDER"
-        case 1:
-            return "DELIVERY"
-        default:
-            break
-        }
         
-        return ""
+        return headers[section]
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1 {
+        switch indexPath.section {
+        case 1:
             switch indexPath.row {
-            case 0:
+            case 1:
                 let actionSheet = DeliveryActionSheetPickerViewController(deliveries: deliveries) { delivery, index in
-                    self.cells[indexPath.row].cellContentView.deliveryLabel.text = delivery.city
+                    self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = delivery.city
                     self.deliveryPrice = delivery.price
                     self.cartView.footerView.updateValues(self.ordersTotalPrice, delivery: self.deliveryPrice)
                     self.selectedIndex = index
                 }
                 actionSheet.pickerView.selectRow(selectedIndex, inComponent: 0, animated: true)
-
+                
                 output.presentViewController(actionSheet)
-            case 1:
+            case 2:
                 let datePicker = DatePickerViewController(date: NSDate()) { date in
-                    self.cells[indexPath.row].cellContentView.deliveryLabel.text = date.deliveryTimeFormat
+                    self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = date.deliveryTimeFormat
                     self.selectedDate = date
                 }
                 if let date = selectedDate {
@@ -237,6 +239,15 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
             default:
                 break
             }
+            
+        case 2:            
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            for cell in paymentCells { cell.accessoryType = .None }
+            paymentCells[indexPath.row].accessoryType = .Checkmark
+            selectedPayment = titlePayments[indexPath.row]
+            
+        default:
+            break
         }
     }
 

@@ -49,7 +49,7 @@ extension NSDate {
         let dateFormatter = NSDateFormatter()
         dateFormatter.timeZone = NSTimeZone.defaultTimeZone()
         dateFormatter.locale = NSLocale(localeIdentifier: "en_GB")
-        dateFormatter.dateFormat = "MMM d 'at' HH:00" //"YYYY-MM-DD HH:00", "MMM d 'at' HH:m" 
+        dateFormatter.dateFormat = "MMM d 'at' HH:mm" //"YYYY-MM-DD HH:00", "MMM d 'at' HH:m"
         
         return dateFormatter.stringFromDate(self)
     }

@@ -24,7 +24,7 @@ class AccountViewController: BaseViewController {
         super.init(nibName: nil, bundle: nil)
         
         title = user.name
-        accountView = AccountView(user: user, headerRect: CGRect(x: 0, y: 0, width: ScreenSize.WIDTH, height: ScreenSize.HEIGHT*0.3))
+        accountView = AccountView(subView: AccountHeaderView(frame: CGRect(x: 0, y: 0, width: ScreenSize.WIDTH, height: ScreenSize.HEIGHT*0.3)))
         self.user = user
     }
     

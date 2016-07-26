@@ -33,9 +33,9 @@ class DeliveryActionSheetPickerViewController: UIAlertController {
         super.viewDidLoad()
         
         self.view.addSubview(pickerView)
-        pickerView.autoPinEdgeToSuperviewEdge(ALEdge.Top)
-        pickerView.autoPinEdgeToSuperviewEdge(ALEdge.Bottom, withInset: 60)
-        pickerView.autoAlignAxisToSuperviewAxis(ALAxis.Vertical)
+        pickerView.autoPinEdgeToSuperviewEdge(.Left, withInset: SE_OFFSET)
+        pickerView.autoPinEdgeToSuperviewEdge(.Right, withInset: SE_OFFSET)
+        pickerView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: 60)
         pickerView.autoSetDimension(.Height, toSize: ScreenSize.HEIGHT*0.25)
     }
 }

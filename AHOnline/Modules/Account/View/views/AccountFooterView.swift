@@ -17,6 +17,14 @@ class AccountFooterView: UIView {
         return view
     }()
     
+    let youtubeButton: HOButton = {
+        let view = HOButton.newAutoLayoutView()
+        view.backgroundColor = RED
+        //        view.setBackgroundImage(UIImage(named: "img_mapview_location"), forState: .Normal)
+        
+        return view
+    }()
+    
     let twitterButton: HOButton = {
         let view = HOButton.newAutoLayoutView()
         view.backgroundColor = RED
@@ -39,6 +47,7 @@ class AccountFooterView: UIView {
     //MARK: - Private Methods -
     private func addAllUIElements() {
         addSubview(facebookButton)
+        addSubview(youtubeButton)
         addSubview(twitterButton)
         
         setConstraints()
@@ -49,6 +58,9 @@ class AccountFooterView: UIView {
         facebookButton.autoAlignAxisToSuperviewAxis(ALAxis.Horizontal)
         facebookButton.autoPinEdgeToSuperviewEdge(ALEdge.Right, withInset: MP_INSET)
         facebookButton.autoSetDimensionsToSize(CGSize(width: MP_BTN_SIZE, height: MP_BTN_SIZE))
+        
+        youtubeButton.autoCenterInSuperview()
+        youtubeButton.autoSetDimensionsToSize(CGSize(width: MP_BTN_SIZE, height: MP_BTN_SIZE))
         
         twitterButton.autoAlignAxisToSuperviewAxis(ALAxis.Horizontal)
         twitterButton.autoPinEdgeToSuperviewEdge(ALEdge.Left, withInset: MP_INSET)

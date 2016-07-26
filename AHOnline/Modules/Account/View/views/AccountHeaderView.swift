@@ -12,18 +12,16 @@ class AccountHeaderView: UIView {
     var titleCenterConstraints: NSLayoutConstraint!
     
     //MARK: - Create UIElements -
-    let bgView: UIView = {
-        let view = UIView.newAutoLayoutView()
-        view.backgroundColor = UIColor.whiteColor()
-        view.layer.cornerRadius = 5
-        view.clipsToBounds = true
+    let bgImageView: UIImageView = {
+        let view = UIImageView.newAutoLayoutView()
+        view.backgroundColor = WHITE
         
         return view
     }()
     
-    let drawRoutButton: UIButton = {
-        let view = UIButton.newAutoLayoutView()
-        view.setImage(UIImage(named: "img_mapview_route"), forState: UIControlState.Normal)
+    let imageView: UIImageView = {
+        let view = UIImageView.newAutoLayoutView()
+        view.backgroundColor = RED
         
         return view
     }()
@@ -31,22 +29,22 @@ class AccountHeaderView: UIView {
     let titleLabel: HOLabel = {
         let view = HOLabel.newAutoLayoutView()
         view.textColor = BLUE
-        view.numberOfLines = 1
+        view.text = "AAA BBB CCC DDD"
         
         return view
     }()
     
-    let descLabel: DescLabel = {
-        let view = DescLabel.newAutoLayoutView()
-        view.numberOfLines = 2
-        
+    let favoriteButton: HOButton = {
+        let view = HOButton.newAutoLayoutView()
+        view.backgroundColor = GREEN
+
         return view
     }()
     
-    let arrowImageView: UIImageView = {
-        let view = UIImageView.newAutoLayoutView()
-        view.image = UIImage(named: "img_mapview_arrow")
-        
+    let historyButton: HOButton = {
+        let view = HOButton.newAutoLayoutView()
+        view.backgroundColor = GREEN
+
         return view
     }()
     
@@ -63,37 +61,32 @@ class AccountHeaderView: UIView {
     
     //MARK: - Private Methods
     private func addAllUIElements() {
-        addSubview(bgView)
-        bgView.addSubview(drawRoutButton)
-        bgView.addSubview(titleLabel)
-        bgView.addSubview(descLabel)
-        addSubview(arrowImageView)
-        
+        addSubview(bgImageView)
+        addSubview(imageView)
+        addSubview(titleLabel)
+        addSubview(favoriteButton)
+        addSubview(historyButton)
+
         setConstraints()
     }
     
     //MARK: - Constraints -
     func setConstraints() {
-        bgView.autoPinEdgeToSuperviewEdge(ALEdge.Top)
-        bgView.autoPinEdgeToSuperviewEdge(ALEdge.Left)
-        bgView.autoPinEdgeToSuperviewEdge(ALEdge.Right)
-        bgView.autoSetDimension(ALDimension.Height, toSize: MP_INFOWINDOW_SIZE)
+        bgImageView.autoPinEdgesToSuperviewEdges()
         
-        drawRoutButton.autoPinEdgeToSuperviewEdge(ALEdge.Top)
-        drawRoutButton.autoPinEdgeToSuperviewEdge(ALEdge.Left)
-        widthRoutConstraints = drawRoutButton.autoSetDimension(ALDimension.Width, toSize: MP_INFOWINDOW_SIZE)
-        drawRoutButton.autoSetDimension(ALDimension.Height, toSize: MP_INFOWINDOW_SIZE)
+        imageView.autoPinEdgeToSuperviewEdge(.Top, withInset: 10)
+        imageView.autoAlignAxisToSuperviewAxis(.Vertical)
+        imageView.autoSetDimensionsToSize(CGSize(width: 80, height: 80))
+
+        titleLabel.autoPinEdge(ALEdge.Top, toEdge: ALEdge.Bottom, ofView: imageView, withOffset: 10)
+        titleLabel.autoAlignAxisToSuperviewAxis(.Vertical)
         
-        descLabel.autoAlignAxis(ALAxis.Horizontal, toSameAxisOfView: bgView, withOffset: MP_INSET/2)
-        descLabel.autoPinEdge(ALEdge.Left, toEdge: ALEdge.Right, ofView: drawRoutButton, withOffset: MP_INSET/2)
-        descLabel.autoPinEdgeToSuperviewEdge(ALEdge.Right, withInset: MP_INSET/2)
+        favoriteButton.autoPinEdge(ALEdge.Top, toEdge: ALEdge.Bottom, ofView: titleLabel, withOffset: 10)
+        favoriteButton.autoAlignAxis(ALAxis.Vertical, toSameAxisOfView: bgImageView, withOffset: MP_BTN_SIZE)
+        favoriteButton.autoSetDimensionsToSize(CGSize(width: 30, height: 30))
         
-        titleCenterConstraints = titleLabel.autoPinEdge(ALEdge.Bottom, toEdge: ALEdge.Top, ofView: descLabel)
-        titleLabel.autoPinEdge(ALEdge.Left, toEdge: ALEdge.Right, ofView: drawRoutButton, withOffset: MP_INSET/2)
-        titleLabel.autoPinEdgeToSuperviewEdge(ALEdge.Right, withInset: MP_INSET/2)
-        
-        arrowImageView.autoAlignAxis(ALAxis.Vertical, toSameAxisOfView: bgView)
-        arrowImageView.autoPinEdge(ALEdge.Top, toEdge: ALEdge.Bottom, ofView: bgView)
-        arrowImageView.autoSetDimensionsToSize(CGSize(width: MP_INSET, height: MP_INSET/2))
+        historyButton.autoPinEdge(ALEdge.Top, toEdge: ALEdge.Bottom, ofView: titleLabel, withOffset: 10)
+        historyButton.autoAlignAxis(ALAxis.Vertical, toSameAxisOfView: bgImageView, withOffset: -MP_BTN_SIZE)
+        historyButton.autoSetDimensionsToSize(CGSize(width: 30, height: 30))
     }
 }

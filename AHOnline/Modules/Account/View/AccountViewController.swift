@@ -11,7 +11,7 @@ class AccountViewController: BaseViewController {
 
     var output: AccountViewOutput!
 
-    private var accountView: AccountView!
+    private var accountView = AccountView()
     private let cellIdentifire = "cellIdentifire"
     private var user: User!
     private var menus: [(String, String)] = [("img_all" , "Language"),
@@ -24,7 +24,6 @@ class AccountViewController: BaseViewController {
         super.init(nibName: nil, bundle: nil)
         
         title = user.name
-        accountView = AccountView(subView: AccountHeaderView(frame: CGRect(x: 0, y: 0, width: ScreenSize.WIDTH, height: ScreenSize.HEIGHT*0.3)))
         self.user = user
     }
     
@@ -53,6 +52,23 @@ class AccountViewController: BaseViewController {
         accountView.tableView.dataSource = self
         accountView.tableView.delegate = self
         accountView.tableView.registerClass(AccountCell.self, forCellReuseIdentifier: cellIdentifire)
+        
+        accountView.accountHeaderView.settingsButton.addTarget(self, action: #selector(AccountViewController.historyAction), forControlEvents: .TouchUpInside)
+        accountView.accountHeaderView.settingsButton.addTarget(self, action: #selector(AccountViewController.favoriteAction), forControlEvents: .TouchUpInside)
+        accountView.accountHeaderView.settingsButton.addTarget(self, action: #selector(AccountViewController.settingsAction), forControlEvents: .TouchUpInside)
+    }
+    
+    //MARK: - Actions -
+    func historyAction() {
+        output.historyButtonClicked()
+    }
+    
+    func favoriteAction() {
+        output.favoriteButtonClicked()
+    }
+    
+    func settingsAction() {
+        output.settingsButtonClicked()
     }
 }
 

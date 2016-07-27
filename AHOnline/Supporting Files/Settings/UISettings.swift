@@ -6,7 +6,7 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-//MARK: - ScreenSize
+//MARK: - ScreenSize -
 struct ScreenSize
 {
     static let WIDTH                = UIScreen.mainScreen().bounds.size.width
@@ -16,7 +16,7 @@ struct ScreenSize
     static let SCALE                = UIScreen.mainScreen().scale
 }
 
-//MARK: - DeviceType
+//MARK: - DeviceType -
 enum DeviceType
 {
     static let IS_IPHONE                = UIDevice.currentDevice().userInterfaceIdiom == .Phone && ScreenSize.MAX_LENGTH < 568.0
@@ -26,7 +26,7 @@ enum DeviceType
     static let IS_IPAD                  = UIDevice.currentDevice().userInterfaceIdiom == .Pad && ScreenSize.MAX_LENGTH == 1024.0
 }
 
-//MARK: - System Version
+//MARK: - System Version -
 struct Version
 {
     static let SYS_VERSION_FLOAT        = (UIDevice.currentDevice().systemVersion as NSString).floatValue
@@ -40,7 +40,7 @@ let IPHONE_5_SCALE : CGFloat            = 568  / 736
 let IPHONE_6_SCALE : CGFloat            = 667  / 736
 let IPAD_SCALE : CGFloat                = 1024 / 736
 
-//MARK: - All Colors
+//MARK: - All Colors -
 let GREEN                               = UIColor(red: 137/255,     green: 212/255,     blue: 57/255,       alpha: 1)
 let BLUE_LIGHT                          = UIColor(red: 51/255,      green: 204/255,     blue: 255/255,      alpha: 1)
 let XAKI                                = UIColor(red: 255/255,     green: 102/255,     blue: 51/255,       alpha: 1)
@@ -59,65 +59,67 @@ let GRAY                                = UIColor.grayColor()
 let CLEAR                               = UIColor.clearColor()
 let RCOLORS                             = [UIColor.blueColor(), UIColor.redColor(), UIColor.orangeColor(), UIColor.greenColor()]
 
-//MARK: - All Pages
+//MARK: - Callback Typealias -
 typealias CollectionCallback            = (indexPath: NSIndexPath) -> Void
 typealias PickerCallback                = (value: String) -> Void
 typealias DeliveryPickerCallback        = (value: Delivery, index: Int) -> Void
 typealias DistancePickerCallback        = (value: Double, index: Int) -> Void
-typealias challenge                     = (session: NSURLSession!, challenge: NSURLAuthenticationChallenge) -> (NSURLSessionAuthChallengeDisposition, NSURLCredential?)
 
 let NAV_HEIGHT: CGFloat                 = 64
 let TAB_HEIGHT: CGFloat                 = 46
 let FONT_NAVBAR                         = UIFont.systemFontOfSize(DeviceType.IS_IPAD ? 25 : 18)
 let FONT_TABBAR                         = UIFont.systemFontOfSize(DeviceType.IS_IPAD ? 14 : 10)
-
 let LIMIT                               = 10
 let OFFSET                              = 0
 
-let LINK_FONT                           = UIFont.systemFontOfSize(DeviceType.IS_IPAD ? 14         * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 14     : DeviceType.IS_IPHONE_6 ? 14   * IPHONE_6_SCALE : 14   * IPHONE_5_SCALE)
 
+//MARK: - Font Constants -
+let TITLE_BTN_FONT                      = UIFont.boldSystemFontOfSize(DeviceType.IS_IPAD ? 14       * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 14     : DeviceType.IS_IPHONE_6 ? 14   * IPHONE_6_SCALE : 14   * IPHONE_5_SCALE)
+let TITLE_LBL_FONT                      = UIFont.systemFontOfSize(DeviceType.IS_IPAD ? 16           * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 16     : DeviceType.IS_IPHONE_6 ? 16   * IPHONE_6_SCALE : 16   * IPHONE_5_SCALE)
+let TITLE_FONT                          = UIFont.systemFontOfSize(DeviceType.IS_IPAD ? 18           * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 18     : DeviceType.IS_IPHONE_6 ? 18   * IPHONE_6_SCALE : 18   * IPHONE_5_SCALE)
+let CA_TITLE_FONT                       = UIFont.boldSystemFontOfSize(DeviceType.IS_IPAD ? 18       * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 18     : DeviceType.IS_IPHONE_6 ? 18   * IPHONE_6_SCALE : 18   * IPHONE_5_SCALE)
+let CAC_TITLE_FONT                      = UIFont.boldSystemFontOfSize(DeviceType.IS_IPAD ? 22       * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 22     : DeviceType.IS_IPHONE_6 ? 22   * IPHONE_6_SCALE : 22   * IPHONE_5_SCALE)
+let DESC_FONT                           = UIFont.boldSystemFontOfSize(DeviceType.IS_IPAD ? 12       * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 12     : DeviceType.IS_IPHONE_6 ? 12   * IPHONE_6_SCALE : 12   * IPHONE_5_SCALE)
+let LINK_FONT                           = UIFont.systemFontOfSize(DeviceType.IS_IPAD ? 14           * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 14     : DeviceType.IS_IPHONE_6 ? 14   * IPHONE_6_SCALE : 14   * IPHONE_5_SCALE)
 
-//MARK: - Base Constants
-let BA_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
-let TITLE_BTN_FONT                      = UIFont.boldSystemFontOfSize(DeviceType.IS_IPAD ? 14     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 14     : DeviceType.IS_IPHONE_6 ? 14   * IPHONE_6_SCALE : 14   * IPHONE_5_SCALE)
-let TITLE_LBL_FONT                      = UIFont.systemFontOfSize(DeviceType.IS_IPAD ? 16     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 16     : DeviceType.IS_IPHONE_6 ? 16   * IPHONE_6_SCALE : 16   * IPHONE_5_SCALE)
-let TITLE_FONT                          = UIFont.systemFontOfSize(DeviceType.IS_IPAD ? 18     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 18     : DeviceType.IS_IPHONE_6 ? 18   * IPHONE_6_SCALE : 18   * IPHONE_5_SCALE)
-let CA_TITLE_FONT                       = UIFont.boldSystemFontOfSize(DeviceType.IS_IPAD ? 18     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 18     : DeviceType.IS_IPHONE_6 ? 18   * IPHONE_6_SCALE : 18   * IPHONE_5_SCALE)
-let CAC_TITLE_FONT                      = UIFont.boldSystemFontOfSize(DeviceType.IS_IPAD ? 22     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 22     : DeviceType.IS_IPHONE_6 ? 22   * IPHONE_6_SCALE : 22   * IPHONE_5_SCALE)
-let DESC_FONT                           = UIFont.boldSystemFontOfSize(DeviceType.IS_IPAD ? 12     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 12     : DeviceType.IS_IPHONE_6 ? 12   * IPHONE_6_SCALE : 12   * IPHONE_5_SCALE)
-
-
-//MARK: - Home Constants
+//MARK: - Home Constants -
 let HO_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
 let HO_CELL_HEIGHT : CGFloat            = DeviceType.IS_IPAD ? 90     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 90     : DeviceType.IS_IPHONE_6 ? 90   * IPHONE_6_SCALE : 90   * IPHONE_5_SCALE
 
-//MARK: - Subcategory Constants
+//MARK: - Subcategory Constants -
 let SB_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
 let SB_CELL_WIDTH : CGFloat             = (ScreenSize.WIDTH - 6*SB_INSET)/3
 
-//MARK: - Objects Constants
+//MARK: - Objects Constants -
 let OB_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
 let OB_CELL_HEIGHT : CGFloat            = DeviceType.IS_IPAD ? 110    * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 110    : DeviceType.IS_IPHONE_6 ? 110  * IPHONE_6_SCALE : 110  * IPHONE_5_SCALE
 
-//MARK: - Product Constants
+//MARK: - Product Constants -
 let PR_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
 let PR_LAYOUT_WIDTH : CGFloat           = (ScreenSize.WIDTH - PR_INSET*4)/2
 
-//MARK: - Cart Constants
+//MARK: - Cart Constants -
 let CA_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
 let CA_CELL_HEIGHT : CGFloat            = DeviceType.IS_IPAD ? 80     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 80     : DeviceType.IS_IPHONE_6 ? 80   * IPHONE_6_SCALE : 80   * IPHONE_5_SCALE
 
-//MARK: - Search Constants
+//MARK: - Search Constants -
 let SE_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
 let SE_OFFSET : CGFloat                 = DeviceType.IS_IPAD ? 30     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 30     : DeviceType.IS_IPHONE_6 ? 30   * IPHONE_6_SCALE : 30   * IPHONE_5_SCALE
 let SE_CELL_HEIGHT : CGFloat            = DeviceType.IS_IPAD ? 50     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 50     : DeviceType.IS_IPHONE_6 ? 50   * IPHONE_6_SCALE : 50   * IPHONE_5_SCALE
 let SE_SEARCH_HEIGHT : CGFloat          = DeviceType.IS_IPAD ? 80     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 80     : DeviceType.IS_IPHONE_6 ? 80   * IPHONE_6_SCALE : 80   * IPHONE_5_SCALE
 
-//MARK: - MapView Constants
-let MP_INSET : CGFloat                  = DeviceType.IS_IPAD ? 20     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 20     : DeviceType.IS_IPHONE_6 ? 20   * IPHONE_6_SCALE : DeviceType.IS_IPHONE_5 ? 20    * IPHONE_5_SCALE : 20   * IPHONE_4_SCALE
-let MP_BTN_SIZE : CGFloat               = DeviceType.IS_IPAD ? 60     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 60     : DeviceType.IS_IPHONE_6 ? 60   * IPHONE_6_SCALE : DeviceType.IS_IPHONE_5 ? 60    * IPHONE_5_SCALE : 60   * IPHONE_4_SCALE
-let MP_INFOWINDOW_SIZE : CGFloat        = DeviceType.IS_IPAD ? 65     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 65     : DeviceType.IS_IPHONE_6 ? 65   * IPHONE_6_SCALE : DeviceType.IS_IPHONE_5 ? 65    * IPHONE_5_SCALE : 65   * IPHONE_4_SCALE
+//MARK: - MapView Constants -
+let MP_INSET : CGFloat                  = DeviceType.IS_IPAD ? 20     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 20     : DeviceType.IS_IPHONE_6 ? 20   * IPHONE_6_SCALE : 20    * IPHONE_5_SCALE
+let MP_BTN_SIZE : CGFloat               = DeviceType.IS_IPAD ? 60     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 60     : DeviceType.IS_IPHONE_6 ? 60   * IPHONE_6_SCALE : 60    * IPHONE_5_SCALE
+let MP_INFOWINDOW_SIZE : CGFloat        = DeviceType.IS_IPAD ? 65     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 65     : DeviceType.IS_IPHONE_6 ? 65   * IPHONE_6_SCALE : 65    * IPHONE_5_SCALE
 let MP_PIN_CIRCLE_RECT                  = CGRectMake(13.5, 12, 24, 24)
+
+//MARK: - Account Constants -
+let AC_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : DeviceType.IS_IPHONE_5 ? 10    * IPHONE_5_SCALE : 10   * IPHONE_4_SCALE
+let AC_OFFSET : CGFloat                 = DeviceType.IS_IPAD ? 30     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 30     : DeviceType.IS_IPHONE_6 ? 30   * IPHONE_6_SCALE : DeviceType.IS_IPHONE_5 ? 30    * IPHONE_5_SCALE : 30   * IPHONE_4_SCALE
+let AC_CELL_HEIGHT : CGFloat            = DeviceType.IS_IPAD ? 50     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 50     : DeviceType.IS_IPHONE_6 ? 50   * IPHONE_6_SCALE : DeviceType.IS_IPHONE_5 ? 50    * IPHONE_5_SCALE : 50   * IPHONE_4_SCALE
+let AC_HEIGHT : CGFloat                 = DeviceType.IS_IPAD ? 80     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 80     : DeviceType.IS_IPHONE_6 ? 80   * IPHONE_6_SCALE : DeviceType.IS_IPHONE_5 ? 80    * IPHONE_5_SCALE : 80   * IPHONE_4_SCALE
+let AC_BTN_SIZE : CGFloat               = DeviceType.IS_IPAD ? 120    * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 120    : DeviceType.IS_IPHONE_6 ? 120  * IPHONE_6_SCALE : DeviceType.IS_IPHONE_5 ? 120   * IPHONE_5_SCALE : 120  * IPHONE_4_SCALE
 
 let codes = [
     "_AF"      : "+93",

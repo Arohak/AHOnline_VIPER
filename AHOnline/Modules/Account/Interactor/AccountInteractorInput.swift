@@ -8,4 +8,7 @@
 
 protocol AccountInteractorInput {
 
+    func getHistory()
+    func getFavorites()
+    func manageSettings()
 }

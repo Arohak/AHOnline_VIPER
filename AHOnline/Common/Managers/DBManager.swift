@@ -85,4 +85,13 @@ struct DBManager {
         
         return price
     }
+    
+    //MARK: - User -
+    static func getUser() -> User {
+        var user = User(data: JSON.null)
+        if let usr = realm.objects(User.self).first {
+            user = usr
+        }
+        return user
+    }
 }

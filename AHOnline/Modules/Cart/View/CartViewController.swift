@@ -13,6 +13,7 @@ class CartViewController: BaseViewController {
 
     var cartView = CartView()
     var cleaButtonItem: UIBarButtonItem!
+    weak var AddAlertSaveAction: UIAlertAction?
 
     private let cellIdentifire      = ["cellIdentifire1", "cellIdentifire2", "cellIdentifire3"]
     private let headers             = ["ORDER", "DELIVERY", "PAYMENT"]
@@ -21,8 +22,11 @@ class CartViewController: BaseViewController {
     private var orders: [Product] = []
     
     private var deliveryCells: [DeliveryCell] = []
-    private var titleDeliveries = ["Choose Address", "Choose City", "Choose Time"]
+    private var titleDeliveries = ["Set Phone Number", "Set Address", "Choose City", "Choose Time"]
     private var deliveries: [Delivery] = []
+    private var street = ""
+    private var apartment = ""
+    private var house = ""
     private var ordersTotalPrice = 0.0
     private var deliveryPrice = 0.0
     private var selectedIndex = 0
@@ -32,6 +36,8 @@ class CartViewController: BaseViewController {
     private var titlePayments = ["Pay on delivery", "Credit Cart", "Paypal"]
     private var selectedPayment = "Pay on delivery"
     
+    private var user: User!
+    
     // MARK: - Life cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,14 +46,16 @@ class CartViewController: BaseViewController {
         navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(addAction)), animated: true)
         cleaButtonItem = UIBarButtonItem(title: "Clear", style: .Plain, target: self, action: #selector(clearAction))
         navigationItem.rightBarButtonItems = [editButtonItem(), cleaButtonItem]
+        
+        output.getDeliveries()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        output.viewIsReady()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name:UIKeyboardWillChangeFrameNotification, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name:UIKeyboardWillChangeFrameNotification, object: nil);
+        output.getOrders()
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -117,16 +125,25 @@ class CartViewController: BaseViewController {
             let animationDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber) as! NSTimeInterval
             let y = keyboardFrame.origin.y
             
-            self.view.layoutIfNeeded()
-            UIView.animateWithDuration(animationDuration, animations: { _ in
-                if ScreenSize.HEIGHT - y == 0 {
-                    self.cartView.heightTableViewConstraint.constant = y - (NAV_HEIGHT + TAB_HEIGHT + CA_CELL_HEIGHT*1.5)
-                } else {
-                    self.cartView.heightTableViewConstraint.constant = y - (NAV_HEIGHT)
-                }
+            if AddAlertSaveAction == nil {
                 self.view.layoutIfNeeded()
-            })
+                UIView.animateWithDuration(animationDuration, animations: { _ in
+                    if ScreenSize.HEIGHT - y == 0 {
+                        self.cartView.heightTableViewConstraint.constant = y - (NAV_HEIGHT + TAB_HEIGHT + CA_CELL_HEIGHT*1.5)
+                    } else {
+                        self.cartView.heightTableViewConstraint.constant = y - (NAV_HEIGHT)
+                    }
+                    self.view.layoutIfNeeded()
+                })
+            }
         }
+    }
+    
+    //MARK: - TextField notification -
+    func handlePhoneTextFieldTextDidChangeNotification(notification: NSNotification) {
+        let textField = notification.object as! UITextField
+        
+        AddAlertSaveAction!.enabled = UIHelper.isValidTextField(textField)
     }
 }
 
@@ -136,16 +153,27 @@ extension CartViewController: CartViewInput {
     func deliveriesComing(deliveries: [Delivery]) {
         self.deliveries = deliveries
         
-        deliveryCells[1].cellContentView.deliveryLabel.text = deliveries.first!.city
-        deliveryCells[2].cellContentView.deliveryLabel.text = NSDate().deliveryTimeFormat
+        deliveryCells[0].cellContentView.deliveryLabel.text = user.phone.isEmpty ? "*" : user.phone
+        var deliveryAddress = DeliveryAddress(data: JSON.null)
+        if let address = user.address {
+            deliveryAddress = address
+            
+            let delivery = deliveries.filter { $0.city == deliveryAddress.city }.first
+            if let delivery = delivery {
+                deliveryPrice = delivery.price
+                cartView.footerView.updateValues(ordersTotalPrice, delivery: deliveryPrice)
+            }
+        }
         
-        deliveryPrice = deliveries.first!.price
-        cartView.footerView.updateValues(ordersTotalPrice, delivery: deliveryPrice)
+        deliveryCells[1].cellContentView.deliveryLabel.text = deliveryAddress.street.isEmpty ? "*" : String(format: "st: %@, apt: %@, h: %@", deliveryAddress.street, deliveryAddress.apartment, deliveryAddress.house)
+        deliveryCells[2].cellContentView.deliveryLabel.text = deliveryAddress.city.isEmpty ? "*" : deliveryAddress.city
+        deliveryCells[3].cellContentView.deliveryLabel.text = NSDate().deliveryTimeFormat
     }
     
-    func ordersComing(orders: [Product], ordersPrice: Double) {
+    func ordersComing(user: User, orders: [Product], ordersPrice: Double) {
+        self.user = user
         self.orders = orders
-        ordersTotalPrice = ordersPrice
+        self.ordersTotalPrice = ordersPrice
         
         cartView.tableView.reloadData()
         cartView.footerView.updateValues(ordersTotalPrice, delivery: deliveryPrice)
@@ -216,7 +244,71 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         switch indexPath.section {
         case 1:
             switch indexPath.row {
+            case 0:
+                let alert = UIAlertController(title: "Phone Number".localizedString, message: nil, preferredStyle: .Alert)
+                alert.addTextFieldWithConfigurationHandler { textField in
+                    textField.keyboardType = .PhonePad
+                    textField.keyboardAppearance = .Dark
+                    textField.placeholder = "+374 xxxxxxxx"
+                    var text = self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text
+                    text = text == "*" ? "" : text
+                    textField.text = text
+                    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.handlePhoneTextFieldTextDidChangeNotification), name: UITextFieldTextDidChangeNotification, object: textField)
+                }
+                
+                func removeTextFieldObserver() {
+                    NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextFieldTextDidChangeNotification, object: alert.textFields?.first)
+                    AddAlertSaveAction = nil
+                }
+                
+                alert.addAction(UIAlertAction(title: "Cancel".localizedString, style: .Cancel, handler: { _ in removeTextFieldObserver() }))
+                
+                let otherAction = UIAlertAction(title: "Save".localizedString, style: .Destructive, handler: { a in
+                    let textField = alert.textFields?.first!
+                    self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = textField!.text
+                    
+                    removeTextFieldObserver()
+                })
+                otherAction.enabled = false
+                AddAlertSaveAction = otherAction
+                
+                alert.addAction(otherAction)
+                
+                output.presentViewController(alert)
+                
             case 1:
+                let alert = UIAlertController(title: "Delivery Address".localizedString, message: nil, preferredStyle: .Alert)
+                alert.addTextFieldWithConfigurationHandler { textField in
+                    textField.keyboardAppearance = .Dark
+                    textField.placeholder = "Street"
+                    textField.text = self.street
+                }
+                alert.addTextFieldWithConfigurationHandler { textField in
+                    textField.keyboardAppearance = .Dark
+                    textField.placeholder = "Apartment"
+                    textField.text = self.apartment
+                }
+                alert.addTextFieldWithConfigurationHandler { textField in
+                    textField.keyboardAppearance = .Dark
+                    textField.placeholder = "House"
+                    textField.text = self.house
+                }
+                
+                alert.addAction(UIAlertAction(title: "Cancel".localizedString, style: .Cancel, handler: { _ in }))
+                AddAlertSaveAction = UIAlertAction(title: "Save".localizedString, style: .Destructive, handler: { a in
+                    self.street = (alert.textFields?[0].text)!
+                    self.apartment = (alert.textFields?[1].text)!
+                    self.house = (alert.textFields?[2].text)!
+                    let text = self.street.isEmpty ? "*" : String(format: "st: %@, apt: %@, h: %@", self.street, self.apartment, self.house)
+                    self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = text
+                    
+                    self.AddAlertSaveAction = nil
+                })
+                alert.addAction(AddAlertSaveAction!)
+
+                output.presentViewController(alert)
+                
+            case 2:
                 let actionSheet = DeliveryActionSheetPickerViewController(deliveries: deliveries) { delivery, index in
                     self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = delivery.city
                     self.deliveryPrice = delivery.price
@@ -226,7 +318,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
                 actionSheet.pickerView.selectRow(selectedIndex, inComponent: 0, animated: true)
                 
                 output.presentViewController(actionSheet)
-            case 2:
+            case 3:
                 let datePicker = DatePickerViewController(date: NSDate()) { date in
                     self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = date.deliveryTimeFormat
                     self.selectedDate = date

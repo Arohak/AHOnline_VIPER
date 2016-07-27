@@ -6,7 +6,10 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-protocol AccountViewOutput {
+protocol AccountViewOutput: PresentViewControllerProtocol {
 
     func viewIsReady()
+    func historyButtonClicked()
+    func favoriteButtonClicked()
+    func settingsButtonClicked()
 }

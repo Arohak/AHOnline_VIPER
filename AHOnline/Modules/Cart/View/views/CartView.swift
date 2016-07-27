@@ -10,6 +10,7 @@ class CartView: BaseView {
     
     var heightTableViewConstraint: NSLayoutConstraint!
 
+    //MARK: - Create UIElements -
     lazy var tableView: BaseTableView = {
         let view = BaseTableView(frame: CGRectZero, style: .Plain)
         view.hidden = true
@@ -33,6 +34,21 @@ class CartView: BaseView {
         titleLabel.autoCenterInSuperview()
         view.backgroundColor = CLEAR
         view.hidden = true
+        
+        return view
+    }()
+    
+    lazy var phoneField: HOTextField = {
+        let view = HOTextField.newAutoLayoutView()
+        view.keyboardType = .NumberPad
+        view.placeholder = "+374 xxxxxxxx"
+        
+        return view
+    }()
+    
+    lazy var addressField: HOTextField = {
+        let view = HOTextField.newAutoLayoutView()
+        view.placeholder = "st: xx, apt: xx, h: xx"
         
         return view
     }()

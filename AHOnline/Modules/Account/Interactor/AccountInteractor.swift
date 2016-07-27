@@ -15,4 +15,27 @@ class AccountInteractor {
 //MARK: - extension for AccountInteractorInput -
 extension AccountInteractor: AccountInteractorInput {
     
+    func getHistory() {
+        
+    }
+    
+    func getFavorites() {
+        
+    }
+    
+    func manageSettings() {
+        
+        let actionSheet = UIAlertController(title: "Settings".localizedString, message: nil, preferredStyle: .ActionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel".localizedString, style: .Cancel, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "Manage Delivery Address".localizedString, style: .Default, handler: { _ in
+            
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Manage Phone Number".localizedString, style: .Default, handler: { _ in
+            
+        }))
+        
+        output.presentViewController(actionSheet)
+    }
+
 }

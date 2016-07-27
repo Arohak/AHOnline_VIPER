@@ -56,14 +56,14 @@ class AccountFooterView: UIView {
     //MARK: - Constraints -
     func setConstraints() {
         facebookButton.autoAlignAxisToSuperviewAxis(ALAxis.Horizontal)
-        facebookButton.autoPinEdgeToSuperviewEdge(ALEdge.Right, withInset: MP_INSET)
-        facebookButton.autoSetDimensionsToSize(CGSize(width: MP_BTN_SIZE, height: MP_BTN_SIZE))
+        facebookButton.autoPinEdgeToSuperviewEdge(ALEdge.Right, withInset: AC_INSET)
+        facebookButton.autoSetDimensionsToSize(CGSize(width: AC_BTN_SIZE*0.4, height: AC_BTN_SIZE*0.4))
         
         youtubeButton.autoCenterInSuperview()
-        youtubeButton.autoSetDimensionsToSize(CGSize(width: MP_BTN_SIZE, height: MP_BTN_SIZE))
+        youtubeButton.autoSetDimensionsToSize(CGSize(width: AC_BTN_SIZE*0.4, height: AC_BTN_SIZE*0.4))
         
         twitterButton.autoAlignAxisToSuperviewAxis(ALAxis.Horizontal)
-        twitterButton.autoPinEdgeToSuperviewEdge(ALEdge.Left, withInset: MP_INSET)
-        twitterButton.autoSetDimensionsToSize(CGSize(width: MP_BTN_SIZE, height: MP_BTN_SIZE))
+        twitterButton.autoPinEdgeToSuperviewEdge(ALEdge.Left, withInset: AC_INSET)
+        twitterButton.autoSetDimensionsToSize(CGSize(width: AC_BTN_SIZE*0.4, height: AC_BTN_SIZE*0.4))
     }
 }

@@ -10,8 +10,12 @@ class User: Object {
     
     dynamic var id = 0
     dynamic var name: String!
-    dynamic var src: String!
-    dynamic var address: Address!
+    dynamic var image: String!
+    dynamic var email: String!
+    dynamic var phone: String!
+
+    var address: DeliveryAddress?
+    
     var favorite = List<Product>()
     var history = List<Product>()
 
@@ -24,9 +28,8 @@ class User: Object {
 
         self.id                 = data["id"].intValue
         self.name               = data["name"].stringValue
-        self.src                = data["src"].stringValue
-        self.address            = Address(data: data["address"])
-//        self.favorite           = data["favorite"].arrayObject as! List<Product>
-//        self.history            = data["history"].arrayObject as! List<Product>
+        self.image              = data["image"].stringValue
+        self.email              = data["email"].stringValue
+        self.phone              = data["phone"].stringValue
     }
 }

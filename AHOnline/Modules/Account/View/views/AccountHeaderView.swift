@@ -14,14 +14,22 @@ class AccountHeaderView: UIView {
     //MARK: - Create UIElements -
     let bgImageView: UIImageView = {
         let view = UIImageView.newAutoLayoutView()
-        view.backgroundColor = WHITE
+        view.contentMode = .ScaleAspectFill
+        view.image = Image(named: "img_all")
         
         return view
     }()
     
-    let imageView: UIImageView = {
-        let view = UIImageView.newAutoLayoutView()
+    let parentView: UIView = {
+        let view = UIView.newAutoLayoutView()
+        
+        return view
+    }()
+    
+    let imageButton: HOButton = {
+        let view = HOButton.newAutoLayoutView()
         view.backgroundColor = RED
+        view.layer.cornerRadius = AC_BTN_SIZE*0.5
         
         return view
     }()
@@ -41,10 +49,41 @@ class AccountHeaderView: UIView {
         return view
     }()
     
+    let favoriteLabel: HOLabel = {
+        let view = HOLabel.newAutoLayoutView()
+        view.textColor = BLUE
+        view.text = "Favorite"
+        
+        return view
+    }()
+    
     let historyButton: HOButton = {
         let view = HOButton.newAutoLayoutView()
         view.backgroundColor = GREEN
 
+        return view
+    }()
+    
+    let historyLabel: HOLabel = {
+        let view = HOLabel.newAutoLayoutView()
+        view.textColor = BLUE
+        view.text = "History"
+        
+        return view
+    }()
+    
+    let settingsButton: HOButton = {
+        let view = HOButton.newAutoLayoutView()
+        view.backgroundColor = GREEN
+        
+        return view
+    }()
+    
+    let settingsLabel: HOLabel = {
+        let view = HOLabel.newAutoLayoutView()
+        view.textColor = BLUE
+        view.text = "Settings"
+        
         return view
     }()
     
@@ -62,10 +101,15 @@ class AccountHeaderView: UIView {
     //MARK: - Private Methods
     private func addAllUIElements() {
         addSubview(bgImageView)
-        addSubview(imageView)
-        addSubview(titleLabel)
-        addSubview(favoriteButton)
-        addSubview(historyButton)
+        addSubview(parentView)
+        parentView.addSubview(imageButton)
+        parentView.addSubview(titleLabel)
+        parentView.addSubview(favoriteButton)
+        parentView.addSubview(favoriteLabel)
+        parentView.addSubview(historyButton)
+        parentView.addSubview(historyLabel)
+        parentView.addSubview(settingsButton)
+        parentView.addSubview(settingsLabel)
 
         setConstraints()
     }
@@ -74,19 +118,38 @@ class AccountHeaderView: UIView {
     func setConstraints() {
         bgImageView.autoPinEdgesToSuperviewEdges()
         
-        imageView.autoPinEdgeToSuperviewEdge(.Top, withInset: 10)
-        imageView.autoAlignAxisToSuperviewAxis(.Vertical)
-        imageView.autoSetDimensionsToSize(CGSize(width: 80, height: 80))
+        parentView.autoAlignAxisToSuperviewAxis(.Horizontal)
+        parentView.autoPinEdgeToSuperviewEdge(.Left)
+        parentView.autoPinEdgeToSuperviewEdge(.Right)
+        parentView.autoPinEdge(.Top, toEdge: .Top, ofView: imageButton)
+        parentView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: historyLabel)
+        
+        imageButton.autoPinEdgeToSuperviewEdge(.Top)
+        imageButton.autoAlignAxisToSuperviewAxis(.Vertical)
+        imageButton.autoSetDimensionsToSize(CGSize(width: AC_BTN_SIZE, height: AC_BTN_SIZE))
 
-        titleLabel.autoPinEdge(ALEdge.Top, toEdge: ALEdge.Bottom, ofView: imageView, withOffset: 10)
+        titleLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: imageButton, withOffset: AC_INSET)
         titleLabel.autoAlignAxisToSuperviewAxis(.Vertical)
         
-        favoriteButton.autoPinEdge(ALEdge.Top, toEdge: ALEdge.Bottom, ofView: titleLabel, withOffset: 10)
-        favoriteButton.autoAlignAxis(ALAxis.Vertical, toSameAxisOfView: bgImageView, withOffset: MP_BTN_SIZE)
-        favoriteButton.autoSetDimensionsToSize(CGSize(width: 30, height: 30))
+        favoriteButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: titleLabel, withOffset: AC_INSET)
+        favoriteButton.autoAlignAxis(.Vertical, toSameAxisOfView: bgImageView, withOffset: AC_BTN_SIZE)
+        favoriteButton.autoSetDimensionsToSize(CGSize(width: AC_BTN_SIZE*0.3, height: AC_BTN_SIZE*0.3))
         
-        historyButton.autoPinEdge(ALEdge.Top, toEdge: ALEdge.Bottom, ofView: titleLabel, withOffset: 10)
-        historyButton.autoAlignAxis(ALAxis.Vertical, toSameAxisOfView: bgImageView, withOffset: -MP_BTN_SIZE)
-        historyButton.autoSetDimensionsToSize(CGSize(width: 30, height: 30))
+        favoriteLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: favoriteButton, withOffset: 0)
+        favoriteLabel.autoAlignAxis(.Vertical, toSameAxisOfView: favoriteButton)
+        
+        historyButton.autoAlignAxis(.Horizontal, toSameAxisOfView: favoriteButton)
+        historyButton.autoAlignAxis(.Vertical, toSameAxisOfView: bgImageView, withOffset: -AC_BTN_SIZE)
+        historyButton.autoSetDimensionsToSize(CGSize(width: AC_BTN_SIZE*0.3, height: AC_BTN_SIZE*0.3))
+        
+        historyLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: historyButton, withOffset: 0)
+        historyLabel.autoAlignAxis(.Vertical, toSameAxisOfView: historyButton)
+        
+        settingsButton.autoAlignAxis(.Horizontal, toSameAxisOfView: favoriteButton)
+        settingsButton.autoAlignAxis(.Vertical, toSameAxisOfView: self)
+        settingsButton.autoSetDimensionsToSize(CGSize(width: AC_BTN_SIZE*0.3, height: AC_BTN_SIZE*0.3))
+        
+        settingsLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: settingsButton, withOffset: 0)
+        settingsLabel.autoAlignAxis(.Vertical, toSameAxisOfView: settingsButton)
     }
 }

@@ -72,8 +72,8 @@ class ParallaxHeaderView: UIView {
         addDefaultUIElements()
     }
     
-    convenience init(subView: UIView) {
-        self.init(frame: subView.frame)
+    convenience init(subView: UIView, frame : CGRect = CGRect(x: 0, y: 0, width: ScreenSize.WIDTH, height: ScreenSize.HEIGHT*0.3)) {
+        self.init(frame: frame)
         
         addUIElements(subView)
     }

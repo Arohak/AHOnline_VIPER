@@ -15,3 +15,11 @@ class AccountRouter {
 extension AccountRouter: AccountRouterInput {
     
 }
+
+//MARK: - extension for PresentViewControllerProtocol -
+extension AccountRouter: PresentViewControllerProtocol {
+    
+    func presentViewController(vc: UIViewController) {
+        Wireframe.presentViewController(vc)
+    }
+}

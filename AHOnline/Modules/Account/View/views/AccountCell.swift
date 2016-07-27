@@ -80,12 +80,12 @@ class AccountCellCellContentView: UIView {
         bgImageView.autoPinEdgesToSuperviewEdges()
         
         imageView.autoAlignAxisToSuperviewAxis(.Horizontal)
-        imageView.autoPinEdgeToSuperviewEdge(.Left, withInset: OB_INSET)
-        imageView.autoSetDimensionsToSize(CGSize(width: OB_INSET*4, height: OB_INSET*4))
+        imageView.autoPinEdgeToSuperviewEdge(.Left, withInset: AC_INSET)
+        imageView.autoSetDimensionsToSize(CGSize(width: AC_CELL_HEIGHT*0.9, height: AC_CELL_HEIGHT*0.9))
         
         nameLabel.autoAlignAxisToSuperviewAxis(.Horizontal)
-        nameLabel.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: OB_INSET)
-        nameLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: OB_INSET)
+        nameLabel.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: AC_INSET)
+        nameLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: AC_INSET)
     }
     
     //MARK: - Public Methods -

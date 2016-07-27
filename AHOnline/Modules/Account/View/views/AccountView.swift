@@ -8,11 +8,21 @@
 
 class AccountView: BaseView {
     
-    //MARK: - Create UIElements -
-    var headerView: ParallaxHeaderView!
+    //MARK: - Create UIElements -    
+    lazy var accountHeaderView: AccountHeaderView = {
+        let view = AccountHeaderView.newAutoLayoutView()
+        
+        return view
+    }()
     
-    let footerView: AccountFooterView = {
-        let view = AccountFooterView(frame: CGRect(x: 0, y: 0, width: ScreenSize.WIDTH, height: OB_INSET*10))
+    lazy var headerView: ParallaxHeaderView = {
+        let view = ParallaxHeaderView(subView: self.accountHeaderView)
+        
+        return view
+    }()
+    
+    lazy var footerView: AccountFooterView = {
+        let view = AccountFooterView(frame: CGRect(x: 0, y: 0, width: ScreenSize.WIDTH, height: AC_HEIGHT))
         
         return view
     }()
@@ -29,13 +39,8 @@ class AccountView: BaseView {
         
         addSubview(tableView)
         tableView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: NAV_HEIGHT, left: 0, bottom: TAB_HEIGHT, right: 0))
-    }
-    
-    convenience init(subView: UIView) {
-        self.init()
         
         backgroundColor = WHITE
-        headerView = ParallaxHeaderView(subView: subView)
         tableView.tableHeaderView = headerView
         tableView.tableFooterView = footerView
     }

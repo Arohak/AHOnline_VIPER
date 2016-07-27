@@ -23,3 +23,11 @@ extension AccountRouter: PresentViewControllerProtocol {
         Wireframe.presentViewController(vc)
     }
 }
+
+//MARK: - extension for PushViewControllerProtocol -
+extension AccountRouter: PushViewControllerProtocol {
+    
+    func pushViewController(vc: UIViewController) {
+        Wireframe.pushViewController(vc)
+    }
+}

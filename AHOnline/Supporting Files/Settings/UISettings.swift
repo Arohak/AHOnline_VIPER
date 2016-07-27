@@ -64,6 +64,7 @@ typealias CollectionCallback            = (indexPath: NSIndexPath) -> Void
 typealias PickerCallback                = (value: String) -> Void
 typealias DeliveryPickerCallback        = (value: Delivery, index: Int) -> Void
 typealias DistancePickerCallback        = (value: Double, index: Int) -> Void
+typealias LanguagePickerCallback        = (value: String, index: Int) -> Void
 
 let NAV_HEIGHT: CGFloat                 = 64
 let TAB_HEIGHT: CGFloat                 = 46

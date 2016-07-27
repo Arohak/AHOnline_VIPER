@@ -12,4 +12,5 @@ protocol AccountViewOutput: PresentViewControllerProtocol {
     func historyButtonClicked()
     func favoriteButtonClicked()
     func settingsButtonClicked()
+    func didSelectRow(index: Int)
 }

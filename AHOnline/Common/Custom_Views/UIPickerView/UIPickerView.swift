@@ -143,3 +143,51 @@ class DistancePickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSo
         return CA_CELL_HEIGHT*0.6
     }
 }
+
+//MARK: - LanguagePickerView -
+class LanguagePickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    var languages: [String] = []
+    
+    //MARK: - Initilize -
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        delegate = self
+        dataSource = self
+    }
+    
+    //MARK: - Initilize -
+    convenience init(languages: [String]) {
+        self.init(frame: CGRectZero)
+        
+        self.languages = languages
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - UIPickerViewDataSource -
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        return languages.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let distance = languages[row]
+        
+        return distance
+    }
+    
+    //MARK: - UIPickerViewDelegate -
+    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        
+        return CA_CELL_HEIGHT*0.6
+    }
+}

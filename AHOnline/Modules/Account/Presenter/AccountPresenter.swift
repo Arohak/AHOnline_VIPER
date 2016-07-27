@@ -32,6 +32,31 @@ extension AccountPresenter: AccountViewOutput {
     func settingsButtonClicked() {
         interactor.manageSettings()
     }
+    
+    func didSelectRow(index: Int) {        
+        switch index {
+        case 0:
+            interactor.manageLanguage()
+            
+        case 1:
+            let vc = NotificationViewController()
+            _ = NotificationModuleInitializer(viewController: vc)
+            router.pushViewController(vc)
+            
+        case 2:
+            let vc = ContuctUsViewController()
+            _ = ContuctUsModuleInitializer(viewController: vc)
+            router.pushViewController(vc)
+            
+        case 3:
+            let vc = HelpViewController()
+            _ = HelpModuleInitializer(viewController: vc)
+            router.pushViewController(vc)
+
+        default:
+            break
+        }
+    }
 }
 
 //MARK: - extension for PresentViewControllerProtocol -

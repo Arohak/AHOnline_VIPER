@@ -69,3 +69,41 @@ class DistanceActionSheetPickerViewController: UIAlertController {
         pickerView.autoSetDimension(.Height, toSize: ScreenSize.HEIGHT*0.25)
     }
 }
+
+//MARK: - LanguageActionSheetPickerViewController -
+class LanguageActionSheetPickerViewController: UIAlertController {
+    
+    var callback: LanguagePickerCallback?
+    var pickerView: LanguagePickerView!
+    
+    init(languages: [String], callback: LanguagePickerCallback) {
+        super.init(nibName: nil, bundle: nil)
+        
+        title = nil
+        message = "\n\n\n\n\n\n"
+        self.callback = callback
+        
+        addAction(UIAlertAction(title: "cancel".localizedString, style: .Cancel) { _ in })
+        addAction(UIAlertAction(title: "save".localizedString, style: .Destructive) { _ in
+            let index = self.pickerView.selectedRowInComponent(0)
+            let language = languages[index]
+            callback(value: language, index: index)
+            })
+        
+        pickerView = LanguagePickerView(languages: languages)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.view.addSubview(pickerView)
+        pickerView.autoPinEdgeToSuperviewEdge(ALEdge.Top)
+        pickerView.autoPinEdgeToSuperviewEdge(ALEdge.Bottom, withInset: 120)
+        pickerView.autoAlignAxisToSuperviewAxis(ALAxis.Vertical)
+        pickerView.autoSetDimension(.Height, toSize: ScreenSize.HEIGHT*0.25)
+    }
+}

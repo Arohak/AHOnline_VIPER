@@ -8,9 +8,11 @@
 
 //MARK: - class AccountInteractor -
 class AccountInteractor {
-
-    weak var output: AccountInteractorOutput!
     
+    weak var output: AccountInteractorOutput!
+    private let languages = ["english".localizedString, "russian".localizedString, "armenian".localizedString]
+    private var selectedLanguage = "english".localizedString
+
     func getUser() -> User {
         return DBManager.getUser()
     }
@@ -33,7 +35,6 @@ extension AccountInteractor: AccountInteractorInput {
     }
     
     func manageSettings() {
-        
         let actionSheet = UIAlertController(title: "Settings".localizedString, message: nil, preferredStyle: .ActionSheet)
         
         actionSheet.addAction(UIAlertAction(title: "Cancel".localizedString, style: .Cancel, handler: nil))
@@ -46,5 +47,13 @@ extension AccountInteractor: AccountInteractorInput {
         
         output.presentViewController(actionSheet)
     }
-
+    
+    func manageLanguage() {
+        let actionSheet = LanguageActionSheetPickerViewController(languages: languages) { language, index in
+            self.selectedLanguage = language
+        }
+        actionSheet.pickerView.selectRow(languages.indexOf(selectedLanguage)!, inComponent: 0, animated: true)
+        
+        output.presentViewController(actionSheet)
+    }
 }

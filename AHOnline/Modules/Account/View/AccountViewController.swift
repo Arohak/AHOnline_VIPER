@@ -17,7 +17,7 @@ class AccountViewController: BaseViewController {
     private var menus: [(String, String)] = [("img_all" , "Language"),
                                              ("img_all" , "Notifications"),
                                              ("img_all" , "Contuct us"),
-                                             ("img_all" , "About")]
+                                             ("img_all" , "Help")]
     
     // MARK: - Life cycle -
     override func viewDidLoad() {
@@ -86,8 +86,7 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        let menu = menus[indexPath.row]
-//        output.didSelectObjectMenuRow(menu)
+        output.didSelectRow(indexPath.row)
     }
 }
 

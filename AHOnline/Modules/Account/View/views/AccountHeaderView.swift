@@ -15,7 +15,7 @@ class AccountHeaderView: UIView {
     let bgImageView: UIImageView = {
         let view = UIImageView.newAutoLayoutView()
         view.contentMode = .ScaleAspectFill
-        view.image = Image(named: "img_all")
+        view.image = Image(named: "img_bg_user")
         
         return view
     }()
@@ -28,7 +28,7 @@ class AccountHeaderView: UIView {
     
     let imageButton: HOButton = {
         let view = HOButton.newAutoLayoutView()
-        view.backgroundColor = RED
+        view.setBackgroundImage(UIImage(named: "img_acc_user"), forState: .Normal)
         view.layer.cornerRadius = AC_BTN_SIZE*0.5
         
         return view
@@ -44,7 +44,7 @@ class AccountHeaderView: UIView {
     
     let favoriteButton: HOButton = {
         let view = HOButton.newAutoLayoutView()
-        view.backgroundColor = GREEN
+        view.setBackgroundImage(UIImage(named: "img_acc_favorite"), forState: .Normal)
 
         return view
     }()
@@ -59,7 +59,7 @@ class AccountHeaderView: UIView {
     
     let historyButton: HOButton = {
         let view = HOButton.newAutoLayoutView()
-        view.backgroundColor = GREEN
+        view.setBackgroundImage(UIImage(named: "img_acc_history"), forState: .Normal)
 
         return view
     }()
@@ -74,7 +74,7 @@ class AccountHeaderView: UIView {
     
     let settingsButton: HOButton = {
         let view = HOButton.newAutoLayoutView()
-        view.backgroundColor = GREEN
+        view.setBackgroundImage(UIImage(named: "img_acc_settings"), forState: .Normal)
         
         return view
     }()

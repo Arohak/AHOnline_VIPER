@@ -12,4 +12,5 @@ protocol AccountInteractorInput {
     func getHistory()
     func getFavorites()
     func manageSettings()
+    func manageLanguage()
 }

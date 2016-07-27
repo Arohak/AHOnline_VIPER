@@ -41,7 +41,7 @@ class TabBarViewController: UITabBarController {
         _ = MapModuleInitializer(viewController: mapVC)
         tempViewControllers.append(UINavigationController(rootViewController: mapVC))
         
-        let accountVC = AccountViewController(user: User(data: JSON.null))
+        let accountVC = AccountViewController()
         _ = AccountModuleInitializer(viewController: accountVC)
         tempViewControllers.append(UINavigationController(rootViewController: accountVC))
         

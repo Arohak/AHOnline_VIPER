@@ -10,10 +10,19 @@
 class AccountInteractor {
 
     weak var output: AccountInteractorOutput!
+    
+    func getUser() -> User {
+        return DBManager.getUser()
+    }
 }
 
 //MARK: - extension for AccountInteractorInput -
 extension AccountInteractor: AccountInteractorInput {
+    
+    func getUserData() {
+        let user = getUser()
+        output.userDataIsReady(user)
+    }
     
     func getHistory() {
         

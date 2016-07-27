@@ -18,15 +18,15 @@ class AccountPresenter {
 extension AccountPresenter: AccountViewOutput {
     
     func viewIsReady() {
-
+        interactor.getUserData()
     }
     
     func historyButtonClicked() {
-        
+        interactor.getHistory()
     }
     
     func favoriteButtonClicked() {
-        
+        interactor.getFavorites()
     }
     
     func settingsButtonClicked() {
@@ -45,4 +45,7 @@ extension AccountPresenter: PresentViewControllerProtocol {
 //MARK: - extension for AccountInteractorOutput -
 extension AccountPresenter: AccountInteractorOutput {
  
+    func userDataIsReady(user: User) {
+        view.setupInitialState(user)
+    }
 }

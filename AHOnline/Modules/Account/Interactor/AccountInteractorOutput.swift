@@ -8,4 +8,5 @@
 
 protocol AccountInteractorOutput: class, PresentViewControllerProtocol {
 
+    func userDataIsReady(user: User)
 }

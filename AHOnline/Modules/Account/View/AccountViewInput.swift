@@ -8,5 +8,5 @@
 
 protocol AccountViewInput: class {
 
-    func setupInitialState()
+    func setupInitialState(user: User)
 }

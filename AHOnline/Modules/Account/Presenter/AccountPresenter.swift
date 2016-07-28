@@ -22,11 +22,15 @@ extension AccountPresenter: AccountViewOutput {
     }
     
     func historyButtonClicked() {
-        interactor.getHistory()
+        let vc = HistoryViewController()
+        _ = HistoryModuleInitializer(viewController: vc)
+        router.pushViewController(vc)
     }
     
     func favoriteButtonClicked() {
-        interactor.getFavorites()
+        let vc = FavoriteViewController()
+        _ = FavoriteModuleInitializer(viewController: vc)
+        router.pushViewController(vc)
     }
     
     func settingsButtonClicked() {

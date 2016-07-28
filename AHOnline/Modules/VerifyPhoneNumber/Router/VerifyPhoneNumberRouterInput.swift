@@ -6,6 +6,6 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-protocol VerifyPhoneNumberRouterInput {
+protocol VerifyPhoneNumberRouterInput: PresentViewControllerProtocol, DismissControllerProtocol {
 
 }

@@ -14,7 +14,20 @@ class HomeRouter {
 //MARK: - extension for HomeRouterInput -
 extension HomeRouter: HomeRouterInput {
     
+}
+
+//MARK: - extension for PushViewControllerProtocol -
+extension HomeRouter: PushViewControllerProtocol {
+    
     func pushViewController(vc: UIViewController) {
         Wireframe.pushViewController(vc)
+    }
+}
+
+//MARK: - extension for ModalPresentViewControllerProtocol -
+extension HomeRouter: ModalPresentViewControllerProtocol {
+    
+    func modalPresentViewController(vc: UIViewController) {
+        Wireframe.modalPresentViewController(vc)
     }
 }

@@ -26,14 +26,6 @@ extension AccountInteractor: AccountInteractorInput {
         output.userDataIsReady(user)
     }
     
-    func getHistory() {
-        
-    }
-    
-    func getFavorites() {
-        
-    }
-    
     func manageSettings() {
         let actionSheet = UIAlertController(title: "Settings".localizedString, message: nil, preferredStyle: .ActionSheet)
         

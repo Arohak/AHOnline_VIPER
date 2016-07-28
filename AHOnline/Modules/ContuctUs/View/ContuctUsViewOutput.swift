@@ -9,4 +9,8 @@
 protocol ContuctUsViewOutput {
 
     func viewIsReady()
+    func facebookButtonClicked()
+    func twitterButtonClicked()
+    func youtubeButtonClicked()
+    func didSelectRow(index: Int)
 }

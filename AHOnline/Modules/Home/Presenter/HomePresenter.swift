@@ -19,6 +19,10 @@ extension HomePresenter: HomeViewOutput {
     
     func viewIsReady() {
         interactor.getRestaurantsHome()
+        
+        let vc = VerifyPhoneNumberViewController()
+        _ = VerifyPhoneNumberModuleInitializer(viewController: vc)
+        router.modalPresentViewController(UINavigationController(rootViewController: vc))
     }
     
     func didSelectObject(object: AHObject) {

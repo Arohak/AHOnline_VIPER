@@ -6,7 +6,9 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-protocol VerifyPhoneNumberViewOutput {
+protocol VerifyPhoneNumberViewOutput: PresentViewControllerProtocol, DismissControllerProtocol {
 
     func viewIsReady()
+    func sendButtonClicked(number: String)
+    func acceptButtonClicked(pin: String)
 }

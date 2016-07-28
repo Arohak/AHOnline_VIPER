@@ -9,8 +9,6 @@
 protocol AccountInteractorInput {
 
     func getUserData()
-    func getHistory()
-    func getFavorites()
     func manageSettings()
     func manageLanguage()
 }

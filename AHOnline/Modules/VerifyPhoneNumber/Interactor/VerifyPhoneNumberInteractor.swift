@@ -15,4 +15,11 @@ class VerifyPhoneNumberInteractor {
 //MARK: - extension for VerifyPhoneNumberInteractorInput -
 extension VerifyPhoneNumberInteractor: VerifyPhoneNumberInteractorInput {
     
+    func send(number: String) {
+        
+    }
+    
+    func accept(pin: String) {
+        
+    }
 }

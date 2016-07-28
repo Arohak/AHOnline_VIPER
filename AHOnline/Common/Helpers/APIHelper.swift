@@ -76,7 +76,7 @@ class APIHelper {
                         observer.onNext(self.handleResponse(data))
                     case .Failure(let error):
                         UIHelper.showHUD(error.localizedDescription)
-//                        observer.onError(error)
+                        observer.onError(error)
                     }
                     
                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false

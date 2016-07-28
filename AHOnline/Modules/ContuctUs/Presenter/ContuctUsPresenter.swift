@@ -20,6 +20,22 @@ extension ContuctUsPresenter: ContuctUsViewOutput {
     func viewIsReady() {
 
     }
+    
+    func didSelectRow(index: Int) {
+        
+    }
+    
+    func facebookButtonClicked() {
+        
+    }
+    
+    func twitterButtonClicked() {
+        
+    }
+    
+    func youtubeButtonClicked() {
+        
+    }
 }
 
 //MARK: - extension for ContuctUsInteractorOutput -

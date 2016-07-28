@@ -15,3 +15,19 @@ class VerifyPhoneNumberRouter {
 extension VerifyPhoneNumberRouter: VerifyPhoneNumberRouterInput {
     
 }
+
+//MARK: - extension for PresentViewControllerProtocol -
+extension VerifyPhoneNumberRouter: PresentViewControllerProtocol {
+    
+    func presentViewController(vc: UIViewController) {
+        Wireframe.presentViewController(vc)
+    }
+}
+
+//MARK: - extension for DismissControllerProtocol -
+extension VerifyPhoneNumberRouter: DismissControllerProtocol {
+    
+    func dismissViewController() {
+        Wireframe.dismissViewController()
+    }
+}

@@ -6,13 +6,23 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-class BaseScrollView: UIScrollView {
+class BaseScrollView: UIView {
     
     var heightScrollViewConstraint: NSLayoutConstraint!
     
+    //MARK: - Create UIElements -
+    lazy var bgView: UIView = {
+        let view = UIView.newAutoLayoutView()
+        view.backgroundColor = BLACK
+        view.alpha = 0
+
+        return view
+    }()
+    
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView.newAutoLayoutView()
-        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEdit)))
+
         return view
     }()
     
@@ -33,17 +43,25 @@ class BaseScrollView: UIScrollView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Action -
+    func endEdit() {
+        contentView.endEditing(true)
+    }
+    
     //MARK: - Public Methods -
     func addAllUIElements() {
+        addSubview(bgView)
         addSubview(scrollView)
         scrollView.addSubview(contentView)
         
+        bgView.autoPinEdgesToSuperviewEdges()
+
         scrollView.autoPinEdgeToSuperviewEdge(.Top)
         scrollView.autoPinEdgeToSuperviewEdge(.Left)
         scrollView.autoMatchDimension(.Width, toDimension: .Width, ofView: self)
-        heightScrollViewConstraint = scrollView.autoSetDimension(.Height, toSize: ScreenSize.HEIGHT - NAV_HEIGHT)
+        heightScrollViewConstraint = scrollView.autoSetDimension(.Height, toSize: ScreenSize.HEIGHT - (NAV_HEIGHT))
         
-        contentView.autoPinEdgeToSuperviewEdge(.Top)
+        contentView.autoPinEdgeToSuperviewEdge(.Top, withInset: NAV_HEIGHT)
         contentView.autoPinEdgeToSuperviewEdge(.Left)
         contentView.autoMatchDimension(.Width, toDimension: .Width, ofView: self)
     }

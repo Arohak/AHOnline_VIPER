@@ -20,6 +20,30 @@ extension VerifyPhoneNumberPresenter: VerifyPhoneNumberViewOutput {
     func viewIsReady() {
 
     }
+    
+    func sendButtonClicked(number: String) {
+        interactor.send(number)
+    }
+    
+    func acceptButtonClicked(pin: String) {
+        interactor.accept(pin)
+    }
+}
+
+//MARK: - extension for PresentViewControllerProtocol -
+extension VerifyPhoneNumberPresenter: PresentViewControllerProtocol {
+    
+    func presentViewController(vc: UIViewController) {
+        router.presentViewController(vc)
+    }
+}
+
+//MARK: - extension for DismissControllerProtocol -
+extension VerifyPhoneNumberPresenter: DismissControllerProtocol {
+    
+    func dismissViewController() {
+        router.dismissViewController()
+    }
 }
 
 //MARK: - extension for VerifyPhoneNumberInteractorOutput -

@@ -38,9 +38,12 @@ extension CartInteractor: CartInteractorInput {
                     for item in result["data"].arrayValue {
                         deliveries.append(Delivery(data: item))
                     }
-                    
+                    DBManager.storeDeliveries(deliveries)
                     self.output.deliveriesDataIsReady(deliveries)
                 }
+                }, onError: { error in
+                    let deliveries = DBManager.getDeliveries()
+                    self.output.deliveriesDataIsReady(Array(deliveries))
             })
     }
     

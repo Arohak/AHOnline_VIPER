@@ -294,7 +294,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
                     textField.text = self.house
                 }
                 
-                alert.addAction(UIAlertAction(title: "Cancel".localizedString, style: .Cancel, handler: { _ in }))
+                alert.addAction(UIAlertAction(title: "Cancel".localizedString, style: .Cancel, handler: nil))
                 AddAlertSaveAction = UIAlertAction(title: "Save".localizedString, style: .Destructive, handler: { a in
                     self.street = (alert.textFields?[0].text)!
                     self.apartment = (alert.textFields?[1].text)!

@@ -8,4 +8,6 @@
 
 protocol VerifyPhoneNumberInteractorInput {
 
+    func send(number: String)
+    func accept(pin: String)
 }

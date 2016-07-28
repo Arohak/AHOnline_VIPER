@@ -21,11 +21,11 @@ class AccountView: BaseView {
         return view
     }()
     
-    lazy var footerView: AccountFooterView = {
-        let view = AccountFooterView(frame: CGRect(x: 0, y: 0, width: ScreenSize.WIDTH, height: AC_HEIGHT))
-        
-        return view
-    }()
+//    lazy var footerView: AccountFooterView = {
+//        let view = AccountFooterView(frame: CGRect(x: 0, y: 0, width: ScreenSize.WIDTH, height: AC_HEIGHT))
+//        
+//        return view
+//    }()
     
     lazy var tableView: BaseTableView = {
         let view = BaseTableView(frame: CGRectZero, style: .Plain)
@@ -42,7 +42,7 @@ class AccountView: BaseView {
         
         backgroundColor = WHITE
         tableView.tableHeaderView = headerView
-        tableView.tableFooterView = footerView
+//        tableView.tableFooterView = footerView
     }
     
     required init?(coder aDecoder: NSCoder) {

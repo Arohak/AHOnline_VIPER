@@ -12,7 +12,7 @@ struct Wireframe {
     
     static func start() {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window!.rootViewController = TabBarViewController()
+        window!.rootViewController =  TabBarViewController()
         window!.makeKeyAndVisible()
         
         setBadgeValue(DBManager.getOrderCounts())
@@ -43,10 +43,24 @@ struct Wireframe {
     }
     
     static func dismissViewController() {
-        root().dismissViewControllerAnimated(true, completion: nil)
+        if let nav = root().presentedViewController as? UINavigationController {
+            nav.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            root().dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     static func presentViewController(vc: UIViewController) {
+        if let nav = root().presentedViewController as? UINavigationController {
+            nav.presentViewController(vc, animated: true, completion: nil)
+        } else {
+            root().presentViewController(vc, animated: true, completion: nil)
+        }
+    }
+    
+    static func modalPresentViewController(vc: UIViewController) {
+        vc.modalTransitionStyle = .CrossDissolve
+        vc.modalPresentationStyle = .OverCurrentContext
         root().presentViewController(vc, animated: true, completion: nil)
     }
     

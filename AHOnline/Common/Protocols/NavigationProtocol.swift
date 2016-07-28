@@ -16,6 +16,11 @@ protocol PresentViewControllerProtocol {
     func presentViewController(vc: UIViewController)
 }
 
+protocol ModalPresentViewControllerProtocol {
+    
+    func modalPresentViewController(vc: UIViewController)
+}
+
 protocol PushViewControllerProtocol {
     
     func pushViewController(vc: UIViewController)

@@ -7,15 +7,23 @@
 //
 
 //MARK: - class HelpViewController -
-class HelpViewController: UIViewController {
+class HelpViewController: BaseViewController {
 
     var output: HelpViewOutput!
+    
+    private var helpView = HelpView()
 
     // MARK: - Life cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "help".localizedString
         output.viewIsReady()
+    }
+    
+    //MARK: -  Internal Methods -
+    override func baseConfig() {
+        self.view = helpView
     }
 }
 

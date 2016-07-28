@@ -86,6 +86,18 @@ struct DBManager {
         return price
     }
     
+    //MARK: - Delivery -
+    static func storeDeliveries(deliveries: [Delivery]) {
+        try! realm.write {
+            realm.add(deliveries, update: true)
+        }
+    }
+    
+    static func getDeliveries() -> Results<Delivery> {
+        let deliveries = realm.objects(Delivery.self)
+        return deliveries
+    }
+    
     //MARK: - User -
     static func getUser() -> User {
         var user = User(data: JSON.null)

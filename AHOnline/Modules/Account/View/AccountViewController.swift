@@ -21,9 +21,7 @@ class AccountViewController: BaseViewController {
     
     // MARK: - Life cycle -
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        super.viewDidLoad()        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -41,9 +39,9 @@ class AccountViewController: BaseViewController {
         accountView.tableView.delegate = self
         accountView.tableView.registerClass(AccountCell.self, forCellReuseIdentifier: cellIdentifire)
         
-        accountView.accountHeaderView.settingsButton.addTarget(self, action: #selector(AccountViewController.historyAction), forControlEvents: .TouchUpInside)
-        accountView.accountHeaderView.settingsButton.addTarget(self, action: #selector(AccountViewController.favoriteAction), forControlEvents: .TouchUpInside)
-        accountView.accountHeaderView.settingsButton.addTarget(self, action: #selector(AccountViewController.settingsAction), forControlEvents: .TouchUpInside)
+        accountView.accountHeaderView.historyButton.addTarget(self, action: #selector(historyAction), forControlEvents: .TouchUpInside)
+        accountView.accountHeaderView.favoriteButton.addTarget(self, action: #selector(favoriteAction), forControlEvents: .TouchUpInside)
+        accountView.accountHeaderView.settingsButton.addTarget(self, action: #selector(settingsAction), forControlEvents: .TouchUpInside)
     }
     
     //MARK: - Actions -
@@ -79,6 +77,7 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifire) as! AccountCell
+        cell.selectionStyle = .Default
         let menu = menus[indexPath.row]
         cell.setValues(menu.0, name: menu.1)
         
@@ -86,6 +85,8 @@ extension AccountViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
         output.didSelectRow(indexPath.row)
     }
 }

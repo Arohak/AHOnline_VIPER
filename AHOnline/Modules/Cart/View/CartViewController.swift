@@ -16,17 +16,23 @@ class CartViewController: BaseViewController {
     weak var AddAlertSaveAction: UIAlertAction?
 
     private let cellIdentifire      = ["cellIdentifire1", "cellIdentifire2", "cellIdentifire3"]
-    private let headers             = ["ORDER", "DELIVERY", "PAYMENT"]
+    
+    private let headers             = ["ORDER".localizedString,
+                                       "DELIVERY".localizedString,
+                                       "PAYMENT".localizedString]
+    
     private let heights: [CGFloat]  = [CA_CELL_HEIGHT, CA_CELL_HEIGHT*0.6, CA_CELL_HEIGHT*0.6]
     
     private var orders: [Product] = []
     
     private var deliveryCells: [DeliveryCell] = []
-    private var titleDeliveries = ["Set Phone Number", "Set Address", "Choose City", "Choose Time"]
+    private var titleDeliveries = [("img_cart_call", "cart_call".localizedString),
+                                   ("img_cart_address", "cart_address".localizedString),
+                                   ("img_cart_city", "cart_city".localizedString),
+                                   ("img_cart_time", "cart_time".localizedString)]
+    
     private var deliveries: [Delivery] = []
-    private var street = ""
-    private var apartment = ""
-    private var house = ""
+    private var add = ""
     private var ordersTotalPrice = 0.0
     private var deliveryPrice = 0.0
     private var selectedIndex = 0
@@ -77,9 +83,10 @@ class CartViewController: BaseViewController {
     
     // MARK: - Private Method -
     private func configTableViewCell() {
-        for title in titleDeliveries {
+        for tuple in titleDeliveries {
             let cell = DeliveryCell(style: .Default, reuseIdentifier: cellIdentifire[1])
-            cell.cellContentView.titleLabel.text = title
+            cell.cellContentView.imageView.image = UIImage(named: tuple.0)
+            cell.cellContentView.titleLabel.text = tuple.1
             deliveryCells.append(cell)
         }
         
@@ -165,7 +172,7 @@ extension CartViewController: CartViewInput {
             }
         }
         
-        deliveryCells[1].cellContentView.deliveryLabel.text = deliveryAddress.street.isEmpty ? "*" : String(format: "st: %@, apt: %@, h: %@", deliveryAddress.street, deliveryAddress.apartment, deliveryAddress.house)
+        deliveryCells[1].cellContentView.deliveryLabel.text = deliveryAddress.add.isEmpty ? "*" :deliveryAddress.add
         deliveryCells[2].cellContentView.deliveryLabel.text = deliveryAddress.city.isEmpty ? "*" : deliveryAddress.city
         deliveryCells[3].cellContentView.deliveryLabel.text = NSDate().deliveryTimeFormat
     }
@@ -280,26 +287,14 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
                 let alert = UIAlertController(title: "Delivery Address".localizedString, message: nil, preferredStyle: .Alert)
                 alert.addTextFieldWithConfigurationHandler { textField in
                     textField.keyboardAppearance = .Dark
-                    textField.placeholder = "Street"
-                    textField.text = self.street
-                }
-                alert.addTextFieldWithConfigurationHandler { textField in
-                    textField.keyboardAppearance = .Dark
-                    textField.placeholder = "Apartment"
-                    textField.text = self.apartment
-                }
-                alert.addTextFieldWithConfigurationHandler { textField in
-                    textField.keyboardAppearance = .Dark
-                    textField.placeholder = "House"
-                    textField.text = self.house
+                    textField.placeholder = "street, apartment, house"
+                    textField.text = self.add
                 }
                 
                 alert.addAction(UIAlertAction(title: "Cancel".localizedString, style: .Cancel, handler: nil))
                 AddAlertSaveAction = UIAlertAction(title: "Save".localizedString, style: .Destructive, handler: { a in
-                    self.street = (alert.textFields?[0].text)!
-                    self.apartment = (alert.textFields?[1].text)!
-                    self.house = (alert.textFields?[2].text)!
-                    let text = self.street.isEmpty ? "*" : String(format: "st: %@, apt: %@, h: %@", self.street, self.apartment, self.house)
+                    self.add = (alert.textFields?[0].text)!
+                    let text = self.add.isEmpty ? "*" : self.add
                     self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = text
                     
                     self.AddAlertSaveAction = nil

@@ -24,6 +24,14 @@ extension VerifyPhoneNumberRouter: PresentViewControllerProtocol {
     }
 }
 
+//MARK: - extension for ModalPresentViewControllerProtocol -
+extension VerifyPhoneNumberRouter: ModalPresentViewControllerProtocol {
+    
+    func modalPresentViewController(vc: UIViewController) {
+        Wireframe.modalPresentViewController(vc)
+    }
+}
+
 //MARK: - extension for DismissControllerProtocol -
 extension VerifyPhoneNumberRouter: DismissControllerProtocol {
     

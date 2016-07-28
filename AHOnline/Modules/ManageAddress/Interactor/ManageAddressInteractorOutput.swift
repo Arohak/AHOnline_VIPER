@@ -8,4 +8,5 @@
 
 protocol ManageAddressInteractorOutput: class {
 
+    func dataIsReady(countries: [String], cities: [String])
 }

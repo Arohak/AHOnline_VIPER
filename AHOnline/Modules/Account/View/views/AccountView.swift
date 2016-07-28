@@ -1,9 +1,9 @@
 //
 //  AccountView.swift
-//  Emergency
+//  AHOnline
 //
-//  Created by Ara Hakobyan on 11/3/15.
-//  Copyright © 2015 VTGSoftware LLC. All rights reserved.
+//  Created by AroHak on 28/07/2016.
+//  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
 class AccountView: BaseView {

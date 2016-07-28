@@ -24,6 +24,14 @@ extension AccountRouter: PresentViewControllerProtocol {
     }
 }
 
+//MARK: - extension for ModalPresentViewControllerProtocol -
+extension AccountRouter: ModalPresentViewControllerProtocol {
+    
+    func modalPresentViewController(vc: UIViewController) {
+        Wireframe.modalPresentViewController(vc)
+    }
+}
+
 //MARK: - extension for PushViewControllerProtocol -
 extension AccountRouter: PushViewControllerProtocol {
     

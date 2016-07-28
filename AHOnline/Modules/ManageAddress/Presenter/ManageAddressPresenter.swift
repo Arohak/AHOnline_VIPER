@@ -18,11 +18,34 @@ class ManageAddressPresenter {
 extension ManageAddressPresenter: ManageAddressViewOutput {
     
     func viewIsReady() {
+        interactor.getDeliveries()
+    }
+    
+    func closeButtonClicked() {
+        router.dismissViewController()
+    }
+}
 
+//MARK: - extension for PresentViewControllerProtocol -
+extension ManageAddressPresenter: PresentViewControllerProtocol {
+    
+    func presentViewController(vc: UIViewController) {
+        router.presentViewController(vc)
+    }
+}
+
+//MARK: - extension for DismissControllerProtocol -
+extension ManageAddressPresenter: DismissControllerProtocol {
+    
+    func dismissViewController() {
+        router.dismissViewController()
     }
 }
 
 //MARK: - extension for ManageAddressInteractorOutput -
 extension ManageAddressPresenter: ManageAddressInteractorOutput {
  
+    func dataIsReady(countries: [String], cities: [String]) {
+        view.setupInitialState(countries, cities: cities)
+    }
 }

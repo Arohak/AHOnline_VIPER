@@ -8,4 +8,5 @@
 
 protocol ManageAddressInteractorInput {
 
+    func getDeliveries()
 }

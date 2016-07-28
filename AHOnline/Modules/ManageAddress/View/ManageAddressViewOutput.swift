@@ -6,7 +6,8 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-protocol ManageAddressViewOutput {
+protocol ManageAddressViewOutput: PresentViewControllerProtocol {
 
     func viewIsReady()
+    func closeButtonClicked()
 }

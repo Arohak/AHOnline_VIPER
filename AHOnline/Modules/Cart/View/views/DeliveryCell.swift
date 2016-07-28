@@ -40,7 +40,6 @@ class DeliveryCellContentView: UIView {
     
     lazy var imageView: UIImageView = {
         let view = UIImageView.newAutoLayoutView()
-        view.image = Image(named: "img_all")
         
         return view
     }()
@@ -89,8 +88,8 @@ class DeliveryCellContentView: UIView {
 //        bgImageView.autoPinEdgesToSuperviewEdges()
 //        
         imageView.autoAlignAxisToSuperviewAxis(.Horizontal)
-        imageView.autoPinEdgeToSuperviewEdge(.Left, withInset: CA_INSET)
-        imageView.autoSetDimensionsToSize(CGSize(width: CA_INSET*4, height: CA_INSET*4))
+        imageView.autoPinEdgeToSuperviewEdge(.Left, withInset: CA_INSET*2)
+        imageView.autoSetDimensionsToSize(CGSize(width: CA_INSET*2.5, height: CA_INSET*2.5))
         
         titleLabel.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: CA_INSET)
         titleLabel.autoAlignAxisToSuperviewAxis(.Horizontal)

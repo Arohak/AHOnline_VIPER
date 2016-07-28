@@ -15,3 +15,19 @@ class ManageAddressRouter {
 extension ManageAddressRouter: ManageAddressRouterInput {
     
 }
+
+//MARK: - extension for PresentViewControllerProtocol -
+extension ManageAddressRouter: PresentViewControllerProtocol {
+    
+    func presentViewController(vc: UIViewController) {
+        Wireframe.presentViewController(vc)
+    }
+}
+
+//MARK: - extension for DismissControllerProtocol -
+extension ManageAddressRouter: DismissControllerProtocol {
+    
+    func dismissViewController() {
+        Wireframe.dismissViewController()
+    }
+}

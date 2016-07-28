@@ -17,9 +17,11 @@ extension VerifyPhoneNumberInteractor: VerifyPhoneNumberInteractorInput {
     
     func send(number: String) {
         
+       output.sendDataIsReady()
     }
     
     func accept(pin: String) {
         
+        output.acceptDataIsReady()
     }
 }

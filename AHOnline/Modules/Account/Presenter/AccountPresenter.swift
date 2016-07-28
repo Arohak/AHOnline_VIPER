@@ -71,6 +71,14 @@ extension AccountPresenter: PresentViewControllerProtocol {
     }
 }
 
+//MARK: - extension for ModalPresentViewControllerProtocol -
+extension AccountPresenter: ModalPresentViewControllerProtocol {
+    
+    func modalPresentViewController(vc: UIViewController) {
+        router.modalPresentViewController(vc)
+    }
+}
+
 //MARK: - extension for AccountInteractorOutput -
 extension AccountPresenter: AccountInteractorOutput {
  

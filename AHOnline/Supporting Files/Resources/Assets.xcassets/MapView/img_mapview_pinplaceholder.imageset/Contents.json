@@ -12,14 +12,6 @@
       "idiom" : "universal",
       "filename" : "Default_pin_3x.png",
       "scale" : "3x"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "2x"
     }
   ],
   "info" : {

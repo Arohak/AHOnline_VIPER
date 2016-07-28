@@ -11,9 +11,7 @@ class DeliveryAddress: Object {
     dynamic var id = 0
     dynamic var country: String!
     dynamic var city: String!
-    dynamic var street: String!
-    dynamic var apartment: String!
-    dynamic var house: String!
+    dynamic var add: String!
     dynamic var def: Bool = false
 
     override static func primaryKey() -> String {
@@ -26,9 +24,7 @@ class DeliveryAddress: Object {
         self.id                 = data["id"].intValue
         self.country            = data["country"].stringValue
         self.city               = data["city"].stringValue
-        self.street             = data["street"].stringValue
-        self.apartment          = data["apartment"].stringValue
-        self.house              = data["house"].stringValue
+        self.add                = data["add"].stringValue
         self.def                = data["default"].boolValue
     }
 }

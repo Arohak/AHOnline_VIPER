@@ -11,14 +11,15 @@ class MPBottomView: UIView {
     //MARK: - Create UIElements -
     let locationButton: UIButton = {
         let view = UIButton.newAutoLayoutView()
-        view.setBackgroundImage(UIImage(named: "img_mapview_location"), forState: .Normal)
+        view.setBackgroundImage(UIImage(named: "img_map_pin"), forState: .Normal)
         
         return view
     }()
     
-    let objectButton: UIButton = {
+    let closeRoutButton: UIButton = {
         let view = UIButton.newAutoLayoutView()
-        view.setBackgroundImage(UIImage(named: "img_mapview_hospital"), forState: .Normal)
+        view.setBackgroundImage(UIImage(named: "img_map_delete"), forState: UIControlState.Normal)
+        view.hidden = true
         
         return view
     }()
@@ -37,7 +38,7 @@ class MPBottomView: UIView {
     //MARK: - Private Methods -
     private func addAllUIElements() {
         addSubview(locationButton)
-        addSubview(objectButton)
+        addSubview(closeRoutButton)
         
         setConstraints()
     }
@@ -48,8 +49,8 @@ class MPBottomView: UIView {
         locationButton.autoPinEdgeToSuperviewEdge(ALEdge.Right, withInset: MP_INSET)
         locationButton.autoSetDimensionsToSize(CGSize(width: MP_BTN_SIZE, height: MP_BTN_SIZE))
         
-        objectButton.autoAlignAxisToSuperviewAxis(ALAxis.Horizontal)
-        objectButton.autoPinEdgeToSuperviewEdge(ALEdge.Left, withInset: MP_INSET)
-        objectButton.autoSetDimensionsToSize(CGSize(width: MP_BTN_SIZE, height: MP_BTN_SIZE))
+        closeRoutButton.autoAlignAxisToSuperviewAxis(ALAxis.Horizontal)
+        closeRoutButton.autoPinEdgeToSuperviewEdge(ALEdge.Left, withInset: MP_INSET)
+        closeRoutButton.autoSetDimensionsToSize(CGSize(width: MP_BTN_SIZE, height: MP_BTN_SIZE))
     }
 }

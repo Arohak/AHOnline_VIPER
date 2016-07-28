@@ -13,15 +13,6 @@
       "idiom" : "universal",
       "filename" : "call.png",
       "scale" : "3x"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "ipad",
-      "filename" : "call-1.png",
-      "scale" : "2x"
     }
   ],
   "info" : {

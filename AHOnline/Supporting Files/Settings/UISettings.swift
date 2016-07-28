@@ -87,7 +87,13 @@ let LINK_FONT                           = UIFont.systemFontOfSize(DeviceType.IS_
 let VE_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
 let VE_OFFSET : CGFloat                 = DeviceType.IS_IPAD ? 30     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 30     : DeviceType.IS_IPHONE_6 ? 30   * IPHONE_6_SCALE : 30   * IPHONE_5_SCALE
 let VE_HEIGHT : CGFloat                 = DeviceType.IS_IPAD ? 40     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 40     : DeviceType.IS_IPHONE_6 ? 40   * IPHONE_6_SCALE : 40   * IPHONE_5_SCALE
-let VE_WIDTH : CGFloat                  = (ScreenSize.WIDTH - 5*VE_OFFSET)
+let VE_WIDTH : CGFloat                  = (ScreenSize.WIDTH)/2
+
+//MARK: - Manage Constants -
+let MA_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
+let MA_OFFSET : CGFloat                 = DeviceType.IS_IPAD ? 30     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 30     : DeviceType.IS_IPHONE_6 ? 30   * IPHONE_6_SCALE : 30   * IPHONE_5_SCALE
+let MA_HEIGHT : CGFloat                 = DeviceType.IS_IPAD ? 40     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 40     : DeviceType.IS_IPHONE_6 ? 40   * IPHONE_6_SCALE : 40   * IPHONE_5_SCALE
+let MA_WIDTH : CGFloat                  = (ScreenSize.WIDTH - MA_OFFSET*3)
 
 //MARK: - Home Constants -
 let HO_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
@@ -117,7 +123,7 @@ let SE_SEARCH_HEIGHT : CGFloat          = DeviceType.IS_IPAD ? 80     * IPAD_SCA
 
 //MARK: - MapView Constants -
 let MP_INSET : CGFloat                  = DeviceType.IS_IPAD ? 20     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 20     : DeviceType.IS_IPHONE_6 ? 20   * IPHONE_6_SCALE : 20    * IPHONE_5_SCALE
-let MP_BTN_SIZE : CGFloat               = DeviceType.IS_IPAD ? 60     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 60     : DeviceType.IS_IPHONE_6 ? 60   * IPHONE_6_SCALE : 60    * IPHONE_5_SCALE
+let MP_BTN_SIZE : CGFloat               = DeviceType.IS_IPAD ? 50     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 50     : DeviceType.IS_IPHONE_6 ? 50   * IPHONE_6_SCALE : 50    * IPHONE_5_SCALE
 let MP_INFOWINDOW_SIZE : CGFloat        = DeviceType.IS_IPAD ? 65     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 65     : DeviceType.IS_IPHONE_6 ? 65   * IPHONE_6_SCALE : 65    * IPHONE_5_SCALE
 let MP_PIN_CIRCLE_RECT                  = CGRectMake(13.5, 12, 24, 24)
 

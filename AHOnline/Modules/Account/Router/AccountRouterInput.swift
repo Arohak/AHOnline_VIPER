@@ -6,6 +6,6 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-protocol AccountRouterInput: PresentViewControllerProtocol, PushViewControllerProtocol {
+protocol AccountRouterInput: PresentViewControllerProtocol, PushViewControllerProtocol, ModalPresentViewControllerProtocol {
 
 }

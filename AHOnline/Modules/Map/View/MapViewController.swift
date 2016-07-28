@@ -54,15 +54,14 @@ class MapViewController: BaseViewController {
         mapView.tableView.registerClass(MapObjectsCell.self, forCellReuseIdentifier: cellIdentifire)
         
         mapView.map.delegate = self
-        mapView.closeRoutButton.addTarget(self, action: #selector(clearPolyline(_:)), forControlEvents: .TouchUpInside)
+        mapView.bottomView.closeRoutButton.addTarget(self, action: #selector(clearPolyline(_:)), forControlEvents: .TouchUpInside)
         mapView.bottomView.locationButton.addTarget(self, action: #selector(goToMyLocation(_:)), forControlEvents: .TouchUpInside)
-        mapView.bottomView.objectButton.addTarget(self, action: #selector(getNearestObjects), forControlEvents: .TouchUpInside)
     }
     
     //MARK: - Actions -
     func clearPolyline(sender: UIButton) {
         drewPolyline.map = nil
-        mapView.closeRoutButton.hidden = true
+        mapView.bottomView.closeRoutButton.hidden = true
     }
     
     func goToMyLocation(sender: UIButton) {
@@ -131,7 +130,7 @@ class MapViewController: BaseViewController {
                     if self.myMarker == nil { self.showMyMarkerInMap(location) }
                     
                     self.drewPolyline = polyline
-                    self.mapView.closeRoutButton.hidden = false
+                    self.mapView.bottomView.closeRoutButton.hidden = false
                 } else {
                     UIHelper.showHUD(error ?? "location_services_disabled".localizedString)
                 }
@@ -207,7 +206,7 @@ class MapViewController: BaseViewController {
         self.mapView.map.clear()
         allGMSMarkers.removeAll()
         addresses.removeAll()
-        mapView.closeRoutButton.hidden = true
+        mapView.bottomView.closeRoutButton.hidden = true
         
         self.showMyMarkerInMap(location)
         self.showMarkersInMap(pins)
@@ -218,7 +217,7 @@ class MapViewController: BaseViewController {
         mapView.map.clear()
         allGMSMarkers.removeAll()
         addresses.removeAll()
-        mapView.closeRoutButton.hidden = true
+        mapView.bottomView.closeRoutButton.hidden = true
         
         self.showMyMarkerInMap(location)
         self.showMarkersInMap([pin])
@@ -274,9 +273,9 @@ extension MapViewController: GMSMapViewDelegate {
         let tag = marker.userData as! Int
         if tag != myUserData {
             let address = addresses[marker.userData as! Int]
-//            drawRoute(address)
-            let object = objects.filter { $0.id == address.restaurant_id }.first!
-            output.didSelectObject(object)
+            drawRoute(address)
+//            let object = objects.filter { $0.id == address.restaurant_id }.first!
+//            output.didSelectObject(object)
         }
     }
 }

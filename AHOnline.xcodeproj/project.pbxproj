@@ -58,6 +58,8 @@
 		525556391D4547790017D5C8 /* img_result.png in Resources */ = {isa = PBXBuildFile; fileRef = 525556371D4547790017D5C8 /* img_result.png */; };
 		5255563B1D4976B90017D5C8 /* img_bg_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 5255563A1D4976B90017D5C8 /* img_bg_user.png */; };
 		5255563D1D497B180017D5C8 /* img_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 5255563C1D497B180017D5C8 /* img_bg.png */; };
+		525556441D4A88040017D5C8 /* ManageAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525556411D4A88040017D5C8 /* ManageAddressView.swift */; };
+		525556461D4AAE130017D5C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 525556451D4AAE130017D5C8 /* Assets.xcassets */; };
 		52581C0C174252CF1768C7DE /* HistoryViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE350B3CCE2FCD2B66937AD /* HistoryViewInput.swift */; };
 		526239EB1D30EC9F00481FC5 /* AHOnlineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526239EA1D30EC9F00481FC5 /* AHOnlineTests.swift */; };
 		526EE71C1D30F3BE00F77974 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EE6DA1D30F3BE00F77974 /* AppDelegate.swift */; };
@@ -109,7 +111,6 @@
 		52CD37601D3C2669008624BE /* MPBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD375F1D3C2669008624BE /* MPBottomView.swift */; };
 		52CD37621D3C2CF4008624BE /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD37611D3C2CF4008624BE /* LocationHelper.swift */; };
 		52D1CE961D3BEED100C1FAC3 /* ObjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D1CE951D3BEED100C1FAC3 /* ObjectsView.swift */; };
-		52ED7BA31D3129D500C75F69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52ED7BA21D3129D500C75F69 /* Assets.xcassets */; };
 		52ED7BAE1D3137A600C75F69 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ED7BAD1D3137A600C75F69 /* BaseViewController.swift */; };
 		55F599D2D407BDEA290D0E85 /* ObjectsViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B1A6792C80043A5D1DB1D /* ObjectsViewInput.swift */; };
 		576F4CA1FA8CB080AA1B8B66 /* AccountInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6519839B0AE82B1F131AF0C0 /* AccountInteractor.swift */; };
@@ -606,6 +607,8 @@
 		525556371D4547790017D5C8 /* img_result.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_result.png; sourceTree = "<group>"; };
 		5255563A1D4976B90017D5C8 /* img_bg_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_bg_user.png; sourceTree = "<group>"; };
 		5255563C1D497B180017D5C8 /* img_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_bg.png; sourceTree = "<group>"; };
+		525556411D4A88040017D5C8 /* ManageAddressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageAddressView.swift; sourceTree = "<group>"; };
+		525556451D4AAE130017D5C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		526239D21D30EC9F00481FC5 /* AHOnline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AHOnline.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		526239E61D30EC9F00481FC5 /* AHOnlineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AHOnlineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		526239EA1D30EC9F00481FC5 /* AHOnlineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AHOnlineTests.swift; sourceTree = "<group>"; };
@@ -664,7 +667,6 @@
 		52CD375F1D3C2669008624BE /* MPBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPBottomView.swift; sourceTree = "<group>"; };
 		52CD37611D3C2CF4008624BE /* LocationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
 		52D1CE951D3BEED100C1FAC3 /* ObjectsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectsView.swift; sourceTree = "<group>"; };
-		52ED7BA21D3129D500C75F69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52ED7BAD1D3137A600C75F69 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		537E4DAC0BDE79E7E7880179 /* ObjectInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ObjectInitializer.swift; sourceTree = "<group>"; };
 		56A43419F1009E159147A9E8 /* Pods_AHOnlineTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AHOnlineTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1145,6 +1147,7 @@
 				341C7A3188F07EE7FCF6EF38 /* ManageAddressViewInput.swift */,
 				F97E124053AB36D9324B4DA6 /* ManageAddressViewOutput.swift */,
 				B9E379ACDD5560B419FFBDAF /* ManageAddressViewController.swift */,
+				5255563E1D4A88040017D5C8 /* views */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1342,6 +1345,14 @@
 				AAE3C4844E514190A9828A6C /* HistoryInitializer.swift */,
 			);
 			path = Configurator;
+			sourceTree = "<group>";
+		};
+		5255563E1D4A88040017D5C8 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				525556411D4A88040017D5C8 /* ManageAddressView.swift */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 		526239C91D30EC9F00481FC5 = {
@@ -1648,7 +1659,7 @@
 		526EE70E1D30F3BE00F77974 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				52ED7BA21D3129D500C75F69 /* Assets.xcassets */,
+				525556451D4AAE130017D5C8 /* Assets.xcassets */,
 				526EE7101D30F3BE00F77974 /* images */,
 				526EE7111D30F3BE00F77974 /* Localizable */,
 				526EE7161D30F3BE00F77974 /* Plists */,
@@ -3102,7 +3113,6 @@
 				A17B9EF31D4A495900C6CFC9 /* _GS.png in Resources */,
 				A17B9EA31D4A495900C6CFC9 /* _AR.png in Resources */,
 				A17B9F871D4A495900C6CFC9 /* _VE.png in Resources */,
-				52ED7BA31D3129D500C75F69 /* Assets.xcassets in Resources */,
 				A17B9F811D4A495900C6CFC9 /* _UM.png in Resources */,
 				A17B9ED51D4A495900C6CFC9 /* _DM.png in Resources */,
 				A17B9EC61D4A495900C6CFC9 /* _CK.png in Resources */,
@@ -3205,6 +3215,7 @@
 				A17B9F4B1D4A495900C6CFC9 /* _PK.png in Resources */,
 				A17B9F061D4A495900C6CFC9 /* _IS.png in Resources */,
 				A17B9F641D4A495900C6CFC9 /* _SL.png in Resources */,
+				525556461D4AAE130017D5C8 /* Assets.xcassets in Resources */,
 				A17B9F3A1D4A495900C6CFC9 /* _NC.png in Resources */,
 				526EE7391D30F3BE00F77974 /* Localizable.strings in Resources */,
 				A17B9EC81D4A495900C6CFC9 /* _CM.png in Resources */,
@@ -3670,6 +3681,7 @@
 				65B88257FCE4650E002730F8 /* HelpRouterInput.swift in Sources */,
 				2478C129EF19363229584745 /* HelpRouter.swift in Sources */,
 				8928D95E786249314028DC26 /* HelpConfigurator.swift in Sources */,
+				525556441D4A88040017D5C8 /* ManageAddressView.swift in Sources */,
 				060DB66F6D39799C2D9FF544 /* HelpInitializer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

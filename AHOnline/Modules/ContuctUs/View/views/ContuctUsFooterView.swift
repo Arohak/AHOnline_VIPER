@@ -11,21 +11,21 @@ class ContuctUsFooterView: UIView {
     //MARK: - Create UIElements -
     let facebookButton: HOButton = {
         let view = HOButton.newAutoLayoutView()
-        view.setBackgroundImage(UIImage(named: "img_mapview_location"), forState: .Normal)
+        view.setBackgroundImage(UIImage(named: "img_co_fb"), forState: .Normal)
         
         return view
     }()
     
     let youtubeButton: HOButton = {
         let view = HOButton.newAutoLayoutView()
-                view.setBackgroundImage(UIImage(named: "img_mapview_location"), forState: .Normal)
+                view.setBackgroundImage(UIImage(named: "img_co_youtube"), forState: .Normal)
         
         return view
     }()
     
     let twitterButton: HOButton = {
         let view = HOButton.newAutoLayoutView()
-        view.setBackgroundImage(UIImage(named: "img_mapview_location"), forState: .Normal)
+        view.setBackgroundImage(UIImage(named: "img_co_twitter"), forState: .Normal)
         
         return view
     }()

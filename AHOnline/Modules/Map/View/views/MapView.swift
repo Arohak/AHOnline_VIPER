@@ -1,9 +1,9 @@
 //
 //  MapView.swift
-//  Emergency
+//  AHOnline
 //
-//  Created by Ara Hakobyan on 11/3/15.
-//  Copyright © 2015 VTGSoftware LLC. All rights reserved.
+//  Created by AroHak on 28/07/2016.
+//  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
 class MapView: BaseView {
@@ -23,18 +23,9 @@ class MapView: BaseView {
         return view
     }()
     
-    let closeRoutButton: UIButton = {
-        let view = UIButton.newAutoLayoutView()
-        view.setBackgroundImage(UIImage(named: "img_mapview_closeroute"), forState: UIControlState.Normal)
-        view.hidden = true
-        
-        return view
-    }()
-    
     let bottomView: MPBottomView = {
         let view = MPBottomView.newAutoLayoutView()
         view.backgroundColor = CLEAR
-        view.objectButton.hidden = true
         
         return view
     }()
@@ -54,7 +45,6 @@ class MapView: BaseView {
     private func addAllUIElements() {
         addSubview(tableView)
         addSubview(map)
-        map.addSubview(closeRoutButton)
         map.addSubview(bottomView)
         
         setConstraints()
@@ -70,11 +60,7 @@ class MapView: BaseView {
         tableView.autoPinEdgeToSuperviewEdge(ALEdge.Right)
         tableView.autoSetDimension(ALDimension.Height, toSize: ScreenSize.HEIGHT*0.4)
         
-        closeRoutButton.autoPinEdgeToSuperviewEdge(ALEdge.Top, withInset: MP_INSET)
-        closeRoutButton.autoPinEdgeToSuperviewEdge(ALEdge.Left, withInset: MP_INSET)
-        closeRoutButton.autoSetDimensionsToSize(CGSize(width: MP_BTN_SIZE, height: MP_BTN_SIZE))
-        
-        bottomView.autoPinEdgeToSuperviewEdge(ALEdge.Bottom, withInset: MP_INSET*2)
+        bottomView.autoPinEdgeToSuperviewEdge(ALEdge.Bottom, withInset: MP_INSET)
         bottomView.autoPinEdgeToSuperviewEdge(ALEdge.Left)
         bottomView.autoPinEdgeToSuperviewEdge(ALEdge.Right)
         bottomView.autoSetDimension(ALDimension.Height, toSize: MP_BTN_SIZE)

@@ -21,6 +21,10 @@ extension VerifyPhoneNumberPresenter: VerifyPhoneNumberViewOutput {
 
     }
     
+    func closeButtonClicked() {
+        router.dismissViewController()
+    }
+    
     func sendButtonClicked(number: String) {
         interactor.send(number)
     }
@@ -38,15 +42,16 @@ extension VerifyPhoneNumberPresenter: PresentViewControllerProtocol {
     }
 }
 
-//MARK: - extension for DismissControllerProtocol -
-extension VerifyPhoneNumberPresenter: DismissControllerProtocol {
-    
-    func dismissViewController() {
-        router.dismissViewController()
-    }
-}
-
 //MARK: - extension for VerifyPhoneNumberInteractorOutput -
 extension VerifyPhoneNumberPresenter: VerifyPhoneNumberInteractorOutput {
  
+    func sendDataIsReady() {
+        
+    }
+    
+    func acceptDataIsReady() {
+        let vc = ManageAddressViewController()
+        _ = ManageAddressModuleInitializer(viewController: vc)
+        router.modalPresentViewController(UINavigationController(rootViewController: vc))
+    }
 }

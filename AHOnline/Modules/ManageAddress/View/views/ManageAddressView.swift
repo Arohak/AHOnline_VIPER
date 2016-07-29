@@ -9,34 +9,34 @@
 class ManageAddressView: BaseScrollView {
     
     //MARK: - Create UIElements -
-    lazy var countryButton: HOButton = {
-        let view = HOButton.newAutoLayoutView()
-        view.backgroundColor = WHITE
-        view.layer.borderWidth = 0.5
-        view.layer.borderColor = BLACK.CGColor
+    lazy var countryView: ButtonGroupView = {
+        let view = ButtonGroupView.newAutoLayoutView()
+        view.nameLabel.text = "country".lowercaseString
         
         return view
     }()
     
-    lazy var cityButton: HOButton = {
-        let view = HOButton.newAutoLayoutView()
-        view.backgroundColor = WHITE
-        view.layer.borderWidth = 0.5
-        view.layer.borderColor = BLACK.CGColor
+    lazy var cityView: ButtonGroupView = {
+        let view = ButtonGroupView.newAutoLayoutView()
+        view.nameLabel.text = "city".lowercaseString
+
+        return view
+    }()
+    
+    lazy var cityFieldView: FieldGroupView = {
+        let view = FieldGroupView.newAutoLayoutView()
+        view.textField.returnKeyType = .Next
+        view.nameLabel.text = "city".lowercaseString
+        view.textField.placeholder = "city".localizedString
         
         return view
     }()
     
-    lazy var cityTextField: HOTextField = {
-        let view = HOTextField.newAutoLayoutView()
-        view.placeholder = "city".localizedString
-        
-        return view
-    }()
-    
-    lazy var addressTextField: HOTextField = {
-        let view = HOTextField.newAutoLayoutView()
-        view.placeholder = "street, apartment, house".localizedString
+    lazy var addressFieldView: FieldGroupView = {
+        let view = FieldGroupView.newAutoLayoutView()
+        view.textField.returnKeyType = .Done
+        view.nameLabel.text = "address".lowercaseString
+        view.textField.placeholder = "street, apartment, house".localizedString
         
         return view
     }()
@@ -46,7 +46,8 @@ class ManageAddressView: BaseScrollView {
         view.backgroundColor = GREEN
         view.layer.borderWidth = 0.5
         view.layer.borderColor = BLACK.CGColor
-        
+        view.setTitle("save".localizedString, forState: .Normal)
+
         return view
     }()
     
@@ -68,10 +69,10 @@ class ManageAddressView: BaseScrollView {
         super.addAllUIElements()
         
         bgView.alpha = 0.7
-        contentView.addSubview(countryButton)
-        contentView.addSubview(cityButton)
-        contentView.addSubview(cityTextField)
-        contentView.addSubview(addressTextField)
+        contentView.addSubview(countryView)
+        contentView.addSubview(cityView)
+        contentView.addSubview(cityFieldView)
+        contentView.addSubview(addressFieldView)
         contentView.addSubview(saveButton)
 
         setConstraints()
@@ -79,26 +80,30 @@ class ManageAddressView: BaseScrollView {
     
     //MARK: - Constraints -
     func setConstraints() {
-        scrollView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: addressTextField, withOffset: 0)
-        contentView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: addressTextField, withOffset: 0)
+        scrollView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: addressFieldView, withOffset: 0)
+        contentView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: addressFieldView, withOffset: 0)
         
-        countryButton.autoPinEdgeToSuperviewEdge(.Top, withInset: MA_OFFSET*2)
-        countryButton.autoAlignAxisToSuperviewAxis(.Vertical)
-        countryButton.autoSetDimensionsToSize(CGSize(width: MA_WIDTH, height: MA_HEIGHT))
+        countryView.autoPinEdgeToSuperviewEdge(.Top, withInset: MA_OFFSET)
+        countryView.autoAlignAxisToSuperviewAxis(.Vertical)
+        countryView.autoSetDimension(.Width, toSize: MA_WIDTH)
+        countryView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: countryView.arrowImageView)
+
+        cityView.autoPinEdge(.Top, toEdge: .Bottom, ofView: countryView, withOffset: MA_INSET)
+        cityView.autoAlignAxisToSuperviewAxis(.Vertical)
+        cityView.autoSetDimension(.Width, toSize: MA_WIDTH)
+        cityView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: cityView.arrowImageView)
         
-        cityButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: countryButton, withOffset: MA_INSET)
-        cityButton.autoAlignAxisToSuperviewAxis(.Vertical)
-        cityButton.autoSetDimensionsToSize(CGSize(width: MA_WIDTH, height: MA_HEIGHT))
+        cityFieldView.autoPinEdge(.Top, toEdge: .Bottom, ofView: countryView, withOffset: MA_INSET)
+        cityFieldView.autoAlignAxisToSuperviewAxis(.Vertical)
+        cityFieldView.autoSetDimension(.Width, toSize: MA_WIDTH)
+        cityFieldView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: cityFieldView.textField)
         
-        cityTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: countryButton, withOffset: MA_INSET)
-        cityTextField.autoAlignAxisToSuperviewAxis(.Vertical)
-        cityTextField.autoSetDimensionsToSize(CGSize(width: MA_WIDTH, height: MA_HEIGHT))
+        addressFieldView.autoPinEdge(.Top, toEdge: .Bottom, ofView: cityFieldView, withOffset: MA_INSET)
+        addressFieldView.autoAlignAxisToSuperviewAxis(.Vertical)
+        addressFieldView.autoSetDimension(.Width, toSize: MA_WIDTH)
+        addressFieldView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: addressFieldView.textField)
         
-        addressTextField.autoPinEdge(.Top, toEdge: .Bottom, ofView: cityButton, withOffset: MA_INSET)
-        addressTextField.autoAlignAxisToSuperviewAxis(.Vertical)
-        addressTextField.autoSetDimensionsToSize(CGSize(width: MA_WIDTH, height: MA_HEIGHT))
-        
-        saveButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressTextField, withOffset: MA_OFFSET)
+        saveButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: addressFieldView, withOffset: MA_OFFSET)
         saveButton.autoAlignAxisToSuperviewAxis(.Vertical)
         saveButton.autoSetDimensionsToSize(CGSize(width: MA_WIDTH/2, height: MA_HEIGHT))
     }

@@ -31,28 +31,24 @@ class ManageAddressViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        manageAddressView.addressTextField.becomeFirstResponder()
+        manageAddressView.addressFieldView.textField.becomeFirstResponder()
     }
     
     // MARK: - Private Method -
     private func baseConfig() {
         self.view = manageAddressView
         
-        manageAddressView.countryButton.setTitle("Armenia", forState: .Normal)
-        manageAddressView.saveButton.setTitle("save".localizedString, forState: .Normal)
-
-        manageAddressView.addressTextField.delegate = self
-        manageAddressView.countryButton.addTarget(self, action: #selector(countryButtonAction), forControlEvents: .TouchUpInside)
-        manageAddressView.cityButton.addTarget(self, action: #selector(cityButtonAction), forControlEvents: .TouchUpInside)
+        manageAddressView.cityFieldView.textField.delegate = self
+        manageAddressView.addressFieldView.textField.delegate = self
+        manageAddressView.countryView.button.addTarget(self, action: #selector(countryButtonAction), forControlEvents: .TouchUpInside)
+        manageAddressView.cityView.button.addTarget(self, action: #selector(cityButtonAction), forControlEvents: .TouchUpInside)
         manageAddressView.saveButton.addTarget(self, action: #selector(saveButtonAction), forControlEvents: .TouchUpInside)
-        
-        updateView()
     }
     
     private func updateView() {
-        manageAddressView.cityButton.hidden = !(selectedCountry == "Armenia")
-        manageAddressView.cityTextField.hidden = !manageAddressView.cityButton.hidden
-        manageAddressView.cityTextField.text = ""
+        manageAddressView.cityView.hidden = !(selectedCountry == "Armenia" && cities.count > 0)
+        manageAddressView.cityFieldView.hidden = !manageAddressView.cityView.hidden
+        manageAddressView.cityFieldView.setValue("")
     }
     
     //MARK: - Actions -
@@ -62,7 +58,7 @@ class ManageAddressViewController: UIViewController {
     
     func countryButtonAction() {
         let actionSheet = ActionSheetPickerViewController(values: countries) { value in
-            self.manageAddressView.countryButton.setTitle(value, forState: .Normal)
+            self.manageAddressView.countryView.setValue(value)
             self.selectedCountry = value
             self.updateView()
         }
@@ -73,16 +69,25 @@ class ManageAddressViewController: UIViewController {
     
     func cityButtonAction() {
         let actionSheet = ActionSheetPickerViewController(values: cities) { value in
-            self.manageAddressView.cityButton.setTitle(value, forState: .Normal)
+            self.manageAddressView.cityView.setValue(value)
             self.selectedCity = value
         }
-        actionSheet.pickerView.selectRow(cities.indexOf(selectedCity)!, inComponent: 0, animated: true)
-        
+        if cities.count > 0 {
+            let index = cities.indexOf(selectedCity) != nil ? cities.indexOf(selectedCity)! : 0
+            actionSheet.pickerView.selectRow(index, inComponent: 0, animated: true)
+        }
         output.presentViewController(actionSheet)
     }
     
     func saveButtonAction() {
+        let json = JSON([
+            "country"   : manageAddressView.countryView.titleLabel.text!,
+            "city"      : manageAddressView.cityView.hidden ? manageAddressView.cityFieldView.textField.text! : manageAddressView.cityView.titleLabel.text!,
+            "add"       : manageAddressView.addressFieldView.textField.text!]
+        )
+        print(json)
         
+        output.saveButtonClicked(DeliveryAddress(data: json))
     }
 }
 
@@ -93,8 +98,11 @@ extension ManageAddressViewController: ManageAddressViewInput {
         self.countries = countries
         self.cities = cities
         
-        selectedCity = cities[0]
-        manageAddressView.cityButton.setTitle(selectedCity, forState: .Normal)
+        if cities.count > 0 { selectedCity = cities.first! }
+        manageAddressView.cityView.setValue(selectedCity)
+        manageAddressView.countryView.setValue("Armenia")
+        
+        updateView()
     }
 }
 
@@ -102,7 +110,12 @@ extension ManageAddressViewController: ManageAddressViewInput {
 extension ManageAddressViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        switch textField {
+        case manageAddressView.cityFieldView.textField:
+            manageAddressView.addressFieldView.textField.becomeFirstResponder()
+        default:
+            textField.resignFirstResponder()
+        }
         
         return true
     }

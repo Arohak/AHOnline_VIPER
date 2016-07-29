@@ -24,6 +24,10 @@ extension ManageAddressPresenter: ManageAddressViewOutput {
     func closeButtonClicked() {
         router.dismissViewController()
     }
+    
+    func saveButtonClicked(address: DeliveryAddress) {
+        interactor.saveDeliveryAddressData(address)
+    }
 }
 
 //MARK: - extension for PresentViewControllerProtocol -

@@ -54,4 +54,8 @@ extension ManageAddressInteractor: ManageAddressInteractorInput {
                     self.output.dataIsReady(self.getCountriesFromNSLocale(), cities: self.getCitiesFromDelivery(Array(deliveries)))
             })
     }
+    
+    func saveDeliveryAddressData(address: DeliveryAddress) {
+        
+    }
 }

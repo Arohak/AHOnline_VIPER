@@ -467,6 +467,9 @@
 		A17B9F911D4A495900C6CFC9 /* _ZM.png in Resources */ = {isa = PBXBuildFile; fileRef = A17B9E961D4A495900C6CFC9 /* _ZM.png */; };
 		A17B9F921D4A495900C6CFC9 /* _ZW.png in Resources */ = {isa = PBXBuildFile; fileRef = A17B9E971D4A495900C6CFC9 /* _ZW.png */; };
 		A17B9F931D4A495900C6CFC9 /* _ZZ.png in Resources */ = {isa = PBXBuildFile; fileRef = A17B9E981D4A495900C6CFC9 /* _ZZ.png */; };
+		A19E4C1A1D4B3BAC00D98048 /* ButtonGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19E4C181D4B3BAC00D98048 /* ButtonGroupView.swift */; };
+		A19E4C1B1D4B3BAC00D98048 /* FieldGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19E4C191D4B3BAC00D98048 /* FieldGroupView.swift */; };
+		A19E4C1D1D4B42CE00D98048 /* img_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = A19E4C1C1D4B42CE00D98048 /* img_arrow.png */; };
 		A1A6B9601D38C93B00EEA739 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A6B95F1D38C93B00EEA739 /* Address.swift */; };
 		A1AE6B3F1D4647900027C59F /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE6B361D4647900027C59F /* FilterCell.swift */; };
 		A1AE6B401D4647900027C59F /* FilterCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE6B371D4647900027C59F /* FilterCollectionCell.swift */; };
@@ -1026,6 +1029,9 @@
 		A17B9E961D4A495900C6CFC9 /* _ZM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = _ZM.png; sourceTree = "<group>"; };
 		A17B9E971D4A495900C6CFC9 /* _ZW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = _ZW.png; sourceTree = "<group>"; };
 		A17B9E981D4A495900C6CFC9 /* _ZZ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = _ZZ.png; sourceTree = "<group>"; };
+		A19E4C181D4B3BAC00D98048 /* ButtonGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonGroupView.swift; sourceTree = "<group>"; };
+		A19E4C191D4B3BAC00D98048 /* FieldGroupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldGroupView.swift; sourceTree = "<group>"; };
+		A19E4C1C1D4B42CE00D98048 /* img_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = img_arrow.png; path = Flags/img_arrow.png; sourceTree = "<group>"; };
 		A1A6B95F1D38C93B00EEA739 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		A1AE6B361D4647900027C59F /* FilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		A1AE6B371D4647900027C59F /* FilterCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCollectionCell.swift; sourceTree = "<group>"; };
@@ -1351,6 +1357,8 @@
 			isa = PBXGroup;
 			children = (
 				525556411D4A88040017D5C8 /* ManageAddressView.swift */,
+				A19E4C181D4B3BAC00D98048 /* ButtonGroupView.swift */,
+				A19E4C191D4B3BAC00D98048 /* FieldGroupView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1671,6 +1679,7 @@
 			isa = PBXGroup;
 			children = (
 				A17B9D9D1D4A495900C6CFC9 /* Flags */,
+				A19E4C1C1D4B42CE00D98048 /* img_arrow.png */,
 				5255563C1D497B180017D5C8 /* img_bg.png */,
 				5255563A1D4976B90017D5C8 /* img_bg_user.png */,
 				525556361D4547790017D5C8 /* img_result_select.png */,
@@ -3201,6 +3210,7 @@
 				A17B9F4C1D4A495900C6CFC9 /* _PL.png in Resources */,
 				A17B9F051D4A495900C6CFC9 /* _IR.png in Resources */,
 				A17B9F101D4A495900C6CFC9 /* _KM.png in Resources */,
+				A19E4C1D1D4B42CE00D98048 /* img_arrow.png in Resources */,
 				A17B9F621D4A495900C6CFC9 /* _SJ.png in Resources */,
 				A17B9EA71D4A495900C6CFC9 /* _AW.png in Resources */,
 				A17B9F841D4A495900C6CFC9 /* _UZ.png in Resources */,
@@ -3423,6 +3433,7 @@
 				526EE73C1D30F3BE00F77974 /* UISettings.swift in Sources */,
 				A10282771D39012200487060 /* ProductInteractorOutput.swift in Sources */,
 				A10282791D39012200487060 /* ProductRouter.swift in Sources */,
+				A19E4C1A1D4B3BAC00D98048 /* ButtonGroupView.swift in Sources */,
 				52ED7BAE1D3137A600C75F69 /* BaseViewController.swift in Sources */,
 				A137A02C1D363AE7000D022A /* CategoriesViewController.swift in Sources */,
 				526EE71D1D30F3BE00F77974 /* Wireframe.swift in Sources */,
@@ -3592,6 +3603,7 @@
 				A17B9D871D4A032D00C6CFC9 /* ContuctUsView.swift in Sources */,
 				DA4134BC13EB9D33888602FA /* ObjectConfigurator.swift in Sources */,
 				02324144E21D5804C1C35E0C /* ObjectInitializer.swift in Sources */,
+				A19E4C1B1D4B3BAC00D98048 /* FieldGroupView.swift in Sources */,
 				55F599D2D407BDEA290D0E85 /* ObjectsViewInput.swift in Sources */,
 				28F30BE46CE17783F2E2C392 /* ObjectsViewOutput.swift in Sources */,
 				0A55E5AB7696D21C1BB0699E /* ObjectsViewController.swift in Sources */,

@@ -153,7 +153,7 @@ class ContryCodePickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewData
     
     //MARK: - UIPickerViewDelegate -
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        callback?(value: dictionary[keys[row]]!)
+        callback?(value: keys[row])
         
 //        closeTimer.invalidate()
 //        closeTimer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: #selector(closePopUp), userInfo: AnyObject?(), repeats: true)

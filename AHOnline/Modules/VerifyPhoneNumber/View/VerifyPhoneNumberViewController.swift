@@ -12,7 +12,11 @@ class VerifyPhoneNumberViewController: UIViewController {
     var output: VerifyPhoneNumberViewOutput!
     
     var verifyPhoneNumberView = VerifyPhoneNumberView()
-
+    private var tuple: ([String:String], [String])!
+    private var selectedCountry = "Armenia"
+    private var countryCode     = "+374"
+    private var code            = "_AM"
+    
     // MARK: - Life cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,17 +38,19 @@ class VerifyPhoneNumberViewController: UIViewController {
     private func baseConfig() {
         self.view = verifyPhoneNumberView
         
-        verifyPhoneNumberView.phoneTextField.text = "+374"
-        verifyPhoneNumberView.countryCodeButton.setBackgroundImage(UIImage(named: "_AM.png"), forState: .Normal)
+        verifyPhoneNumberView.phoneTextField.text = countryCode
+        verifyPhoneNumberView.countryCodeButton.setBackgroundImage(UIImage(named: code), forState: .Normal)
 
         verifyPhoneNumberView.phoneTextField.delegate = self
         verifyPhoneNumberView.pinTextField.delegate = self
         verifyPhoneNumberView.countryCodeButton.addTarget(self, action: #selector(countryCodeButtonAction), forControlEvents: .TouchUpInside)
         verifyPhoneNumberView.sendButton.addTarget(self, action: #selector(sendButtonAction), forControlEvents: .TouchUpInside)
         verifyPhoneNumberView.acceptButton.addTarget(self, action: #selector(acceptButtonAction), forControlEvents: .TouchUpInside)
+        
+        self.tuple = getCountriesFromNSLocale(countryCode)
     }
     
-    private func configNSLocale(phone: String) -> ([String:String], [String], Int) {
+    private func getCountriesFromNSLocale(phone: String) -> ([String:String], [String]) {
         var dictionary = Dictionary<String,String>()
         for countryCode in NSLocale.ISOCountryCodes() {
             let identifier = NSLocale.localeIdentifierFromComponents([NSLocaleCountryCode : countryCode])
@@ -54,15 +60,7 @@ class VerifyPhoneNumberViewController: UIViewController {
         }
         let keys = Array(dictionary.keys).sort(<)
         
-        var row = 0
-        let phoneCode = phone.hasPrefix("00") ? phone.stringByReplacingOccurrencesOfString("00", withString: "+") : phone
-        if let identifier = (codes as NSDictionary).allKeysForObject(phoneCode).first as? String {
-            if let country = (dictionary as NSDictionary).allKeysForObject(identifier).first as? String {
-                if let index = keys.indexOf(country) { row = index }
-            }
-        }
-        
-        return (dictionary, keys, row)
+        return (dictionary, keys)
     }
     
     //MARK: - Actions -
@@ -71,14 +69,12 @@ class VerifyPhoneNumberViewController: UIViewController {
     }
     
     func countryCodeButtonAction() {
-        let tuple = configNSLocale(verifyPhoneNumberView.phoneTextField.text!)
-        
         let actionSheet = ContryCodeActionSheetPickerViewController(dictionary: tuple.0, keys: tuple.1) { value in
-            self.verifyPhoneNumberView.countryCodeButton.setBackgroundImage(UIImage(named: value), forState: .Normal)
-            self.verifyPhoneNumberView.phoneTextField.text = codes[value]
+            self.verifyPhoneNumberView.countryCodeButton.setBackgroundImage(UIImage(named: self.tuple.0[value]!), forState: .Normal)
+            self.verifyPhoneNumberView.phoneTextField.text = codes[self.tuple.0[value]!]
+            self.selectedCountry = value
         }
-        
-        actionSheet.pickerView.selectRow(tuple.2, inComponent: 0, animated: true)
+        actionSheet.pickerView.selectRow(tuple.1.indexOf(selectedCountry)!, inComponent: 0, animated: true)
         
         output.presentViewController(actionSheet)
     }
@@ -120,6 +116,10 @@ extension VerifyPhoneNumberViewController: UITextFieldDelegate {
             let phone = phoneCode.hasPrefix("00") ? phoneCode.stringByReplacingOccurrencesOfString("00", withString: "+") : phoneCode
             if let identifier = (codes as NSDictionary).allKeysForObject(phone).first as? String {
                 verifyPhoneNumberView.countryCodeButton.setBackgroundImage(UIImage(named: identifier), forState: .Normal)
+                if let tuple = tuple {
+                    let value = (tuple.0 as NSDictionary).allKeysForObject(identifier).first as! String
+                    selectedCountry = value
+                }
             }
             
         default:

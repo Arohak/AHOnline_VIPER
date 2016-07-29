@@ -9,4 +9,5 @@
 protocol ManageAddressInteractorInput {
 
     func getDeliveries()
+    func saveDeliveryAddressData(address: DeliveryAddress)
 }

@@ -8,6 +8,6 @@
 
 protocol VerifyPhoneNumberInteractorOutput: class {
 
-    func sendDataIsReady()
+    func sendPhoneIsReady()
     func acceptDataIsReady()
 }

@@ -8,5 +8,5 @@
 
 protocol ManageAddressViewInput: class {
 
-    func setupInitialState(countries: [String], cities: [String])
+    func setupInitialState(user: User?, countries: [String], cities: [String])
 }

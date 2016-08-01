@@ -10,5 +10,5 @@ protocol ManageAddressViewOutput: PresentViewControllerProtocol {
 
     func viewIsReady()
     func closeButtonClicked()
-    func saveButtonClicked(address: DeliveryAddress)
+    func saveButtonClicked(json: JSON)
 }

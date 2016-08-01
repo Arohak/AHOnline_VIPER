@@ -13,14 +13,15 @@ class User: Object {
     dynamic var image: String!
     dynamic var email: String!
     dynamic var phone: String!
+    dynamic var isVerified: Bool = false
 
-    var address: DeliveryAddress?
+    dynamic var address: DeliveryAddress?
     
     var favorite = List<Product>()
     var history = List<Product>()
 
     override static func primaryKey() -> String {
-        return "name"
+        return "id"
     }
     
     convenience init(data: JSON) {
@@ -30,6 +31,32 @@ class User: Object {
         self.name               = data["name"].stringValue
         self.image              = data["image"].stringValue
         self.email              = data["email"].stringValue
-        self.phone              = data["phone"].stringValue
+        self.phone              = data["mobile_number"].stringValue
+        self.isVerified         = data["is_verified"].boolValue
+    }
+    
+    func update(userInfo: UserInfo) {
+        self.name               = userInfo.name
+        self.image              = userInfo.image
+        self.email              = userInfo.email
+        self.phone              = userInfo.phone
+        self.isVerified         = userInfo.isVerified
+    }
+}
+
+class UserInfo {
+    
+    var name: String!
+    var image: String!
+    var email: String!
+    var phone: String!
+    var isVerified: Bool = false
+
+    init(data: JSON) {
+        self.name               = data["name"].stringValue
+        self.image              = data["image"].stringValue
+        self.email              = data["email"].stringValue
+        self.phone              = data["mobile_number"].stringValue
+        self.isVerified         = data["is_verified"].boolValue
     }
 }

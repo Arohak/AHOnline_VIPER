@@ -8,7 +8,6 @@
 
 protocol VerifyPhoneNumberViewOutput: PresentViewControllerProtocol {
 
-    func viewIsReady()
     func closeButtonClicked()
     func sendButtonClicked(number: String)
     func acceptButtonClicked(pin: String)

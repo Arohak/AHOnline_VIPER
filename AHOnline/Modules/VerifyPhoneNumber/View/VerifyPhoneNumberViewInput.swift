@@ -8,5 +8,5 @@
 
 protocol VerifyPhoneNumberViewInput: class {
 
-    func setupInitialState()
+    func enableSendButton()
 }

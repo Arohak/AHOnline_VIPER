@@ -53,7 +53,7 @@ class VerifyPhoneNumberView: BaseScrollView {
     lazy var titleLabel: HOLabel = {
         let view = HOLabel.newAutoLayoutView()
         view.numberOfLines = 0
-        view.text = "Enter your mobile number and press SEND, before access true enter secure code (pin code) and press ACCEPT"
+        view.text = "Enter your mobile number and press SEND, after access true enter secure code (pin code) and press ACCEPT"
         view.textColor = WHITE
         
         return view

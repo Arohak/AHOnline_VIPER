@@ -16,7 +16,8 @@ class VerifyPhoneNumberViewController: UIViewController {
     private var selectedCountry = "Armenia"
     private var countryCode     = "+374"
     private var code            = "_AM"
-    
+    var mobileNumber            = "+374"
+
     // MARK: - Life cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,6 @@ class VerifyPhoneNumberViewController: UIViewController {
         title = "verify".localizedString
         navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "close".localizedString, style: .Plain, target: self, action: #selector(closeAction)), animated: true)
 
-        output.viewIsReady()
         baseConfig()
     }
     
@@ -38,7 +38,7 @@ class VerifyPhoneNumberViewController: UIViewController {
     private func baseConfig() {
         self.view = verifyPhoneNumberView
         
-        verifyPhoneNumberView.phoneTextField.text = countryCode
+        verifyPhoneNumberView.phoneTextField.text = mobileNumber
         verifyPhoneNumberView.countryCodeButton.setBackgroundImage(UIImage(named: code), forState: .Normal)
 
         verifyPhoneNumberView.phoneTextField.delegate = self
@@ -62,7 +62,7 @@ class VerifyPhoneNumberViewController: UIViewController {
         
         return (dictionary, keys)
     }
-    
+
     //MARK: - Actions -
     func closeAction() {
        output.closeButtonClicked()
@@ -80,7 +80,7 @@ class VerifyPhoneNumberViewController: UIViewController {
     }
     
     func sendButtonAction() {
-        if UIHelper.isValidTextField(verifyPhoneNumberView.phoneTextField) {
+        if UIHelper.isValidPhoneTextField(verifyPhoneNumberView.phoneTextField) {
             output.sendButtonClicked(verifyPhoneNumberView.phoneTextField.text!)
         }
     }
@@ -94,9 +94,12 @@ class VerifyPhoneNumberViewController: UIViewController {
 
 //MARK: - extension for VerifyPhoneNumberViewInput -
 extension VerifyPhoneNumberViewController: VerifyPhoneNumberViewInput {
-    
-    func setupInitialState() {
 
+    func enableSendButton() {
+        verifyPhoneNumberView.phoneTextField.enabled = false
+        verifyPhoneNumberView.sendButton.enabled = false
+        verifyPhoneNumberView.pinTextField.enabled = true
+        verifyPhoneNumberView.acceptButton.enabled = true
     }
 }
 

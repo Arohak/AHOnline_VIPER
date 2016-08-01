@@ -10,18 +10,37 @@
 class VerifyPhoneNumberInteractor {
 
     weak var output: VerifyPhoneNumberInteractorOutput!
+    
+    var user: User {
+        return DBManager.getUser()!
+    }
 }
 
 //MARK: - extension for VerifyPhoneNumberInteractorInput -
 extension VerifyPhoneNumberInteractor: VerifyPhoneNumberInteractorInput {
     
     func send(number: String) {
+        let json = JSON([
+            "id"            : user.id,
+            "mobile_number" : number])
         
-       output.sendDataIsReady()
+        _ = APIManager.sendMobileNumber(json)
+            .subscribe(onNext: { result in
+                if result != nil {
+                   self.output.sendPhoneIsReady()
+                }
+            })
     }
     
     func accept(pin: String) {
-        
-        output.acceptDataIsReady()
+        _ = APIManager.verifyMobileNumber(pin)
+            .subscribe(onNext: { result in
+                if result != nil {
+                    let userInfo = UserInfo(data: result["data"])
+                    DBManager.updateUser(userInfo)
+                    
+                    self.output.acceptDataIsReady()
+                }
+            })
     }
 }

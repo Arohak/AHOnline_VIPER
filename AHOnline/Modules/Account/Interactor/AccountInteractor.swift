@@ -14,7 +14,7 @@ class AccountInteractor {
     private let languages = ["english".localizedString, "russian".localizedString, "armenian".localizedString]
     private var selectedLanguage = "english".localizedString
 
-    func getUser() -> User {
+    var user: User? {
         return DBManager.getUser()
     }
 }
@@ -23,8 +23,7 @@ class AccountInteractor {
 extension AccountInteractor: AccountInteractorInput {
     
     func getUserData() {
-        let user = getUser()
-        output.userDataIsReady(user)
+        if let user = user { output.userDataIsReady(user) }
     }
     
     func manageSettings() {
@@ -39,10 +38,9 @@ extension AccountInteractor: AccountInteractorInput {
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Manage Phone Number".localizedString, style: .Default, handler: { _ in
-            let user = self.getUser()
             let vc = VerifyPhoneNumberViewController()
-            if !user.phone.isEmpty {
-               vc.verifyPhoneNumberView.phoneTextField.text = user.phone
+            if let user = self.user where !user.phone.isEmpty {
+               vc.mobileNumber = user.phone
             }
             _ = VerifyPhoneNumberModuleInitializer(viewController: vc)
             self.output.modalPresentViewController(UINavigationController(rootViewController: vc))

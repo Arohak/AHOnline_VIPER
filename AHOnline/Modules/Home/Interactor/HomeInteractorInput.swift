@@ -8,5 +8,6 @@
 
 protocol HomeInteractorInput: GetObjectProtocol {
 
+    func createUser()
     func getRestaurantsHome()
 }

@@ -85,9 +85,9 @@ struct Utils {
         formatter.locale = NSLocale(localeIdentifier: "en_US")
         formatter.maximumFractionDigits = 1
         formatter.minimumFractionDigits = 1
-        formatter.paddingPosition = NSNumberFormatterPadPosition.BeforePrefix
+        formatter.paddingPosition = .BeforePrefix
         formatter.paddingCharacter = "0"
-        formatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
+        formatter.numberStyle = .DecimalStyle
         let num = formatter.numberFromString(number)
 
         return num == nil ? "" : formatter.stringFromNumber(num!)!

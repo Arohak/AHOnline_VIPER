@@ -18,11 +18,8 @@ class HomePresenter {
 extension HomePresenter: HomeViewOutput {
     
     func viewIsReady() {
+        interactor.createUser()
         interactor.getRestaurantsHome()
-        
-        let vc = VerifyPhoneNumberViewController()
-        _ = VerifyPhoneNumberModuleInitializer(viewController: vc)
-        router.modalPresentViewController(UINavigationController(rootViewController: vc))
     }
     
     func didSelectObject(object: AHObject) {
@@ -59,6 +56,15 @@ extension HomePresenter: HomeViewOutput {
 //MARK: - extension for HomeInteractorOutput -
 extension HomePresenter: HomeInteractorOutput {
  
+    func createUserIsReady(user: User) {
+        if !user.isVerified {
+            let vc = VerifyPhoneNumberViewController()
+            if !user.phone.isEmpty { vc.mobileNumber = user.phone }
+            _ = VerifyPhoneNumberModuleInitializer(viewController: vc)
+            router.modalPresentViewController(UINavigationController(rootViewController: vc))
+        }
+    }
+    
     func homeDataIsReady(home: Home) {
         view.setupInitialState(home)
     }

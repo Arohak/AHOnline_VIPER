@@ -15,7 +15,7 @@ class CartInteractor {
        return DBManager.getOrdersTotalPrice()
     }
     
-    func getUser() -> User {
+    var user: User? {
         return DBManager.getUser()
     }
 }
@@ -25,9 +25,10 @@ extension CartInteractor: CartInteractorInput {
     
     func getOrders() {
         let orders = DBManager.getOrders()
-        let user = getUser()
         let price = getOrdersTotalPrice()
-        output.ordersDataIsReady(user, orders: Array(orders), ordersPrice: price)
+        if let user = user {
+            output.ordersDataIsReady(user, orders: Array(orders), ordersPrice: price)   
+        }
     }
     
     func getDeliveries() {

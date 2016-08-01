@@ -8,5 +8,6 @@
 
 protocol HomeInteractorOutput: class, ObjectDataIsReadyProtocol {
 
+    func createUserIsReady(user:User)
     func homeDataIsReady(home: Home)
 }

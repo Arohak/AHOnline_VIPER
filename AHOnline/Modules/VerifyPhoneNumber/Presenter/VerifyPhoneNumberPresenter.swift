@@ -17,10 +17,6 @@ class VerifyPhoneNumberPresenter {
 //MARK: - extension for VerifyPhoneNumberViewOutput -
 extension VerifyPhoneNumberPresenter: VerifyPhoneNumberViewOutput {
     
-    func viewIsReady() {
-
-    }
-    
     func closeButtonClicked() {
         router.dismissViewController()
     }
@@ -44,12 +40,14 @@ extension VerifyPhoneNumberPresenter: PresentViewControllerProtocol {
 
 //MARK: - extension for VerifyPhoneNumberInteractorOutput -
 extension VerifyPhoneNumberPresenter: VerifyPhoneNumberInteractorOutput {
- 
-    func sendDataIsReady() {
-        
+
+    func sendPhoneIsReady() {
+        view.enableSendButton()
     }
     
     func acceptDataIsReady() {
+        router.dismissViewController()
+        
         let vc = ManageAddressViewController()
         _ = ManageAddressModuleInitializer(viewController: vc)
         router.modalPresentViewController(UINavigationController(rootViewController: vc))

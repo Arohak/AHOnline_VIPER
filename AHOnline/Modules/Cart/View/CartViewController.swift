@@ -35,14 +35,17 @@ class CartViewController: BaseViewController {
     private var add = ""
     private var ordersTotalPrice = 0.0
     private var deliveryPrice = 0.0
-    private var selectedIndex = 0
-    private var selectedDate: NSDate!
     
     private var paymentCells: [UITableViewCell] = []
     private var titlePayments = ["Pay on delivery", "Credit Cart", "Paypal"]
-    private var selectedPayment = "Pay on delivery"
     
-    private var user: User!
+    private var selectedPayment = "Pay on delivery"
+    private var selectedPhone = "*"
+    private var selectedCity = "*"
+    private var selectedAddress = "*"
+    private var selectedDate: NSDate!
+
+    private var user: User?
     
     // MARK: - Life cycle -
     override func viewDidLoad() {
@@ -111,14 +114,14 @@ class CartViewController: BaseViewController {
         alert.addAction(UIAlertAction(title: "OK".localizedString, style: .Default, handler: { _ in
             self.output.removeOrders(self.orders)
             self.orders.removeAll()
-            self.hideView()
+            self.updateView()
         }))
         
         output.presentViewController(alert)
     }
     
     //MARK: - Public Method -
-    func hideView() {
+    func updateView() {
         cartView.tableView.hidden = orders.count == 0
         cartView.footerView.hidden = cartView.tableView.hidden
         cartView.emptyView.hidden = !cartView.tableView.hidden
@@ -160,21 +163,27 @@ extension CartViewController: CartViewInput {
     func deliveriesComing(deliveries: [Delivery]) {
         self.deliveries = deliveries
         
-        deliveryCells[0].cellContentView.deliveryLabel.text = user.phone.isEmpty ? "*" : user.phone
-        var deliveryAddress = DeliveryAddress(data: JSON.null)
-        if let address = user.address {
-            deliveryAddress = address
+        if let user = user {
+            selectedPhone = user.phone
             
-            let delivery = deliveries.filter { $0.city == deliveryAddress.city }.first
-            if let delivery = delivery {
-                deliveryPrice = delivery.price
-                cartView.footerView.updateValues(ordersTotalPrice, delivery: deliveryPrice)
+            if let address = user.address {
+                let delivery = deliveries.filter { $0.city == address.city }.first
+                if let delivery = delivery {
+                    deliveryPrice = delivery.price
+                    cartView.footerView.updateValues(ordersTotalPrice, delivery: deliveryPrice)
+                }
+                
+                selectedAddress = address.add
+                selectedCity = address.city
             }
+            
+            deliveryCells[0].cellContentView.deliveryLabel.text = selectedPhone
+            deliveryCells[1].cellContentView.deliveryLabel.text = selectedAddress
+            deliveryCells[2].cellContentView.deliveryLabel.text = selectedCity
+            deliveryCells[3].cellContentView.deliveryLabel.text = NSDate().deliveryTimeFormat
         }
         
-        deliveryCells[1].cellContentView.deliveryLabel.text = deliveryAddress.add.isEmpty ? "*" :deliveryAddress.add
-        deliveryCells[2].cellContentView.deliveryLabel.text = deliveryAddress.city.isEmpty ? "*" : deliveryAddress.city
-        deliveryCells[3].cellContentView.deliveryLabel.text = NSDate().deliveryTimeFormat
+        updateView()
     }
     
     func ordersComing(user: User, orders: [Product], ordersPrice: Double) {
@@ -184,7 +193,7 @@ extension CartViewController: CartViewInput {
         
         cartView.tableView.reloadData()
         cartView.footerView.updateValues(ordersTotalPrice, delivery: deliveryPrice)
-        hideView()
+        updateView()
     }
     
     func ordersTotalPrice(ordersPrice: Double) {
@@ -308,9 +317,9 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
                     self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = delivery.city
                     self.deliveryPrice = delivery.price
                     self.cartView.footerView.updateValues(self.ordersTotalPrice, delivery: self.deliveryPrice)
-                    self.selectedIndex = index
+                    self.selectedCity = delivery.city
                 }
-                actionSheet.pickerView.selectRow(selectedIndex, inComponent: 0, animated: true)
+                actionSheet.pickerView.selectRow(deliveries.indexOf { $0.city == selectedCity }! , inComponent: 0, animated: true)
                 
                 output.presentViewController(actionSheet)
             case 3:
@@ -368,7 +377,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
             
             orders.removeAtIndex(indexPath.row)
             cartView.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .None)
-            hideView()
+            updateView()
         }
     }
     

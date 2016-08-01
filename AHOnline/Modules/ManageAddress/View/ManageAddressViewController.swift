@@ -12,9 +12,10 @@ class ManageAddressViewController: UIViewController {
     var output: ManageAddressViewOutput!
     
     private var manageAddressView = ManageAddressView()
+    private var user: User?
     private var countries: [String] = []
-    private var selectedCountry = "Armenia"
     private var cities: [String] = []
+    private var selectedCountry = ""
     private var selectedCity = ""
 
     // MARK: - Life cycle -
@@ -83,24 +84,31 @@ class ManageAddressViewController: UIViewController {
         let json = JSON([
             "country"   : manageAddressView.countryView.titleLabel.text!,
             "city"      : manageAddressView.cityView.hidden ? manageAddressView.cityFieldView.textField.text! : manageAddressView.cityView.titleLabel.text!,
-            "add"       : manageAddressView.addressFieldView.textField.text!]
+            "address"   : manageAddressView.addressFieldView.textField.text!]
         )
-        print(json)
         
-        output.saveButtonClicked(DeliveryAddress(data: json))
+        output.saveButtonClicked(json)
     }
 }
 
 //MARK: - extension for ManageAddressViewInput -
 extension ManageAddressViewController: ManageAddressViewInput {
     
-    func setupInitialState(countries: [String], cities: [String]) {
+    func setupInitialState(user: User?, countries: [String], cities: [String]) {
+        self.user = user
         self.countries = countries
         self.cities = cities
         
-        if cities.count > 0 { selectedCity = cities.first! }
+        if let address = user?.address {
+            selectedCountry = address.country
+            selectedCity = address.city
+        } else {
+            selectedCountry = "Armenia"
+          if cities.count > 0 { selectedCity = cities.first! }
+        }
+        
+        manageAddressView.countryView.setValue(selectedCountry)
         manageAddressView.cityView.setValue(selectedCity)
-        manageAddressView.countryView.setValue("Armenia")
         
         updateView()
     }

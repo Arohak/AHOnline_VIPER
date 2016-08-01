@@ -80,8 +80,8 @@ class ManageAddressView: BaseScrollView {
     
     //MARK: - Constraints -
     func setConstraints() {
-        scrollView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: addressFieldView, withOffset: 0)
-        contentView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: addressFieldView, withOffset: 0)
+        scrollView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: saveButton, withOffset: 0)
+        contentView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: saveButton, withOffset: 0)
         
         countryView.autoPinEdgeToSuperviewEdge(.Top, withInset: MA_OFFSET)
         countryView.autoAlignAxisToSuperviewAxis(.Vertical)

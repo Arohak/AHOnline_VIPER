@@ -24,7 +24,29 @@ class DeliveryAddress: Object {
         self.id                 = data["id"].intValue
         self.country            = data["country"].stringValue
         self.city               = data["city"].stringValue
-        self.add                = data["add"].stringValue
+        self.add                = data["address"].stringValue
+        self.def                = data["default"].boolValue
+    }
+    
+    func update(info: DeliveryAddressInfo) {
+        self.country            = info.country
+        self.city               = info.city
+        self.add                = info.add
+        self.def                = info.def
+    }
+}
+
+class DeliveryAddressInfo {
+    
+    var country: String!
+    var city: String!
+    var add: String!
+    var def: Bool = false
+    
+    init(data: JSON) {
+        self.country            = data["country"].stringValue
+        self.city               = data["city"].stringValue
+        self.add                = data["address"].stringValue
         self.def                = data["default"].boolValue
     }
 }

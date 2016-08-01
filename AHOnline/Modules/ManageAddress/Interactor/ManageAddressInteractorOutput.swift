@@ -8,5 +8,6 @@
 
 protocol ManageAddressInteractorOutput: class {
 
-    func dataIsReady(countries: [String], cities: [String])
+    func dataIsReady(user: User?, countries: [String], cities: [String])
+    func saveAddressIsReady()
 }

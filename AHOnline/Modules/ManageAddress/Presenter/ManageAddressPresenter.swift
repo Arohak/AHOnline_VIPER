@@ -25,8 +25,8 @@ extension ManageAddressPresenter: ManageAddressViewOutput {
         router.dismissViewController()
     }
     
-    func saveButtonClicked(address: DeliveryAddress) {
-        interactor.saveDeliveryAddressData(address)
+    func saveButtonClicked(json: JSON) {
+        interactor.saveDeliveryAddressData(json)
     }
 }
 
@@ -49,7 +49,11 @@ extension ManageAddressPresenter: DismissControllerProtocol {
 //MARK: - extension for ManageAddressInteractorOutput -
 extension ManageAddressPresenter: ManageAddressInteractorOutput {
  
-    func dataIsReady(countries: [String], cities: [String]) {
-        view.setupInitialState(countries, cities: cities)
+    func dataIsReady(user: User?, countries: [String], cities: [String]) {
+        view.setupInitialState(user, countries: countries, cities: cities)
+    }
+    
+    func saveAddressIsReady() {
+        router.dismissViewController()
     }
 }

@@ -11,6 +11,10 @@ class ManageAddressInteractor {
 
     weak var output: ManageAddressInteractorOutput!
     
+    var user: User {
+        return DBManager.getUser()!
+    }
+    
     // MARK: - Private Method -
     private func getCountriesFromNSLocale() -> [String] {
         var dictionary = Dictionary<String,String>()
@@ -47,15 +51,48 @@ extension ManageAddressInteractor: ManageAddressInteractorInput {
                         deliveries.append(Delivery(data: item))
                     }
                     DBManager.storeDeliveries(deliveries)
-                    self.output.dataIsReady(self.getCountriesFromNSLocale(), cities: self.getCitiesFromDelivery(deliveries))
+                    self.output.dataIsReady(self.user, countries: self.getCountriesFromNSLocale(), cities: self.getCitiesFromDelivery(deliveries))
                 }
                 }, onError: { error in
                     let deliveries = DBManager.getDeliveries()
-                    self.output.dataIsReady(self.getCountriesFromNSLocale(), cities: self.getCitiesFromDelivery(Array(deliveries)))
+                    self.output.dataIsReady(self.user, countries: self.getCountriesFromNSLocale(), cities: self.getCitiesFromDelivery(Array(deliveries)))
             })
     }
     
-    func saveDeliveryAddressData(address: DeliveryAddress) {
-        
+    func saveDeliveryAddressData(json: JSON) {
+        if let address = user.address {
+            let json = JSON([
+                "user_id"   : user.id,
+                "country"   : json["country"].stringValue,
+                "city"      : json["city"].stringValue,
+                "address"   : json["address"].stringValue,
+                "def"       : json["def"].boolValue])
+            
+            _ = APIManager.updateDeliveryAddress("\(address.id)", json: json)
+                .subscribe(onNext: { result in
+                    if result != nil {
+                        let info = DeliveryAddressInfo(data: result["data"])
+                        DBManager.updateDeliveryAddress(info)
+                        
+                        self.output.saveAddressIsReady()
+                    }
+                })
+        } else {
+            let json = JSON([
+                "user_id"   : user.id,
+                "country"   : json["country"].stringValue,
+                "city"      : json["city"].stringValue,
+                "address"   : json["address"].stringValue])
+            
+            _ = APIManager.createDeliveryAddress(json)
+                .subscribe(onNext: { result in
+                    if result != nil {
+                        let address = DeliveryAddress(data: result["data"])
+                        DBManager.storeDeliveryAddress(address)
+                        
+                        self.output.saveAddressIsReady()
+                    }
+                })
+        }
     }
 }

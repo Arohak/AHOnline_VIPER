@@ -10,6 +10,44 @@ struct DBManager {
     
     private static let realm = dbHelper.realm
     
+    //MARK: - User -
+    static func storeUser(user: User) {
+        try! realm.write {
+            realm.add(user, update: true)
+        }
+    }
+    
+    static func updateUser(userInfo: UserInfo) {
+        try! realm.write {
+            if let user = getUser() {
+                user.update(userInfo)
+            }
+        }
+    }
+    
+    //MARK: - Delivery Address -
+    static func storeDeliveryAddress(address: DeliveryAddress) {
+        try! realm.write {
+            if let user = getUser() {
+                user.address = address
+            }
+        }
+    }
+    
+    static func updateDeliveryAddress(info: DeliveryAddressInfo) {
+        try! realm.write {
+            if let address = getUser()!.address {
+                address.update(info)
+            }
+        }
+    }
+    
+    static func getUser() -> User? {
+        let user = realm.objects(User.self).first
+        
+        return user
+    }
+    
     //MARK: - Restaurants -
     static func storeRestaurants(restaurants: [Restaurant]) {
         try! realm.write {
@@ -96,14 +134,5 @@ struct DBManager {
     static func getDeliveries() -> Results<Delivery> {
         let deliveries = realm.objects(Delivery.self)
         return deliveries
-    }
-    
-    //MARK: - User -
-    static func getUser() -> User {
-        var user = User(data: JSON.null)
-        if let usr = realm.objects(User.self).first {
-            user = usr
-        }
-        return user
     }
 }

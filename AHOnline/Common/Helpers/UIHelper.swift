@@ -64,6 +64,14 @@ struct UIHelper {
         ALThreeCircleSpinner.hide()
     }
     
+    static func isValidPhoneTextField(field: UITextField) -> Bool {
+        var isValid = false
+        let kText = field.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        kText.characters.count == 12 && kText.hasPrefix("+374") ? isValid = true : shakeWithView(field)
+        
+        return isValid
+    }
+    
     static func isValidCountTextField(textField: UITextField, range: NSRange, string: String) -> Bool {
         var isValid = false
         var text = textField.text! as NSString

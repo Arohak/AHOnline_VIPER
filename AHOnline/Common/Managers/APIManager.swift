@@ -10,6 +10,14 @@ struct APIManager {
     
     private struct ROUTERS
     {
+        static let CREATE_USER                              = "users"
+        static let GET_USER                                 = "users/%@"
+        static let SEND_PHONE                               = "send_phone"
+        static let VERIFY_PHONE                             = "verify"
+        
+        static let CREATE_DELIVERY_ADDRESS                  = "deliveryaddresses"
+        static let PUT_DELIVERY_ADDRESS                     = "deliveryaddresses/%@"
+
         static let GET_RESTAURANTS_HOME                     = "home"
         static let GET_CATEGORIES                           = "categories"
         static let GET_DELIVERIES                           = "deliveries"
@@ -23,6 +31,49 @@ struct APIManager {
         static let GET_OBJECTS_SEARCH                       = "restaurants?search=%@&limit=%@&offset=%@"
         static let GET_OBJECT                               = "restaurants/%@"
         static let GET_NEARST_OBJECTS                       = "nears_objects?latitude=%@&longitude=%@&km=%@"
+    }
+    
+    static func createUser() -> Observable<JSON> {
+        return apiHelper.request(.POST, url: ROUTERS.CREATE_USER)
+    }
+    
+    static func getUser(id: String) -> Observable<JSON> {
+        let url = String(format: ROUTERS.GET_USER, id)
+        return apiHelper.request(.GET, url: url)
+    }
+    
+    static func sendMobileNumber(json: JSON) -> Observable<JSON> {
+        let params = ["id"                  : json["id"].stringValue,
+                      "mobile_number"       : json["mobile_number"].stringValue]
+        
+        return apiHelper.request(.POST, url: ROUTERS.SEND_PHONE, parameters: params)
+    }
+    
+    static func verifyMobileNumber(pin: String) -> Observable<JSON> {
+        let params = ["verification_code"   : pin]
+        
+        return apiHelper.request(.POST, url: ROUTERS.VERIFY_PHONE, parameters: params)
+    }
+
+    static func createDeliveryAddress(json: JSON) -> Observable<JSON> {
+        let params = ["user_id"             : json["user_id"].stringValue,
+                      "country"             : json["country"].stringValue,
+                      "city"                : json["city"].stringValue,
+                      "address"             : json["address"].stringValue,
+                      "def"                 : json["def"].stringValue]
+        
+        return apiHelper.request(.POST, url: ROUTERS.CREATE_DELIVERY_ADDRESS, parameters: params)
+    }
+    
+    static func updateDeliveryAddress(id: String, json: JSON) -> Observable<JSON> {
+        let params = ["user_id"             : json["user_id"].stringValue,
+                      "country"             : json["country"].stringValue,
+                      "city"                : json["city"].stringValue,
+                      "address"             : json["address"].stringValue,
+                      "def"                 : json["def"].stringValue]
+        
+        let url = String(format: ROUTERS.PUT_DELIVERY_ADDRESS, id)
+        return apiHelper.request(.PUT, url: url, parameters: params)
     }
     
     static func getRestaurantsHome() -> Observable<JSON> {

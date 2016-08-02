@@ -72,6 +72,12 @@ struct UIHelper {
         return isValid
     }
     
+    static func isValidPhoneText(text: String) -> Bool {
+        let kText = text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
+        return kText.characters.count == 12 && kText.hasPrefix("+374")
+    }
+    
     static func isValidCountTextField(textField: UITextField, range: NSRange, string: String) -> Bool {
         var isValid = false
         var text = textField.text! as NSString
@@ -91,7 +97,7 @@ struct UIHelper {
     static func isValidTextField(field: UITextField) -> Bool {
         var isValid = false
         let kText = field.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        !(kText == "") ? isValid = true : shakeWithView(field)
+        !kText.isEmpty ? isValid = true : shakeWithView(field)
         
         return isValid
     }
@@ -111,6 +117,12 @@ struct UIHelper {
         isValid = email.evaluateWithObject(text)
         
         return isValid
+    }
+    
+    static func isValidText(text: String) -> Bool {
+        let kText = text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        
+        return !kText.isEmpty
     }
     
     static func isValidEmail(field: UITextField) -> Bool {

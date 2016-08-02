@@ -32,7 +32,6 @@ class CartViewController: BaseViewController {
                                    ("img_cart_time", "cart_time".localizedString)]
     
     private var deliveries: [Delivery] = []
-    private var add = ""
     private var ordersTotalPrice = 0.0
     private var deliveryPrice = 0.0
     
@@ -103,6 +102,38 @@ class CartViewController: BaseViewController {
         }
     }
     
+    private func updateTableViewInfo() {
+        if let user = user {
+            selectedPhone = user.phone
+            
+            if let address = user.address {
+                let delivery = deliveries.filter { $0.city == address.city }.first
+                if let delivery = delivery {
+                    deliveryPrice = delivery.price
+                    cartView.footerView.updateValues(ordersTotalPrice, delivery: deliveryPrice)
+                }
+                
+                selectedAddress = address.add
+                selectedCity = address.city
+            }
+            
+            deliveryCells[0].cellContentView.deliveryLabel.text = selectedPhone
+            deliveryCells[1].cellContentView.deliveryLabel.text = selectedAddress
+            deliveryCells[2].cellContentView.deliveryLabel.text = selectedCity
+            deliveryCells[3].cellContentView.deliveryLabel.text = NSDate().deliveryTimeFormat
+        }
+        
+        updateView()
+    }
+    
+    private func updateView() {
+        cartView.tableView.hidden = orders.count == 0
+        cartView.footerView.hidden = cartView.tableView.hidden
+        cartView.emptyView.hidden = !cartView.tableView.hidden
+        cleaButtonItem.enabled = !cartView.tableView.hidden
+        editButtonItem().enabled = !cartView.tableView.hidden
+    }
+    
     //MARK: - Actions -
     func addAction() {
         output.addOrder()
@@ -118,15 +149,6 @@ class CartViewController: BaseViewController {
         }))
         
         output.presentViewController(alert)
-    }
-    
-    //MARK: - Public Method -
-    func updateView() {
-        cartView.tableView.hidden = orders.count == 0
-        cartView.footerView.hidden = cartView.tableView.hidden
-        cartView.emptyView.hidden = !cartView.tableView.hidden
-        cleaButtonItem.enabled = !cartView.tableView.hidden
-        editButtonItem().enabled = !cartView.tableView.hidden
     }
     
     //MARK: - Keyboard notifications -
@@ -153,7 +175,13 @@ class CartViewController: BaseViewController {
     func handlePhoneTextFieldTextDidChangeNotification(notification: NSNotification) {
         let textField = notification.object as! UITextField
         
-        AddAlertSaveAction!.enabled = UIHelper.isValidTextField(textField)
+        AddAlertSaveAction!.enabled = UIHelper.isValidPhoneText(textField.text!)
+    }
+    
+    func handleTextFieldTextDidChangeNotification(notification: NSNotification) {
+        let textField = notification.object as! UITextField
+        
+        AddAlertSaveAction!.enabled = UIHelper.isValidText(textField.text!)
     }
 }
 
@@ -163,27 +191,7 @@ extension CartViewController: CartViewInput {
     func deliveriesComing(deliveries: [Delivery]) {
         self.deliveries = deliveries
         
-        if let user = user {
-            selectedPhone = user.phone
-            
-            if let address = user.address {
-                let delivery = deliveries.filter { $0.city == address.city }.first
-                if let delivery = delivery {
-                    deliveryPrice = delivery.price
-                    cartView.footerView.updateValues(ordersTotalPrice, delivery: deliveryPrice)
-                }
-                
-                selectedAddress = address.add
-                selectedCity = address.city
-            }
-            
-            deliveryCells[0].cellContentView.deliveryLabel.text = selectedPhone
-            deliveryCells[1].cellContentView.deliveryLabel.text = selectedAddress
-            deliveryCells[2].cellContentView.deliveryLabel.text = selectedCity
-            deliveryCells[3].cellContentView.deliveryLabel.text = NSDate().deliveryTimeFormat
-        }
-        
-        updateView()
+        updateTableViewInfo()
     }
     
     func ordersComing(user: User, orders: [Product], ordersPrice: Double) {
@@ -192,8 +200,7 @@ extension CartViewController: CartViewInput {
         self.ordersTotalPrice = ordersPrice
         
         cartView.tableView.reloadData()
-        cartView.footerView.updateValues(ordersTotalPrice, delivery: deliveryPrice)
-        updateView()
+        updateTableViewInfo()
     }
     
     func ordersTotalPrice(ordersPrice: Double) {
@@ -266,26 +273,27 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
                     textField.keyboardType = .PhonePad
                     textField.keyboardAppearance = .Dark
                     textField.placeholder = "+374 xxxxxxxx"
-                    var text = self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text
+                    var text = self.selectedPhone
                     text = text == "*" ? "" : text
                     textField.text = text
+                    
                     NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.handlePhoneTextFieldTextDidChangeNotification), name: UITextFieldTextDidChangeNotification, object: textField)
                 }
                 
                 func removeTextFieldObserver() {
                     NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextFieldTextDidChangeNotification, object: alert.textFields?.first)
-                    AddAlertSaveAction = nil
                 }
                 
                 alert.addAction(UIAlertAction(title: "Cancel".localizedString, style: .Cancel, handler: { _ in removeTextFieldObserver() }))
                 
                 let otherAction = UIAlertAction(title: "Save".localizedString, style: .Destructive, handler: { a in
                     let textField = alert.textFields?.first!
-                    self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = textField!.text
+                    self.selectedPhone = textField!.text!
+                    self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = self.selectedPhone
                     
                     removeTextFieldObserver()
                 })
-                otherAction.enabled = false
+                otherAction.enabled = !selectedPhone.isEmpty
                 AddAlertSaveAction = otherAction
                 
                 alert.addAction(otherAction)
@@ -297,18 +305,29 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
                 alert.addTextFieldWithConfigurationHandler { textField in
                     textField.keyboardAppearance = .Dark
                     textField.placeholder = "street, apartment, house"
-                    textField.text = self.add
+                    var text = self.selectedAddress
+                    text = text == "*" ? "" : text
+                    textField.text = text
+                    
+                    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.handleTextFieldTextDidChangeNotification), name: UITextFieldTextDidChangeNotification, object: textField)
+                }
+                
+                func removeTextFieldObserver() {
+                    NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextFieldTextDidChangeNotification, object: alert.textFields?.first)
                 }
                 
                 alert.addAction(UIAlertAction(title: "Cancel".localizedString, style: .Cancel, handler: nil))
-                AddAlertSaveAction = UIAlertAction(title: "Save".localizedString, style: .Destructive, handler: { a in
-                    self.add = (alert.textFields?[0].text)!
-                    let text = self.add.isEmpty ? "*" : self.add
-                    self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = text
+                let otherAction = UIAlertAction(title: "Save".localizedString, style: .Destructive, handler: { a in
+                    let textField = alert.textFields?.first!
+                    self.selectedAddress = textField!.text!
+                    self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = self.selectedAddress
                     
-                    self.AddAlertSaveAction = nil
+                    removeTextFieldObserver()
                 })
-                alert.addAction(AddAlertSaveAction!)
+                otherAction.enabled = !selectedAddress.isEmpty
+                AddAlertSaveAction = otherAction
+                
+                alert.addAction(otherAction)
 
                 output.presentViewController(alert)
                 

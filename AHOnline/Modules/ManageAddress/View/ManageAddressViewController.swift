@@ -17,6 +17,7 @@ class ManageAddressViewController: UIViewController {
     private var cities: [String] = []
     private var selectedCountry = ""
     private var selectedCity = ""
+    private var selectedAddress = ""
 
     // MARK: - Life cycle -
     override func viewDidLoad() {
@@ -52,6 +53,16 @@ class ManageAddressViewController: UIViewController {
         manageAddressView.cityFieldView.setValue("")
     }
     
+    private func isValidInputParams() -> Bool {
+        var isValid = true
+        if manageAddressView.cityView.hidden {
+            if !UIHelper.isValidTextField(manageAddressView.cityFieldView.textField) { isValid = false }
+        }
+        if !UIHelper.isValidTextField(manageAddressView.addressFieldView.textField) { isValid = false }
+        
+        return isValid
+    }
+    
     //MARK: - Actions -
     func closeAction() {
         output.closeButtonClicked()
@@ -81,13 +92,15 @@ class ManageAddressViewController: UIViewController {
     }
     
     func saveButtonAction() {
-        let json = JSON([
-            "country"   : manageAddressView.countryView.titleLabel.text!,
-            "city"      : manageAddressView.cityView.hidden ? manageAddressView.cityFieldView.textField.text! : manageAddressView.cityView.titleLabel.text!,
-            "address"   : manageAddressView.addressFieldView.textField.text!]
-        )
-        
-        output.saveButtonClicked(json)
+        if isValidInputParams() {
+            let json = JSON([
+                "country"   : manageAddressView.countryView.titleLabel.text!,
+                "city"      : manageAddressView.cityView.hidden ? manageAddressView.cityFieldView.textField.text! : manageAddressView.cityView.titleLabel.text!,
+                "address"   : manageAddressView.addressFieldView.textField.text!]
+            )
+            
+            output.saveButtonClicked(json)
+        }
     }
 }
 
@@ -102,6 +115,7 @@ extension ManageAddressViewController: ManageAddressViewInput {
         if let address = user?.address {
             selectedCountry = address.country
             selectedCity = address.city
+            selectedAddress = address.add
         } else {
             selectedCountry = "Armenia"
           if cities.count > 0 { selectedCity = cities.first! }
@@ -109,6 +123,7 @@ extension ManageAddressViewController: ManageAddressViewInput {
         
         manageAddressView.countryView.setValue(selectedCountry)
         manageAddressView.cityView.setValue(selectedCity)
+        manageAddressView.addressFieldView.setValue(selectedAddress)
         
         updateView()
     }

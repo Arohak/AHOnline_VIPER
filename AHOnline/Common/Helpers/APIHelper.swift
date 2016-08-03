@@ -69,7 +69,7 @@ class APIHelper {
             if showProgress { UIHelper.showSpinner() }
             
             let URL = baseURL + url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-            self.manager.request(method, URL, parameters: parameters, encoding: .URL)
+            self.manager.request(method, URL, parameters: parameters, encoding: .URL, headers: ["locale" : Preferences.getAppLanguage()])
                 .responseJSON { response in
                     switch response.result {
                     case .Success(let data):

@@ -17,30 +17,15 @@ enum SortType: String {
     case Favorite   = "Favorite"
     case Best       = "Best"
 }
-//
-//enum KitchenType: String {
-//    case All        = "All"
-//    case BestOffer  = "BestOffer"
-//    case Eastern    = "Eastern"
-//    case European   = "European"
-//    case Armenia    = "Armenia"
-//    case Georgian   = "Georgian"
-//    case Italian    = "Italian"
-//    case French     = "French"
-//    case Greek      = "Greek"
-//    case American   = "American"
-//    case Mexican    = "Mexican"
-//}
 
 class FilterView: UIView {
     
-    private let cellIdentifire      = ["cellIdentifire1", "cellIdentifire2", "cellIdentifire3"]
-    private let headers             = ["Type", "Sort", "Kitchen"]
-    private let heights: [CGFloat]  = [SE_CELL_HEIGHT, SE_CELL_HEIGHT, SE_CELL_HEIGHT*4]
-    private let cellItems           = [["Restaurant", "Product"], ["Alphabet", "New", "Favorite", "Best"], [""]]
-    private let collectionItems     = ["Best Offer", "Eastern", "European", "Armenia", "Georgian", "Italian", "French", "Greek", "American", "Mexican"]
-    private var selectedItems       = [SearchType.Restaurant.rawValue, SortType.Alphabet.rawValue]
-    
+    private let cellIdentifire              = ["cellIdentifire1", "cellIdentifire2", "cellIdentifire3"]
+    private let heights: [CGFloat]          = [SE_CELL_HEIGHT, SE_CELL_HEIGHT, SE_CELL_HEIGHT*4]
+    private var selectedItems: [String]     = []
+    private var headers: [String]           = []
+    private var cellItems: [[String]]       = [[], [], []]
+    private var collectionItems: [String]   = []
     private var cells: [[UITableViewCell]]  = []
     
     var cell: FilterCell!
@@ -77,20 +62,6 @@ class FilterView: UIView {
         return view
     }()
     
-    lazy var saveButton: HOButton = {
-        let view = HOButton.newAutoLayoutView()
-        view.setTitle("Save", forState: .Normal)
-        
-        return view
-    }()
-    
-    lazy var cancelButton: HOButton = {
-        let view = HOButton.newAutoLayoutView()
-        view.setTitle("Cancel", forState: .Normal)
-        
-        return view
-    }()
-    
     lazy var tableView: BaseTableView = {
         let view = BaseTableView.newAutoLayoutView()
         view.backgroundColor = WHITE
@@ -108,7 +79,6 @@ class FilterView: UIView {
         super.init(frame: frame)
         
         addAllUIElements()
-        configurationTableViewCell()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -119,34 +89,40 @@ class FilterView: UIView {
     private func addAllUIElements() {
         addSubview(bgView)
         addSubview(tableView)
-//        addSubview(footerView)
-//        footerView.addSubview(saveButton)
-//        footerView.addSubview(cancelButton)
 
         setConstraints()
+        
+        configurationTableViewCell()
     }
     
-    //MARK: - Constraints -
-    func setConstraints() {
-        let offset = SE_OFFSET*1.5
-        bgView.autoPinEdgesToSuperviewEdges()
-        tableView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 0, left: offset, bottom: offset, right: offset))
+    //MARK: - Public Methods -
+    func setLocalizedStrings() {
+        selectedItems       = ["restaurant".localizedString, "alphabet".localizedString]
 
-//        tableView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 0, left: offset, bottom: 0, right: offset), excludingEdge: .Bottom)
-//        tableView.autoPinEdge(.Bottom, toEdge: .Bottom, ofView: footerView)
-//        footerView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: offset)
-//        footerView.autoPinEdgeToSuperviewEdge(.Right, withInset: offset)
-//        footerView.autoPinEdgeToSuperviewEdge(.Left, withInset: offset)
-//        footerView.autoSetDimension(.Height, toSize: SE_CELL_HEIGHT)
-//        saveButton.autoAlignAxisToSuperviewAxis(.Horizontal)
-//        saveButton.autoPinEdgeToSuperviewEdge(.Left, withInset: SE_OFFSET)
-//        saveButton.autoPinEdgeToSuperviewEdge(.Bottom)
-//        cancelButton.autoAlignAxisToSuperviewAxis(.Horizontal)
-//        cancelButton.autoPinEdgeToSuperviewEdge(.Right, withInset: SE_OFFSET)
-//        cancelButton.autoPinEdgeToSuperviewEdge(.Bottom)
+        headers             = ["type".localizedString,
+                               "sort".localizedString,
+                               "kitchen".localizedString]
+        
+        cellItems           = [["restaurant".localizedString, "product".localizedString],
+                               ["alphabet".localizedString, "new".localizedString, "favorite".localizedString, "best".localizedString],
+                               [""]]
+        
+        collectionItems     = ["best_offer".localizedString,
+                               "eastern".localizedString,
+                               "european".localizedString,
+                               "armenia".localizedString,
+                               "georgian".localizedString,
+                               "italian".localizedString,
+                               "french".localizedString,
+                               "greek".localizedString,
+                               "american".localizedString,
+                               "mexican".localizedString]
     }
     
-    private func configurationTableViewCell() {
+    func configurationTableViewCell() {
+        cells.removeAll()
+        setLocalizedStrings()
+        
         for i in 0..<headers.count {
             var temp: [UITableViewCell] = []
             for j in 0..<cellItems[i].count {
@@ -173,6 +149,13 @@ class FilterView: UIView {
             cells.append(temp)
         }
         tableView.reloadData()
+    }
+    
+    //MARK: - Constraints -
+    func setConstraints() {
+        let offset = SE_OFFSET*1.5
+        bgView.autoPinEdgesToSuperviewEdges()
+        tableView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 0, left: offset, bottom: offset, right: offset))
     }
 }
 

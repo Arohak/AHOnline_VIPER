@@ -9,4 +9,5 @@
 protocol AccountViewInput: class {
 
     func setupInitialState(user: User)
+    func updateLocalizedStrings()
 }

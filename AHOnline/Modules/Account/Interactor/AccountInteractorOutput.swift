@@ -9,4 +9,5 @@
 protocol AccountInteractorOutput: class, PresentViewControllerProtocol, ModalPresentViewControllerProtocol {
 
     func userDataIsReady(user: User)
+    func changeLanguageIsReady()
 }

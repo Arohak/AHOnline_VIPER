@@ -85,4 +85,8 @@ extension AccountPresenter: AccountInteractorOutput {
     func userDataIsReady(user: User) {
         view.setupInitialState(user)
     }
+    
+    func changeLanguageIsReady() {
+        view.updateLocalizedStrings()
+    }
 }

@@ -285,7 +285,7 @@ class DistancePickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let distance = "\(distances[row]) km"
+        let distance = "\(distances[row]) " + "km".localizedString
         
         return distance
     }

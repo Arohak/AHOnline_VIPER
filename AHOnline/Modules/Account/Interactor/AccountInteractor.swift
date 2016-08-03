@@ -11,8 +11,8 @@ class AccountInteractor {
     
     weak var output: AccountInteractorOutput!
     
-    private let languages = ["english".localizedString, "russian".localizedString, "armenian".localizedString]
-    private var selectedLanguage = "english".localizedString
+    private let dict = ["English" : "eu", "Русский" : "ru", "Հայերեն" : "hy"]
+    private let languages = ["English", "Русский", "Հայերեն"]
 
     var user: User? {
         return DBManager.getUser()
@@ -27,17 +27,17 @@ extension AccountInteractor: AccountInteractorInput {
     }
     
     func manageSettings() {
-        let actionSheet = UIAlertController(title: "Settings".localizedString, message: nil, preferredStyle: .ActionSheet)
+        let actionSheet = UIAlertController(title: "settings".localizedString, message: nil, preferredStyle: .ActionSheet)
         
-        actionSheet.addAction(UIAlertAction(title: "Cancel".localizedString, style: .Cancel, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "cancel".localizedString, style: .Cancel, handler: nil))
         
-        actionSheet.addAction(UIAlertAction(title: "Manage Delivery Address".localizedString, style: .Default, handler: { _ in
+        actionSheet.addAction(UIAlertAction(title: "manage_address".localizedString, style: .Default, handler: { _ in
             let vc = ManageAddressViewController()
             _ = ManageAddressModuleInitializer(viewController: vc)
             self.output.modalPresentViewController(UINavigationController(rootViewController: vc))
         }))
         
-        actionSheet.addAction(UIAlertAction(title: "Manage Phone Number".localizedString, style: .Default, handler: { _ in
+        actionSheet.addAction(UIAlertAction(title: "manage_number".localizedString, style: .Default, handler: { _ in
             let vc = VerifyPhoneNumberViewController()
             if let user = self.user where !user.phone.isEmpty {
                vc.mobileNumber = user.phone
@@ -50,8 +50,13 @@ extension AccountInteractor: AccountInteractorInput {
     }
     
     func manageLanguage() {
+        var selectedLanguage = (dict as NSDictionary).allKeysForObject(Preferences.getAppLanguage()).first! as! String
+        
         let actionSheet = LanguageActionSheetPickerViewController(languages: languages) { language, index in
-            self.selectedLanguage = language
+            selectedLanguage = language
+            Preferences.saveAppLanguage(self.dict[language]!)
+            
+            self.output.changeLanguageIsReady()
         }
         actionSheet.pickerView.selectRow(languages.indexOf(selectedLanguage)!, inComponent: 0, animated: true)
         

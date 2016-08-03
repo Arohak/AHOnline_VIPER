@@ -15,33 +15,27 @@ class CartViewController: BaseViewController {
     var cleaButtonItem: UIBarButtonItem!
     weak var AddAlertSaveAction: UIAlertAction?
 
-    private let cellIdentifire      = ["cellIdentifire1", "cellIdentifire2", "cellIdentifire3"]
+    private let cellIdentifire                      = ["cellIdentifire1", "cellIdentifire2", "cellIdentifire3"]
+    private let heights: [CGFloat]                  = [CA_CELL_HEIGHT, CA_CELL_HEIGHT*0.6, CA_CELL_HEIGHT*0.6]
+    private var headers: [String]                   = []
     
-    private let headers             = ["ORDER".localizedString,
-                                       "DELIVERY".localizedString,
-                                       "PAYMENT".localizedString]
     
-    private let heights: [CGFloat]  = [CA_CELL_HEIGHT, CA_CELL_HEIGHT*0.6, CA_CELL_HEIGHT*0.6]
+    private var orders: [Product]                   = []
     
-    private var orders: [Product] = []
+    private var deliveryCells: [DeliveryCell]       = []
+    private var titleDeliveries: [(String, String)] = []
     
-    private var deliveryCells: [DeliveryCell] = []
-    private var titleDeliveries = [("img_cart_call", "cart_call".localizedString),
-                                   ("img_cart_address", "cart_address".localizedString),
-                                   ("img_cart_city", "cart_city".localizedString),
-                                   ("img_cart_time", "cart_time".localizedString)]
+    private var deliveries: [Delivery]              = []
+    private var ordersTotalPrice                    = 0.0
+    private var deliveryPrice                       = 0.0
     
-    private var deliveries: [Delivery] = []
-    private var ordersTotalPrice = 0.0
-    private var deliveryPrice = 0.0
+    private var paymentCells: [UITableViewCell]     = []
+    private var titlePayments: [String]             = []
     
-    private var paymentCells: [UITableViewCell] = []
-    private var titlePayments = ["Pay on delivery", "Credit Cart", "Paypal"]
-    
-    private var selectedPayment = "Pay on delivery"
-    private var selectedPhone = "*"
-    private var selectedCity = "*"
-    private var selectedAddress = "*"
+    private var selectedPayment                     = ""
+    private var selectedPhone                       = "*"
+    private var selectedCity                        = "*"
+    private var selectedAddress                     = "*"
     private var selectedDate: NSDate!
 
     private var user: User?
@@ -50,9 +44,8 @@ class CartViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        title = "Cart"
         navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(addAction)), animated: true)
-        cleaButtonItem = UIBarButtonItem(title: "Clear", style: .Plain, target: self, action: #selector(clearAction))
+        cleaButtonItem = UIBarButtonItem(title: "clear".localizedString, style: .Plain, target: self, action: #selector(clearAction))
         navigationItem.rightBarButtonItems = [editButtonItem(), cleaButtonItem]
         
         output.getDeliveries()
@@ -79,12 +72,39 @@ class CartViewController: BaseViewController {
         cartView.tableView.dataSource = self
         cartView.tableView.delegate = self
         cartView.tableView.registerClass(OrderCell.self, forCellReuseIdentifier: cellIdentifire[0])
+    }
+    
+    override func updateLocalizedStrings() {
+        setLocalizedStrings()
+    }
+    
+    // MARK: - Private Method -
+    private func setLocalizedStrings() {
+        cleaButtonItem.title    = "clear".localizedString
+        editButtonItem().title  = "edit".localizedString
+
+        headers             = ["order".localizedString,
+                               "delivery".localizedString,
+                               "payment".localizedString]
+        
+        titleDeliveries = [("img_cart_call", "cart_call".localizedString),
+                           ("img_cart_address", "cart_address".localizedString),
+                           ("img_cart_city", "cart_city".localizedString),
+                           ("img_cart_time", "cart_time".localizedString)]
+        
+        titlePayments = ["pay_on_delivery".localizedString,
+                         "credit_cart".localizedString,
+                         "paypal".localizedString]
+        
+        selectedPayment = "pay_on_delivery".localizedString
         
         configTableViewCell()
     }
     
-    // MARK: - Private Method -
     private func configTableViewCell() {
+        deliveryCells.removeAll()
+        paymentCells.removeAll()
+        
         for tuple in titleDeliveries {
             let cell = DeliveryCell(style: .Default, reuseIdentifier: cellIdentifire[1])
             cell.cellContentView.imageView.image = UIImage(named: tuple.0)
@@ -100,6 +120,8 @@ class CartViewController: BaseViewController {
             cell.accessoryType = title == selectedPayment ? .Checkmark : .None
             paymentCells.append(cell)
         }
+        
+        cartView.tableView.reloadData()
     }
     
     private func updateTableViewInfo() {
@@ -140,9 +162,9 @@ class CartViewController: BaseViewController {
     }
     
     func clearAction() {
-        let alert =  UIAlertController(title: "Clear Cart", message: "Do you want to clear the cart", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "Cancel".localizedString, style: .Cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "OK".localizedString, style: .Default, handler: { _ in
+        let alert =  UIAlertController(title: "clear_cart".localizedString, message: "clear_message".localizedString, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "cancel".localizedString, style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "ok".localizedString, style: .Default, handler: { _ in
             self.output.removeOrders(self.orders)
             self.orders.removeAll()
             self.updateView()
@@ -268,7 +290,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         case 1:
             switch indexPath.row {
             case 0:
-                let alert = UIAlertController(title: "Phone Number".localizedString, message: nil, preferredStyle: .Alert)
+                let alert = UIAlertController(title: "mobile_number".localizedString, message: nil, preferredStyle: .Alert)
                 alert.addTextFieldWithConfigurationHandler { textField in
                     textField.keyboardType = .PhonePad
                     textField.keyboardAppearance = .Dark
@@ -284,9 +306,9 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
                     NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextFieldTextDidChangeNotification, object: alert.textFields?.first)
                 }
                 
-                alert.addAction(UIAlertAction(title: "Cancel".localizedString, style: .Cancel, handler: { _ in removeTextFieldObserver() }))
+                alert.addAction(UIAlertAction(title: "cancel".localizedString, style: .Cancel, handler: { _ in removeTextFieldObserver() }))
                 
-                let otherAction = UIAlertAction(title: "Save".localizedString, style: .Destructive, handler: { a in
+                let otherAction = UIAlertAction(title: "save".localizedString, style: .Destructive, handler: { a in
                     let textField = alert.textFields?.first!
                     self.selectedPhone = textField!.text!
                     self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = self.selectedPhone
@@ -301,10 +323,10 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
                 output.presentViewController(alert)
                 
             case 1:
-                let alert = UIAlertController(title: "Delivery Address".localizedString, message: nil, preferredStyle: .Alert)
+                let alert = UIAlertController(title: "delivery_address".localizedString, message: nil, preferredStyle: .Alert)
                 alert.addTextFieldWithConfigurationHandler { textField in
                     textField.keyboardAppearance = .Dark
-                    textField.placeholder = "street, apartment, house"
+                    textField.placeholder = "delivery_address_pl".localizedString
                     var text = self.selectedAddress
                     text = text == "*" ? "" : text
                     textField.text = text
@@ -316,8 +338,8 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
                     NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextFieldTextDidChangeNotification, object: alert.textFields?.first)
                 }
                 
-                alert.addAction(UIAlertAction(title: "Cancel".localizedString, style: .Cancel, handler: nil))
-                let otherAction = UIAlertAction(title: "Save".localizedString, style: .Destructive, handler: { a in
+                alert.addAction(UIAlertAction(title: "cancel".localizedString, style: .Cancel, handler: nil))
+                let otherAction = UIAlertAction(title: "save".localizedString, style: .Destructive, handler: { a in
                     let textField = alert.textFields?.first!
                     self.selectedAddress = textField!.text!
                     self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = self.selectedAddress

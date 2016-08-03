@@ -37,7 +37,6 @@ class AccountHeaderView: UIView {
     let titleLabel: HOLabel = {
         let view = HOLabel.newAutoLayoutView()
         view.textColor = BLUE
-        view.text = "AAA BBB CCC DDD"
         
         return view
     }()
@@ -52,7 +51,6 @@ class AccountHeaderView: UIView {
     let favoriteLabel: HOLabel = {
         let view = HOLabel.newAutoLayoutView()
         view.textColor = BLUE
-        view.text = "Favorite"
         
         return view
     }()
@@ -67,22 +65,6 @@ class AccountHeaderView: UIView {
     let historyLabel: HOLabel = {
         let view = HOLabel.newAutoLayoutView()
         view.textColor = BLUE
-        view.text = "History"
-        
-        return view
-    }()
-    
-    let settingsButton: HOButton = {
-        let view = HOButton.newAutoLayoutView()
-        view.setBackgroundImage(UIImage(named: "img_acc_settings"), forState: .Normal)
-        
-        return view
-    }()
-    
-    let settingsLabel: HOLabel = {
-        let view = HOLabel.newAutoLayoutView()
-        view.textColor = BLUE
-        view.text = "Settings"
         
         return view
     }()
@@ -108,8 +90,6 @@ class AccountHeaderView: UIView {
         parentView.addSubview(favoriteLabel)
         parentView.addSubview(historyButton)
         parentView.addSubview(historyLabel)
-        parentView.addSubview(settingsButton)
-        parentView.addSubview(settingsLabel)
 
         setConstraints()
     }
@@ -132,24 +112,24 @@ class AccountHeaderView: UIView {
         titleLabel.autoAlignAxisToSuperviewAxis(.Vertical)
         
         favoriteButton.autoPinEdge(.Top, toEdge: .Bottom, ofView: titleLabel, withOffset: AC_INSET)
-        favoriteButton.autoAlignAxis(.Vertical, toSameAxisOfView: bgImageView, withOffset: AC_BTN_SIZE)
+        favoriteButton.autoAlignAxis(.Vertical, toSameAxisOfView: bgImageView, withOffset: AC_HEIGHT)
         favoriteButton.autoSetDimensionsToSize(CGSize(width: AC_BTN_SIZE*0.3, height: AC_BTN_SIZE*0.3))
         
         favoriteLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: favoriteButton, withOffset: 0)
         favoriteLabel.autoAlignAxis(.Vertical, toSameAxisOfView: favoriteButton)
         
         historyButton.autoAlignAxis(.Horizontal, toSameAxisOfView: favoriteButton)
-        historyButton.autoAlignAxis(.Vertical, toSameAxisOfView: bgImageView, withOffset: -AC_BTN_SIZE)
+        historyButton.autoAlignAxis(.Vertical, toSameAxisOfView: bgImageView, withOffset: -AC_HEIGHT)
         historyButton.autoSetDimensionsToSize(CGSize(width: AC_BTN_SIZE*0.3, height: AC_BTN_SIZE*0.3))
         
         historyLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: historyButton, withOffset: 0)
         historyLabel.autoAlignAxis(.Vertical, toSameAxisOfView: historyButton)
-        
-        settingsButton.autoAlignAxis(.Horizontal, toSameAxisOfView: favoriteButton)
-        settingsButton.autoAlignAxis(.Vertical, toSameAxisOfView: self)
-        settingsButton.autoSetDimensionsToSize(CGSize(width: AC_BTN_SIZE*0.3, height: AC_BTN_SIZE*0.3))
-        
-        settingsLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: settingsButton, withOffset: 0)
-        settingsLabel.autoAlignAxis(.Vertical, toSameAxisOfView: settingsButton)
+    }
+    
+    //MARK: - Public Methods -
+    func updateLocalizedStrings()  {
+        historyLabel.text = "history".localizedString
+        favoriteLabel.text = "favorite".localizedString
+
     }
 }

@@ -8,7 +8,6 @@
 
 import SVPullToRefresh_Bell
 
-
 enum ObjectsType: String {
     case ALL = "all"
     case New = "new"
@@ -37,7 +36,7 @@ class ObjectsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Restaurants"
+        navigationItem.title = "restaurants".localizedString
         navigationController?.setNavigationBarHidden(false, animated: false)
         getObjects()
     }

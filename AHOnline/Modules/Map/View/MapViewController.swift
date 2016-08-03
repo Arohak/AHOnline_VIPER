@@ -33,19 +33,12 @@ class MapViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Map"
-        navigationItem.setLeftBarButtonItem(UIBarButtonItem(title: "Distance", style: .Plain, target: self, action: #selector(chooseDistanceAction)), animated: true)
-
 //        output.viewIsReady()
         startUpdatingLocation { _ in }
         getNearestObjects()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    //MARK: Internal View -
+    // MARK: - Internal Method -
      override func baseConfig() {
         self.view = mapView
 
@@ -56,6 +49,12 @@ class MapViewController: BaseViewController {
         mapView.map.delegate = self
         mapView.bottomView.closeRoutButton.addTarget(self, action: #selector(clearPolyline(_:)), forControlEvents: .TouchUpInside)
         mapView.bottomView.locationButton.addTarget(self, action: #selector(goToMyLocation(_:)), forControlEvents: .TouchUpInside)
+    }
+    
+    override func updateLocalizedStrings() {
+        
+        navigationItem.title = "map".localizedString
+        navigationItem.setLeftBarButtonItem(UIBarButtonItem(title: "distance".localizedString, style: .Plain, target: self, action: #selector(chooseDistanceAction)), animated: true)
     }
     
     //MARK: - Actions -

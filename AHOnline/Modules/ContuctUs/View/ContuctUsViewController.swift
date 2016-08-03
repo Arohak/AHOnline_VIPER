@@ -22,7 +22,7 @@ class ContuctUsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "contuct_us".localizedString
+        title = "contact_us".localizedString
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     

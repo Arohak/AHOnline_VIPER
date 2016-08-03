@@ -25,7 +25,7 @@ class ProductViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Products"
+        navigationItem.title = "products".localizedString
         navigationController?.setNavigationBarHidden(false, animated: true)
         getProducts()
     }

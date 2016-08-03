@@ -49,12 +49,13 @@ class TabBarViewController: UITabBarController {
     }
     
     private func styleTab() {
-        let titles = ["Home", "Categories", "Cart", "Map", "Account"]
+        let titles = ["home".localizedString, "categories".localizedString, "cart".localizedString, "map".localizedString, "profile".localizedString]
+        let imagestitle = ["img_home", "img_categories", "img_cart", "img_map", "img_profile"]
 
         for (index, viewController) in viewControllers!.enumerate() {
             let title           = titles[index]
-            let image           = UIImage(named: title)
-            let selectedImage   = UIImage(named: "selected" + title)
+            let image           = UIImage(named: imagestitle[index])
+            let selectedImage   = UIImage(named: imagestitle[index] + "_selected")
             let item = UITabBarItem(title: title, image: image, selectedImage: selectedImage)
             viewController.tabBarItem = item
         }

@@ -25,7 +25,6 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Home"
         navigationItem.setRightBarButtonItem(UIBarButtonItem(image: UIImage(named: "img_search"), style: .Plain, target: self, action: #selector(searchAction)), animated: true)
 
         output.viewIsReady()
@@ -45,7 +44,23 @@ class HomeViewController: BaseViewController {
         scheduleCarouselScrolingTimer()
     }
     
-    //MARK: - Private Methods -
+    override func updateLocalizedStrings() {
+        setLocalizedStrings()
+        
+        homeView.tableView.reloadData()
+    }
+    
+    // MARK: - Private Method -
+    private func setLocalizedStrings() {
+        navigationItem.title = "home".localizedString
+
+        titles  = ["new_restaurants".localizedString,
+                  "rate_restaurants".localizedString,
+                  "open_restaurants".localizedString]
+        
+        descs   = ["", "", ""]
+    }
+    
     private func scheduleCarouselScrolingTimer() {
         carouselTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(scrollCarousel), userInfo: nil, repeats: true)
     }
@@ -110,6 +125,7 @@ class HomeViewController: BaseViewController {
         if isFilterAnimation {
             UIView.animateWithDuration(0.5, animations: {
                 self.homeView.filterView.alpha = 1
+                self.homeView.filterView.configurationTableViewCell()
             }) { finish in
                 self.isFilterAnimation = !self.isFilterAnimation
             }
@@ -127,8 +143,6 @@ class HomeViewController: BaseViewController {
 extension HomeViewController: HomeViewInput {
     
     func setupInitialState(home: Home) {
-        titles = ["New Restaurants", "Rate Restaurants", "Open Restaurants"]
-        descs = ["", "", ""]
         heights = [ScreenSize.HEIGHT*0.25, ScreenSize.HEIGHT*0.25, ScreenSize.HEIGHT*0.3]
         
         items.append([AHObject]())
@@ -199,7 +213,7 @@ extension HomeViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField.text!.characters.count < 3 {
-            UIHelper.showHUD("search text min 3 simbol")
+            UIHelper.showHUD("search_message".localizedString)
         } else {
             textField.resignFirstResponder()
             output.search(textField.text!,

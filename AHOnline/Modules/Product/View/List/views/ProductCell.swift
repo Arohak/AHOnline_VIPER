@@ -48,8 +48,9 @@ class ProductCellContentView: UIView {
     
     lazy var favoriteButton: UIButton = {
         let view = UIButton.newAutoLayoutView()
-        view.setBackgroundImage(UIImage(named: "img_all"), forState: .Normal)
-        
+        view.setBackgroundImage(UIImage(named: "img_favorites"), forState: .Normal)
+        view.setBackgroundImage(UIImage(named: "img_favorites_selected"), forState: .Selected)
+
         return view
     }()
     

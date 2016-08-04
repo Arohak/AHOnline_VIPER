@@ -17,7 +17,7 @@
 "rate_restaurants"      = "Рейтинговые Рестораны";
 "new_products"          = "Новые Продукты";
 "sale_products"         = "Скидки Продукты";
-"search_message"        = "поиск по тексту мин 3";
+"search_message"        = "Поиск по тексту мин 3";
 "type"                  = "Тип";
 "sort"                  = "Сортировка";
 "kitchen"               = "Кухня";

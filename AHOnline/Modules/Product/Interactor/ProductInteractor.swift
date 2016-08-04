@@ -14,7 +14,7 @@ class ProductInteractor {
 
 //MARK: - extension for ProductInteractorInput -
 extension ProductInteractor: ProductInteractorInput {
-
+    
     func getProducts(json: JSON) {
         _ = APIManager.getProducts(json)
             .subscribe(onNext: { result in
@@ -37,5 +37,9 @@ extension ProductInteractor: ProductInteractorInput {
     
     func addProductBuy(product: Product) {
         DBManager.addProduct(product)
+    }
+    
+    func updateFavoriteProduct(product: Product) {
+       DBManager.updateFavoriteProduct(product)
     }
 }

@@ -13,7 +13,7 @@ class ProductViewController: BaseViewController {
     private var productView = ProductView()
     private let cellIdentifire = "cellIdentifire"
     private var products: [Product] = []
-    
+
     private var search              = ""
     private var id                  = ""
     private var isAddMore           = true
@@ -25,7 +25,6 @@ class ProductViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "products".localizedString
         navigationController?.setNavigationBarHidden(false, animated: true)
         getProducts()
     }
@@ -34,6 +33,11 @@ class ProductViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         productView.collectionView.reloadData()
+    }
+    
+    override func updateLocalizedStrings() {
+        
+        navigationItem.title = "products".localizedString
     }
     
     //MARK: -  Internal Methods -
@@ -53,6 +57,13 @@ class ProductViewController: BaseViewController {
         output.addProductBuy(product)
         let cell = productView.collectionView.cellForItemAtIndexPath(sender.indexPath) as! ProductCell
         cell.cellContentView.updateCount(product)
+    }
+    
+    func addOrDeleteFavorite(sender: HOButton) {
+        let product = products[sender.indexPath.row]
+        sender.selected = !sender.selected
+        
+        output.favoriteButtonClicked(product)
     }
     
     private func getProducts() {
@@ -98,8 +109,6 @@ extension ProductViewController: ProductViewInput {
 
     func setupInitialState(products: [Product]) {
         handleData(products)
-//       self.products = products
-//        productView.collectionView.reloadData()
     }
     
     func handleData(newProducts: [Product]) {
@@ -133,6 +142,10 @@ extension ProductViewController: UICollectionViewDataSource, UICollectionViewDel
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellIdentifire, forIndexPath: indexPath) as! ProductCell
         cell.cellContentView.addButton.addTarget(self, action: #selector(addAction(_:)), forControlEvents: .TouchUpInside)
         cell.cellContentView.addButton.indexPath = indexPath
+        cell.cellContentView.favoriteButton.addTarget(self, action: #selector(addOrDeleteFavorite(_:)), forControlEvents: .TouchUpInside)
+        cell.cellContentView.favoriteButton.indexPath = indexPath
+        cell.cellContentView.favoriteButton.selected = product.favorite
+        
         cell.setValues(product)
         
         return cell

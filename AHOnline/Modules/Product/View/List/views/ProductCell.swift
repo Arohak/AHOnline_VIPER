@@ -42,12 +42,13 @@ class ProductCellContentView: UIView {
     lazy var imageView: UIImageView = {
         let view = UIImageView.newAutoLayoutView()
         view.contentMode = .ScaleAspectFit
+        view.userInteractionEnabled = true
         
         return view
     }()
     
-    lazy var favoriteButton: UIButton = {
-        let view = UIButton.newAutoLayoutView()
+    lazy var favoriteButton: HOButton = {
+        let view = HOButton.newAutoLayoutView()
         view.setBackgroundImage(UIImage(named: "img_favorites"), forState: .Normal)
         view.setBackgroundImage(UIImage(named: "img_favorites_selected"), forState: .Selected)
 

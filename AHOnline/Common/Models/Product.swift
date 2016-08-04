@@ -27,6 +27,8 @@ class Product: Object {
     dynamic var keywords: String!
     dynamic var src: String!
     
+    dynamic var favorite: Bool = false
+
     dynamic var amount: String = "$"
     dynamic var countBuy = 0
     dynamic var isBuy: Bool {
@@ -58,5 +60,6 @@ class Product: Object {
         self.alias                          = data["alias"].stringValue
         self.keywords                       = data["keywords"].stringValue
         self.src                            = data["src"].stringValue
+        self.favorite                       = data["favorite"].boolValue
     }
 }

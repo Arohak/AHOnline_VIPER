@@ -20,9 +20,13 @@ extension ProductPresenter: ProductViewOutput {
     func getProducts(json: JSON) {
         interactor.getProducts(json)
     }
-    
+
     func addProductBuy(product: Product) {
         interactor.addProductBuy(product)
+    }
+    
+    func favoriteButtonClicked(product: Product) {
+        interactor.updateFavoriteProduct(product)
     }
 }
 

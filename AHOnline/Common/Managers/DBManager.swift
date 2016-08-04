@@ -25,6 +25,12 @@ struct DBManager {
         }
     }
     
+    static func getUser() -> User? {
+        let user = realm.objects(User.self).first
+        
+        return user
+    }
+    
     //MARK: - Delivery Address -
     static func storeDeliveryAddress(address: DeliveryAddress) {
         try! realm.write {
@@ -41,11 +47,17 @@ struct DBManager {
             }
         }
     }
+
+    //MARK: - Product -
+    static func getFavoriteProducts() -> Results<Product> {
+        let products = realm.objects(Product.self).filter("favorite == true")
+        return products
+    }
     
-    static func getUser() -> User? {
-        let user = realm.objects(User.self).first
-        
-        return user
+    static func updateFavoriteProduct(product: Product) {
+        try! realm.write {
+            product.favorite = !product.favorite
+        }
     }
     
     //MARK: - Restaurants -

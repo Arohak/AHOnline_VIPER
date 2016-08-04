@@ -10,4 +10,5 @@ protocol ProductInteractorInput {
 
     func getProducts(json: JSON)
     func addProductBuy(product: Product)
+    func updateFavoriteProduct(product: Product)
 }

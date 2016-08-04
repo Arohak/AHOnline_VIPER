@@ -17,7 +17,6 @@ class User: Object {
 
     dynamic var address: DeliveryAddress?
     
-    var favorite = List<Product>()
     var history = List<Product>()
 
     override static func primaryKey() -> String {
@@ -51,7 +50,7 @@ class UserInfo {
     var email: String!
     var phone: String!
     var isVerified: Bool = false
-
+    
     init(data: JSON) {
         self.name               = data["name"].stringValue
         self.image              = data["image"].stringValue

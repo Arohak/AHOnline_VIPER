@@ -21,6 +21,8 @@ struct DBManager {
         try! realm.write {
             if let user = getUser() {
                 user.update(userInfo)
+                
+                storeProducts(Array(user.favorites))
             }
         }
     }
@@ -47,18 +49,6 @@ struct DBManager {
             }
         }
     }
-
-    //MARK: - Product -
-    static func getFavoriteProducts() -> Results<Product> {
-        let products = realm.objects(Product.self).filter("favorite == true")
-        return products
-    }
-    
-    static func updateFavoriteProduct(product: Product) {
-        try! realm.write {
-            product.favorite = !product.favorite
-        }
-    }
     
     //MARK: - Restaurants -
     static func storeRestaurants(restaurants: [Restaurant]) {
@@ -79,6 +69,24 @@ struct DBManager {
             realm.add(product, update: true)
             
             Wireframe.setBadgeValue(getOrderCounts())
+        }
+    }
+    
+    static func getProducts() -> Results<Product> {
+        let products = realm.objects(Product.self)
+        return products
+    }
+    
+    static func updateFavoriteProduct(product: Product) {
+        try! realm.write {
+            let products = realm.objects(Product.self)
+            let findProduct = products.filter { $0.id == product.id }.first
+            if let findProduct = findProduct {
+                findProduct.favorite = !findProduct.favorite
+            } else {
+                product.favorite = true
+                realm.add(product, update: true)
+            }
         }
     }
     

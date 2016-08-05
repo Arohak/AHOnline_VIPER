@@ -10,15 +10,16 @@ class ProductViewController: BaseViewController {
     
     var output: ProductViewOutput!
 
-    private var productView = ProductView()
-    private let cellIdentifire = "cellIdentifire"
-    private var products: [Product] = []
+    private var productView                 = ProductView()
+    private let cellIdentifire              = "cellIdentifire"
+    private var storedProducts: Results<Product>!
+    private var products: [Product]         = []
 
-    private var search              = ""
-    private var id                  = ""
-    private var isAddMore           = true
-    private var limit               = LIMIT
-    private var offset              = OFFSET
+    private var search                      = ""
+    private var id                          = ""
+    private var isAddMore                   = true
+    private var limit                       = LIMIT
+    private var offset                      = OFFSET
 
     
     // MARK: - Life cycle -
@@ -107,7 +108,9 @@ class ProductViewController: BaseViewController {
 //MARK: - extension for ProductViewInput -
 extension ProductViewController: ProductViewInput {
 
-    func setupInitialState(products: [Product]) {
+    func setupInitialState(products: [Product], storedProducts: Results<Product>) {
+        self.storedProducts = storedProducts
+        
         handleData(products)
     }
     

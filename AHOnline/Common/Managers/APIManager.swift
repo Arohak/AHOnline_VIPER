@@ -18,6 +18,8 @@ struct APIManager {
         static let CREATE_DELIVERY_ADDRESS                  = "deliveryaddresses"
         static let PUT_DELIVERY_ADDRESS                     = "deliveryaddresses/%@"
 
+        static let PUT_FAVORITE                             = "favorites/%@"
+
         static let GET_RESTAURANTS_HOME                     = "home"
         static let GET_CATEGORIES                           = "categories"
         static let GET_DELIVERIES                           = "deliveries"
@@ -33,6 +35,7 @@ struct APIManager {
         static let GET_NEARST_OBJECTS                       = "nears_objects?latitude=%@&longitude=%@&km=%@"
     }
     
+    //MARK: - User -
     static func createUser() -> Observable<JSON> {
         return apiHelper.request(.POST, url: ROUTERS.CREATE_USER)
     }
@@ -42,6 +45,7 @@ struct APIManager {
         return apiHelper.request(.GET, url: url)
     }
     
+    //MARK: - Mobile Number -
     static func sendMobileNumber(json: JSON) -> Observable<JSON> {
         let params = ["id"                  : json["id"].stringValue,
                       "mobile_number"       : json["mobile_number"].stringValue]
@@ -54,7 +58,15 @@ struct APIManager {
         
         return apiHelper.request(.POST, url: ROUTERS.VERIFY_PHONE, parameters: params)
     }
+    
+    //MARK: - Favorite -
+    static func updateFavoriteProduct(user_id: String, product_id: String) -> Observable<JSON> {
+        let params = ["user_id" : user_id]
+        let url = String(format: ROUTERS.PUT_FAVORITE, product_id)
+        return apiHelper.request(.PUT, url: url, parameters: params)
+    }
 
+    //MARK: - Delivery Address -
     static func createDeliveryAddress(json: JSON) -> Observable<JSON> {
         let params = ["user_id"             : json["user_id"].stringValue,
                       "country"             : json["country"].stringValue,
@@ -76,23 +88,28 @@ struct APIManager {
         return apiHelper.request(.PUT, url: url, parameters: params)
     }
     
+    //MARK: - Restaurants -
     static func getRestaurantsHome() -> Observable<JSON> {
         return apiHelper.request(.GET, url: ROUTERS.GET_RESTAURANTS_HOME)
     }
     
+    //MARK: - Categories -
     static func getCategories() -> Observable<JSON> {
         return apiHelper.request(.GET, url: ROUTERS.GET_CATEGORIES)
     }
     
+    //MARK: - Deliveries -
     static func getDeliveries() -> Observable<JSON> {
         return apiHelper.request(.GET, url: ROUTERS.GET_DELIVERIES)
     }
     
+    //MARK: - Object -
     static func getObject(id: String) -> Observable<JSON> {
         let url = String(format: ROUTERS.GET_OBJECT, id)
         return apiHelper.request(.GET, url: url)
     }
     
+    //MARK: - Products -
     static func getProducts(json: JSON) -> Observable<JSON> {
         var URL = ""
         if !json["id"].stringValue.isEmpty  {

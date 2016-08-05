@@ -10,6 +10,18 @@
 class ProductInteractor {
 
     weak var output: ProductInteractorOutput!
+    
+    var user: User! {
+        return DBManager.getUser()
+    }
+    
+    var orderProducts: Results<Product> {
+        return DBManager.getOrders()
+    }
+    
+    var storedProducts: Results<Product> {
+        return DBManager.getProducts()
+    }
 }
 
 //MARK: - extension for ProductInteractorInput -
@@ -22,15 +34,17 @@ extension ProductInteractor: ProductInteractorInput {
                     var products: [Product] = []
                     for item in result["data"].arrayValue {
                         let product = Product(data: item)
-                        let findProduct = DBManager.getOrders().filter { $0.id == product.id }.first
-                        if let findProduct = findProduct {
-                            products.append(findProduct)
-                        } else {
-                            products.append(product)
-                        }
+                        let findOrderProduct = self.orderProducts.filter { $0.id == product.id }.first
+                        let findFavoriteProduct = self.storedProducts.filter { $0.id == product.id }.first
+
+//                        if let findOrderProduct = findOrderProduct {
+//                            products.append(findOrderProduct)
+//                        } else if let findFavoriteProduct = findFavoriteProduct {
+//                            products.append(product)
+//                        }
                     }
                     
-                    self.output.productsDataIsReady(products)
+                    self.output.productsDataIsReady(products, storedProducts: self.storedProducts)
                 }
             })
     }
@@ -40,6 +54,11 @@ extension ProductInteractor: ProductInteractorInput {
     }
     
     func updateFavoriteProduct(product: Product) {
-       DBManager.updateFavoriteProduct(product)
+        _ = APIManager.updateFavoriteProduct("\(user.id)", product_id: "\(product.id)")
+        .subscribeNext({ result in
+            if result != nil {
+                DBManager.updateFavoriteProduct(product)
+            }
+        })
     }
 }

@@ -33,7 +33,7 @@ extension ProductPresenter: ProductViewOutput {
 //MARK: - extension for ProductInteractorOutput -
 extension ProductPresenter: ProductInteractorOutput {
 
-    func productsDataIsReady(products: [Product]) {
-        view.setupInitialState(products)
+    func productsDataIsReady(products: [Product], storedProducts: Results<Product>) {
+        view.setupInitialState(products, storedProducts: storedProducts)
     }
 }

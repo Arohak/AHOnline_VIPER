@@ -11,19 +11,28 @@ class ManageAddressViewController: UIViewController {
 
     var output: ManageAddressViewOutput!
     
-    private var manageAddressView = ManageAddressView()
+    private var manageAddressView                   = ManageAddressView()
+    private var countries: [String]                 = []
+    private var citiesTuple: [(String, String)]     = []
+    private var selectedCountry                     = ""
+    private var selectedCity                        = ""
+    private var selectedAlias                       = ""
+    private var selectedAddress                     = ""
+    
     private var user: User?
-    private var countries: [String] = []
-    private var cities: [String] = []
-    private var selectedCountry = ""
-    private var selectedCity = ""
-    private var selectedAddress = ""
+    
+    private var cities: [String] {
+        var temp = [String]()
+        for item in citiesTuple { temp.append(item.0) }
+        
+        return temp
+    }
 
     // MARK: - Life cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "manage_address".localizedString
+        title = "delivery_address".localizedString
         navigationItem.setRightBarButtonItem(UIBarButtonItem(title: "close".localizedString, style: .Plain, target: self, action: #selector(closeAction)), animated: true)
         
         output.viewIsReady()
@@ -80,9 +89,10 @@ class ManageAddressViewController: UIViewController {
     }
     
     func cityButtonAction() {
-        let actionSheet = ActionSheetPickerViewController(values: cities) { value in
-            self.manageAddressView.cityView.setValue(value)
-            self.selectedCity = value
+        let actionSheet = ManageAddressActionSheetPickerViewController(values: citiesTuple) { value in
+            self.manageAddressView.cityView.setValue(value.0)
+            self.selectedCity = value.0
+            self.selectedAlias = value.1
         }
         if cities.count > 0 {
             let index = cities.indexOf(selectedCity) != nil ? cities.indexOf(selectedCity)! : 0
@@ -96,6 +106,7 @@ class ManageAddressViewController: UIViewController {
             let json = JSON([
                 "country"   : manageAddressView.countryView.titleLabel.text!,
                 "city"      : manageAddressView.cityView.hidden ? manageAddressView.cityFieldView.textField.text! : manageAddressView.cityView.titleLabel.text!,
+                "alias"     : manageAddressView.cityView.hidden ? "" : selectedAlias,
                 "address"   : manageAddressView.addressFieldView.textField.text!]
             )
             
@@ -107,18 +118,22 @@ class ManageAddressViewController: UIViewController {
 //MARK: - extension for ManageAddressViewInput -
 extension ManageAddressViewController: ManageAddressViewInput {
     
-    func setupInitialState(user: User?, countries: [String], cities: [String]) {
+    func setupInitialState(user: User?, countries: [String], citiesTuple: [(String, String)]) {
         self.user = user
         self.countries = countries
-        self.cities = cities
+        self.citiesTuple = citiesTuple
         
         if let address = user?.address {
             selectedCountry = address.country
             selectedCity = address.city
+            selectedAlias = address.alias
             selectedAddress = address.add
         } else {
             selectedCountry = "Armenia"
-          if cities.count > 0 { selectedCity = cities.first! }
+          if cities.count > 0 {
+            selectedCity = citiesTuple.first!.0
+            selectedAlias = citiesTuple.first!.1
+            }
         }
         
         manageAddressView.countryView.setValue(selectedCountry)

@@ -62,6 +62,7 @@ let RCOLORS                             = [UIColor.blueColor(), UIColor.redColor
 //MARK: - Callback Typealias -
 typealias CollectionCallback            = (indexPath: NSIndexPath) -> Void
 typealias PickerCallback                = (value: String) -> Void
+typealias ManageAddressPickerCallback   = (value: (String, String)) -> Void
 typealias DeliveryPickerCallback        = (value: Delivery, index: Int) -> Void
 typealias DistancePickerCallback        = (value: Double, index: Int) -> Void
 typealias LanguagePickerCallback        = (value: String, index: Int) -> Void
@@ -114,6 +115,7 @@ let PR_LAYOUT_WIDTH : CGFloat           = (ScreenSize.WIDTH - PR_INSET*4)/2
 //MARK: - Cart Constants -
 let CA_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
 let CA_CELL_HEIGHT : CGFloat            = DeviceType.IS_IPAD ? 80     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 80     : DeviceType.IS_IPHONE_6 ? 80   * IPHONE_6_SCALE : 80   * IPHONE_5_SCALE
+let CA_COUNT                            = 10
 
 //MARK: - Search Constants -
 let SE_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE

@@ -89,7 +89,7 @@ struct UIHelper {
         let inverseSet = NSCharacterSet(charactersInString:"0123456789").invertedSet
         let components = string.componentsSeparatedByCharactersInSet(inverseSet)
         let filtered = components.joinWithSeparator("")
-        (string == filtered) && numvber < 100 && numvber != 0 ? isValid = true : shakeWithView(textField)
+        (string == filtered) && numvber < CA_COUNT && numvber != 0 ? isValid = true : shakeWithView(textField)
         
         return isValid
     }

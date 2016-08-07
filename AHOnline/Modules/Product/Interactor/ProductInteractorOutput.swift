@@ -8,5 +8,7 @@
 
 protocol ProductInteractorOutput: class {
 
-    func productsDataIsReady(products: [Product], storedProducts: Results<Product>)
+    func productsDataIsReady(products: [Product])
+    func addProductIsReady(product: Product)
+    func updateProductIsReady(product: Product)
 }

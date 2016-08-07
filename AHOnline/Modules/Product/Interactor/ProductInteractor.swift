@@ -15,10 +15,6 @@ class ProductInteractor {
         return DBManager.getUser()
     }
     
-    var orderProducts: Results<Product> {
-        return DBManager.getOrders()
-    }
-    
     var storedProducts: Results<Product> {
         return DBManager.getProducts()
     }
@@ -27,30 +23,44 @@ class ProductInteractor {
 //MARK: - extension for ProductInteractorInput -
 extension ProductInteractor: ProductInteractorInput {
     
-    func getProducts(json: JSON) {
-        _ = APIManager.getProducts(json)
+    func getProducts(requestType: RequestType, json: JSON) {
+        var js = json
+        js["user_id"].stringValue = "\(user.id)"
+        
+        _ = APIManager.getProducts(requestType, json: js)
             .subscribe(onNext: { result in
                 if result != nil {
                     var products: [Product] = []
                     for item in result["data"].arrayValue {
                         let product = Product(data: item)
-                        let findOrderProduct = self.orderProducts.filter { $0.id == product.id }.first
-                        let findFavoriteProduct = self.storedProducts.filter { $0.id == product.id }.first
-
-//                        if let findOrderProduct = findOrderProduct {
-//                            products.append(findOrderProduct)
-//                        } else if let findFavoriteProduct = findFavoriteProduct {
-//                            products.append(product)
-//                        }
+                        
+                        let findStoredProduct = self.storedProducts.filter { $0.id == product.id }.first
+                        if let findStoredProduct = findStoredProduct {
+                            products.append(findStoredProduct)
+                        } else {
+                            products.append(product)
+                        }
                     }
-                    
-                    self.output.productsDataIsReady(products, storedProducts: self.storedProducts)
+                    self.output.productsDataIsReady(products)
                 }
+                }, onError: { error in
+                    switch requestType {
+                    case .FAVORITE:
+                        let products = DBManager.getProductsLimitOffset(json["offset"].intValue, limit: json["limit"].intValue)
+                        self.output.productsDataIsReady(Array(products))
+                    default:
+                        break
+                    }
             })
     }
     
     func addProductBuy(product: Product) {
-        DBManager.addProduct(product)
+        if product.countBuy < CA_COUNT - 1 {
+            DBManager.addProduct(product)
+            output.addProductIsReady(product)
+        } else {
+            UIHelper.showHUD("max_message".localizedString)
+        }
     }
     
     func updateFavoriteProduct(product: Product) {
@@ -58,6 +68,8 @@ extension ProductInteractor: ProductInteractorInput {
         .subscribeNext({ result in
             if result != nil {
                 DBManager.updateFavoriteProduct(product)
+                
+                self.output.updateProductIsReady(product)
             }
         })
     }

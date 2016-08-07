@@ -20,7 +20,7 @@ extension ObjectPresenter: ObjectViewOutput {
     func didSelectObjectMenuRow(objectMenu: ObjectMenu) {
         let vc = ProductViewController()
         _ = ProductModuleInitializer(viewController: vc)
-        vc.setParams("\(objectMenu.id)")
+        vc.setParams(id: "\(objectMenu.id)")
         
         router.pushViewController(vc)
     }

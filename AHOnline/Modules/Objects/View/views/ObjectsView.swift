@@ -16,18 +16,35 @@ class ObjectsView: BaseView {
         return view
     }()
     
+    lazy var refresh: CarbonSwipeRefresh = {
+        let view = CarbonSwipeRefresh(scrollView: self.tableView)
+        view.colors = RCOLORS
+        
+        return view
+    }()
+    
     //MARK: - Initialize -
     override init() {
         super.init()
         
-        addSubview(tableView)
-        tableView.autoPinEdgeToSuperviewEdge(.Top, withInset: NAV_HEIGHT)
-        tableView.autoPinEdgeToSuperviewEdge(.Left, withInset: 0)
-        tableView.autoPinEdgeToSuperviewEdge(.Right, withInset: 0)
-        tableView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: TAB_HEIGHT)
+        addAllUIElements()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Private Methods -
+    private func addAllUIElements() {
+        addSubview(tableView)
+        addSubview(refresh)
+        
+        setConstraints()
+    }
+    
+    //MARK: - Constraints -
+    func setConstraints() {
+        tableView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: NAV_HEIGHT, left: 0, bottom: TAB_HEIGHT, right: 0))
+        refresh.setMarginTop(NAV_HEIGHT)
     }
 }

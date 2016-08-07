@@ -11,6 +11,12 @@
 "map"                   = "Map";
 "profile"               = "Profile";
 
+// Mobile Verify
+"verify"                = "Verify Mobile Number";
+
+// Delivery Address
+"delivery_address"      = "Delivery Address";
+
 // Home
 "new_restaurants"       = "New Restaurants";
 "open_restaurants"      = "Open Restaurants";
@@ -40,7 +46,6 @@
 
 // Categories
 
-
 // Cart
 "edit"                  = "Edit";
 "clear"                 = "Clear";
@@ -59,6 +64,7 @@
 "pay_on_delivery"       = "Pay on delivery";
 "credit_cart"           = "Credit Cart";
 "paypal"                = "Paypal";
+"max_message"           = "max value 9";
 
 // Map
 "distance"              = "Distance";

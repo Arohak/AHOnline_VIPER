@@ -11,13 +11,19 @@
 "map"                   = "Քարտեզ";
 "profile"               = "Պրոֆիլ";
 
+// Mobile Verify
+"verify"                = "Հեռախոսահամար";
+
+// Delivery Address
+"delivery_address"      = "Առաքման Հասցե";
+
 // Home
 "new_restaurants"       = "Նոր Ռեստորաններ";
 "open_restaurants"      = "Բաց Ռեստորաններ";
-"rate_restaurants"      = "Rate Ռեստորաններ";
+"rate_restaurants"      = "Ռեյտինգով Ռեստորաններ";
 "new_products"          = "Նոր Ապրանքներ";
 "sale_products"         = "զեղչեր Ապրանքներ";
-"search_message"        = "որոնումը տեքստ Min 3";
+"search_message"        = "որոնուման համար նվազագույնը 3 տառ";
 "type"                  = "Տիպ";
 "sort"                  = "Դասավորել";
 "kitchen"               = "Խոհանոցային";
@@ -40,15 +46,14 @@
 
 // Categories
 
-
 // Cart
 "edit"                  = "Խմբագրել";
 "clear"                 = "Մաքրել";
 "clear_cart"            = "Մաքրել Զամբյուղը";
 "clear_message"         = "Դուք ուզում եք մաքրել զամբյուղի մեջ";
 "order"                 = "ՕՐԴԵՐ";
-"delivery"              = "ԱՌԱՔՄԱՆ";
-"payment"               = "ՎՃԱՐԱՅԻՆ";
+"delivery"              = "ԱՌԱՔՈՒՄ";
+"payment"               = "ՎՃԱՐՈՒՄ";
 "mobile_number"         = "Հեռախոսահամար";
 "delivery_address"      = "Առաքման հասցե";
 "delivery_address_pl"   = "փողոց, բնակարան, տուն";
@@ -58,8 +63,8 @@
 "cart_time"             = "ժամանակ";
 "pay_on_delivery"       = "Վճարել առաքման Ժամանակ";
 "credit_cart"           = "Կրեդիտ Քարտ";
-"paypal"                = "Paypal";
-
+"paypal"                = "Պայպալ";
+"max_message"           = "առավելագույն քանակը 9";
 
 // Map
 "distance"              = "Հեռու";

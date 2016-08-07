@@ -51,6 +51,8 @@
 		52012AED1D32BB340002140C /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 52012AEA1D32BB340002140C /* 0.png */; };
 		52012AEE1D32BB340002140C /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 52012AEB1D32BB340002140C /* 1.png */; };
 		52012AEF1D32BB340002140C /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 52012AEC1D32BB340002140C /* 2.png */; };
+		521B34B71D57736100449298 /* RefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521B34B61D57736100449298 /* RefreshProtocol.swift */; };
+		521B34B91D5773AE00449298 /* LocalizedStringsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521B34B81D5773AE00449298 /* LocalizedStringsProtocol.swift */; };
 		523C1C911D3D714500527136 /* DidSelectObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C1C901D3D714500527136 /* DidSelectObjectProtocol.swift */; };
 		523C1C931D3D72F700527136 /* GetObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C1C921D3D72F700527136 /* GetObjectProtocol.swift */; };
 		523C1C951D3D73FC00527136 /* ObjectDataIsReadyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C1C941D3D73FC00527136 /* ObjectDataIsReadyProtocol.swift */; };
@@ -104,6 +106,7 @@
 		52A4E0E31D3A441700DDAC54 /* Delivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A4E0E21D3A441700DDAC54 /* Delivery.swift */; };
 		52A4E0E51D3B97CD00DDAC54 /* img_dram.png in Resources */ = {isa = PBXBuildFile; fileRef = 52A4E0E41D3B97CD00DDAC54 /* img_dram.png */; };
 		52A4E0EB1D3BCE7800DDAC54 /* ObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A4E0EA1D3BCE7800DDAC54 /* ObjectView.swift */; };
+		52C96EF81D5757930008653D /* img_pr_cart.png in Resources */ = {isa = PBXBuildFile; fileRef = 52C96EF71D5757930008653D /* img_pr_cart.png */; };
 		52CD37571D3BF215008624BE /* ObjectsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD37561D3BF215008624BE /* ObjectsCell.swift */; };
 		52CD37591D3BF4F3008624BE /* SubcategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD37581D3BF4F3008624BE /* SubcategoryCell.swift */; };
 		52CD375C1D3C2604008624BE /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD375B1D3C2604008624BE /* MapView.swift */; };
@@ -603,6 +606,8 @@
 		52012AEA1D32BB340002140C /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.png; sourceTree = "<group>"; };
 		52012AEB1D32BB340002140C /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		52012AEC1D32BB340002140C /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		521B34B61D57736100449298 /* RefreshProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshProtocol.swift; sourceTree = "<group>"; };
+		521B34B81D5773AE00449298 /* LocalizedStringsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStringsProtocol.swift; sourceTree = "<group>"; };
 		523C1C901D3D714500527136 /* DidSelectObjectProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DidSelectObjectProtocol.swift; sourceTree = "<group>"; };
 		523C1C921D3D72F700527136 /* GetObjectProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetObjectProtocol.swift; sourceTree = "<group>"; };
 		523C1C941D3D73FC00527136 /* ObjectDataIsReadyProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectDataIsReadyProtocol.swift; sourceTree = "<group>"; };
@@ -663,6 +668,7 @@
 		52A4E0E21D3A441700DDAC54 /* Delivery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Delivery.swift; sourceTree = "<group>"; };
 		52A4E0E41D3B97CD00DDAC54 /* img_dram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_dram.png; sourceTree = "<group>"; };
 		52A4E0EA1D3BCE7800DDAC54 /* ObjectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectView.swift; sourceTree = "<group>"; };
+		52C96EF71D5757930008653D /* img_pr_cart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = img_pr_cart.png; path = Flags/img_pr_cart.png; sourceTree = "<group>"; };
 		52CD37561D3BF215008624BE /* ObjectsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectsCell.swift; sourceTree = "<group>"; };
 		52CD37581D3BF4F3008624BE /* SubcategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubcategoryCell.swift; sourceTree = "<group>"; };
 		52CD375B1D3C2604008624BE /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -1629,6 +1635,8 @@
 				523C1C921D3D72F700527136 /* GetObjectProtocol.swift */,
 				523C1C941D3D73FC00527136 /* ObjectDataIsReadyProtocol.swift */,
 				A1FA81701D3E1FF20054C40D /* ObjectsDataIsReadyProtocol.swift */,
+				521B34B81D5773AE00449298 /* LocalizedStringsProtocol.swift */,
+				521B34B61D57736100449298 /* RefreshProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1679,6 +1687,7 @@
 			isa = PBXGroup;
 			children = (
 				A17B9D9D1D4A495900C6CFC9 /* Flags */,
+				52C96EF71D5757930008653D /* img_pr_cart.png */,
 				A19E4C1C1D4B42CE00D98048 /* img_arrow.png */,
 				5255563C1D497B180017D5C8 /* img_bg.png */,
 				5255563A1D4976B90017D5C8 /* img_bg_user.png */,
@@ -3166,6 +3175,7 @@
 				A17B9EEA1D4A495900C6CFC9 /* _GG.png in Resources */,
 				A17B9EF21D4A495900C6CFC9 /* _GR.png in Resources */,
 				A17B9F391D4A495900C6CFC9 /* _NA.png in Resources */,
+				52C96EF81D5757930008653D /* img_pr_cart.png in Resources */,
 				A17B9F081D4A495900C6CFC9 /* _JE.png in Resources */,
 				A17B9F5A1D4A495900C6CFC9 /* _SA.png in Resources */,
 				A17B9F471D4A495900C6CFC9 /* _PE.png in Resources */,
@@ -3549,6 +3559,7 @@
 				A1FA81711D3E1FF20054C40D /* ObjectsDataIsReadyProtocol.swift in Sources */,
 				A1379FFD1D3398C6000D022A /* Home.swift in Sources */,
 				A1AE6B431D4647900027C59F /* HomeCollectionCell.swift in Sources */,
+				521B34B91D5773AE00449298 /* LocalizedStringsProtocol.swift in Sources */,
 				A137A0451D365F36000D022A /* ObjectMenu.swift in Sources */,
 				F3A3C5DEF5F009690EE4677E /* MapPresenter.swift in Sources */,
 				A17B9D911D4A278F00C6CFC9 /* FavoriteView.swift in Sources */,
@@ -3614,6 +3625,7 @@
 				DB1811DE6FE02252CF42AC7E /* ObjectsRouterInput.swift in Sources */,
 				CE6EDB3EFC65240AFB609DF3 /* ObjectsRouter.swift in Sources */,
 				4289F113F05509F2619D1230 /* ObjectsConfigurator.swift in Sources */,
+				521B34B71D57736100449298 /* RefreshProtocol.swift in Sources */,
 				208A30A4C7E152131E7A7AF1 /* ObjectsInitializer.swift in Sources */,
 				B0BC29C5C62981011785DED1 /* ManageAddressViewInput.swift in Sources */,
 				D5F557E8DADA584D770B5C19 /* ManageAddressViewOutput.swift in Sources */,

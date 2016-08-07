@@ -11,6 +11,12 @@
 "map"                   = "Карта";
 "profile"               = "Профиль";
 
+// Mobile Verify
+"verify"                = "Верификация Телефон";
+
+// Delivery Address
+"delivery_address"      = "Адрес Доставки";
+
 // Home
 "new_restaurants"       = "Новые Рестораны";
 "open_restaurants"      = "Открытые Рестораны";
@@ -40,7 +46,6 @@
 
 // Categories
 
-
 // Cart
 "edit"                  = "Редактировать";
 "clear"                 = "Очистить";
@@ -58,8 +63,8 @@
 "cart_time"             = "Выберите время";
 "pay_on_delivery"       = "Заплати за доставку при получении";
 "credit_cart"           = "Кредит карта";
-"paypal"                = "Paypal";
-
+"paypal"                = "Пайпал";
+"max_message"           = "максимум количество 9";
 
 // Map
 "distance"              = "Расстояние";

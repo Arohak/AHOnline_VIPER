@@ -60,6 +60,60 @@ class ManagePickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSour
     }
 }
 
+//MARK: - ManageAddressPickerView -
+class ManageAddressPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    private var callback: ManageAddressPickerCallback?
+    private var values: [(String, String)] = []
+    
+    //MARK: - Initilize -
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        delegate = self
+        dataSource = self
+    }
+    
+    //MARK: - Initilize -
+    convenience init(values: [(String, String)], callback: ManageAddressPickerCallback) {
+        self.init(frame: CGRectZero)
+        
+        self.callback = callback
+        self.values = values
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - UIPickerViewDataSource -
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        return values.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let value = values[row]
+        
+        return value.0
+    }
+    
+    //MARK: - UIPickerViewDelegate -
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        callback?(value: values[row])
+    }
+    
+    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        
+        return CA_CELL_HEIGHT*0.6
+    }
+}
+
 //MARK: - DUPickerView -
 class ContryCodePickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -338,9 +392,9 @@ class LanguagePickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let distance = languages[row]
+        let language = languages[row]
         
-        return distance
+        return language
     }
     
     //MARK: - UIPickerViewDelegate -

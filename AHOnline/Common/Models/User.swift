@@ -8,7 +8,7 @@
 
 class User: Object {
     
-    dynamic var id = 1
+    dynamic var id = 0
     dynamic var name: String!
     dynamic var image: String!
     dynamic var email: String!
@@ -17,7 +17,6 @@ class User: Object {
 
     dynamic var address: DeliveryAddress?
     
-    var favorites = List<Product>()
     var history = List<Product>()
 
     override static func primaryKey() -> String {
@@ -41,8 +40,6 @@ class User: Object {
         self.email              = userInfo.email
         self.phone              = userInfo.phone
         self.isVerified         = userInfo.isVerified
-        
-        self.favorites          = userInfo.favorites
     }
 }
 
@@ -53,16 +50,18 @@ class UserInfo {
     var email: String!
     var phone: String!
     var isVerified: Bool = false
-    var favorites = List<Product>()
+    var favorites: [Product] = []
 
     init(data: JSON) {
-        self.name               = data["name"].stringValue
-        self.image              = data["image"].stringValue
-        self.email              = data["email"].stringValue
-        self.phone              = data["mobile_number"].stringValue
-        self.isVerified         = data["is_verified"].boolValue
+        let user = data["user"]
+
+        self.name               = user["name"].stringValue
+        self.image              = user["image"].stringValue
+        self.email              = user["email"].stringValue
+        self.phone              = user["mobile_number"].stringValue
+        self.isVerified         = user["is_verified"].boolValue
         
-        for item in data["products"].arrayValue {
+        for item in data["favorites"].arrayValue {
             favorites.append(Product(data: item))
         }
     }

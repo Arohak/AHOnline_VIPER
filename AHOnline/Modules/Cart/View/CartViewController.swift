@@ -37,6 +37,7 @@ class CartViewController: BaseViewController {
     private var selectedCity                        = "*"
     private var selectedAddress                     = "*"
     private var selectedDate: NSDate!
+    private var selectedAlias                       = ""
 
     private var user: User?
     
@@ -126,19 +127,28 @@ class CartViewController: BaseViewController {
     
     private func updateTableViewInfo() {
         if let user = user {
-            selectedPhone = user.phone
+            if !user.phone.isEmpty { selectedPhone = user.phone }
             
             if let address = user.address {
-                let delivery = deliveries.filter { $0.city == address.city }.first
+                let delivery = deliveries.filter { $0.alias == address.alias }.first
                 if let delivery = delivery {
                     deliveryPrice = delivery.price
-                    cartView.footerView.updateValues(ordersTotalPrice, delivery: deliveryPrice)
                 }
                 
                 selectedAddress = address.add
                 selectedCity = address.city
+                selectedAlias = address.alias
+
+            } else {
+                if let delivery = deliveries.first {
+                    deliveryPrice = delivery.price
+                    selectedCity = delivery.city
+                    selectedAlias = delivery.alias
+                }
             }
             
+            cartView.footerView.updateValues(ordersTotalPrice, delivery: deliveryPrice)
+
             deliveryCells[0].cellContentView.deliveryLabel.text = selectedPhone
             deliveryCells[1].cellContentView.deliveryLabel.text = selectedAddress
             deliveryCells[2].cellContentView.deliveryLabel.text = selectedCity
@@ -359,8 +369,9 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
                     self.deliveryPrice = delivery.price
                     self.cartView.footerView.updateValues(self.ordersTotalPrice, delivery: self.deliveryPrice)
                     self.selectedCity = delivery.city
+                    self.selectedAlias = delivery.alias
                 }
-                actionSheet.pickerView.selectRow(deliveries.indexOf { $0.city == selectedCity }! , inComponent: 0, animated: true)
+                actionSheet.pickerView.selectRow(deliveries.indexOf { $0.alias == selectedAlias }! , inComponent: 0, animated: true)
                 
                 output.presentViewController(actionSheet)
             case 3:

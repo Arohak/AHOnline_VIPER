@@ -23,9 +23,9 @@ struct APIManager {
         static let GET_RESTAURANTS_HOME                     = "home"
         static let GET_CATEGORIES                           = "categories"
         static let GET_DELIVERIES                           = "deliveries"
-        static let GET_PRODUCTS                             = "categoryitems/%@/products?limit=%@&offset=%@"
-        static let GET_PRODUCTS_TYPE                        = "products?type=%@&limit=%@&offset=%@"
+        static let GET_PRODUCTS                             = "products?categoryitem_id=%@&limit=%@&offset=%@"
         static let GET_PRODUCTS_SEARCH                      = "products?search=%@&limit=%@&offset=%@"
+        static let GET_PRODUCTS_FAVORITE                    = "products?user_id=%@&limit=%@&offset=%@"
 
         static let GET_OBJECTS                              = "categories/%@/subcategories/%@?limit=%@&offset=%@"
         static let GET_OBJECTS_TYPE                         = "restaurants?type=%@&limit=%@&offset=%@"
@@ -71,6 +71,7 @@ struct APIManager {
         let params = ["user_id"             : json["user_id"].stringValue,
                       "country"             : json["country"].stringValue,
                       "city"                : json["city"].stringValue,
+                      "alias"               : json["alias"].stringValue,
                       "address"             : json["address"].stringValue,
                       "def"                 : json["def"].stringValue]
         
@@ -81,6 +82,7 @@ struct APIManager {
         let params = ["user_id"             : json["user_id"].stringValue,
                       "country"             : json["country"].stringValue,
                       "city"                : json["city"].stringValue,
+                      "alias"               : json["alias"].stringValue,
                       "address"             : json["address"].stringValue,
                       "def"                 : json["def"].stringValue]
         
@@ -110,28 +112,30 @@ struct APIManager {
     }
     
     //MARK: - Products -
-    static func getProducts(json: JSON) -> Observable<JSON> {
+    static func getProducts(requestType: RequestType, json: JSON) -> Observable<JSON> {
+        var firstParam = ""
         var URL = ""
-        if !json["id"].stringValue.isEmpty  {
-            URL = String(format: ROUTERS.GET_PRODUCTS,
-                         json["id"].stringValue,
-                         json["limit"].stringValue,
-                         json["offset"].stringValue)
+        
+        switch requestType {
+        case .ID:
+            firstParam = json["id"].stringValue
+            URL = ROUTERS.GET_PRODUCTS
             
-        } else if !json["search"].stringValue.isEmpty  {
-            URL = String(format: ROUTERS.GET_PRODUCTS_SEARCH,
-                         json["search"].stringValue,
-                         json["limit"].stringValue,
-                         json["offset"].stringValue)
+        case .SEARCH:
+            firstParam = json["search"].stringValue
+            URL = ROUTERS.GET_PRODUCTS_SEARCH
             
-        } else {
-            URL = String(format: ROUTERS.GET_PRODUCTS_TYPE,
-                         json["type"].stringValue,
-                         json["limit"].stringValue,
-                         json["offset"].stringValue)
+        case .FAVORITE:
+            firstParam = json["user_id"].stringValue
+            URL = ROUTERS.GET_PRODUCTS_FAVORITE
         }
         
-        return apiHelper.request(.GET, url: URL)
+        let url = String(format: URL,
+                     firstParam,
+                     json["limit"].stringValue,
+                     json["offset"].stringValue)
+        
+        return apiHelper.request(.GET, url: url)
     }
     
     static func getObjectsForLimit(limit: String) -> Observable<JSON> {

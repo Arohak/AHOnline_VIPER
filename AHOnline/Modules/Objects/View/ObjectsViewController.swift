@@ -27,7 +27,6 @@ class ObjectsViewController: BaseViewController {
     private var search              = ""
     private var categoryID          = ""
     private var subcategoryID       = ""
-    private var isAddMore           = true
     private var limit               = LIMIT
     private var offset              = OFFSET
     private var type                = ObjectsType.ALL
@@ -48,8 +47,16 @@ class ObjectsViewController: BaseViewController {
         objectsView.tableView.dataSource = self
         objectsView.tableView.delegate = self
         objectsView.tableView.registerClass(ObjectsCell.self, forCellReuseIdentifier: cellIdentifire)
+        objectsView.refresh.addTarget(self, action: #selector(refresh), forControlEvents: .ValueChanged)
         
         createPagination()
+    }
+    
+    override func refresh() {
+        offset = 0
+        objectsView.tableView.showsInfiniteScrolling = true
+        
+        getObjects()
     }
     
     //MARK: -  Private Methods -
@@ -105,6 +112,7 @@ extension ObjectsViewController: ObjectsViewInput {
     
     func updateObjectsData(objects: [AHObject]) {
         handleData(objects)
+        objectsView.refresh.endRefreshing()
     }
     
     func handleData(newObjects: [AHObject]) {
@@ -112,16 +120,8 @@ extension ObjectsViewController: ObjectsViewInput {
             UIHelper.deleteRowsFromTable(objectsView.tableView, objects: &objects)
         }
         
-        if isAddMore {
-            UIHelper.insertRowsInTable(objectsView.tableView, objects: newObjects, inObjects: &objects, reversable: false)
-            
-            if newObjects.count < limit {
-                objectsView.tableView.showsInfiniteScrolling = false
-                isAddMore = false
-            } else {
-                objectsView.tableView.showsInfiniteScrolling = true
-            }
-        }
+        UIHelper.insertRowsInTable(objectsView.tableView, objects: newObjects, inObjects: &objects, reversable: false)
+        objectsView.tableView.showsInfiniteScrolling = newObjects.count < limit ? false : true
     }
 }
 

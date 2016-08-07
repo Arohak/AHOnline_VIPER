@@ -46,7 +46,7 @@ extension HomePresenter: HomeViewOutput {
         case .Product:
             vc = ProductViewController()
             _ = ProductModuleInitializer(viewController: vc)
-            (vc as! ProductViewController).setParams(search: keyword)
+            (vc as! ProductViewController).setParams(.SEARCH, search: keyword)
         }
 
         router.pushViewController(vc)

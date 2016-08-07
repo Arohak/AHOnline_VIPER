@@ -8,5 +8,7 @@
 
 protocol ProductViewInput: class {
 
-    func setupInitialState(products: [Product], storedProducts: Results<Product>)
+    func setupInitialState(products: [Product])
+    func addProduct(product: Product)
+    func updateProduct(product: Product)
 }

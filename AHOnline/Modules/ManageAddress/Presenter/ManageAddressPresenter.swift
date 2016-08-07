@@ -49,8 +49,8 @@ extension ManageAddressPresenter: DismissControllerProtocol {
 //MARK: - extension for ManageAddressInteractorOutput -
 extension ManageAddressPresenter: ManageAddressInteractorOutput {
  
-    func dataIsReady(user: User?, countries: [String], cities: [String]) {
-        view.setupInitialState(user, countries: countries, cities: cities)
+    func dataIsReady(user: User?, countries: [String], citiesTuple: [(String, String)]) {
+        view.setupInitialState(user, countries: countries, citiesTuple: citiesTuple)
     }
     
     func saveAddressIsReady() {

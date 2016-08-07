@@ -21,10 +21,10 @@ struct DBManager {
         try! realm.write {
             if let user = getUser() {
                 user.update(userInfo)
-                
-                storeProducts(Array(user.favorites))
             }
         }
+        
+        favoriteProduct(userInfo.favorites)
     }
     
     static func getUser() -> User? {
@@ -77,15 +77,50 @@ struct DBManager {
         return products
     }
     
+    static func getProductsLimitOffset(offset: Int, limit: Int) -> [Product] {
+        let products = Array(realm.objects(Product.self).filter("favorite == true"))
+        var temp = [Product]()
+        for i in offset..<limit + offset {
+            if products.count > i {
+               temp.append(products[i])
+            }
+        }
+        return temp
+    }
+    
+    static func getFavoriteProducts() -> Results<Product> {
+        let products = realm.objects(Product.self).filter("favorite == true")
+        return products
+    }
+    
     static func updateFavoriteProduct(product: Product) {
         try! realm.write {
-            let products = realm.objects(Product.self)
+            let products = getFavoriteProducts()
             let findProduct = products.filter { $0.id == product.id }.first
             if let findProduct = findProduct {
                 findProduct.favorite = !findProduct.favorite
             } else {
                 product.favorite = true
                 realm.add(product, update: true)
+            }
+        }
+    }
+    
+    static func favoriteProduct(products: [Product]) {
+        try! realm.write {
+            let allStoredProducts = getProducts()
+
+            for reset in allStoredProducts {
+                reset.favorite = false
+            }
+            for product in products {
+                let findFavoriteProduct = allStoredProducts.filter { $0.id == product.id }.first
+                if let findProduct = findFavoriteProduct {
+                    findProduct.favorite = true
+                } else {
+                    product.favorite = true
+                    realm.add(product, update: true)
+                }
             }
         }
     }

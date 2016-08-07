@@ -6,18 +6,25 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
+enum RequestType: String {
+    case ID = "id"
+    case SEARCH = "search"
+    case FAVORITE = "favorite"
+}
+
 class ProductViewController: BaseViewController {
     
     var output: ProductViewOutput!
 
     private var productView                 = ProductView()
     private let cellIdentifire              = "cellIdentifire"
-    private var storedProducts: Results<Product>!
+    private var count: CGFloat              = 2
+    private var inset: CGFloat              = 5
     private var products: [Product]         = []
 
+    private var requestType                 = RequestType.ID
     private var search                      = ""
     private var id                          = ""
-    private var isAddMore                   = true
     private var limit                       = LIMIT
     private var offset                      = OFFSET
 
@@ -48,25 +55,30 @@ class ProductViewController: BaseViewController {
         productView.collectionView.dataSource = self
         productView.collectionView.delegate = self
         productView.collectionView.registerClass(ProductCell.self, forCellWithReuseIdentifier: cellIdentifire)
-        
+        productView.refresh.addTarget(self, action: #selector(refresh), forControlEvents: .ValueChanged)
+
         createPagination()
+    }
+    
+    override func refresh() {
+        offset = 0
+        productView.collectionView.showsInfiniteScrolling = true
+
+        getProducts()
     }
     
     //MARK: - Actions -
     func addAction(sender: HOButton) {
         let product = products[sender.indexPath.row]
         output.addProductBuy(product)
-        let cell = productView.collectionView.cellForItemAtIndexPath(sender.indexPath) as! ProductCell
-        cell.cellContentView.updateCount(product)
     }
     
     func addOrDeleteFavorite(sender: HOButton) {
         let product = products[sender.indexPath.row]
-        sender.selected = !sender.selected
-        
         output.favoriteButtonClicked(product)
     }
     
+    //MARK: -  Private Methods -
     private func getProducts() {
         var params = JSON.null
         if !id.isEmpty {
@@ -77,19 +89,29 @@ class ProductViewController: BaseViewController {
             
         } else if !search.isEmpty {
             params = JSON([
+                "search"            : "\(search)",
                 "limit"             : "\(limit)",
-                "offset"            : "\(offset)",
-                "search"            : "\(search)"])
+                "offset"            : "\(offset)"])
             
+        } else {
+            params = JSON([
+                "user_id"           : "",
+                "limit"             : "\(limit)",
+                "offset"            : "\(offset)"])
         }
         
-        output.getProducts(params)
+        
+        output.getProducts(requestType, json: params)
     }
     
     //MARK: - Public Methods -
-    func setParams(id: String = "", search: String = "") {
-        self.id     = id
-        self.search = search
+    func setParams(requestType: RequestType = .ID, id: String = "", search: String = "", count: CGFloat = 2, inset: CGFloat = 5) {
+        self.requestType    = requestType
+        self.id             = id
+        self.search         = search
+        
+        self.count = count
+        self.inset = inset
     }
     
     //MARK: - Pagination -
@@ -107,28 +129,46 @@ class ProductViewController: BaseViewController {
 
 //MARK: - extension for ProductViewInput -
 extension ProductViewController: ProductViewInput {
-
-    func setupInitialState(products: [Product], storedProducts: Results<Product>) {
-        self.storedProducts = storedProducts
-        
+    
+    func setupInitialState(products: [Product]) {
         handleData(products)
+        productView.refresh.endRefreshing()
     }
     
-    func handleData(newProducts: [Product]) {
+    func addProduct(product: Product) {
+        let row = products.indexOf(product)!
+        let indexPath = NSIndexPath(forRow: row, inSection: 0)
+        let cell = productView.collectionView.cellForItemAtIndexPath(indexPath) as! ProductCell
+        cell.cellContentView.updateCount(product)
+    }
+    
+    func updateProduct(product: Product) {
+        let row = products.indexOf(product)!
+        let indexPath = NSIndexPath(forRow: row, inSection: 0)
+        
+        switch requestType {
+        case .FAVORITE:
+            productView.collectionView.performBatchUpdates({ 
+                self.products.removeAtIndex(row)
+                self.productView.collectionView.deleteItemsAtIndexPaths([indexPath])
+                }, completion: { finish in
+                    self.productView.collectionView.reloadData()
+            })
+
+        default:
+            let cell = productView.collectionView.cellForItemAtIndexPath(indexPath) as! ProductCell
+            cell.cellContentView.favoriteButton.selected = !cell.cellContentView.favoriteButton.selected
+        }
+    }
+    
+    //MARK: - Private Methods -
+    private func handleData(newProducts: [Product]) {
         if offset == 0 {
             UIHelper.deleteRowsFromCollection(productView.collectionView, objects: &products)
         }
         
-        if isAddMore {
-            UIHelper.insertRowsInCollection(productView.collectionView, objects: newProducts, inObjects: &products, reversable: false)
-            
-            if newProducts.count < limit {
-                productView.collectionView.showsInfiniteScrolling = false
-                isAddMore = false
-            } else {
-                productView.collectionView.showsInfiniteScrolling = true
-            }
-        }
+        productView.collectionView.showsInfiniteScrolling = newProducts.count < limit ? false : true
+        UIHelper.insertRowsInCollection(productView.collectionView, objects: newProducts, inObjects: &products, reversable: false)
     }
 }
 
@@ -147,8 +187,7 @@ extension ProductViewController: UICollectionViewDataSource, UICollectionViewDel
         cell.cellContentView.addButton.indexPath = indexPath
         cell.cellContentView.favoriteButton.addTarget(self, action: #selector(addOrDeleteFavorite(_:)), forControlEvents: .TouchUpInside)
         cell.cellContentView.favoriteButton.indexPath = indexPath
-        cell.cellContentView.favoriteButton.selected = product.favorite
-        
+
         cell.setValues(product)
         
         return cell
@@ -160,11 +199,12 @@ extension ProductViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        return CGSize(width: PR_LAYOUT_WIDTH, height: PR_LAYOUT_WIDTH*1.2)
+        let width = (ScreenSize.WIDTH - inset*count*2)/count
+        return CGSize(width: width, height: width*1.2)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         
-        return UIEdgeInsets(top: PR_INSET, left: PR_INSET, bottom: PR_INSET, right: PR_INSET)
+        return UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
     }
 }

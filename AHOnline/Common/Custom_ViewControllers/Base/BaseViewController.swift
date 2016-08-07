@@ -6,7 +6,7 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-class BaseViewController: UIViewController {
+class BaseViewController: UIViewController, LocalizedStringsProtocol, RefreshProtocol {
     
     // MARK: - Life cycle -
     override func viewDidLoad() {
@@ -22,13 +22,9 @@ class BaseViewController: UIViewController {
     }
     
     // MARK: - Internal Method -
-    internal func baseConfig() {
-
-    }
-    
-    internal func updateLocalizedStrings() {
-
-    }
+    internal func baseConfig() { }
+    internal func updateLocalizedStrings() { }
+    internal func refresh() { }
 }
 
 class BaseSearchViewController: UIViewController {

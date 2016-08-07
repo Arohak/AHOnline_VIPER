@@ -70,12 +70,13 @@ class ProductCellContentView: UIView {
 
     lazy var addButton: HOButton = {
         let view = HOButton.newAutoLayoutView()
-        view.setTitle("ADD", forState: .Normal)
-        view.backgroundColor = WHITE
-        view.layer.cornerRadius = PR_INSET
-        view.layer.borderColor = BLACK.CGColor
-        view.layer.borderWidth = 1
-        view.backgroundColor = GREEN
+        view.setBackgroundImage(UIImage(named: "img_pr_cart"), forState: .Normal)
+//        view.setTitle("ADD", forState: .Normal)
+//        view.backgroundColor = WHITE
+//        view.layer.cornerRadius = PR_INSET
+//        view.layer.borderColor = BLACK.CGColor
+//        view.layer.borderWidth = 1
+//        view.backgroundColor = GREEN
         
         return view
     }()
@@ -84,7 +85,7 @@ class ProductCellContentView: UIView {
         let view = HOLabel.newAutoLayoutView()
         view.textAlignment = .Center
         view.textColor = WHITE
-        view.layer.cornerRadius = PR_INSET
+        view.layer.cornerRadius = PR_INSET*0.8
         view.layer.borderColor = BLACK.CGColor
         view.layer.borderWidth = 0.5
         view.backgroundColor = BLACK
@@ -142,17 +143,18 @@ class ProductCellContentView: UIView {
         
         addButton.autoPinEdgeToSuperviewEdge(.Bottom, withInset: PR_INSET)
         addButton.autoPinEdgeToSuperviewEdge(.Right, withInset: PR_INSET)
-        addButton.autoSetDimensionsToSize(CGSize(width: PR_INSET*7, height: PR_INSET*3))
+        addButton.autoSetDimensionsToSize(CGSize(width: PR_INSET*3, height: PR_INSET*3))
         
         countLabel.autoAlignAxis(.Horizontal, toSameAxisOfView: addButton, withOffset: -PR_INSET)
-        countLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: PR_INSET)
-        countLabel.autoSetDimensionsToSize(CGSize(width: PR_INSET*2, height: PR_INSET*2))
+        countLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: PR_INSET*0.8)
+        countLabel.autoSetDimensionsToSize(CGSize(width: PR_INSET*1.6, height: PR_INSET*1.6))
     }
     
     //MARK: - Public Methods -
     func setValues(product: Product)  {
         imageView.kf_setImageWithURL(NSURL(string: product.src)!, placeholderImage: Image(named: "img_all"))
         nameLabel.text = product.name
+        favoriteButton.selected = product.favorite
         priceGroupView.setPrice(product.price)
 
         updateCount(product)

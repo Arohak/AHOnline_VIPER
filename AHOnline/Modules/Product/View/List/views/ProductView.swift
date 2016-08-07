@@ -15,18 +15,35 @@ class ProductView: BaseView {
         return view
     }()
     
+    lazy var refresh: CarbonSwipeRefresh = {
+        let view = CarbonSwipeRefresh(scrollView: self.collectionView)
+        view.colors = RCOLORS
+        
+        return view
+    }()
+    
     //MARK: - Initialize -
     override init() {
         super.init()
         
-        addSubview(collectionView)
-        collectionView.autoPinEdgeToSuperviewEdge(.Top, withInset: NAV_HEIGHT)
-        collectionView.autoPinEdgeToSuperviewEdge(.Left, withInset: 0)
-        collectionView.autoPinEdgeToSuperviewEdge(.Right, withInset: 0)
-        collectionView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: TAB_HEIGHT)
+        addAllUIElements()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Private Methods -
+    private func addAllUIElements() {
+        addSubview(collectionView)
+        addSubview(refresh)
+        
+        setConstraints()
+    }
+    
+    //MARK: - Constraints -
+    func setConstraints() {
+        collectionView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: NAV_HEIGHT, left: 0, bottom: TAB_HEIGHT, right: 0))
+        refresh.setMarginTop(NAV_HEIGHT)
     }
 }

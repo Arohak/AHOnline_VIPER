@@ -29,10 +29,10 @@ class ManageAddressInteractor {
         return keys
     }
     
-    private func getCitiesFromDelivery(deliveries: [Delivery]) -> [String] {
-        var cities: [String] = []
+    private func getCitiesFromDelivery(deliveries: [Delivery]) -> [(String, String)] {
+        var cities: [(String, String)] = []
         for delivery in deliveries {
-            cities.append(delivery.city)
+            cities.append((delivery.city, delivery.alias))
         }
         
         return cities
@@ -51,11 +51,16 @@ extension ManageAddressInteractor: ManageAddressInteractorInput {
                         deliveries.append(Delivery(data: item))
                     }
                     DBManager.storeDeliveries(deliveries)
-                    self.output.dataIsReady(self.user, countries: self.getCountriesFromNSLocale(), cities: self.getCitiesFromDelivery(deliveries))
+                    self.output.dataIsReady(
+                        self.user,
+                        countries: self.getCountriesFromNSLocale(),
+                        citiesTuple: self.getCitiesFromDelivery(deliveries))
                 }
                 }, onError: { error in
                     let deliveries = DBManager.getDeliveries()
-                    self.output.dataIsReady(self.user, countries: self.getCountriesFromNSLocale(), cities: self.getCitiesFromDelivery(Array(deliveries)))
+                    self.output.dataIsReady(self.user,
+                        countries: self.getCountriesFromNSLocale(),
+                        citiesTuple: self.getCitiesFromDelivery(Array(deliveries)))
             })
     }
     
@@ -65,6 +70,7 @@ extension ManageAddressInteractor: ManageAddressInteractorInput {
                 "user_id"   : user.id,
                 "country"   : json["country"].stringValue,
                 "city"      : json["city"].stringValue,
+                "alias"     : json["alias"].stringValue,
                 "address"   : json["address"].stringValue,
                 "def"       : json["def"].boolValue])
             
@@ -82,6 +88,7 @@ extension ManageAddressInteractor: ManageAddressInteractorInput {
                 "user_id"   : user.id,
                 "country"   : json["country"].stringValue,
                 "city"      : json["city"].stringValue,
+                "alias"     : json["alias"].stringValue,
                 "address"   : json["address"].stringValue])
             
             _ = APIManager.createDeliveryAddress(json)

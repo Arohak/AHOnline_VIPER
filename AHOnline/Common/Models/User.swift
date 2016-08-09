@@ -16,8 +16,8 @@ class User: Object {
     dynamic var isVerified: Bool = false
 
     dynamic var address: DeliveryAddress?
-    
-    var history = List<Product>()
+    dynamic var cart: Cart!
+    var history = List<Cart>()
 
     override static func primaryKey() -> String {
         return "id"
@@ -32,6 +32,8 @@ class User: Object {
         self.email              = data["email"].stringValue
         self.phone              = data["mobile_number"].stringValue
         self.isVerified         = data["is_verified"].boolValue
+        
+//        self.cart               = Cart(data: JSON.null)
     }
     
     func update(userInfo: UserInfo) {

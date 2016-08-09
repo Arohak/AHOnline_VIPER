@@ -20,13 +20,13 @@ class CartViewController: BaseViewController {
     private var headers: [String]                   = []
     
     
-    private var orders: [Product]                   = []
-    
     private var deliveryCells: [DeliveryCell]       = []
     private var titleDeliveries: [(String, String)] = []
     
     private var deliveries: [Delivery]              = []
-    private var ordersTotalPrice                    = 0.0
+    private var ordersTotalPrice: Double {
+        return user.cart.totalPrice
+    }
     private var deliveryPrice                       = 0.0
     
     private var paymentCells: [UITableViewCell]     = []
@@ -36,10 +36,10 @@ class CartViewController: BaseViewController {
     private var selectedPhone                       = "*"
     private var selectedCity                        = "*"
     private var selectedAddress                     = "*"
-    private var selectedDate: NSDate!
     private var selectedAlias                       = ""
+    private var selectedDate: NSDate!               = NSDate()
 
-    private var user: User?
+    private var user: User!
     
     // MARK: - Life cycle -
     override func viewDidLoad() {
@@ -57,7 +57,7 @@ class CartViewController: BaseViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name:UIKeyboardWillChangeFrameNotification, object: nil)
         
-        output.getOrders()
+        output.getUser()
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -73,6 +73,7 @@ class CartViewController: BaseViewController {
         cartView.tableView.dataSource = self
         cartView.tableView.delegate = self
         cartView.tableView.registerClass(OrderCell.self, forCellReuseIdentifier: cellIdentifire[0])
+        cartView.footerView.orderButton.addTarget(self, action: #selector(placeOrderAction), forControlEvents: .TouchUpInside)
     }
     
     override func updateLocalizedStrings() {
@@ -159,11 +160,19 @@ class CartViewController: BaseViewController {
     }
     
     private func updateView() {
-        cartView.tableView.hidden = orders.count == 0
+        cartView.tableView.hidden = user?.cart?.products.count == 0
         cartView.footerView.hidden = cartView.tableView.hidden
         cartView.emptyView.hidden = !cartView.tableView.hidden
         cleaButtonItem.enabled = !cartView.tableView.hidden
         editButtonItem().enabled = !cartView.tableView.hidden
+    }
+    
+    private func validInputParams() -> Bool {
+        var isValid = true
+        if selectedPhone == "*"     { isValid =  false }
+        if selectedAddress == "*"   { isValid =  false }
+
+        return isValid
     }
     
     //MARK: - Actions -
@@ -175,12 +184,29 @@ class CartViewController: BaseViewController {
         let alert =  UIAlertController(title: "clear_cart".localizedString, message: "clear_message".localizedString, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "cancel".localizedString, style: .Cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "ok".localizedString, style: .Default, handler: { _ in
-            self.output.removeOrders(self.orders)
-            self.orders.removeAll()
+            self.output.removeOrders(self.user.cart.products)
             self.updateView()
         }))
         
         output.presentViewController(alert)
+    }
+    
+    func placeOrderAction() {
+        if validInputParams() {
+            let json = JSON([
+                "totalPrice"        : user!.cart.totalPrice + deliveryPrice,
+                "date"              : NSDate().createTimeFormat,
+                "mobile_number"     : selectedPhone,
+                "time"              : selectedDate.deliveryTimeFormat,
+                "payment"           : selectedPayment,
+                "deliveryAddress"   : "",
+                "products"          : user!.cart.products])
+            
+            let cart = Cart(data: json)
+            output.placeOrder(cart)
+        } else {
+            UIHelper.showHUD("invalid_params".localizedString)
+        }
     }
     
     //MARK: - Keyboard notifications -
@@ -226,17 +252,14 @@ extension CartViewController: CartViewInput {
         updateTableViewInfo()
     }
     
-    func ordersComing(user: User, orders: [Product], ordersPrice: Double) {
+    func userComing(user: User) {
         self.user = user
-        self.orders = orders
-        self.ordersTotalPrice = ordersPrice
         
         cartView.tableView.reloadData()
         updateTableViewInfo()
     }
     
-    func ordersTotalPrice(ordersPrice: Double) {
-        ordersTotalPrice = ordersPrice
+    func updateTotalPrice() {
         cartView.footerView.updateValues(ordersTotalPrice, delivery: deliveryPrice)
     }
 }
@@ -252,7 +275,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return orders.count
+            return user == nil ? 0 : user.cart.products.count
             
         case 1:
             return deliveryCells.count
@@ -268,10 +291,10 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let order = orders[indexPath.row]
+            let product = user.cart.products[indexPath.row]
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifire[0]) as! OrderCell
             cell.cellContentView.textField.delegate = self
-            cell.setValues(editing, product: order)
+            cell.setValues(editing, product: product)
 
             return cell
         case 1:
@@ -405,14 +428,14 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.cellForRowAtIndexPath(indexPath) as? OrderCell
             
             if let cell = cell {
-                let order = orders[indexPath.row]
+                let product = user.cart.products[indexPath.row]
                 if !editing {
                     view.endEditing(true)
 
                     let count = cell.cellContentView.textField.text!.isEmpty ? 1 : Int(cell.cellContentView.textField.text!)!
-                    output.updateOrder(order, count: count)
+                    output.updateOrder(product, count: count)
                 }
-                cell.cellContentView.updateValues(editing, product: order)
+                cell.cellContentView.updateValues(editing, product: product)
             }
         
             return true
@@ -424,10 +447,9 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            let order = orders[indexPath.row]
-            output.removeOrder(order)
-            
-            orders.removeAtIndex(indexPath.row)
+            let product = user.cart.products[indexPath.row]
+            output.removeOrder(product)
+
             cartView.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .None)
             updateView()
         }

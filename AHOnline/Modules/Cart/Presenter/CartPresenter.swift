@@ -17,8 +17,8 @@ class CartPresenter {
 //MARK: - extension for CartViewOutput -
 extension CartPresenter: CartViewOutput {
     
-    func getOrders() {
-        interactor.getOrders()
+    func getUser() {
+        interactor.getUser()
     }
     
     func getDeliveries() {
@@ -37,8 +37,12 @@ extension CartPresenter: CartViewOutput {
         interactor.removeOrder(product)
     }
     
-    func removeOrders(products: [Product]) {
+    func removeOrders(products: List<Product>) {
         interactor.removeOrders(products)
+    }
+    
+    func placeOrder(cart: Cart) {
+        interactor.addCartInHistory(cart)
     }
 }
 
@@ -49,12 +53,12 @@ extension CartPresenter: CartInteractorOutput {
         view.deliveriesComing(deliveries)
     }
     
-    func ordersDataIsReady(user: User, orders: [Product], ordersPrice: Double) {
-        view.ordersComing(user, orders: orders, ordersPrice: ordersPrice)
+    func userDataIsReady(user: User) {
+        view.userComing(user)
     }
     
-    func ordersPriceDataIsReady(ordersPrice: Double) {
-        view.ordersTotalPrice(ordersPrice)
+    func updatePriceIsReady() {
+        view.updateTotalPrice()
     }
 }
 

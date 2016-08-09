@@ -11,23 +11,17 @@ class CartInteractor {
 
     weak var output: CartInteractorOutput!
     
-    func getOrdersTotalPrice() -> Double {
-       return DBManager.getOrdersTotalPrice()
-    }
-    
     var user: User? {
-        return DBManager.getUser()
+        return DBManager.getUserCart()
     }
 }
 
 //MARK: - extension for CartInteractorInput -
 extension CartInteractor: CartInteractorInput {
     
-    func getOrders() {
-        let orders = DBManager.getOrders()
-        let price = getOrdersTotalPrice()
+    func getUser() {
         if let user = user {
-            output.ordersDataIsReady(user, orders: Array(orders), ordersPrice: price)   
+            output.userDataIsReady(user)
         }
     }
     
@@ -50,17 +44,21 @@ extension CartInteractor: CartInteractorInput {
     
     func updateOrder(product: Product, count: Int) {
         DBManager.updateOrder(product, count: count)
-        output.ordersPriceDataIsReady(getOrdersTotalPrice())
+        output.updatePriceIsReady()
     }
     
     func removeOrder(product: Product) {
         DBManager.removeOrder(product)
-        output.ordersPriceDataIsReady(getOrdersTotalPrice())
+        output.updatePriceIsReady()
     }
     
-    func removeOrders(products: [Product]) {
+    func removeOrders(products: List<Product>) {
         for product in products {
             DBManager.removeOrder(product)
         }
+    }
+    
+    func addCartInHistory(cart: Cart) {
+        DBManager.storeCart(cart)
     }
 }

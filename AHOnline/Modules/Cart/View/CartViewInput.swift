@@ -9,6 +9,6 @@
 protocol CartViewInput: class {
 
     func deliveriesComing(deliveries: [Delivery])
-    func ordersComing(user: User, orders: [Product], ordersPrice: Double)
-    func ordersTotalPrice(ordersPrice: Double)
+    func userComing(user: User)
+    func updateTotalPrice()
 }

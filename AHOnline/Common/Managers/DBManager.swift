@@ -33,6 +33,19 @@ struct DBManager {
         return user
     }
     
+    static func getUserCart() -> User? {
+        let user = realm.objects(User.self).first
+        try! realm.write {
+            user?.cart.totalPrice = getOrdersTotalPrice()
+            user?.cart.products.removeAll()
+            for product in DBManager.getOrders() {
+                user?.cart.products.append(product)
+            }
+        }
+        
+        return user
+    }
+    
     //MARK: - Delivery Address -
     static func storeDeliveryAddress(address: DeliveryAddress) {
         try! realm.write {
@@ -144,17 +157,22 @@ struct DBManager {
     }
     
     static func updateOrder(product: Product, count: Int) {
+        let user = getUser()!
         try! realm.write {
             product.countBuy = count
+            user.cart.totalPrice = getOrdersTotalPrice()
             
             Wireframe.setBadgeValue(getOrderCounts())
         }
     }
     
     static func removeOrder(product: Product) {
+        let user = getUser()!
         try! realm.write {
             product.countBuy = 0
-            
+            user.cart.totalPrice = getOrdersTotalPrice()
+            user.cart.products.removeAtIndex(user.cart.products.indexOf(product)!)
+
             Wireframe.setBadgeValue(getOrderCounts())
         }
     }
@@ -189,5 +207,17 @@ struct DBManager {
     static func getDeliveries() -> Results<Delivery> {
         let deliveries = realm.objects(Delivery.self)
         return deliveries
+    }
+    
+    //MARK: - Cart -
+    static func storeCart(cart: Cart) {
+        try! realm.write {
+            realm.add(cart, update: true)
+        }
+    }
+    
+    static func getOrderHistory() -> Results<Cart> {
+        let carts = realm.objects(Cart.self)
+        return carts
     }
 }

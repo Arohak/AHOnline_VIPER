@@ -53,6 +53,15 @@ extension NSDate {
         
         return dateFormatter.stringFromDate(self)
     }
+    
+    var createTimeFormat: String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.timeZone = NSTimeZone.defaultTimeZone()
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_GB")
+        dateFormatter.dateFormat = "d MMM yyyy 'at' HH:mm:ss"
+        
+        return dateFormatter.stringFromDate(self)
+    }
 }
 
 //MARK: - Double -

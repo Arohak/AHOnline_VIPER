@@ -8,10 +8,11 @@
 
 protocol CartViewOutput: PresentViewControllerProtocol {
 
-    func getOrders()
+    func getUser()
     func getDeliveries()
     func addOrder()
     func updateOrder(product: Product, count: Int)
     func removeOrder(product: Product)
-    func removeOrders(products: [Product])
+    func removeOrders(products: List<Product>)
+    func placeOrder(cart: Cart)
 }

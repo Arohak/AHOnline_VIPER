@@ -18,11 +18,14 @@ class HistoryPresenter {
 extension HistoryPresenter: HistoryViewOutput {
     
     func viewIsReady() {
-
+        interactor.getHistoryOrders()
     }
 }
 
 //MARK: - extension for HistoryInteractorOutput -
 extension HistoryPresenter: HistoryInteractorOutput {
  
+    func historyOrdersDataIsReady(historyOrders: [HistoryOrder]) {
+        view.setupInitialState(historyOrders)
+    }
 }

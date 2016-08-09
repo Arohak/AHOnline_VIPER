@@ -15,4 +15,8 @@ class HistoryInteractor {
 //MARK: - extension for HistoryInteractorInput -
 extension HistoryInteractor: HistoryInteractorInput {
     
+    func getHistoryOrders() {
+        let historyOrders = DBManager.getHistoryOrders()
+        output.historyOrdersDataIsReady(Array(historyOrders))
+    }
 }

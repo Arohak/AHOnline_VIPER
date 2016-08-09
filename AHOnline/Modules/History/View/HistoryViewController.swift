@@ -11,9 +11,9 @@ class HistoryViewController: BaseViewController {
 
     var output: HistoryViewOutput!
 
-    private var historyView = HistoryView()
-    private let cellIdentifire = "cellIdentifire"
-    private var items: [String] = []
+    private var historyView                     = HistoryView()
+    private let cellIdentifire                  = "cellIdentifire"
+    private var historyOrders: [HistoryOrder]   = []
     
     // MARK: - Life cycle -
     override func viewDidLoad() {
@@ -36,8 +36,8 @@ class HistoryViewController: BaseViewController {
 //MARK: - extension for HistoryViewInput -
 extension HistoryViewController: HistoryViewInput {
     
-    func setupInitialState() {
-
+    func setupInitialState(historyOrders: [HistoryOrder]) {
+        self.historyOrders = historyOrders
     }
 }
 
@@ -46,21 +46,19 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return items.count
+        return historyOrders.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifire) as! HistoryCell
+        cell.selectionStyle = .Default
+        let historyOrder = historyOrders[indexPath.row]
+        cell.setValues(historyOrder)
         
         return cell
     }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
-        return 0 //CO_CELL_HEIGHT
-    }
-    
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }

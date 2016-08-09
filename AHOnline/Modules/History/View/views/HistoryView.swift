@@ -11,6 +11,8 @@ class HistoryView: BaseView {
     //MARK: - Create UIElements -
     lazy var tableView: BaseTableView = {
         let view = BaseTableView(frame: CGRectZero, style: .Plain)
+        view.estimatedRowHeight = 44
+        view.rowHeight = UITableViewAutomaticDimension
         
         return view
     }()

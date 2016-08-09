@@ -8,4 +8,5 @@
 
 protocol HistoryInteractorInput {
 
+    func getHistoryOrders()
 }

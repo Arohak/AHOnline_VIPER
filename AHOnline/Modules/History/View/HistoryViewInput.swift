@@ -8,5 +8,5 @@
 
 protocol HistoryViewInput: class {
 
-    func setupInitialState()
+    func setupInitialState(historyOrders: [HistoryOrder])
 }

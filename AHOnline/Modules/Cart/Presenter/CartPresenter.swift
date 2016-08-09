@@ -41,8 +41,31 @@ extension CartPresenter: CartViewOutput {
         interactor.removeOrders()
     }
     
+    func sendMobileNumber(number: String) {
+        interactor.send(number)
+    }
+    
+    func acceptButtonClicked(pin: String) {
+        interactor.accept(pin)
+    }
+    
     func placeOrder(historyOrder: HistoryOrder) {
-        interactor.addOrdernHistory(historyOrder)
+        let payments = ["pay_on_delivery".localizedString,
+                         "credit_cart".localizedString,
+                         "paypal".localizedString]
+        
+        switch historyOrder.payment {
+        case payments[0]:
+            print(payments[0])
+            interactor.addOrdernHistory(historyOrder)
+
+        case payments[1]:
+            print(payments[1])
+            interactor.addOrdernHistory(historyOrder)
+
+        default:
+            interactor.addOrdernHistory(historyOrder)
+        }
     }
 }
 
@@ -59,6 +82,18 @@ extension CartPresenter: CartInteractorOutput {
     
     func updatePriceIsReady() {
         view.updateTotalPrice()
+    }
+    
+    func sendPhoneIsReady() {
+        view.showAlertForVerify()
+    }
+    
+    func acceptDataIsReady() {
+        view.acceptVerification()
+    }
+    
+    func placeOrderIsReady() {
+        view.updateViewAfterPlaceOrder()
     }
 }
 

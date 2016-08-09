@@ -8,4 +8,5 @@
 
 protocol HistoryInteractorOutput: class {
 
+    func historyOrdersDataIsReady(historyOrders: [HistoryOrder])
 }

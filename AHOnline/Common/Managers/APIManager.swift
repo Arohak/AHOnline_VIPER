@@ -33,6 +33,8 @@ struct APIManager {
         static let GET_OBJECTS_SEARCH                       = "restaurants?search=%@&limit=%@&offset=%@"
         static let GET_OBJECT                               = "restaurants/%@"
         static let GET_NEARST_OBJECTS                       = "nears_objects?latitude=%@&longitude=%@&km=%@"
+        
+        static let CREATE_ORDER                             = "order"
     }
     
     //MARK: - User -
@@ -175,5 +177,23 @@ struct APIManager {
                          json["km"].stringValue)
         
         return apiHelper.request(.GET, url: url)
+    }
+    
+    //MARK: - Order -
+    static func createOrder(order: HistoryOrder) -> Observable<JSON> {
+        let params = ["title"               : order.title,
+                      "date_create"         : order.dateCreate,
+                      "mobile_number"       : order.mobileNumber,
+                      "delivery_address"    : order.deliveryAddress,
+                      "delivery_city"       : order.deliveryCity,
+                      "delivery_alias"      : order.deliveryAlias,
+                      "delivery_date"       : order.deliveryDate,
+                      "payment"             : order.payment,
+                      "order_price"         : order.orderPrice,
+                      "delivery_price"      : order.deliveryPrice,
+                      "total_price"         : order.totalPrice,
+                      "products"            : Array(order.historyProducts)]
+        
+        return apiHelper.request(.POST, url: ROUTERS.CREATE_ORDER, parameters: params as? [String : AnyObject])
     }
 }

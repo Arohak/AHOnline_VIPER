@@ -14,5 +14,7 @@ protocol CartViewOutput: PresentViewControllerProtocol {
     func updateOrder(product: Product, count: Int)
     func removeOrder(product: Product)
     func removeOrders()
+    func sendMobileNumber(number: String)
+    func acceptButtonClicked(pin: String)
     func placeOrder(historyOrder: HistoryOrder)
 }

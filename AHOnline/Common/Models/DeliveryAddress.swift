@@ -25,6 +25,7 @@ class DeliveryAddress: Object {
         self.id                 = data["id"].intValue
         self.country            = data["country"].stringValue
         self.city               = data["city"].stringValue
+        self.alias              = data["alias"].stringValue
         self.add                = data["address"].stringValue
         self.def                = data["default"].boolValue
     }

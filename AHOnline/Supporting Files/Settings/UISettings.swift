@@ -143,6 +143,11 @@ let CO_CELL_HEIGHT : CGFloat            = DeviceType.IS_IPAD ? 40     * IPAD_SCA
 let CO_HEIGHT : CGFloat                 = DeviceType.IS_IPAD ? 350    * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 350    : DeviceType.IS_IPHONE_6 ? 350  * IPHONE_6_SCALE : 350  * IPHONE_5_SCALE
 let CO_BTN_SIZE : CGFloat               = DeviceType.IS_IPAD ? 100    * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 100    : DeviceType.IS_IPHONE_6 ? 100  * IPHONE_6_SCALE : 100  * IPHONE_5_SCALE
 
+//MARK: - History Constants -
+let HI_INSET : CGFloat                  = DeviceType.IS_IPAD ? 5      * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 5      : DeviceType.IS_IPHONE_6 ? 5    * IPHONE_6_SCALE : 5    * IPHONE_5_SCALE
+let HI_OFFSET : CGFloat                 = DeviceType.IS_IPAD ? 20     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 20     : DeviceType.IS_IPHONE_6 ? 20   * IPHONE_6_SCALE : 20   * IPHONE_5_SCALE
+let HI_IMG_SIZE : CGFloat               = DeviceType.IS_IPAD ? 40     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 40     : DeviceType.IS_IPHONE_6 ? 40   * IPHONE_6_SCALE : 40   * IPHONE_5_SCALE
+
 let codes = [
     "_AF"      : "+93",
     "_AL"      : "+355",

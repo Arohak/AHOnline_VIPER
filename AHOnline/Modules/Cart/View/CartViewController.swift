@@ -92,20 +92,20 @@ class CartViewController: BaseViewController {
         cleaButtonItem.title    = "clear".localizedString
         editButtonItem().title  = "edit".localizedString
 
-        headers             = ["order".localizedString,
-                               "delivery".localizedString,
-                               "payment".localizedString]
+        headers                 = ["order".localizedString,
+                                   "delivery".localizedString,
+                                   "payment".localizedString]
         
-        titleDeliveries = [("img_cart_call", "cart_call".localizedString),
-                           ("img_cart_address", "cart_address".localizedString),
-                           ("img_cart_city", "cart_city".localizedString),
-                           ("img_cart_time", "cart_time".localizedString)]
+        titleDeliveries         = [("img_cart_call", "cart_call".localizedString),
+                                    ("img_cart_address", "cart_address".localizedString),
+                                    ("img_cart_city", "cart_city".localizedString),
+                                    ("img_cart_time", "cart_time".localizedString)]
         
-        titlePayments = ["pay_on_delivery".localizedString,
-                         "credit_cart".localizedString,
-                         "paypal".localizedString]
+        titlePayments           = ["pay_on_delivery".localizedString,
+                                   "credit_cart".localizedString,
+                                   "paypal".localizedString]
         
-        selectedPayment = "pay_on_delivery".localizedString
+        selectedPayment         = "pay_on_delivery".localizedString
         
         configTableViewCell()
     }
@@ -182,6 +182,41 @@ class CartViewController: BaseViewController {
         return isValid
     }
     
+    private func verifyMobileNumber() {
+        if let user = user where !user.isVerified {
+            output.sendMobileNumber(selectedPhone)
+        } else {
+            placeOrder()
+        }
+    }
+    
+    private func placeOrder() {
+        let alert = UIAlertController(title: "AAA BBB CCC".localizedString, message: "aaa bbb ccc", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "cancel".localizedString, style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "ok".localizedString, style: .Destructive, handler: { _ in
+            let json = JSON([
+                "title"             : "",
+                "date_create"       : NSDate().createTimeFormat,
+                "mobile_number"     : self.selectedPhone,
+                "delivery_address"  : self.selectedAddress,
+                "delivery_city"     : self.selectedCity,
+                "delivery_alias"    : self.selectedAlias,
+                "delivery_date"     : self.selectedDate.deliveryTimeFormat,
+                "payment"           : self.selectedPayment,
+                "order_price"       : self.ordersTotalPrice,
+                "delivery_price"    : self.deliveryPrice,
+                "total_price"       : self.ordersTotalPrice + self.deliveryPrice
+                ])
+            
+            let historyOrder = HistoryOrder(data: json)
+            historyOrder.addHistoryProductFrom(self.products)
+            
+            self.output.placeOrder(historyOrder)
+        }))
+        
+        output.presentViewController(alert)
+    }
+    
     //MARK: - Actions -
     func addAction() {
         output.addOrder()
@@ -200,25 +235,7 @@ class CartViewController: BaseViewController {
 
     func placeOrderAction() {
         if validInputParams() {
-            let json = JSON([
-                "title"             : "",
-                "date_create"       : NSDate().createTimeFormat,
-                "mobile_number"     : selectedPhone,
-                "delivery_address"  : selectedAddress,
-                "delivery_city"     : selectedCity,
-                "delivery_alias"    : selectedAlias,
-                "delivery_date"     : selectedDate.deliveryTimeFormat,
-                "payment"           : selectedPayment,
-                "order_price"       : ordersTotalPrice,
-                "delivery_price"    : deliveryPrice,
-                "total_price"       : ordersTotalPrice + deliveryPrice
-                ])
-            
-            let historyOrder = HistoryOrder(data: json)
-            historyOrder.addHistoryProductFrom(products)
-            
-            output.placeOrder(historyOrder)
-            updateView()
+            verifyMobileNumber()
         } else {
             UIHelper.showHUD("invalid_params".localizedString)
         }
@@ -276,6 +293,40 @@ extension CartViewController: CartViewInput {
     
     func updateTotalPrice() {
         cartView.footerView.updateValues(ordersTotalPrice, delivery: deliveryPrice)
+    }
+    
+    func showAlertForVerify() {
+        let alert = UIAlertController(title: "verify".localizedString, message: nil, preferredStyle: .Alert)
+        alert.addTextFieldWithConfigurationHandler { textField in
+            textField.keyboardAppearance = .Dark
+            textField.placeholder = "pin".localizedString
+            
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.handleTextFieldTextDidChangeNotification), name: UITextFieldTextDidChangeNotification, object: textField)
+        }
+        
+        func removeTextFieldObserver() {
+            NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextFieldTextDidChangeNotification, object: alert.textFields?.first)
+        }
+        
+        alert.addAction(UIAlertAction(title: "cancel".localizedString, style: .Cancel, handler: { _ in removeTextFieldObserver() }))
+        let otherAction = UIAlertAction(title: "accept".localizedString, style: .Destructive, handler: { _ in
+            self.output.acceptButtonClicked((alert.textFields?.first?.text)!)
+            
+            removeTextFieldObserver()
+        })
+        otherAction.enabled = !(alert.textFields?.first!.text!.isEmpty)!
+        AddAlertSaveAction = otherAction
+        alert.addAction(otherAction)
+        
+        output.presentViewController(alert)
+    }
+    
+    func acceptVerification() {
+        placeOrder()
+    }
+    
+    func updateViewAfterPlaceOrder() {
+        updateView()
     }
 }
 
@@ -362,8 +413,11 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
                     self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = self.selectedPhone
                     
                     removeTextFieldObserver()
+                    
+//                    self.verifyMobileNumber()
                 })
-                otherAction.enabled = !selectedPhone.isEmpty
+                otherAction.enabled = !selectedPhone.isEmpty && selectedPhone != "*"
+                    
                 AddAlertSaveAction = otherAction
                 
                 alert.addAction(otherAction)

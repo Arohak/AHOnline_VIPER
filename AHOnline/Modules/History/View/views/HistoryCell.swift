@@ -18,8 +18,8 @@ class HistoryCell: BaseTableViewCell {
         cellContentView.autoPinEdgesToSuperviewEdges()
     }
     
-    func setValues(imageString: String, name: String) {
-        cellContentView.setValues(imageString, name: name)
+    func setValues(historyOrder: HistoryOrder) {
+        cellContentView.setValues(historyOrder)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -43,9 +43,21 @@ class HistoryCellContentView: UIView {
         return view
     }()
     
-    lazy var nameLabel: TitleLabel = {
+    lazy var dateLabel: TitleLabel = {
         let view = TitleLabel.newAutoLayoutView()
         view.textColor = RED
+        
+        return view
+    }()
+    
+    lazy var paymentLabel: HOLabel = {
+        let view = HOLabel.newAutoLayoutView()
+        
+        return view
+    }()
+    
+    lazy var totalPriceLabel: HOLabel = {
+        let view = HOLabel.newAutoLayoutView()
         
         return view
     }()
@@ -70,7 +82,9 @@ class HistoryCellContentView: UIView {
     private func addAllUIElements() {
         addSubview(bgImageView)
         addSubview(imageView)
-        addSubview(nameLabel)
+        addSubview(dateLabel)
+        addSubview(paymentLabel)
+        addSubview(totalPriceLabel)
 
         setConstraints()
     }
@@ -80,17 +94,28 @@ class HistoryCellContentView: UIView {
         bgImageView.autoPinEdgesToSuperviewEdges()
         
         imageView.autoAlignAxisToSuperviewAxis(.Horizontal)
-        imageView.autoPinEdgeToSuperviewEdge(.Left, withInset: CO_INSET)
-        imageView.autoSetDimensionsToSize(CGSize(width: CO_CELL_HEIGHT*0.9, height: CO_CELL_HEIGHT*0.9))
+        imageView.autoPinEdgeToSuperviewEdge(.Left, withInset: HI_OFFSET)
+        imageView.autoSetDimensionsToSize(CGSize(width: HI_IMG_SIZE, height: HI_IMG_SIZE))
         
-        nameLabel.autoAlignAxisToSuperviewAxis(.Horizontal)
-        nameLabel.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: CO_INSET)
-        nameLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: CO_INSET)
+        dateLabel.autoPinEdgeToSuperviewEdge(.Top, withInset: HI_INSET)
+        dateLabel.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: HI_OFFSET)
+        dateLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: HI_OFFSET)
+        
+        paymentLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: dateLabel, withOffset: HI_INSET)
+        paymentLabel.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: HI_OFFSET)
+        paymentLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: HI_OFFSET)
+        
+        totalPriceLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: paymentLabel, withOffset: HI_INSET)
+        totalPriceLabel.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: HI_OFFSET)
+        totalPriceLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: HI_OFFSET)
+        totalPriceLabel.autoPinEdgeToSuperviewEdge(.Bottom, withInset: HI_INSET)
     }
     
     //MARK: - Public Methods -
-    func setValues(imageString: String, name: String)  {
-        imageView.image = UIImage(named: imageString)
-        nameLabel.text = name
+    func setValues(historyOrder: HistoryOrder)  {
+        imageView.image         = UIImage(named: "img_pr_cart")
+        dateLabel.text          = historyOrder.dateCreate
+        paymentLabel.text       = "Payment: \(historyOrder.payment)"
+        totalPriceLabel.text    = "Total Price:  \(historyOrder.totalPrice)"
     }
 }

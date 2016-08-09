@@ -10,5 +10,8 @@ protocol CartInteractorOutput: class {
 
     func deliveriesDataIsReady(deliveries: [Delivery])
     func userDataIsReady(user: User)
-    func updatePriceIsReady() 
+    func updatePriceIsReady()
+    func sendPhoneIsReady()
+    func acceptDataIsReady()
+    func placeOrderIsReady()
 }

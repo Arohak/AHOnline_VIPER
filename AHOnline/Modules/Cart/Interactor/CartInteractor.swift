@@ -34,21 +34,25 @@ extension CartInteractor: CartInteractorInput {
                         deliveries.append(Delivery(data: item))
                     }
                     DBManager.storeDeliveries(deliveries)
+                    
                     self.output.deliveriesDataIsReady(deliveries)
                 }
                 }, onError: { error in
                     let deliveries = DBManager.getDeliveries()
+                    
                     self.output.deliveriesDataIsReady(Array(deliveries))
             })
     }
     
     func updateOrder(product: Product, count: Int) {
         DBManager.updateOrder(product, count: count)
+        
         output.updatePriceIsReady()
     }
     
     func removeOrder(product: Product) {
         DBManager.removeOrder(product)
+        
         output.updatePriceIsReady()
     }
     
@@ -56,8 +60,47 @@ extension CartInteractor: CartInteractorInput {
         DBManager.removeOrders()
     }
     
+    func send(number: String) {
+        if let user = user {
+            let json = JSON([
+                "id"            : user.id,
+                "mobile_number" : number])
+            
+            _ = APIManager.sendMobileNumber(json)
+                .subscribe(onNext: { result in
+                    if result != nil {
+                        self.output.sendPhoneIsReady()
+                    }
+                })
+        }
+    }
+    
+    func accept(pin: String) {
+        _ = APIManager.verifyMobileNumber(pin)
+            .subscribe(onNext: { result in
+                if result != nil {
+                    let userInfo = UserInfo(data: result["data"])
+                    DBManager.updateUser(userInfo)
+                    
+                    self.output.acceptDataIsReady()
+                }
+            })
+    }
+    
     func addOrdernHistory(historyOrder: HistoryOrder) {
+        //        _ = APIManager.createOrder(historyOrder)
+        //            .subscribe(onNext: { result in
+        //                if result != nil {
+        //                    DBManager.storeHistoryOrder(historyOrder)
+        //                    DBManager.removeOrders()
+        //
+        //                    output.removeCartIsReady()
+        //                }
+        //            })
+        
         DBManager.storeHistoryOrder(historyOrder)
         DBManager.removeOrders()
+        
+        output.placeOrderIsReady()
     }
 }

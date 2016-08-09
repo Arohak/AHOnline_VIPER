@@ -11,7 +11,7 @@ class ProductInteractor {
 
     weak var output: ProductInteractorOutput!
     
-    var user: User! {
+    var user: User? {
         return DBManager.getUser()
     }
     
@@ -25,7 +25,7 @@ extension ProductInteractor: ProductInteractorInput {
     
     func getProducts(requestType: RequestType, json: JSON) {
         var js = json
-        js["user_id"].stringValue = "\(user.id)"
+        if let  user = user { js["user_id"].stringValue = "\(user.id)" }
         
         _ = APIManager.getProducts(requestType, json: js)
             .subscribe(onNext: { result in
@@ -64,13 +64,15 @@ extension ProductInteractor: ProductInteractorInput {
     }
     
     func updateFavoriteProduct(product: Product) {
-        _ = APIManager.updateFavoriteProduct("\(user.id)", product_id: "\(product.id)")
-        .subscribeNext({ result in
-            if result != nil {
-                DBManager.updateFavoriteProduct(product)
-                
-                self.output.updateProductIsReady(product)
-            }
-        })
+        if let  user = user {
+            _ = APIManager.updateFavoriteProduct("\(user.id)", product_id: "\(product.id)")
+                .subscribeNext({ result in
+                    if result != nil {
+                        DBManager.updateFavoriteProduct(product)
+                        
+                        self.output.updateProductIsReady(product)
+                    }
+                })
+        }
     }
 }

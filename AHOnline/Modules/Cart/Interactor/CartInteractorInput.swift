@@ -12,7 +12,7 @@ protocol CartInteractorInput {
     func getDeliveries()
     func updateOrder(product: Product, count: Int)
     func removeOrder(product: Product)
-    func removeOrders(products: List<Product>)
-    func addCartInHistory(cart: Cart)
+    func removeOrders()
+    func addOrdernHistory(historyOrder: HistoryOrder)
     
 }

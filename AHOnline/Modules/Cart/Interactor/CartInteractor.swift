@@ -52,13 +52,12 @@ extension CartInteractor: CartInteractorInput {
         output.updatePriceIsReady()
     }
     
-    func removeOrders(products: List<Product>) {
-        for product in products {
-            DBManager.removeOrder(product)
-        }
+    func removeOrders() {
+        DBManager.removeOrders()
     }
     
-    func addCartInHistory(cart: Cart) {
-        DBManager.storeCart(cart)
+    func addOrdernHistory(historyOrder: HistoryOrder) {
+        DBManager.storeHistoryOrder(historyOrder)
+        DBManager.removeOrders()
     }
 }

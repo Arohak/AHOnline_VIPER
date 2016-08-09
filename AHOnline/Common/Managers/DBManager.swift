@@ -8,8 +8,8 @@
 
 struct DBManager {
     
-    private static let realm = dbHelper.realm
-    
+    static let realm = dbHelper.realm
+
     //MARK: - User -
     static func storeUser(user: User) {
         try! realm.write {
@@ -56,9 +56,11 @@ struct DBManager {
     }
     
     static func updateDeliveryAddress(info: DeliveryAddressInfo) {
-        try! realm.write {
-            if let address = getUser()!.address {
-                address.update(info)
+        if let user = getUser() {
+            try! realm.write {
+                if let address = user.address {
+                    address.update(info)
+                }
             }
         }
     }
@@ -157,23 +159,33 @@ struct DBManager {
     }
     
     static func updateOrder(product: Product, count: Int) {
-        let user = getUser()!
-        try! realm.write {
-            product.countBuy = count
-            user.cart.totalPrice = getOrdersTotalPrice()
-            
-            Wireframe.setBadgeValue(getOrderCounts())
+        if let user = getUser() {
+            try! realm.write {
+                product.countBuy = count
+                user.cart.totalPrice = getOrdersTotalPrice()
+                
+                Wireframe.setBadgeValue(getOrderCounts())
+            }
+        }
+    }
+    
+    static func removeOrders() {
+        if let user = getUser() {
+            for product in user.cart.products {
+                removeOrder(product)
+            }
         }
     }
     
     static func removeOrder(product: Product) {
-        let user = getUser()!
-        try! realm.write {
-            product.countBuy = 0
-            user.cart.totalPrice = getOrdersTotalPrice()
-            user.cart.products.removeAtIndex(user.cart.products.indexOf(product)!)
-
-            Wireframe.setBadgeValue(getOrderCounts())
+        if let user = getUser() {
+            try! realm.write {
+                product.countBuy = 0
+                user.cart.totalPrice = getOrdersTotalPrice()
+                user.cart.products.removeAtIndex(user.cart.products.indexOf(product)!)
+                
+                Wireframe.setBadgeValue(getOrderCounts())
+            }
         }
     }
     
@@ -210,14 +222,14 @@ struct DBManager {
     }
     
     //MARK: - Cart -
-    static func storeCart(cart: Cart) {
+    static func storeHistoryOrder(historyOrder: HistoryOrder) {
         try! realm.write {
-            realm.add(cart, update: true)
+            realm.add(historyOrder, update: true)
         }
     }
     
-    static func getOrderHistory() -> Results<Cart> {
-        let carts = realm.objects(Cart.self)
-        return carts
+    static func getHistoryOrders() -> Results<HistoryOrder> {
+        let historyOrders = realm.objects(HistoryOrder.self)
+        return historyOrders
     }
 }

@@ -33,7 +33,7 @@ class User: Object {
         self.phone              = data["mobile_number"].stringValue
         self.isVerified         = data["is_verified"].boolValue
         
-//        self.cart               = Cart(data: JSON.null)
+        self.cart               = Cart(data: JSON.null)
     }
     
     func update(userInfo: UserInfo) {

@@ -24,9 +24,6 @@ class CartViewController: BaseViewController {
     private var titleDeliveries: [(String, String)] = []
     
     private var deliveries: [Delivery]              = []
-    private var ordersTotalPrice: Double {
-        return user.cart.totalPrice
-    }
     private var deliveryPrice                       = 0.0
     
     private var paymentCells: [UITableViewCell]     = []
@@ -39,7 +36,17 @@ class CartViewController: BaseViewController {
     private var selectedAlias                       = ""
     private var selectedDate: NSDate!               = NSDate()
 
-    private var user: User!
+    private var user: User?
+    private var cart: Cart {
+        if let user = user { return user.cart }
+        return Cart(data: JSON.null)
+    }
+    private var ordersTotalPrice: Double {
+        return cart.totalPrice
+    }
+    private var products: List<Product> {
+        return cart.products
+    }
     
     // MARK: - Life cycle -
     override func viewDidLoad() {
@@ -160,7 +167,7 @@ class CartViewController: BaseViewController {
     }
     
     private func updateView() {
-        cartView.tableView.hidden = user?.cart?.products.count == 0
+        cartView.tableView.hidden = (user?.cart?.products.count == 0 || user == nil) ? true : false
         cartView.footerView.hidden = cartView.tableView.hidden
         cartView.emptyView.hidden = !cartView.tableView.hidden
         cleaButtonItem.enabled = !cartView.tableView.hidden
@@ -184,26 +191,34 @@ class CartViewController: BaseViewController {
         let alert =  UIAlertController(title: "clear_cart".localizedString, message: "clear_message".localizedString, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "cancel".localizedString, style: .Cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "ok".localizedString, style: .Default, handler: { _ in
-            self.output.removeOrders(self.user.cart.products)
+            self.output.removeOrders()
             self.updateView()
         }))
         
         output.presentViewController(alert)
     }
-    
+
     func placeOrderAction() {
         if validInputParams() {
             let json = JSON([
-                "totalPrice"        : user!.cart.totalPrice + deliveryPrice,
-                "date"              : NSDate().createTimeFormat,
+                "title"             : "",
+                "date_create"       : NSDate().createTimeFormat,
                 "mobile_number"     : selectedPhone,
-                "time"              : selectedDate.deliveryTimeFormat,
+                "delivery_address"  : selectedAddress,
+                "delivery_city"     : selectedCity,
+                "delivery_alias"    : selectedAlias,
+                "delivery_date"     : selectedDate.deliveryTimeFormat,
                 "payment"           : selectedPayment,
-                "deliveryAddress"   : "",
-                "products"          : user!.cart.products])
+                "order_price"       : ordersTotalPrice,
+                "delivery_price"    : deliveryPrice,
+                "total_price"       : ordersTotalPrice + deliveryPrice
+                ])
             
-            let cart = Cart(data: json)
-            output.placeOrder(cart)
+            let historyOrder = HistoryOrder(data: json)
+            historyOrder.addHistoryProductFrom(products)
+            
+            output.placeOrder(historyOrder)
+            updateView()
         } else {
             UIHelper.showHUD("invalid_params".localizedString)
         }
@@ -275,7 +290,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return user == nil ? 0 : user.cart.products.count
+            return products.count
             
         case 1:
             return deliveryCells.count
@@ -291,7 +306,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let product = user.cart.products[indexPath.row]
+            let product = products[indexPath.row]
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifire[0]) as! OrderCell
             cell.cellContentView.textField.delegate = self
             cell.setValues(editing, product: product)
@@ -428,7 +443,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.cellForRowAtIndexPath(indexPath) as? OrderCell
             
             if let cell = cell {
-                let product = user.cart.products[indexPath.row]
+                let product = products[indexPath.row]
                 if !editing {
                     view.endEditing(true)
 
@@ -447,7 +462,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            let product = user.cart.products[indexPath.row]
+            let product = products[indexPath.row]
             output.removeOrder(product)
 
             cartView.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .None)

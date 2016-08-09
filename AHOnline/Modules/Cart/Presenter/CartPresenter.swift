@@ -37,12 +37,12 @@ extension CartPresenter: CartViewOutput {
         interactor.removeOrder(product)
     }
     
-    func removeOrders(products: List<Product>) {
-        interactor.removeOrders(products)
+    func removeOrders() {
+        interactor.removeOrders()
     }
     
-    func placeOrder(cart: Cart) {
-        interactor.addCartInHistory(cart)
+    func placeOrder(historyOrder: HistoryOrder) {
+        interactor.addOrdernHistory(historyOrder)
     }
 }
 

@@ -152,7 +152,7 @@ class ProductCellContentView: UIView {
     
     //MARK: - Public Methods -
     func setValues(product: Product)  {
-        imageView.kf_setImageWithURL(NSURL(string: product.src)!, placeholderImage: Image(named: "img_all"))
+        imageView.kf_setImageWithURL(NSURL(string: product.src)!, placeholderImage: Image(named: "img_empty"))
         nameLabel.text = product.name
         favoriteButton.selected = product.favorite
         priceGroupView.setPrice(product.price)

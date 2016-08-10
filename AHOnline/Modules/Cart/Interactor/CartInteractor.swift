@@ -33,15 +33,14 @@ extension CartInteractor: CartInteractorInput {
                     for item in result["data"].arrayValue {
                         deliveries.append(Delivery(data: item))
                     }
+                    
                     DBManager.storeDeliveries(deliveries)
-                    
-                    self.output.deliveriesDataIsReady(deliveries)
                 }
-                }, onError: { error in
-                    let deliveries = DBManager.getDeliveries()
-                    
-                    self.output.deliveriesDataIsReady(Array(deliveries))
             })
+    }
+    
+    func updateCartInfo(mobileNumber: String, address: String, city: String, alias: String, deliveryPrice: Double, date: NSDate, payment: String) {
+        DBManager.updateCartInfo(mobileNumber, address: address, city: city, alias: alias, deliveryPrice: deliveryPrice, date: date, payment: payment)
     }
     
     func updateOrder(product: Product, count: Int) {

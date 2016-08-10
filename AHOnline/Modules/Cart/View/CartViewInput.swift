@@ -8,7 +8,6 @@
 
 protocol CartViewInput: class {
 
-    func deliveriesComing(deliveries: [Delivery])
     func userComing(user: User)
     func updateTotalPrice()
     func showAlertForVerify()

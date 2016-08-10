@@ -8,8 +8,18 @@
 
 class Cart: Object {
 
-    dynamic var id = 0
-    dynamic var totalPrice: Double = 0.0
+    dynamic var id                      = 0
+    dynamic var mobileNumber            = "*"
+    dynamic var deliveryCity            = "*"
+    dynamic var deliveryAddress         = "*"
+    dynamic var deliveryAlias           = ""
+    dynamic var deliveryDate: NSDate!   = NSDate()
+    dynamic var payment                 = "pay_on_delivery".localizedString
+    dynamic var deliveryPrice           = 0.0
+    dynamic var ordersTotalPrice        = 0.0
+    dynamic var totalPrice: Double      = 0.0
+
+    var deliveries = List<Delivery>()
     var products = List<Product>()
     
     override static func primaryKey() -> String {

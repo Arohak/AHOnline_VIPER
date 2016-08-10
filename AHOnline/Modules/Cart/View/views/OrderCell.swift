@@ -144,7 +144,7 @@ class OrderCellContentView: UIView {
     
     //MARK: - Public Methods -
     func setValues(state: Bool, product: Product)  {
-        imageView.kf_setImageWithURL(NSURL(string: product.src)!, placeholderImage: Image(named: "img_all"))
+        imageView.kf_setImageWithURL(NSURL(string: product.src)!, placeholderImage: Image(named: "img_empty"))
         nameLabel.text = product.name
         priceGroupView.setPrice(product.price)
 

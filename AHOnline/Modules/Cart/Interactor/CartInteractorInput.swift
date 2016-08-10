@@ -10,6 +10,7 @@ protocol CartInteractorInput {
 
     func getUser()
     func getDeliveries()
+    func updateCartInfo(phone: String, address: String, city: String, alias: String, deliveryPrice: Double, date: NSDate, payment: String)
     func updateOrder(product: Product, count: Int)
     func removeOrder(product: Product)
     func removeOrders()

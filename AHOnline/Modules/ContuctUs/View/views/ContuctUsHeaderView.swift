@@ -27,7 +27,7 @@ class ContuctUsHeaderView: UIView {
         let view = HOButton.newAutoLayoutView()
         view.layer.cornerRadius = CO_BTN_SIZE*0.5
         view.clipsToBounds = true
-        view.setBackgroundImage(UIImage(named: "img_all"), forState: .Normal)
+        view.setBackgroundImage(UIImage(named: "img_empty"), forState: .Normal)
 
         return view
     }()

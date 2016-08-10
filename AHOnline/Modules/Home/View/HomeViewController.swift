@@ -149,7 +149,7 @@ extension HomeViewController: HomeViewInput {
         items.append([AHObject]())
         items.append([AHObject]())
         
-        let existRestaurant = AHObject(data: JSON(["img" : "img_all"]))
+        let existRestaurant = AHObject(data: JSON(["img" : "image_see_all"]))
         items[0] = Array(home.newRestaurants)
         items[0].append(existRestaurant)
         items[1] = Array(home.rateRestaurants)

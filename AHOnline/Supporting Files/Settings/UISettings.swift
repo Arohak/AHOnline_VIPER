@@ -51,7 +51,7 @@ let BLACK_59                            = UIColor(red: 59/255,      green: 59/25
 let RED                                 = UIColor(red: 240/255,     green: 30/255,      blue: 30/255,       alpha: 1)
 let RED_LIGHT                           = UIColor(red: 232/255,     green: 114/255,     blue: 114/255,      alpha: 1)
 let BLUE                                = UIColor(red: 24/255,      green: 75/255,      blue: 152/255,      alpha: 1)
-let GRAY_239                            = UIColor(red: 239/255,     green: 239/255,     blue: 240/255,      alpha: 1)
+let GRAY_239                            = UIColor(red: 242/255,     green: 242/255,     blue: 242/255,      alpha: 1)
 
 let BLACK                               = UIColor.blackColor()
 let WHITE                               = UIColor.whiteColor()

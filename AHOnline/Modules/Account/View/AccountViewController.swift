@@ -52,10 +52,10 @@ class AccountViewController: BaseViewController {
     
     // MARK: - Private Method -
     private func configTableViewCell() {
-        let menus = [("img_all" , "language".localizedString),
-                     ("img_all" , "notification".localizedString),
-                     ("img_all" , "contact_us".localizedString),
-                     ("img_all" , "help".localizedString)]
+        let menus = [("img_language_logo" , "language".localizedString),
+                     ("img_notification_logo" , "notification".localizedString),
+                     ("img_contuct_logo" , "contact_us".localizedString),
+                     ("img_help_logo" , "help".localizedString)]
         
         for tuple in menus {
             let cell = AccountCell(style: .Default, reuseIdentifier: cellIdentifire)

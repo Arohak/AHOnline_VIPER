@@ -123,7 +123,7 @@ class ObjectsCellContentView: UIView {
     
     //MARK: - Public Methods -
     func setValues(object: AHObject)  {
-        imageView.kf_setImageWithURL(NSURL(string: object.src)!, placeholderImage: Image(named: "img_all"))
+        imageView.kf_setImageWithURL(NSURL(string: object.src)!, placeholderImage: Image(named: "img_empty"))
         nameLabel.text = object.label
         descLabel.text = object.desc
         openLabel.text = "Time:  " + object.openTime.shortTime + " - " + object.closeTime.shortTime

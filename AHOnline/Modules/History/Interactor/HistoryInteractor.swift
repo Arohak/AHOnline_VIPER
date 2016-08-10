@@ -20,8 +20,7 @@ extension HistoryInteractor: HistoryInteractorInput {
         output.historyOrdersDataIsReady(Array(historyOrders))
     }
     
-    func configureCartViewControllerFromHistoryOrder(vc: CartViewController, historyOrder: HistoryOrder) {
-        vc.historyOrder = historyOrder
-        DBManager.configureCartFromHistoryOrder(vc.cart, historyOrder: historyOrder)        
+    func configureCartViewControllerFromHistoryOrder(historyOrder: HistoryOrder) {
+        DBManager.configureCartFromHistoryOrder(historyOrder)
     }
 }

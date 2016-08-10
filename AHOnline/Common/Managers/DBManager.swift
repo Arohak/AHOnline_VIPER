@@ -36,7 +36,7 @@ struct DBManager {
     static func getUserCart() -> User? {
         let user = realm.objects(User.self).first
         try! realm.write {
-            user?.cart.totalPrice = getOrdersTotalPrice()
+            user?.cart.ordersTotalPrice = getOrdersTotalPrice()
             user?.cart.products.removeAll()
             for product in DBManager.getOrders() {
                 user?.cart.products.append(product)
@@ -158,11 +158,26 @@ struct DBManager {
         }
     }
     
+    static func updateCartInfo(mobileNumber: String, address: String, city: String, alias: String, deliveryPrice: Double, date: NSDate, payment: String)  {
+        if let user = getUser() {
+            try! realm.write {
+                let cart = user.cart
+                cart.mobileNumber = mobileNumber
+                cart.deliveryAddress = address
+                cart.deliveryCity = city
+                cart.deliveryAlias = alias
+                cart.deliveryPrice = deliveryPrice
+                cart.deliveryDate = date
+                cart.payment = payment
+            }
+        }
+    }
+    
     static func updateOrder(product: Product, count: Int) {
         if let user = getUser() {
             try! realm.write {
                 product.countBuy = count
-                user.cart.totalPrice = getOrdersTotalPrice()
+                user.cart.ordersTotalPrice = getOrdersTotalPrice()
                 
                 Wireframe.setBadgeValue(getOrderCounts())
             }
@@ -181,7 +196,7 @@ struct DBManager {
         if let user = getUser() {
             try! realm.write {
                 product.countBuy = 0
-                user.cart.totalPrice = getOrdersTotalPrice()
+                user.cart.ordersTotalPrice = getOrdersTotalPrice()
                 user.cart.products.removeAtIndex(user.cart.products.indexOf(product)!)
                 
                 Wireframe.setBadgeValue(getOrderCounts())
@@ -213,6 +228,13 @@ struct DBManager {
     static func storeDeliveries(deliveries: [Delivery]) {
         try! realm.write {
             realm.add(deliveries, update: true)
+            
+            if let user = getUser() {
+                user.cart.deliveries.removeAll()
+                for delivery in deliveries {
+                  user.cart.deliveries.append(delivery)
+                }
+            }
         }
     }
     
@@ -233,18 +255,28 @@ struct DBManager {
         return historyOrders
     }
     
-    static func configureCartFromHistoryOrder(cart: Cart, historyOrder: HistoryOrder) {
+    static func configureCartFromHistoryOrder(historyOrder: HistoryOrder) {
         removeOrders()
 
         try! realm.write {
+            let user = getUser()!
+            let cart = user.cart
+            
             let products = List<Product>()
             for historyProduct in historyOrder.historyProducts {
                 let product = getProducts().filter { $0.product_id == historyProduct.productID }.first!
                 product.countBuy = historyProduct.countBuy
                 products.append(product)
             }
-            cart.totalPrice = historyOrder.totalPrice
-            cart.products = products
+            cart.mobileNumber       = historyOrder.mobileNumber
+            cart.deliveryAddress    = historyOrder.deliveryAddress
+            cart.deliveryCity       = historyOrder.deliveryCity
+            cart.deliveryAlias      = historyOrder.deliveryAlias
+            cart.payment            = historyOrder.payment
+            cart.ordersTotalPrice   = historyOrder.ordersTotalPrice
+            cart.deliveryPrice      = historyOrder.deliveryPrice
+            cart.totalPrice         = historyOrder.totalPrice
+            cart.products           = products
             
             Wireframe.setBadgeValue(getOrderCounts())
         }

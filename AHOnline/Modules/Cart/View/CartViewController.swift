@@ -21,28 +21,13 @@ class CartViewController: BaseViewController {
     
     private var deliveryCells: [DeliveryCell]       = []
     private var titleDeliveries: [(String, String)] = []
-    
-    private var deliveries: [Delivery]              = []
-    private var deliveryPrice                       = 0.0
-    
     private var paymentCells: [UITableViewCell]     = []
-    private var titlePayments: [String]             = []
-    
-    private var selectedPhone                       = "*"
-    private var selectedCity                        = "*"
-    private var selectedAddress                     = "*"
-    private var selectedAlias                       = ""
-    private var selectedPayment                     = "pay_on_delivery".localizedString
-    private var selectedDate: NSDate!               = NSDate()
+    private var titlePayments: [(String, String)]   = []
 
-    var historyOrder: HistoryOrder?
     var user: User?
     var cart: Cart {
         if let user = user { return user.cart }
         return Cart(data: JSON.null)
-    }
-    private var ordersTotalPrice: Double {
-        return cart.totalPrice
     }
     private var products: List<Product> {
         return cart.products
@@ -101,9 +86,9 @@ class CartViewController: BaseViewController {
                                     ("img_cart_city", "cart_city".localizedString),
                                     ("img_cart_time", "cart_time".localizedString)]
         
-        titlePayments           = ["pay_on_delivery".localizedString,
-                                   "credit_cart".localizedString,
-                                   "paypal".localizedString]
+        titlePayments           = [("img_cash_logo", "pay_on_delivery".localizedString),
+                                   ("img_cart_logo", "credit_cart".localizedString),
+                                   ("img_paypal_logo", "paypal".localizedString)]
     }
     
     private func configTableViewCell() {
@@ -117,73 +102,24 @@ class CartViewController: BaseViewController {
             deliveryCells.append(cell)
         }
         
-        for title in titlePayments {
+        for tuple in titlePayments {
             let cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifire[2])
             cell.backgroundColor = CLEAR
-            cell.textLabel?.text = title
+            cell.imageView!.image = UIImage(named: tuple.0)
+            cell.textLabel?.text = tuple.1
             cell.textLabel?.font = TITLE_FONT
-            cell.accessoryType = title == selectedPayment ? .Checkmark : .None
+            cell.accessoryType = tuple.1 == cart.payment ? .Checkmark : .None
             paymentCells.append(cell)
         }
         
-        cartView.tableView.reloadData()
-    }
-    
-    private func update() {
-        if let historyOrder = historyOrder {
-            updateSelectedItems(historyOrder)
-        } else {
-            updateSelectedItemsDefault()
-        }
-    }
-    
-    private func updateSelectedItemsDefault() {
-        if let user = user {
-            if !user.phone.isEmpty { selectedPhone = user.phone }
-            
-            if let address = user.address {
-                let delivery = deliveries.filter { $0.alias == address.alias }.first
-                if let delivery = delivery {
-                    deliveryPrice = delivery.price
-                }
-                
-                selectedAddress = address.add
-                selectedCity = address.city
-                selectedAlias = address.alias
-                
-            } else {
-                if let delivery = deliveries.first {
-                    deliveryPrice = delivery.price
-                    selectedCity = delivery.city
-                    selectedAlias = delivery.alias
-                }
-            }
-        }
-        
-        updateTableViewInfo()
-    }
-    
-    private func updateSelectedItems(historyOrder: HistoryOrder) {
-        deliveryPrice       = historyOrder.deliveryPrice
-        selectedPhone       = historyOrder.mobileNumber
-        selectedCity        = historyOrder.deliveryCity
-        selectedAlias       = historyOrder.deliveryAlias
-        selectedAddress     = historyOrder.deliveryAddress
-        selectedPayment     = historyOrder.payment
-        
-        updateTableViewInfo()
-    }
-    
-    private func updateTableViewInfo() {
-        configTableViewCell()
-        
-        cartView.footerView.updateValues(ordersTotalPrice, delivery: deliveryPrice)
-        
-        deliveryCells[0].cellContentView.deliveryLabel.text = selectedPhone
-        deliveryCells[1].cellContentView.deliveryLabel.text = selectedAddress
-        deliveryCells[2].cellContentView.deliveryLabel.text = selectedCity
+        deliveryCells[0].cellContentView.deliveryLabel.text = cart.mobileNumber
+        deliveryCells[1].cellContentView.deliveryLabel.text = cart.deliveryAddress
+        deliveryCells[2].cellContentView.deliveryLabel.text = cart.deliveryCity
         deliveryCells[3].cellContentView.deliveryLabel.text = NSDate().deliveryTimeFormat
         
+        cartView.footerView.updateValues(cart.ordersTotalPrice, delivery: cart.deliveryPrice)
+        
+        cartView.tableView.reloadData()
         updateView()
     }
     
@@ -195,19 +131,60 @@ class CartViewController: BaseViewController {
         editButtonItem().enabled = !cartView.tableView.hidden
     }
     
+    private func updateCartInfo() {
+        var mobileNumber    = cart.mobileNumber
+        var deliveryAddress = cart.deliveryAddress
+        var deliveryCity    = cart.deliveryCity
+        var deliveryAlias   = cart.deliveryAlias
+        var deliveryPrice   = cart.deliveryPrice
+
+        if let user = user {
+            if !user.phone.isEmpty {
+                mobileNumber = user.phone
+            }
+            
+            if let address = user.address {
+                let delivery = cart.deliveries.filter { $0.alias == address.alias }.first
+                if let delivery = delivery {
+                    deliveryPrice = delivery.price
+                }
+                
+                deliveryAddress = address.add
+                deliveryCity = address.city
+                deliveryAlias = address.alias
+                
+            } else if let delivery = cart.deliveries.first where cart.deliveryPrice == 0.0 {
+                deliveryPrice = delivery.price
+                deliveryCity = delivery.city
+                deliveryAlias = delivery.alias
+            }
+        }
+        
+        self.output.updateCart(mobileNumber,
+                               address: deliveryAddress,
+                               city: deliveryCity,
+                               alias: deliveryAlias,
+                               deliveryPrice: deliveryPrice,
+                               date: self.cart.deliveryDate,
+                               payment: self.cart.payment)
+        
+
+        configTableViewCell()
+    }
+    
     private func validInputParams() -> Bool {
         var isValid = true
-        if selectedPhone == "*"     { isValid =  false }
-        if selectedAddress == "*"   { isValid =  false }
+        if cart.mobileNumber == "*"     { isValid =  false }
+        if cart.deliveryAddress == "*"   { isValid =  false }
 
         return isValid
     }
     
     private func verifyMobileNumber() {
-        if let user = user where user.isVerified && user.phone == selectedPhone {
+        if let user = user where user.isVerified && user.phone == cart.mobileNumber {
             placeOrder()
         } else {
-            output.sendMobileNumber(selectedPhone)
+            output.sendMobileNumber(cart.mobileNumber)
         }
     }
     
@@ -216,17 +193,17 @@ class CartViewController: BaseViewController {
         alert.addAction(UIAlertAction(title: "cancel".localizedString, style: .Cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "ok".localizedString, style: .Destructive, handler: { _ in
             let json = JSON([
-                "title"             : "",
-                "date_create"       : NSDate().createTimeFormat,
-                "mobile_number"     : self.selectedPhone,
-                "delivery_address"  : self.selectedAddress,
-                "delivery_city"     : self.selectedCity,
-                "delivery_alias"    : self.selectedAlias,
-                "delivery_date"     : self.selectedDate.deliveryTimeFormat,
-                "payment"           : self.selectedPayment,
-                "order_price"       : self.ordersTotalPrice,
-                "delivery_price"    : self.deliveryPrice,
-                "total_price"       : self.ordersTotalPrice + self.deliveryPrice
+                "title"                 : "",
+                "date_create"           : NSDate().createTimeFormat,
+                "mobile_number"         : self.cart.mobileNumber,
+                "delivery_address"      : self.cart.deliveryAddress,
+                "delivery_city"         : self.cart.deliveryCity,
+                "delivery_alias"        : self.cart.deliveryAlias,
+                "delivery_date"         : self.cart.deliveryDate.deliveryTimeFormat,
+                "payment"               : self.cart.payment,
+                "orders_total_price"    : self.cart.ordersTotalPrice,
+                "delivery_price"        : self.cart.deliveryPrice,
+                "total_price"           : self.cart.ordersTotalPrice + self.cart.deliveryPrice
                 ])
             
             let historyOrder = HistoryOrder(data: json)
@@ -299,20 +276,14 @@ class CartViewController: BaseViewController {
 //MARK: - extension for CartViewInput -
 extension CartViewController: CartViewInput {
     
-    func deliveriesComing(deliveries: [Delivery]) {
-        self.deliveries = deliveries
-        
-        update()
-    }
-    
     func userComing(user: User) {
         self.user = user
-        
-        update()
+     
+        updateCartInfo()
     }
     
     func updateTotalPrice() {
-        cartView.footerView.updateValues(ordersTotalPrice, delivery: deliveryPrice)
+        cartView.footerView.updateValues(cart.ordersTotalPrice, delivery: cart.deliveryPrice)
     }
     
     func showAlertForVerify() {
@@ -414,7 +385,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
                     textField.keyboardType = .PhonePad
                     textField.keyboardAppearance = .Dark
                     textField.placeholder = "+374 xxxxxxxx"
-                    var text = self.selectedPhone
+                    var text = self.cart.mobileNumber
                     text = text == "*" ? "" : text
                     textField.text = text
                     
@@ -426,20 +397,23 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
                 }
                 
                 alert.addAction(UIAlertAction(title: "cancel".localizedString, style: .Cancel, handler: { _ in removeTextFieldObserver() }))
-                
                 let otherAction = UIAlertAction(title: "save".localizedString, style: .Destructive, handler: { a in
                     let textField = alert.textFields?.first!
-                    self.selectedPhone = textField!.text!
-                    self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = self.selectedPhone
+                    let mobileNumber = textField!.text!
+                    self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = mobileNumber
+                    
+                    self.output.updateCart(mobileNumber,
+                        address: self.cart.deliveryAddress,
+                        city: self.cart.deliveryCity,
+                        alias: self.cart.deliveryAlias,
+                        deliveryPrice: self.cart.deliveryPrice,
+                        date: self.cart.deliveryDate,
+                        payment: self.cart.payment)
                     
                     removeTextFieldObserver()
-                    
-//                    self.verifyMobileNumber()
                 })
-                otherAction.enabled = !selectedPhone.isEmpty && selectedPhone != "*"
-                    
+                otherAction.enabled = !cart.mobileNumber.isEmpty && cart.mobileNumber != "*"
                 AddAlertSaveAction = otherAction
-                
                 alert.addAction(otherAction)
                 
                 output.presentViewController(alert)
@@ -449,7 +423,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
                 alert.addTextFieldWithConfigurationHandler { textField in
                     textField.keyboardAppearance = .Dark
                     textField.placeholder = "delivery_address_pl".localizedString
-                    var text = self.selectedAddress
+                    var text = self.cart.deliveryAddress
                     text = text == "*" ? "" : text
                     textField.text = text
                     
@@ -463,35 +437,54 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
                 alert.addAction(UIAlertAction(title: "cancel".localizedString, style: .Cancel, handler: nil))
                 let otherAction = UIAlertAction(title: "save".localizedString, style: .Destructive, handler: { a in
                     let textField = alert.textFields?.first!
-                    self.selectedAddress = textField!.text!
-                    self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = self.selectedAddress
+                    let address = textField!.text!
+                    self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = address
+                    
+                    self.output.updateCart(self.cart.mobileNumber,
+                        address: address,
+                        city: self.cart.deliveryCity,
+                        alias: self.cart.deliveryAlias,
+                        deliveryPrice: self.cart.deliveryPrice,
+                        date: self.cart.deliveryDate,
+                        payment: self.cart.payment)
                     
                     removeTextFieldObserver()
                 })
-                otherAction.enabled = !selectedAddress.isEmpty && selectedAddress != "*"
+                otherAction.enabled = !cart.deliveryAddress.isEmpty && cart.deliveryAddress != "*"
                 AddAlertSaveAction = otherAction
-                
                 alert.addAction(otherAction)
 
                 output.presentViewController(alert)
                 
             case 2:
-                let actionSheet = DeliveryActionSheetPickerViewController(deliveries: deliveries) { delivery, index in
+                let actionSheet = DeliveryActionSheetPickerViewController(deliveries: Array(cart.deliveries)) { delivery, index in
                     self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = delivery.city
-                    self.deliveryPrice = delivery.price
-                    self.cartView.footerView.updateValues(self.ordersTotalPrice, delivery: self.deliveryPrice)
-                    self.selectedCity = delivery.city
-                    self.selectedAlias = delivery.alias
+                    self.cartView.footerView.updateValues(self.cart.ordersTotalPrice, delivery: delivery.price)
+                    
+                    self.output.updateCart(self.cart.mobileNumber,
+                                           address: self.cart.deliveryAddress,
+                                           city: delivery.city,
+                                           alias: delivery.alias,
+                                           deliveryPrice: delivery.price,
+                                           date: self.cart.deliveryDate,
+                                           payment: self.cart.payment)
                 }
-                actionSheet.pickerView.selectRow(deliveries.indexOf { $0.alias == selectedAlias }! , inComponent: 0, animated: true)
+                actionSheet.pickerView.selectRow(Array(cart.deliveries).indexOf { $0.alias == cart.deliveryAlias }! , inComponent: 0, animated: true)
                 
                 output.presentViewController(actionSheet)
             case 3:
                 let datePicker = DatePickerViewController(date: NSDate()) { date in
                     self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = date.deliveryTimeFormat
-                    self.selectedDate = date
+                    
+                    self.output.updateCart(self.cart.mobileNumber,
+                                           address: self.cart.deliveryAddress,
+                                           city: self.cart.deliveryCity,
+                                           alias: self.cart.deliveryAlias,
+                                           deliveryPrice: self.cart.deliveryPrice,
+                                           date: date,
+                                           payment: self.cart.payment)
                 }
-                if let date = selectedDate {
+                if let date = cart.deliveryDate {
                     datePicker.pickerView.picker.setDate(date, animated: true)
                 }
                 
@@ -504,8 +497,14 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             for cell in paymentCells { cell.accessoryType = .None }
             paymentCells[indexPath.row].accessoryType = .Checkmark
-            selectedPayment = titlePayments[indexPath.row]
             
+            self.output.updateCart(self.cart.mobileNumber,
+                                   address: self.cart.deliveryAddress,
+                                   city: self.cart.deliveryCity,
+                                   alias: self.cart.deliveryAlias,
+                                   deliveryPrice: self.cart.deliveryPrice,
+                                   date: self.cart.deliveryDate,
+                                   payment: titlePayments[indexPath.row].1)
         default:
             break
         }

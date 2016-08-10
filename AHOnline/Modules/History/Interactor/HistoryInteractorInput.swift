@@ -9,5 +9,5 @@
 protocol HistoryInteractorInput {
 
     func getHistoryOrders()
-    func configureCartViewControllerFromHistoryOrder(vc: CartViewController, historyOrder: HistoryOrder)
+    func configureCartViewControllerFromHistoryOrder(historyOrder: HistoryOrder)
 }

@@ -115,7 +115,7 @@ class MapObjectsCellCellContentView: UIView {
     
     //MARK: - Public Methods -
     func setValues(imageURL: NSURL, name: String, address: String, distance: String)  {
-        imageView.kf_setImageWithURL(imageURL, placeholderImage: Image(named: "img_all"))
+        imageView.kf_setImageWithURL(imageURL, placeholderImage: Image(named: "img_empty"))
         nameLabel.text = name
         addressLabel.text = address
         distanceLabel.text = distance

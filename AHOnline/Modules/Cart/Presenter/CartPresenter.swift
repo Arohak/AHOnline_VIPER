@@ -29,6 +29,10 @@ extension CartPresenter: CartViewOutput {
         router.selectTabControllerForIndex(1)
     }
     
+    func updateCart(mobileNumber: String, address: String, city: String, alias: String, deliveryPrice: Double, date: NSDate, payment: String) {
+        interactor.updateCartInfo(mobileNumber, address: address, city: city, alias: alias, deliveryPrice: deliveryPrice, date: date, payment: payment)
+    }
+    
     func updateOrder(product: Product, count: Int) {
         interactor.updateOrder(product, count: count)
     }
@@ -71,11 +75,7 @@ extension CartPresenter: CartViewOutput {
 
 //MARK: - extension for CartInteractorOutput -
 extension CartPresenter: CartInteractorOutput {
- 
-    func deliveriesDataIsReady(deliveries: [Delivery]) {
-        view.deliveriesComing(deliveries)
-    }
-    
+
     func userDataIsReady(user: User) {
         view.userComing(user)
     }

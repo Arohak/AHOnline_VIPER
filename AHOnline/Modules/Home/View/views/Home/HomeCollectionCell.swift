@@ -34,7 +34,8 @@ class HomeCollectionCellContentView: UIView {
     lazy var bgImageView: UIImageView = {
         let view = UIImageView.newAutoLayoutView()
         view.contentMode = .ScaleAspectFit
-
+        view.image = UIImage(named: "img_home_bg")
+        
         return view
     }()
     

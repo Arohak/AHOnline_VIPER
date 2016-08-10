@@ -16,7 +16,7 @@ class HistoryOrder: Object {
     dynamic var deliveryAlias: String!
     dynamic var deliveryDate: String!
     dynamic var payment: String!
-    dynamic var orderPrice = 0.0
+    dynamic var ordersTotalPrice = 0.0
     dynamic var deliveryPrice = 0.0
     dynamic var totalPrice = 0.0
 
@@ -38,7 +38,7 @@ class HistoryOrder: Object {
         self.deliveryAlias      = data["delivery_alias"].stringValue
         self.deliveryDate       = data["delivery_date"].stringValue
         self.payment            = data["payment"].stringValue
-        self.orderPrice         = data["order_price"].doubleValue
+        self.ordersTotalPrice   = data["orders_total_price"].doubleValue
         self.deliveryPrice      = data["delivery_price"].doubleValue
         self.totalPrice         = data["total_price"].doubleValue
     }

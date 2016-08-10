@@ -189,7 +189,7 @@ struct APIManager {
                       "delivery_alias"      : order.deliveryAlias,
                       "delivery_date"       : order.deliveryDate,
                       "payment"             : order.payment,
-                      "order_price"         : order.orderPrice,
+                      "orders_total_price"  : order.ordersTotalPrice,
                       "delivery_price"      : order.deliveryPrice,
                       "total_price"         : order.totalPrice,
                       "products"            : Array(order.historyProducts)]

@@ -22,8 +22,7 @@ extension HistoryPresenter: HistoryViewOutput {
     }
     
     func didSelectHistoryOrder(historyOrder: HistoryOrder) {
-        let vc = router.getTabControllerForIndex(2) as! CartViewController
-        interactor.configureCartViewControllerFromHistoryOrder(vc, historyOrder: historyOrder)
+        interactor.configureCartViewControllerFromHistoryOrder(historyOrder)
         
         router.selectTabControllerForIndex(2)
     }

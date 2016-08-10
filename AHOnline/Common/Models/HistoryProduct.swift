@@ -9,6 +9,7 @@
 class HistoryProduct: Object {
     
     dynamic var id = 0
+    dynamic var productID = 0
     dynamic var countBuy = 0
     
     override static func primaryKey() -> String {
@@ -19,6 +20,7 @@ class HistoryProduct: Object {
         self.init()
 
         self.id         = data["id"].intValue
+        self.productID  = data["product_id"].intValue
         self.countBuy   = data["count_buy"].intValue
     }
 }

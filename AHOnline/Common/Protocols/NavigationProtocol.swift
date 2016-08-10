@@ -30,3 +30,8 @@ protocol DismissControllerProtocol {
     
     func dismissViewController()
 }
+
+protocol SelectTabControllerProtocol {
+    
+    func selectTabControllerForIndex(index: Int)
+}

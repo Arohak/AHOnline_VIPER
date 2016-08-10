@@ -13,10 +13,7 @@ class CartRouter {
 
 //MARK: - extension for CartRouterInput -
 extension CartRouter: CartRouterInput {
-    
-    func changeInCategoryTab() {
-        Wireframe.selectTabControllerForIndex(1)
-    }
+
 }
 
 //MARK: - extension for PresentViewControllerProtocol -
@@ -24,5 +21,13 @@ extension CartRouter: PresentViewControllerProtocol {
     
     func presentViewController(vc: UIViewController) {
         Wireframe.presentViewController(vc)
+    }
+}
+
+//MARK: - extension for SelectTabControllerProtocol -
+extension CartRouter: SelectTabControllerProtocol {
+    
+    func selectTabControllerForIndex(index: Int) {
+        Wireframe.selectTabControllerForIndex(index)
     }
 }

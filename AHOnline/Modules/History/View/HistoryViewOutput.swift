@@ -9,4 +9,5 @@
 protocol HistoryViewOutput {
 
     func viewIsReady()
+    func didSelectHistoryOrder(historyOrder: HistoryOrder)
 }

@@ -45,7 +45,11 @@ class HistoryOrder: Object {
     
     func addHistoryProductFrom(products: List<Product>) {
         for product in products {
-            let historyProduct = HistoryProduct(data: JSON(["id" : product.id, "count_buy" : product.countBuy]))
+            let historyProduct = HistoryProduct(data: JSON([
+                "id"            : product.id,
+                "product_id"    : product.product_id,
+                "count_buy"     : product.countBuy
+                ]))
             historyProducts.append(historyProduct)
         }
     }

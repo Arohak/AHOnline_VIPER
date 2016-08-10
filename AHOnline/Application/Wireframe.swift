@@ -76,5 +76,12 @@ struct Wireframe {
     static func selectTabControllerForIndex(index: Int) {
         root().selectedIndex = index
     }
+    
+    static func getTabControllerForIndex(index: Int) -> UIViewController {
+        let nav = root().viewControllers![index] as! UINavigationController
+        let vc = nav.viewControllers[0]
+
+        return vc
+    }
 }
 

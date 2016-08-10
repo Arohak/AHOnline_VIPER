@@ -6,7 +6,6 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-protocol CartRouterInput: PresentViewControllerProtocol {
+protocol CartRouterInput: PresentViewControllerProtocol, SelectTabControllerProtocol {
 
-    func changeInCategoryTab()
 }

@@ -19,4 +19,9 @@ extension HistoryInteractor: HistoryInteractorInput {
         let historyOrders = DBManager.getHistoryOrders()
         output.historyOrdersDataIsReady(Array(historyOrders))
     }
+    
+    func configureCartViewControllerFromHistoryOrder(vc: CartViewController, historyOrder: HistoryOrder) {
+        vc.historyOrder = historyOrder
+        DBManager.configureCartFromHistoryOrder(vc.cart, historyOrder: historyOrder)        
+    }
 }

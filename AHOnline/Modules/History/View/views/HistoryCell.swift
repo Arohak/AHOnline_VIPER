@@ -113,9 +113,9 @@ class HistoryCellContentView: UIView {
     
     //MARK: - Public Methods -
     func setValues(historyOrder: HistoryOrder)  {
-        imageView.image         = UIImage(named: "img_pr_cart")
+        imageView.image         = UIImage(named: "img_cart_selected")
         dateLabel.text          = historyOrder.dateCreate
-        paymentLabel.text       = "Payment: \(historyOrder.payment)"
-        totalPriceLabel.text    = "Total Price:  \(historyOrder.totalPrice)"
+        paymentLabel.text       = "Payment:  " + historyOrder.payment
+        totalPriceLabel.text    = "Total Price:  " + historyOrder.totalPrice.format
     }
 }

@@ -221,7 +221,7 @@ struct DBManager {
         return deliveries
     }
     
-    //MARK: - Cart -
+    //MARK: - Order -
     static func storeHistoryOrder(historyOrder: HistoryOrder) {
         try! realm.write {
             realm.add(historyOrder, update: true)
@@ -231,5 +231,22 @@ struct DBManager {
     static func getHistoryOrders() -> Results<HistoryOrder> {
         let historyOrders = realm.objects(HistoryOrder.self)
         return historyOrders
+    }
+    
+    static func configureCartFromHistoryOrder(cart: Cart, historyOrder: HistoryOrder) {
+        removeOrders()
+
+        try! realm.write {
+            let products = List<Product>()
+            for historyProduct in historyOrder.historyProducts {
+                let product = getProducts().filter { $0.product_id == historyProduct.productID }.first!
+                product.countBuy = historyProduct.countBuy
+                products.append(product)
+            }
+            cart.totalPrice = historyOrder.totalPrice
+            cart.products = products
+            
+            Wireframe.setBadgeValue(getOrderCounts())
+        }
     }
 }

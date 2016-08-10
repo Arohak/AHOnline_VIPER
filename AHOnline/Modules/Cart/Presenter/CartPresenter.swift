@@ -26,7 +26,7 @@ extension CartPresenter: CartViewOutput {
     }
     
     func addOrder() {
-        router.changeInCategoryTab()
+        router.selectTabControllerForIndex(1)
     }
     
     func updateOrder(product: Product, count: Int) {

@@ -6,6 +6,7 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-protocol HistoryRouterInput {
+protocol HistoryRouterInput: SelectTabControllerProtocol {
 
+    func getTabControllerForIndex(index: Int) -> UIViewController
 }

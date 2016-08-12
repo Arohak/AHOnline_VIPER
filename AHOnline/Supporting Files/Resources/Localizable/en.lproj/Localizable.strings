@@ -13,9 +13,16 @@
 
 // Mobile Verify
 "verify"                = "Verify Mobile Number";
+"phone"                 = "Mobile Number";
+"send"                  = "Send";
+"accept"                = "Accept";
+"pin"                   = "pin code";
 
 // Delivery Address
 "delivery_address"      = "Delivery Address";
+"country"               = "Country";
+"city"                  = "City";
+"address"               = "Address";
 
 // Home
 "new_restaurants"       = "New Restaurants";

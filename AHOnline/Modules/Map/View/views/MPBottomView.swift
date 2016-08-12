@@ -18,7 +18,7 @@ class MPBottomView: UIView {
     
     let closeRoutButton: UIButton = {
         let view = UIButton.newAutoLayoutView()
-        view.setBackgroundImage(UIImage(named: "img_map_delete"), forState: UIControlState.Normal)
+        view.setBackgroundImage(UIImage(named: "img_delete_root"), forState: UIControlState.Normal)
         view.hidden = true
         
         return view

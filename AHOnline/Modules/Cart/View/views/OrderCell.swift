@@ -55,6 +55,7 @@ class OrderCellContentView: UIView {
     
     lazy var textField: UITextField = {
         let view = UITextField.newAutoLayoutView()
+        view.keyboardAppearance = .Dark
         view.keyboardType = .NumberPad
         view.textAlignment = .Center
         view.font = TITLE_BTN_FONT

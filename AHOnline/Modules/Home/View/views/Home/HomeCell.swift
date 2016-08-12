@@ -60,6 +60,7 @@ class HomeCellContentView: UIView {
     //MARK: - Create UIElements -
     lazy var titleLabel: TitleLabel = {
         let view = TitleLabel.newAutoLayoutView()
+        view.textColor = RED
         view.numberOfLines = 0
         view.textAlignment = .Center
 

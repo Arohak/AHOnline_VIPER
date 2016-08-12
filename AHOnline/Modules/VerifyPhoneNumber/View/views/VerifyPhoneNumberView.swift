@@ -26,9 +26,10 @@ class VerifyPhoneNumberView: BaseScrollView {
     
     lazy var sendButton: HOButton = {
         let view = HOButton.newAutoLayoutView()
-        view.backgroundColor = GREEN
+        view.setBackgroundImage(UIImage(named: "img_result"), forState: .Normal)
+        view.setTitleColor(WHITE, forState: .Normal)
         view.setTitle("send".localizedString, forState: .Normal)
-        
+
         return view
     }()
     
@@ -43,7 +44,8 @@ class VerifyPhoneNumberView: BaseScrollView {
     
     lazy var acceptButton: HOButton = {
         let view = HOButton.newAutoLayoutView()
-        view.backgroundColor = GREEN
+        view.setBackgroundImage(UIImage(named: "img_result"), forState: .Normal)
+        view.setTitleColor(WHITE, forState: .Normal)
         view.setTitle("accept".localizedString, forState: .Normal)
         view.enabled = false
 

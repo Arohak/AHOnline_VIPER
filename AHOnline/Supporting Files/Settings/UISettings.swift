@@ -50,6 +50,7 @@ let GRAY_119                            = UIColor(red: 119/255,     green: 119/2
 let BLACK_59                            = UIColor(red: 59/255,      green: 59/255,      blue: 59/255,       alpha: 1)
 let RED                                 = UIColor(red: 240/255,     green: 30/255,      blue: 30/255,       alpha: 1)
 let RED_LIGHT                           = UIColor(red: 232/255,     green: 114/255,     blue: 114/255,      alpha: 1)
+let RED_233                             = UIColor(red: 233/255,     green: 110/255,     blue: 110/255,      alpha: 1)
 let BLUE                                = UIColor(red: 24/255,      green: 75/255,      blue: 152/255,      alpha: 1)
 let GRAY_239                            = UIColor(red: 242/255,     green: 242/255,     blue: 242/255,      alpha: 1)
 

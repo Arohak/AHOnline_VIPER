@@ -29,9 +29,8 @@ class ButtonGroupView: UIView {
     
     lazy var arrowImageView: UIImageView = {
         let view = UIImageView.newAutoLayoutView()
-        view.image = UIImage(named: "img_arrow")
-        view.layer.borderWidth = 0.5
-        view.layer.borderColor = BLACK.CGColor
+        view.image = UIImage(named: "img_manage_arrow")
+        view.backgroundColor = WHITE
         
         return view
     }()

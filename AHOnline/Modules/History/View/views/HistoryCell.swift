@@ -56,8 +56,11 @@ class HistoryCellContentView: UIView {
         return view
     }()
     
-    lazy var totalPriceLabel: HOLabel = {
-        let view = HOLabel.newAutoLayoutView()
+    lazy var priceGroupView: PriceGroupView = {
+        let view = PriceGroupView.newAutoLayoutView()
+        view.titleLabel.text = "Total Price:  "
+        view.titleLabel.font = TITLE_BTN_FONT
+        view.priceLabel.font = TITLE_BTN_FONT
         
         return view
     }()
@@ -84,7 +87,7 @@ class HistoryCellContentView: UIView {
         addSubview(imageView)
         addSubview(dateLabel)
         addSubview(paymentLabel)
-        addSubview(totalPriceLabel)
+        addSubview(priceGroupView)
 
         setConstraints()
     }
@@ -105,10 +108,9 @@ class HistoryCellContentView: UIView {
         paymentLabel.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: HI_OFFSET)
         paymentLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: HI_OFFSET)
         
-        totalPriceLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: paymentLabel, withOffset: HI_INSET)
-        totalPriceLabel.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: HI_OFFSET)
-        totalPriceLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: HI_OFFSET)
-        totalPriceLabel.autoPinEdgeToSuperviewEdge(.Bottom, withInset: HI_INSET)
+        priceGroupView.autoPinEdge(.Top, toEdge: .Bottom, ofView: paymentLabel, withOffset: HI_INSET*2)
+        priceGroupView.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: HI_OFFSET)
+        priceGroupView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: HI_INSET)
     }
     
     //MARK: - Public Methods -
@@ -116,6 +118,6 @@ class HistoryCellContentView: UIView {
         imageView.image         = UIImage(named: "img_cart_selected")
         dateLabel.text          = historyOrder.dateCreate
         paymentLabel.text       = "Payment:  " + historyOrder.payment
-        totalPriceLabel.text    = "Total Price:  " + historyOrder.totalPrice.format
+        priceGroupView.setPrice(historyOrder.totalPrice)
     }
 }

@@ -16,6 +16,7 @@ class HOButton: UIButton {
         
         exclusiveTouch = true
         setTitleColor(BLACK, forState: .Normal)
+        titleLabel!.font = TITLE_LBL_FONT
     }
     
     required init?(coder aDecoder: NSCoder) {

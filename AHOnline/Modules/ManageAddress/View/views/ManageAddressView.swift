@@ -11,14 +11,14 @@ class ManageAddressView: BaseScrollView {
     //MARK: - Create UIElements -
     lazy var countryView: ButtonGroupView = {
         let view = ButtonGroupView.newAutoLayoutView()
-        view.nameLabel.text = "country".lowercaseString
+        view.nameLabel.text = "country".localizedString
         
         return view
     }()
     
     lazy var cityView: ButtonGroupView = {
         let view = ButtonGroupView.newAutoLayoutView()
-        view.nameLabel.text = "city".lowercaseString
+        view.nameLabel.text = "city".localizedString
 
         return view
     }()
@@ -26,7 +26,7 @@ class ManageAddressView: BaseScrollView {
     lazy var cityFieldView: FieldGroupView = {
         let view = FieldGroupView.newAutoLayoutView()
         view.textField.returnKeyType = .Next
-        view.nameLabel.text = "city".lowercaseString
+        view.nameLabel.text = "city".localizedString
         view.textField.placeholder = "city".localizedString
         
         return view
@@ -35,7 +35,7 @@ class ManageAddressView: BaseScrollView {
     lazy var addressFieldView: FieldGroupView = {
         let view = FieldGroupView.newAutoLayoutView()
         view.textField.returnKeyType = .Done
-        view.nameLabel.text = "address".lowercaseString
+        view.nameLabel.text = "address".localizedString
         view.textField.placeholder = "street, apartment, house".localizedString
         
         return view
@@ -43,9 +43,8 @@ class ManageAddressView: BaseScrollView {
     
     lazy var saveButton: HOButton = {
         let view = HOButton.newAutoLayoutView()
-        view.backgroundColor = GREEN
-        view.layer.borderWidth = 0.5
-        view.layer.borderColor = BLACK.CGColor
+        view.setBackgroundImage(UIImage(named: "img_result"), forState: .Normal)
+        view.setTitleColor(WHITE, forState: .Normal)
         view.setTitle("save".localizedString, forState: .Normal)
 
         return view

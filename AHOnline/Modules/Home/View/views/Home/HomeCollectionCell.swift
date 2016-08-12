@@ -34,7 +34,9 @@ class HomeCollectionCellContentView: UIView {
     lazy var bgImageView: UIImageView = {
         let view = UIImageView.newAutoLayoutView()
         view.contentMode = .ScaleAspectFit
-        view.image = UIImage(named: "img_home_bg")
+        view.backgroundColor = GRAY_239
+        view.layer.cornerRadius = HO_INSET
+        view.clipsToBounds = true
         
         return view
     }()
@@ -48,7 +50,7 @@ class HomeCollectionCellContentView: UIView {
     
     lazy var nameLabel: HOLabel = {
         let view = HOLabel.newAutoLayoutView()
-        view.textColor = GRAY
+        view.textColor = BLACK
         view.numberOfLines = 0
         
         return view
@@ -58,7 +60,8 @@ class HomeCollectionCellContentView: UIView {
     init() {
         super.init(frame: CGRectZero)
         
-        backgroundColor = GRAY_239
+//        backgroundColor = GRAY_239
+        backgroundColor = CLEAR
         addAllUIElements()
     }
     
@@ -69,8 +72,8 @@ class HomeCollectionCellContentView: UIView {
     //MARK: - Private Methods -
     private func addAllUIElements() {
         addSubview(bgImageView)
-        addSubview(imageView)
-        addSubview(nameLabel)
+        bgImageView.addSubview(imageView)
+        bgImageView.addSubview(nameLabel)
         
         setConstraints()
     }
@@ -85,20 +88,18 @@ class HomeCollectionCellContentView: UIView {
         imageView.autoMatchDimension(.Height, toDimension: .Width, ofView: imageView, withMultiplier: 0.4)
         
         nameLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: imageView, withOffset: HO_INSET/2)
-        nameLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: 0)
-        nameLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: 0)
+        nameLabel.autoPinEdgeToSuperviewEdge(.Left, withInset: HO_INSET)
+        nameLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: HO_INSET)
     }
     
     //MARK: - Public Methods -
     func setValues(restaurant: AHObject) {
         if restaurant.img.isEmpty {
             imageView.hidden = false
-            bgImageView.hidden = true
             imageView.kf_setImageWithURL(NSURL(string: restaurant.src)!)
             nameLabel.text = restaurant.label
             
         } else {
-            bgImageView.hidden = false
             imageView.hidden = true
             bgImageView.image = UIImage(named: restaurant.img)
             nameLabel.text = ""

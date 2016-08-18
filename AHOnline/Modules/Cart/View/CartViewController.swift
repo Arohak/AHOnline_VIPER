@@ -10,23 +10,22 @@
 class CartViewController: BaseViewController {
 
     var output: CartViewOutput!
-
-    var cartView = CartView()
-    var cleaButtonItem: UIBarButtonItem!
-    weak var AddAlertSaveAction: UIAlertAction?
-
+    private var cartView = CartView()
+    private var cleaButtonItem: UIBarButtonItem!
     private let cellIdentifire                      = ["cellIdentifire1", "cellIdentifire2", "cellIdentifire3"]
     private let heights: [CGFloat]                  = [CA_CELL_HEIGHT, CA_CELL_HEIGHT*0.6, CA_CELL_HEIGHT*0.6]
     private var headers: [String]                   = []
-    
     private var deliveryCells: [DeliveryCell]       = []
     private var titleDeliveries: [(String, String)] = []
     private var paymentCells: [UITableViewCell]     = []
     private var titlePayments: [(String, String)]   = []
+    private weak var AddAlertSaveAction: UIAlertAction?
 
     var user: User?
     var cart: Cart {
-        if let user = user { return user.cart }
+        if let user = user {
+            return user.cart
+        }
         return Cart(data: JSON.null)
     }
     private var products: List<Product> {
@@ -175,7 +174,7 @@ class CartViewController: BaseViewController {
     private func validInputParams() -> Bool {
         var isValid = true
         if cart.mobileNumber == "*"     { isValid =  false }
-        if cart.deliveryAddress == "*"   { isValid =  false }
+        if cart.deliveryAddress == "*"  { isValid =  false }
 
         return isValid
     }

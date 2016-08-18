@@ -8,6 +8,7 @@
 
 //MARK: - String -
 extension String {
+    
     var localizedString: String {
         return Utils.localizedLanguage(self, languageCode: Preferences.getAppLanguage())
     }
@@ -36,11 +37,15 @@ extension String {
             return ""
         }
     }
-    
+   
+    var dram: String {
+        return  self + " \u{20BD}" //"\u{058F}"
+    }
 }
 
 //MARK: - NSDate -
 extension NSDate {
+    
     var miliseconds: String {
         return "\(Int64(self.timeIntervalSince1970*1000))"
     }

@@ -18,10 +18,6 @@ struct Wireframe {
         setBadgeValue(DBManager.getOrderCounts())
     }
     
-    static func login() {
-
-    }
-    
     static func root() -> TabBarViewController {
         let rootViewController = window!.rootViewController as! TabBarViewController
         return rootViewController

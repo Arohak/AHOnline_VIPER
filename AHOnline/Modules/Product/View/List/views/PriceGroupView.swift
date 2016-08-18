@@ -71,4 +71,8 @@ class PriceGroupView: UIView {
     func setPrice(price: Double)  {
         priceLabel.text = price.format
     }
+    
+    func setTitle(title: String)  {
+        titleLabel.text = title
+    }
 }

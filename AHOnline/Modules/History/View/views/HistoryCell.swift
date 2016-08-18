@@ -56,9 +56,14 @@ class HistoryCellContentView: UIView {
         return view
     }()
     
+    lazy var priceLabel: HOLabel = {
+        let view = HOLabel.newAutoLayoutView()
+        
+        return view
+    }()
+    
     lazy var priceGroupView: PriceGroupView = {
         let view = PriceGroupView.newAutoLayoutView()
-        view.titleLabel.text = "Total Price:  "
         view.titleLabel.font = TITLE_BTN_FONT
         view.priceLabel.font = TITLE_BTN_FONT
         
@@ -87,7 +92,7 @@ class HistoryCellContentView: UIView {
         addSubview(imageView)
         addSubview(dateLabel)
         addSubview(paymentLabel)
-        addSubview(priceGroupView)
+//        addSubview(priceGroupView)
 
         setConstraints()
     }
@@ -107,17 +112,19 @@ class HistoryCellContentView: UIView {
         paymentLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: dateLabel, withOffset: HI_INSET)
         paymentLabel.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: HI_OFFSET)
         paymentLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: HI_OFFSET)
-        
-        priceGroupView.autoPinEdge(.Top, toEdge: .Bottom, ofView: paymentLabel, withOffset: HI_INSET*2)
-        priceGroupView.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: HI_OFFSET)
-        priceGroupView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: HI_INSET)
+//        
+//        priceGroupView.autoPinEdge(.Top, toEdge: .Bottom, ofView: paymentLabel, withOffset: HI_INSET*2)
+//        priceGroupView.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: HI_OFFSET)
+//        priceGroupView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: HI_INSET)
     }
     
     //MARK: - Public Methods -
     func setValues(historyOrder: HistoryOrder)  {
         imageView.image         = UIImage(named: "img_cart_selected")
         dateLabel.text          = historyOrder.dateCreate
-        paymentLabel.text       = "Payment:  " + historyOrder.payment
-        priceGroupView.setPrice(historyOrder.totalPrice)
+        paymentLabel.text       = "payment_title".localizedString + historyOrder.payment
+        priceLabel.text         = "total_price".localizedString + "\(historyOrder.totalPrice.format)".dram
+        
+//        priceGroupView.setPrice(historyOrder.totalPrice)
     }
 }

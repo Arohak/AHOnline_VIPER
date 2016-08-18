@@ -72,6 +72,8 @@
 "credit_cart"           = "Credit Cart";
 "paypal"                = "Paypal";
 "max_message"           = "max value 9";
+"payment_title"         = "Payment:  ";
+"total_price"           = "Total Price:  ";
 
 // Map
 "distance"              = "Distance";

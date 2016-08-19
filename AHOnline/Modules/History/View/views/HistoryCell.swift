@@ -92,6 +92,8 @@ class HistoryCellContentView: UIView {
         addSubview(imageView)
         addSubview(dateLabel)
         addSubview(paymentLabel)
+        addSubview(priceLabel)
+
 //        addSubview(priceGroupView)
 
         setConstraints()
@@ -112,7 +114,12 @@ class HistoryCellContentView: UIView {
         paymentLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: dateLabel, withOffset: HI_INSET)
         paymentLabel.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: HI_OFFSET)
         paymentLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: HI_OFFSET)
-//        
+        
+        priceLabel.autoPinEdge(.Top, toEdge: .Bottom, ofView: paymentLabel, withOffset: HI_INSET)
+        priceLabel.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: HI_OFFSET)
+        priceLabel.autoPinEdgeToSuperviewEdge(.Right, withInset: HI_OFFSET)
+        priceLabel.autoPinEdgeToSuperviewEdge(.Bottom, withInset: HI_INSET)
+//
 //        priceGroupView.autoPinEdge(.Top, toEdge: .Bottom, ofView: paymentLabel, withOffset: HI_INSET*2)
 //        priceGroupView.autoPinEdge(.Left, toEdge: .Right, ofView: imageView, withOffset: HI_OFFSET)
 //        priceGroupView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: HI_INSET)
@@ -120,10 +127,11 @@ class HistoryCellContentView: UIView {
     
     //MARK: - Public Methods -
     func setValues(historyOrder: HistoryOrder)  {
-        imageView.image         = UIImage(named: "img_cart_selected")
-        dateLabel.text          = historyOrder.dateCreate
-        paymentLabel.text       = "payment_title".localizedString + historyOrder.payment
-        priceLabel.text         = "total_price".localizedString + "\(historyOrder.totalPrice.format)".dram
+        imageView.image             = UIImage(named: "img_cart_selected")
+        dateLabel.text              = historyOrder.dateCreate
+        paymentLabel.text           = "payment_title".localizedString + historyOrder.payment
+        priceLabel.text             = "total_price".localizedString + "\(historyOrder.totalPrice.format)".dram
+        bgImageView.backgroundColor = historyOrder.isVerified ? CLEAR : GRAY_200
         
 //        priceGroupView.setPrice(historyOrder.totalPrice)
     }

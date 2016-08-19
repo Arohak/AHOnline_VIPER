@@ -87,19 +87,17 @@ extension CartInteractor: CartInteractorInput {
     }
     
     func addOrdernHistory(historyOrder: HistoryOrder) {
-        //        _ = APIManager.createOrder(historyOrder)
-        //            .subscribe(onNext: { result in
-        //                if result != nil {
-        //                    DBManager.storeHistoryOrder(historyOrder)
-        //                    DBManager.removeOrders()
-        //
-        //                    output.removeCartIsReady()
-        //                }
-        //            })
-        
-        DBManager.storeHistoryOrder(historyOrder)
-        DBManager.removeOrders()
-        
-        output.placeOrderIsReady()
+        if let user = user {
+            _ = APIManager.createOrder("\(user.id)", order: historyOrder)
+                .subscribe(onNext: { result in
+                    if result != nil {
+                        let history = HistoryOrder(data: result["data"])
+                        DBManager.storeHistoryOrder(history)
+                        DBManager.removeOrders()
+                        
+                        self.output.placeOrderIsReady()
+                    }
+                })
+        }
     }
 }

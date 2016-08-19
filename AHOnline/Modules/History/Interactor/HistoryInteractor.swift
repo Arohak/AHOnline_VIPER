@@ -10,14 +10,33 @@
 class HistoryInteractor {
 
     weak var output: HistoryInteractorOutput!
+    
+    var user: User? {
+        return DBManager.getUserCart()
+    }
 }
 
 //MARK: - extension for HistoryInteractorInput -
 extension HistoryInteractor: HistoryInteractorInput {
     
     func getHistoryOrders() {
-        let historyOrders = DBManager.getHistoryOrders()
-        output.historyOrdersDataIsReady(Array(historyOrders))
+        if let user = user {
+            _ = APIManager.getOrders("\(user.id)")
+                .subscribe(onNext: { result in
+                    if result != nil {
+                        for historyOrder in result["data"].arrayValue {
+                            let order = HistoryOrder(data: historyOrder)
+                            DBManager.updateHistoryOrder(order)
+                        }
+                        
+                        let historyOrders = DBManager.getHistoryOrders()
+                        self.output.historyOrdersDataIsReady(Array(historyOrders))
+                    }
+                    }, onError: { error in
+                        let historyOrders = DBManager.getHistoryOrders()
+                        self.output.historyOrdersDataIsReady(Array(historyOrders))
+                })
+        }
     }
     
     func configureCartViewControllerFromHistoryOrder(historyOrder: HistoryOrder) {

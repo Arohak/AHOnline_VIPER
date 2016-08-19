@@ -281,4 +281,13 @@ struct DBManager {
             Wireframe.setBadgeValue(getOrderCounts())
         }
     }
+    
+    static func updateHistoryOrder(historyOrder: HistoryOrder) {
+        try! realm.write {
+            let findHistoryOrder = getHistoryOrders().filter { $0.id == historyOrder.id }.first
+            if let findHistoryOrder = findHistoryOrder {
+                findHistoryOrder.isVerified = historyOrder.isVerified
+            }
+        }
+    }
 }

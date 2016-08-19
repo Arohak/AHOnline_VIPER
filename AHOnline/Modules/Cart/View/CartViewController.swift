@@ -468,7 +468,10 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
                                            date: self.cart.deliveryDate,
                                            payment: self.cart.payment)
                 }
-                actionSheet.pickerView.selectRow(Array(cart.deliveries).indexOf { $0.alias == cart.deliveryAlias }! , inComponent: 0, animated: true)
+                var index = 0
+                let findIndex = Array(cart.deliveries).indexOf { $0.alias == cart.deliveryAlias }
+                if let i = findIndex { index = i }
+                actionSheet.pickerView.selectRow(index , inComponent: 0, animated: true)
                 
                 output.presentViewController(actionSheet)
             case 3:

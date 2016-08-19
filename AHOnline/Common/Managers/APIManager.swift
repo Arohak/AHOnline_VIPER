@@ -34,7 +34,8 @@ struct APIManager {
         static let GET_OBJECT                               = "restaurants/%@"
         static let GET_NEARST_OBJECTS                       = "nears_objects?latitude=%@&longitude=%@&km=%@"
         
-        static let CREATE_ORDER                             = "order"
+        static let CREATE_ORDER                             = "orders"
+        static let GET_ORDERS                               = "orders?user_id=%@"
     }
     
     //MARK: - User -
@@ -180,8 +181,16 @@ struct APIManager {
     }
     
     //MARK: - Order -
-    static func createOrder(order: HistoryOrder) -> Observable<JSON> {
-        let params = ["title"               : order.title,
+    static func createOrder(user_id: String, order: HistoryOrder) -> Observable<JSON> {
+        var historyProducts: [Dictionary<String, Int>] = []
+        for historyProduct in Array(order.historyProducts) {
+            let hash = ["product_id": historyProduct.productID,
+                        "count_buy": historyProduct.countBuy]
+            historyProducts.append(hash)
+        }
+        
+        let params = ["user_id"             : user_id,
+                      "title"               : order.title,
                       "date_create"         : order.dateCreate,
                       "mobile_number"       : order.mobileNumber,
                       "delivery_address"    : order.deliveryAddress,
@@ -192,8 +201,14 @@ struct APIManager {
                       "orders_total_price"  : order.ordersTotalPrice,
                       "delivery_price"      : order.deliveryPrice,
                       "total_price"         : order.totalPrice,
-                      "products"            : Array(order.historyProducts)]
+                      "is_verified"         : order.isVerified,
+                      "products"            : historyProducts]
         
         return apiHelper.request(.POST, url: ROUTERS.CREATE_ORDER, parameters: params as? [String : AnyObject])
+    }
+    
+    static func getOrders(user_id: String) -> Observable<JSON> {
+        let url = String(format: ROUTERS.GET_ORDERS, user_id)
+        return apiHelper.request(.GET, url: url)
     }
 }

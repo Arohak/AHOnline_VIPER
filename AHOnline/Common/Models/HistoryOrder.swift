@@ -8,6 +8,7 @@
 
 class HistoryOrder: Object {
     
+    dynamic var id = 0
     dynamic var title: String!
     dynamic var dateCreate: String!
     dynamic var mobileNumber: String!
@@ -19,17 +20,19 @@ class HistoryOrder: Object {
     dynamic var ordersTotalPrice = 0.0
     dynamic var deliveryPrice = 0.0
     dynamic var totalPrice = 0.0
+    dynamic var isVerified = false
 
     var historyProducts = List<HistoryProduct>()
     
 
     override static func primaryKey() -> String {
-        return "dateCreate"
+        return "id"
     }
     
     convenience init(data: JSON) {
         self.init()
 
+        self.id                 = data["id"].intValue
         self.title              = data["title"].stringValue
         self.dateCreate         = data["date_create"].stringValue
         self.mobileNumber       = data["mobile_number"].stringValue
@@ -41,6 +44,12 @@ class HistoryOrder: Object {
         self.ordersTotalPrice   = data["orders_total_price"].doubleValue
         self.deliveryPrice      = data["delivery_price"].doubleValue
         self.totalPrice         = data["total_price"].doubleValue
+        self.isVerified         = data["is_verified"].boolValue
+        
+        historyProducts.removeAll()
+        for historyProduct in data["historyproducts"].arrayValue {
+            historyProducts.append(HistoryProduct(data: historyProduct))
+        }
     }
     
     func addHistoryProductFrom(products: List<Product>) {

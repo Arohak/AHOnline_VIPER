@@ -37,7 +37,7 @@ class ObjectsView: BaseView {
     //MARK: - Private Methods -
     private func addAllUIElements() {
         addSubview(tableView)
-        addSubview(refresh)
+        tableView.addSubview(refresh)
         
         setConstraints()
     }
@@ -45,6 +45,6 @@ class ObjectsView: BaseView {
     //MARK: - Constraints -
     func setConstraints() {
         tableView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: NAV_HEIGHT, left: 0, bottom: TAB_HEIGHT, right: 0))
-        refresh.setMarginTop(NAV_HEIGHT)
+        refresh.setMarginTop(0)
     }
 }

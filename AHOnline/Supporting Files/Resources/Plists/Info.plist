@@ -52,5 +52,9 @@
 	<string>App use Locations service mode In Use</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>By accessing your location, this app can nearest events and draw route.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Verdana.ttf</string>
+	</array>
 </dict>
 </plist>

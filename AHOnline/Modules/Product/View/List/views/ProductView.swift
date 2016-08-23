@@ -36,7 +36,7 @@ class ProductView: BaseView {
     //MARK: - Private Methods -
     private func addAllUIElements() {
         addSubview(collectionView)
-        addSubview(refresh)
+        collectionView.addSubview(refresh)
         
         setConstraints()
     }
@@ -44,6 +44,6 @@ class ProductView: BaseView {
     //MARK: - Constraints -
     func setConstraints() {
         collectionView.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: NAV_HEIGHT, left: 0, bottom: TAB_HEIGHT, right: 0))
-        refresh.setMarginTop(NAV_HEIGHT)
+        refresh.setMarginTop(0)
     }
 }

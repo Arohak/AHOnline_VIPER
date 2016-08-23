@@ -84,6 +84,8 @@ let CA_TITLE_FONT                       = UIFont.boldSystemFontOfSize(DeviceType
 let CAC_TITLE_FONT                      = UIFont.boldSystemFontOfSize(DeviceType.IS_IPAD ? 22       * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 22     : DeviceType.IS_IPHONE_6 ? 22   * IPHONE_6_SCALE : 22   * IPHONE_5_SCALE)
 let DESC_FONT                           = UIFont.boldSystemFontOfSize(DeviceType.IS_IPAD ? 12       * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 12     : DeviceType.IS_IPHONE_6 ? 12   * IPHONE_6_SCALE : 12   * IPHONE_5_SCALE)
 let LINK_FONT                           = UIFont.systemFontOfSize(DeviceType.IS_IPAD ? 14           * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 14     : DeviceType.IS_IPHONE_6 ? 14   * IPHONE_6_SCALE : 14   * IPHONE_5_SCALE)
+let DRAM_FONT                           = UIFont(name: "Verdana", size: DeviceType.IS_IPAD ? 14           * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 14     : DeviceType.IS_IPHONE_6 ? 14   * IPHONE_6_SCALE : 14   * IPHONE_5_SCALE)
+
 
 //MARK: - Verify Constants -
 let VE_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE

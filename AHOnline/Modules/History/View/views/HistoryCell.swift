@@ -58,6 +58,7 @@ class HistoryCellContentView: UIView {
     
     lazy var priceLabel: HOLabel = {
         let view = HOLabel.newAutoLayoutView()
+//        view.font = DRAM_FONT
         
         return view
     }()

@@ -38,6 +38,8 @@ extension HistoryViewController: HistoryViewInput {
     
     func setupInitialState(historyOrders: [HistoryOrder]) {
         self.historyOrders = historyOrders
+        
+        historyView.tableView.reloadData()
     }
 }
 

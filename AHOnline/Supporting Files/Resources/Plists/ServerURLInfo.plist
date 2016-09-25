@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>port</key>
+	<string>8443</string>
+	<key>IP</key>
+	<string>217.113.4.243</string>
+	<key>sharedIP</key>
+	<string>217.113.4.243</string>
+	<key>Levon&apos;sPort</key>
+	<string>8086</string>
+	<key>Levon&apos;sIP</key>
+	<string>10.1.6.135</string>
+</dict>
+</plist>

@@ -1,0 +1,106 @@
+// All
+"ok"                    = "Ok";
+"cancel"                = "Отмена";
+"save"                  = "Сохранить";
+"close"                 = "Закрыть";
+"loading"               = "Загрузка ... ";
+
+// Tab Bar
+"home"                  = "Главная";
+"categories"            = "Категории";
+"cart"                  = "Корзина";
+"map"                   = "Карта";
+"profile"               = "Профиль";
+
+// Mobile Verify
+"verify"                = "Верификация Телефон";
+"phone"                 = "Телефон";
+"send"                  = "Отправить";
+"accept"                = "Принимать";
+"pin"                   = "Пин-код";
+
+// Delivery Address
+"delivery_address"      = "Адрес Доставки";
+"country"               = "Страна";
+"city"                  = "Город";
+"address"               = "Адрес";
+
+// Home
+"new_restaurants"       = "Новые Рестораны";
+"open_restaurants"      = "Открытые Рестораны";
+"rate_restaurants"      = "Рейтинговые Рестораны";
+"new_products"          = "Новые Продукты";
+"sale_products"         = "Скидки Продукты";
+"search_message"        = "Поиск по тексту мин 3";
+"type"                  = "Тип";
+"sort"                  = "Сортировка";
+"kitchen"               = "Кухня";
+"restaurant"            = "Ресторан";
+"product"               = "Продукт";
+"alphabet"              = "Алфавит";
+"new"                   = "Новый";
+"favorite"              = "Фаворит";
+"best"                  = "Лучший";
+"best_offer"            = "Лучшее предложение";
+"eastern"               = "Восточный";
+"european"              = "Европейский";
+"armenia"               = "Армения";
+"georgian"              = "Грузинский";
+"italian"               = "Итальянский";
+"french"                = "Французский";
+"greek"                 = "Греческий";
+"american"              = "Американский";
+"mexican"               = "Мексиканский";
+
+// Categories
+
+// Cart
+"edit"                  = "Редактировать";
+"clear"                 = "Очистить";
+"clear_cart"            = "Очистить корзину";
+"clear_message"         = "Вы хотите очистить корзину?";
+"order"                 = "ЗАКАЗАТЬ";
+"delivery"              = "ДОСТАВКА";
+"payment"               = "ОПЛАТА";
+"mobile_number"         = "Мобильный телефон";
+"delivery_address"      = "Адрес доставки";
+"delivery_address_pl"   = "улица, квартира, дом";
+"cart_call"             = "Мобильный телефон";
+"cart_address"          = "Адрес";
+"cart_city"             = "Выберите город";
+"cart_time"             = "Выберите время";
+"pay_on_delivery"       = "Заплатить при получении";
+"credit_cart"           = "Кредит карта";
+"paypal"                = "Пайпал";
+"max_message"           = "максимум количество 9";
+"payment_title"         = "Оплата:  ";
+"price"                 = "Стоимость:  ";
+"total_price"           = "Общая стоимость:  ";
+"order_price"           = "Стоимость Заказа:  ";
+"delivery_price"        = "Перевозка:  ";
+"invalid_params"        = "Пожалуйста, заполните необходимые поля";
+"place_order"           = "РАЗМЕСТИТЬ ЗАКАЗ";
+"place_order_msg"       = "Вы уверены, что разместить этот заказ?";
+"please_add_order"      = "Пожалуйста добавьте заказ";
+
+// Map
+"distance"              = "Расстояние";
+"km"                    = "КМ";
+
+// Account
+"history"               = "История";
+"settings"              = "Настройки";
+"favorite"              = "Фаворит";
+"language"              = "Язык";
+"notification"          = "Уведомление";
+"contact_us"            = "Обратная связь";
+"help"                  = "Помощь";
+"guest"                 = "Гость";
+"manage_address"        = "Управление Адрес Доставки";
+"manage_number"         = "Управление Номер Телефона";
+
+// Restaurant
+"restaurants"           = "Рестораны";
+
+// Product
+"products"              = "Продукты";

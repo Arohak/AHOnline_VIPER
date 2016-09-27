@@ -43,7 +43,7 @@ class AccountHeaderView: UIView {
     
     let favoriteButton: HOButton = {
         let view = HOButton.newAutoLayout()
-        view.setBackgroundImage(UIImage(named: "img_acc_favorite"), for: .normal)
+        view.setBackgroundImage(UIImage(named: "img_favorites_selected"), for: .normal)
 
         return view
     }()
@@ -113,7 +113,7 @@ class AccountHeaderView: UIView {
         
         favoriteButton.autoPinEdge(.top, to: .bottom, of: titleLabel, withOffset: AC_INSET)
         favoriteButton.autoAlignAxis(.vertical, toSameAxisOf: bgImageView, withOffset: AC_HEIGHT)
-        favoriteButton.autoSetDimensions(to: CGSize(width: AC_BTN_SIZE*0.3, height: AC_BTN_SIZE*0.3))
+        favoriteButton.autoSetDimensions(to: CGSize(width: AC_BTN_SIZE*0.3, height: AC_BTN_SIZE*0.3*0.9))
         
         favoriteLabel.autoPinEdge(.top, to: .bottom, of: favoriteButton, withOffset: 0)
         favoriteLabel.autoAlignAxis(.vertical, toSameAxisOf: favoriteButton)

@@ -126,7 +126,7 @@ class ProductCellContentView: UIView {
         
         favoriteButton.autoPinEdge(toSuperviewEdge: .right, withInset: PR_INSET)
         favoriteButton.autoPinEdge(toSuperviewEdge: .bottom, withInset: 0)
-        favoriteButton.autoSetDimensions(to: CGSize(width: PR_INSET*3, height: PR_INSET*3))
+        favoriteButton.autoSetDimensions(to: CGSize(width: PR_INSET*3, height: PR_INSET*3*0.9))
         
         nameLabel.autoPinEdge(.bottom, to: .top, of: addButton, withOffset: -PR_INSET)
         nameLabel.autoPinEdge(toSuperviewEdge: .left, withInset: PR_INSET)

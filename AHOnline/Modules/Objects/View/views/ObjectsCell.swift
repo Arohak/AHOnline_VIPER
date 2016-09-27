@@ -6,6 +6,8 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
+import Cosmos
+
 class ObjectsCell: BaseTableViewCell {
     
     //MARK: - Create UIElements -
@@ -57,14 +59,25 @@ class ObjectsCellContentView: UIView {
         return view
     }()
     
+    lazy var openImageView: UIImageView = {
+        let view = UIImageView.newAutoLayout()
+        
+        return view
+    }()
+    
     lazy var openLabel: DescLabel = {
         let view = DescLabel.newAutoLayout()
         
         return view
     }()
     
-    lazy var rateLabel: DescLabel = {
-        let view = DescLabel.newAutoLayout()
+    lazy var cosmosView: CosmosView = {
+        let view = CosmosView.newAutoLayout()
+        view.settings.updateOnTouch = false
+        view.settings.filledColor = RED
+        view.settings.emptyBorderColor = RED
+        view.settings.filledBorderColor = RED
+        view.settings.starSize = Double(OB_IMG_SIZE)
         
         return view
     }()
@@ -91,8 +104,9 @@ class ObjectsCellContentView: UIView {
         addSubview(imageView)
         addSubview(nameLabel)
         addSubview(descLabel)
+        addSubview(openImageView)
         addSubview(openLabel)
-        addSubview(rateLabel)
+        addSubview(cosmosView)
 
         setConstraints()
     }
@@ -113,20 +127,32 @@ class ObjectsCellContentView: UIView {
         descLabel.autoPinEdge(.top, to: .bottom, of: nameLabel, withOffset: OB_INSET/2)
         descLabel.autoPinEdge(toSuperviewEdge: .right, withInset: OB_INSET)
         
-        openLabel.autoPinEdge(.top, to: .bottom, of: descLabel, withOffset: OB_INSET)
+        openImageView.autoPinEdge(.left, to: .right, of: imageView, withOffset: OB_INSET)
+        openImageView.autoPinEdge(.top, to: .bottom, of: descLabel, withOffset: OB_INSET)
+        openImageView.autoSetDimensions(to: CGSize(width: OB_IMG_SIZE, height: OB_IMG_SIZE))
+
+        openLabel.autoAlignAxis(.horizontal, toSameAxisOf: openImageView)
+        openLabel.autoPinEdge(.left, to: .right, of: openImageView, withOffset: OB_INSET)
         openLabel.autoPinEdge(toSuperviewEdge: .bottom, withInset: OB_INSET)
-        openLabel.autoPinEdge(toSuperviewEdge: .right, withInset: OB_INSET)
         
-        rateLabel.autoAlignAxis(.horizontal, toSameAxisOf: openLabel)
-        rateLabel.autoPinEdge(.right, to: .left, of: openLabel, withOffset: -OB_INSET)
+        cosmosView.autoAlignAxis(.horizontal, toSameAxisOf: openImageView)
+        cosmosView.autoPinEdge(toSuperviewEdge: .right, withInset: OB_INSET)
     }
     
     //MARK: - Public Methods -
     func setValues(object: AHObject)  {
         imageView.af_setImage(withURL: URL(string: object.src)!, placeholderImage: UIImage(named: "img_empty"))
-        nameLabel.text = object.label
-        descLabel.text = object.desc
-        openLabel.text = "Time:  " + object.openTime.shortTime + " - " + object.closeTime.shortTime
-        rateLabel.text = "Rate:  " + "\(object.rate)"
+        nameLabel.text      = object.label
+        descLabel.text      = object.desc
+        openLabel.text      = object.openTime.shortTime + " - " + object.closeTime.shortTime
+        cosmosView.rating   = Double(object.rate)
+        
+        if object.status == "open" {
+            openImageView.image = UIImage(named: "img_clock_select")
+            openLabel.textColor = GREEN
+        } else {
+            openImageView.image = UIImage(named: "img_clock")
+            openLabel.textColor = RED
+        }
     }
 }

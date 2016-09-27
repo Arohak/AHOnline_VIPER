@@ -41,7 +41,6 @@ let IPHONE_6_SCALE : CGFloat            = 667  / 736
 let IPAD_SCALE : CGFloat                = 1024 / 736
 
 //MARK: - All Colors -
-let GREEN                               = UIColor(red: 137/255,     green: 212/255,     blue: 57/255,       alpha: 1)
 let BLUE_LIGHT                          = UIColor(red: 51/255,      green: 204/255,     blue: 255/255,      alpha: 1)
 let XAKI                                = UIColor(red: 255/255,     green: 102/255,     blue: 51/255,       alpha: 1)
 let GRAY_164                            = UIColor(red: 164/255,     green: 164/255,     blue: 164/255,      alpha: 1)
@@ -52,6 +51,7 @@ let RED                                 = UIColor(red: 240/255,     green: 30/25
 let RED_LIGHT                           = UIColor(red: 232/255,     green: 114/255,     blue: 114/255,      alpha: 1)
 let RED_233                             = UIColor(red: 233/255,     green: 110/255,     blue: 110/255,      alpha: 1)
 let BLUE                                = UIColor(red: 24/255,      green: 75/255,      blue: 152/255,      alpha: 1)
+let GREEN                               = UIColor(red: 65/255,      green: 117/255,     blue: 5/255,        alpha: 1)
 let GRAY_239                            = UIColor(red: 242/255,     green: 242/255,     blue: 242/255,      alpha: 1)
 
 let BLACK                               = UIColor.black
@@ -109,6 +109,7 @@ let SB_CELL_WIDTH : CGFloat             = (ScreenSize.WIDTH - 6*SB_INSET)/3
 
 //MARK: - Objects Constants -
 let OB_INSET : CGFloat                  = DeviceType.IS_IPAD ? 10     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 10     : DeviceType.IS_IPHONE_6 ? 10   * IPHONE_6_SCALE : 10   * IPHONE_5_SCALE
+let OB_IMG_SIZE : CGFloat               = DeviceType.IS_IPAD ? 20     * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 20     : DeviceType.IS_IPHONE_6 ? 20   * IPHONE_6_SCALE : 20   * IPHONE_5_SCALE
 let OB_CELL_HEIGHT : CGFloat            = DeviceType.IS_IPAD ? 110    * IPAD_SCALE : DeviceType.IS_IPHONE_6P ? 110    : DeviceType.IS_IPHONE_6 ? 110  * IPHONE_6_SCALE : 110  * IPHONE_5_SCALE
 
 //MARK: - Product Constants -

@@ -108,6 +108,17 @@ struct DBManager {
         return products
     }
     
+    static func updatedProductInfo(product: Product) -> Product? {
+        let products = getProducts()
+        let findProduct = products.filter { $0.id == product.id }.first
+        try! realm.write {
+            if let findProduct = findProduct {
+                findProduct.name = product.name
+            }
+        }
+        return findProduct
+    }
+    
     static func updateFavoriteProduct(product: Product) {
         try! realm.write {
             let products = getFavoriteProducts()

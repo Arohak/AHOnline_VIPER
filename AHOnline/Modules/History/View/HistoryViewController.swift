@@ -37,7 +37,7 @@ class HistoryViewController: BaseViewController {
 extension HistoryViewController: HistoryViewInput {
     
     func setupInitialState(historyOrders: [HistoryOrder]) {
-        self.historyOrders = historyOrders
+        self.historyOrders = historyOrders.reversed()
         
         historyView.tableView.reloadData()
     }

@@ -7,9 +7,9 @@
 //
 
 enum RequestType: String {
-    case ID = "id"
-    case SEARCH = "search"
-    case FAVORITE = "favorite"
+    case DEFAULT    = "products"
+    case SEARCH     = "results"
+    case FAVORITE   = "favorites"
 }
 
 class ProductViewController: BaseViewController {
@@ -21,7 +21,7 @@ class ProductViewController: BaseViewController {
     internal var count: CGFloat              = 2
     internal var inset: CGFloat              = 5
     internal var products: [Product]         = []
-    internal var requestType                 = RequestType.ID
+    internal var requestType                 = RequestType.DEFAULT
     internal var search                      = ""
     internal var id                          = ""
     internal var limit                       = LIMIT
@@ -39,12 +39,17 @@ class ProductViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        productView.collectionView.reloadData()
+        switch requestType {
+        case .FAVORITE:
+            getProducts()
+
+        default:
+            productView.collectionView.reloadData()
+        }
     }
     
     override func updateLocalizedStrings() {
-        
-        navigationItem.title = "products".localizedString
+        title = requestType.rawValue.localizedString
     }
     
     //MARK: -  Internal Methods -
@@ -93,7 +98,7 @@ class ProductViewController: BaseViewController {
     }
     
     //MARK: - Public Methods -
-    func setParams(requestType: RequestType = .ID, id: String = "", search: String = "", count: CGFloat = 2, inset: CGFloat = 5) {
+    func setParams(requestType: RequestType = .DEFAULT, id: String = "", search: String = "", count: CGFloat = 2, inset: CGFloat = 5) {
         self.requestType    = requestType
         self.id             = id
         self.search         = search
@@ -142,19 +147,13 @@ extension ProductViewController: ProductViewInput {
     }
     
     func updateProduct(product: Product) {
-        let row = products.index(of: product)!
-        let indexPath = IndexPath(row: row, section: 0)
-        
         switch requestType {
         case .FAVORITE:
-            productView.collectionView.performBatchUpdates({ 
-                self.products.remove(at: row)
-                self.productView.collectionView.deleteItems(at: [indexPath])
-                }, completion: { finish in
-                    self.productView.collectionView.reloadData()
-            })
+            deleteFavorite(product: product)
 
         default:
+            let row = products.index(of: product)!
+            let indexPath = IndexPath(row: row, section: 0)
             let cell = productView.collectionView.cellForItem(at: indexPath) as! ProductCell
             cell.cellContentView.favoriteButton.isSelected = !cell.cellContentView.favoriteButton.isSelected
         }
@@ -168,6 +167,18 @@ extension ProductViewController: ProductViewInput {
         
         productView.collectionView.showsInfiniteScrolling = newProducts.count < limit ? false : true
         UIHelper.insertRowsInCollection(collectionView: productView.collectionView, objects: newProducts, inObjects: &products, reversable: false)
+    }
+    
+    private func deleteFavorite(product: Product) {
+        let row = products.index(of: product)!
+        let indexPath = IndexPath(row: row, section: 0)
+        
+        productView.collectionView.performBatchUpdates({
+            self.products.remove(at: row)
+            self.productView.collectionView.deleteItems(at: [indexPath])
+            }, completion: { finish in
+                self.productView.collectionView.reloadData()
+        })
     }
 }
 

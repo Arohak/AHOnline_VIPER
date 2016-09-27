@@ -11,6 +11,8 @@ class MapView: BaseView {
     //MARK: - Create UIElements -
     lazy var tableView: BaseTableView = {
         let view = BaseTableView(frame: CGRect.zero, style: .plain)
+        view.estimatedRowHeight = 44
+        view.rowHeight = UITableViewAutomaticDimension
         
         return view
     }()

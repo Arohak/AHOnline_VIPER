@@ -34,8 +34,7 @@ extension ProductInteractor: ProductInteractorInput {
                     for item in result["data"].arrayValue {
                         let product = Product(data: item)
                         
-                        let findStoredProduct = self.storedProducts.filter { $0.id == product.id }.first
-                        if let findStoredProduct = findStoredProduct {
+                        if let findStoredProduct = DBManager.updatedProductInfo(product: product) {
                             products.append(findStoredProduct)
                         } else {
                             products.append(product)

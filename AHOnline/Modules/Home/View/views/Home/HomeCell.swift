@@ -77,10 +77,7 @@ class HomeCellContentView: UIView {
     
     lazy var seellAllButton: HOButton = {
         let view = HOButton.newAutoLayout()
-        view.setTitle("see_all".localizedString, for: .normal)
-        view.setBackgroundImage(UIImage(named: "img_result"), for: .normal)
-        view.setTitleColor(GRAY, for: .normal)
-        view.titleLabel?.font = TITLE_BTN_FONT
+        view.setBackgroundImage(UIImage(named: "img_more"), for: .normal)
         
         return view
     }()
@@ -130,9 +127,9 @@ class HomeCellContentView: UIView {
         addSubview(seellAllButton)
         titleLabel.text = text
 
-        seellAllButton.autoPinEdge(toSuperviewEdge: .top, withInset: HO_INSET*2)
+        seellAllButton.autoAlignAxis(.horizontal, toSameAxisOf: titleLabel)
         seellAllButton.autoPinEdge(toSuperviewEdge: .right, withInset: HO_INSET*2)
-        seellAllButton.autoSetDimensions(to: CGSize(width: VE_HEIGHT*2, height: VE_HEIGHT*0.7))
+        seellAllButton.autoSetDimensions(to: CGSize(width: HO_INSET*4.6*0.6, height: HO_INSET*0.6))
 
         titleLabel.autoPinEdge(toSuperviewEdge: .top, withInset: HO_INSET*2)
         titleLabel.autoPinEdge(toSuperviewEdge: .left, withInset: HO_INSET*2)
@@ -185,7 +182,6 @@ class HomeCellContentView: UIView {
 extension HomeCellContentView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return collectionItems.count
     }
     
@@ -203,12 +199,10 @@ extension HomeCellContentView: UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         return collectionSize
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        
         return collectionInsets
     }
 }

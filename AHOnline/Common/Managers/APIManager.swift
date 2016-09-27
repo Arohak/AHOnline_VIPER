@@ -120,7 +120,7 @@ struct APIManager {
         var URL = ""
         
         switch requestType {
-        case .ID:
+        case .DEFAULT:
             firstParam = json["id"].stringValue
             URL = ROUTERS.GET_PRODUCTS
             

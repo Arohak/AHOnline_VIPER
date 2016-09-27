@@ -142,10 +142,8 @@ class OrderCellContentView: UIView {
     //MARK: - Public Methods -
     func setValues(state: Bool, product: Product)  {
         imageView.af_setImage(withURL: URL(string: product.src)!, placeholderImage: UIImage(named: "img_empty"))
-        nameLabel.text          = product.name
-        priceLabel.text         = "price".localizedString + "\(product.price.format)".dram
-        totalPriceLabel.text    = "\((product.price * Double(product.countBuy)).format)".dram
-        textField.text          = "\(product.countBuy)"
+        nameLabel.text  = product.name
+        priceLabel.text = "price".localizedString + "\(product.price.format)".dram
 
         updateValues(state: state, product: product)
     }
@@ -159,5 +157,7 @@ class OrderCellContentView: UIView {
         } else {
             countLabel.text = ""
         }
+        textField.text          = "\(product.countBuy)"
+        totalPriceLabel.text    = "\((product.price * Double(product.countBuy)).format)".dram
     }
 }

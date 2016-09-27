@@ -1,4 +1,5 @@
 // All
+"caption"               = "Buy Online";
 "ok"                    = "Լավ";
 "cancel"                = "Չեղարկել";
 "save"                  = "Պահպանել";
@@ -26,7 +27,6 @@
 "address"               = "Հասցե";
 
 // Home
-"see_all"               = "See All";
 "new_restaurants"       = "Նոր Ռեստորաններ";
 "open_restaurants"      = "Բաց Ռեստորաններ";
 "rate_restaurants"      = "Ռեյտինգով Ռեստորաններ";
@@ -81,8 +81,9 @@
 "delivery_price"        = "Առաքման գինը:  ";
 "invalid_params"        = "Խնդրում ենք լրացնել պահանջվող դաշտերը";
 "place_order"           = "ԿԱՏԱՐԵԼ ՊԱՏՎԵՐ";
-"place_order_msg"       = "Դուք համոզված եք կատարել այս պատվերը?";
+"place_order_msg"       = "Դուք ցանկանում եք հաստատել այս պատվերը?";
 "please_add_order"      = "Խնդրում ենք ընտրել Ապրանք";
+"send_verify_message"   = "Պին կոդը արդեն ուղարկվել է Ձեր հեռախոսահամարին. Խնդրում ենք լրացնել այն ստորեւ.";
 
 // Map
 "distance"              = "Հեռու";
@@ -105,3 +106,5 @@
 
 // Product
 "products"              = "Ապրանքներ";
+"results"               = "Ապրանքներ";
+"favorites"             = "Ֆավորիտներ";

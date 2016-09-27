@@ -29,8 +29,8 @@ class CartViewController: BaseViewController {
         }
         return Cart(data: JSON.null)
     }
-    internal var products: List<Product> {
-        return cart.products
+    internal var products: [Product] {
+        return Array(cart.products).reversed()
     }
     
     // MARK: - Life cycle -
@@ -189,7 +189,7 @@ class CartViewController: BaseViewController {
     }
     
     internal func placeOrder() {
-        let alert = UIAlertController(title: "place_order_msg".localizedString, message: "".localizedString, preferredStyle: .alert)
+        let alert = UIAlertController(title: "caption".localizedString, message: "place_order_msg".localizedString, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "cancel".localizedString, style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "ok".localizedString, style: .destructive, handler: { _ in
             let json = JSON([
@@ -221,7 +221,7 @@ class CartViewController: BaseViewController {
     }
     
     func clearAction() {
-        let alert =  UIAlertController(title: "clear_message".localizedString, message: "".localizedString, preferredStyle: .alert)
+        let alert =  UIAlertController(title: "caption".localizedString, message: "clear_message".localizedString, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "cancel".localizedString, style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "ok".localizedString, style: .default, handler: { _ in
             self.output.removeOrders()
@@ -287,7 +287,7 @@ extension CartViewController: CartViewInput {
     }
     
     func showAlertForVerify() {
-        let alert = UIAlertController(title: "verify".localizedString, message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "verify".localizedString, message: "send_verify_message".localizedString, preferredStyle: .alert)
         alert.addTextField { textField in
             textField.keyboardAppearance = .dark
             textField.placeholder = "pin".localizedString
@@ -346,9 +346,9 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let product = products[indexPath.row]
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire[0]) as! OrderCell
             cell.cellContentView.textField.delegate = self
+            let product = products[indexPath.row]
             cell.setValues(state: isEditing, product: product)
 
             return cell

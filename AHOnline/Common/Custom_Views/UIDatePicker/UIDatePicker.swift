@@ -35,6 +35,8 @@ class DatePickerView: UIView {
     lazy var saveButton: HOButton = {
         let view = HOButton.newAutoLayout()
         view.setTitle("save".localizedString, for: .normal)
+        view.setTitleColor(WHITE, for: .normal)
+        view.titleLabel?.font = TITLE_FONT
         view.addTarget(self, action: #selector(save), for: .touchUpInside)
         
         return view
@@ -42,7 +44,9 @@ class DatePickerView: UIView {
     
     lazy var cancelButton: HOButton = {
         let view = HOButton.newAutoLayout()
-        view.setTitle("Cancel".localizedString, for: .normal)
+        view.setTitle("cancel".localizedString, for: .normal)
+        view.setTitleColor(WHITE, for: .normal)
+        view.titleLabel?.font = TITLE_FONT
         view.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         
         return view

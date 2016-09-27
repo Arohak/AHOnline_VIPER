@@ -251,9 +251,10 @@ class DeliveryPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSo
             return view
         }()
         
-        let priceLabel: UILabel = {
-            let view = UILabel.newAutoLayout()
-            view.text = "\(deliveries[row].price)"
+        let priceLabel: HOLabel = {
+            let view = HOLabel.newAutoLayout()
+            view.font = PK_DRAM_FONT
+            view.text = "\(deliveries[row].price.format)".dram
             
             return view
         }()

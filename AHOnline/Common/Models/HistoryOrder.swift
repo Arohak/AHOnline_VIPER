@@ -24,7 +24,6 @@ class HistoryOrder: Object {
 
     var historyProducts = List<HistoryProduct>()
     
-
     override static func primaryKey() -> String {
         return "id"
     }
@@ -52,7 +51,7 @@ class HistoryOrder: Object {
         }
     }
     
-    func addHistoryProductFrom(products: List<Product>) {
+    func addHistoryProductFrom(products: [Product]) {
         for product in products {
             let historyProduct = HistoryProduct(data: JSON([
                 "id"            : product.id,

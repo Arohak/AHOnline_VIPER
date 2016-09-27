@@ -91,7 +91,7 @@ class HomeViewController: BaseViewController {
     
     func seeAllButtonAction(sender: HOButton) {
         var type: ObjectsType = .New
-        switch sender.indexPath.section {
+        switch sender.indexPath.row {
         case 0:
             type = .New
         case 1:

@@ -44,14 +44,14 @@ struct UIHelper {
     }
     
     static func showAlert(message: String) {
-        let alertController = UIAlertController(title: "AHOnline", message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        let alertController = UIAlertController(title: "caption".localizedString, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "ok".localizedString, style: .cancel, handler: nil))
         Wireframe.presentViewController(vc: alertController)
     }
     
     static func showAlertHandler(message: String, handler: ((UIAlertAction) -> Void)?) {
-        let alertController = UIAlertController(title: "AHOnline", message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: handler))
+        let alertController = UIAlertController(title: "caption".localizedString, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "ok".localizedString, style: .cancel, handler: handler))
         Wireframe.presentViewController(vc: alertController)
     }
     

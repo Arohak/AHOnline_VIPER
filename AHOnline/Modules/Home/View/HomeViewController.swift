@@ -71,25 +71,10 @@ class HomeViewController: BaseViewController {
         homeView.carousel.scrollToItem(at: homeView.carousel.currentItemIndex + 1, animated: true)
     }
     
-    //MARK: - CallBacks Methods -
+    //MARK: - CallBacks didSelectCollectionAtIndexPath Method -
     func didSelectCollectionAtIndexPath(indexPath: IndexPath) {
         let object = items[indexPath.section][indexPath.row]
-        if object.id != 0 {
-            output.didSelectObject(object: object)
-        } else {
-            var type: ObjectsType = .New
-            switch indexPath.section {
-            case 0:
-                type = .New
-            case 1:
-                type = .Rate
-            case 2:
-                type = .Open
-            default:
-                break
-            }
-            output.didSelectObjectForType(type: type)
-        }
+        output.didSelectObject(object: object)
     }
     
     //MARK: - Actions -
@@ -102,6 +87,22 @@ class HomeViewController: BaseViewController {
 
     func filterAction() {
         animationFilterView()
+    }
+    
+    func seeAllButtonAction(sender: HOButton) {
+        var type: ObjectsType = .New
+        switch sender.indexPath.section {
+        case 0:
+            type = .New
+        case 1:
+            type = .Rate
+        case 2:
+            type = .Open
+        default:
+            break
+        }
+        
+        output.didSelectObjectForType(type: type)
     }
     
     //MARK: - Animation -
@@ -150,13 +151,9 @@ extension HomeViewController: HomeViewInput {
         items.append([AHObject]())
         items.append([AHObject]())
         
-        let existRestaurant = AHObject(data: JSON(["img" : "img_see_all"]))
         items[0] = Array(home.newRestaurants)
-        items[0].append(existRestaurant)
         items[1] = Array(home.rateRestaurants)
-        items[1].append(existRestaurant)
         items[2] = Array(home.openRestaurants.reversed())
-        items[2].append(existRestaurant)
         
         homeView.tableView.reloadData()
     }
@@ -172,7 +169,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire) as! HomeCell
-        cell.setValues(section: indexPath.row,
+        cell.cellContentView.seellAllButton.addTarget(self, action: #selector(seeAllButtonAction(sender:)), for: .touchUpInside)
+        cell.setValues(indexPath: indexPath,
                        title:   titles[indexPath.row],
                        desc:    descs[indexPath.row],
                        items:   items[indexPath.row],

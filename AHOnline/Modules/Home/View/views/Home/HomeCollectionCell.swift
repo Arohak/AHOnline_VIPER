@@ -94,16 +94,8 @@ class HomeCollectionCellContentView: UIView {
     
     //MARK: - Public Methods -
     func setValues(restaurant: AHObject) {
-        if restaurant.img.isEmpty {
-            imageView.isHidden = false
-            imageView.af_setImage(withURL: URL(string: restaurant.src)!, placeholderImage: UIImage(named: "img_empty"))
-            nameLabel.text = restaurant.label
-            
-        } else {
-            imageView.isHidden = true
-            bgImageView.image = UIImage(named: restaurant.img)
-            nameLabel.text = ""
-        }
+        imageView.af_setImage(withURL: URL(string: restaurant.src)!, placeholderImage: UIImage(named: "img_empty"))
+        nameLabel.text = restaurant.label
     }
 }
 

@@ -26,7 +26,7 @@ class HomeCell: BaseTableViewCell {
         cellContentView.autoPinEdgesToSuperviewEdges()
     }
     
-    func setValues(section: Int,
+    func setValues(indexPath: IndexPath,
                    title: String,
                    desc: String,
                    items: [AHObject],
@@ -34,7 +34,7 @@ class HomeCell: BaseTableViewCell {
                    inset: CGFloat = 0,
                    callBack: @escaping CollectionCallback) {
         
-        cellContentView.setValues(section: section, title: title, desc: desc, items: items, height: height, inset: inset, callBack: callBack)
+        cellContentView.setValues(indexPath: indexPath, title: title, desc: desc, items: items, height: height, inset: inset, callBack: callBack)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -72,6 +72,16 @@ class HomeCellContentView: UIView {
         view.numberOfLines = 0
         view.textAlignment = .center
 
+        return view
+    }()
+    
+    lazy var seellAllButton: HOButton = {
+        let view = HOButton.newAutoLayout()
+        view.setTitle("see_all".localizedString, for: .normal)
+        view.setBackgroundImage(UIImage(named: "img_result"), for: .normal)
+        view.setTitleColor(GRAY, for: .normal)
+        view.titleLabel?.font = TITLE_BTN_FONT
+        
         return view
     }()
     
@@ -117,11 +127,15 @@ class HomeCellContentView: UIView {
     //MARK: - Private Methods -
     private func setupTitle(text: String) {
         addSubview(titleLabel)
+        addSubview(seellAllButton)
         titleLabel.text = text
 
+        seellAllButton.autoPinEdge(toSuperviewEdge: .top, withInset: HO_INSET*2)
+        seellAllButton.autoPinEdge(toSuperviewEdge: .right, withInset: HO_INSET*2)
+        seellAllButton.autoSetDimensions(to: CGSize(width: VE_HEIGHT*2, height: VE_HEIGHT*0.7))
+
         titleLabel.autoPinEdge(toSuperviewEdge: .top, withInset: HO_INSET*2)
-        titleLabel.autoPinEdge(toSuperviewEdge: .left, withInset: HO_INSET)
-        titleLabel.autoPinEdge(toSuperviewEdge: .right, withInset: HO_INSET)
+        titleLabel.autoPinEdge(toSuperviewEdge: .left, withInset: HO_INSET*2)
     }
     
     private func setupDescription(text: String) {
@@ -144,7 +158,7 @@ class HomeCellContentView: UIView {
     }
     
     //MARK: - Public Methods -
-    func setValues(section: Int,
+    func setValues(indexPath: IndexPath,
                    title: String,
                    desc: String,
                    items: [AHObject],
@@ -155,13 +169,14 @@ class HomeCellContentView: UIView {
         
         if !title.isEmpty { setupTitle(text: title) }
         if !desc.isEmpty { setupDescription(text: desc) }
+        seellAllButton.indexPath = indexPath
         setupCollectionView()
         
         collectionItems = items
         collectionSize = CGSize(width: height, height: height*0.7)
         collectionInsets = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
         
-        self.section = section
+        self.section = indexPath.row
         self.callBack = callBack
     }
 }

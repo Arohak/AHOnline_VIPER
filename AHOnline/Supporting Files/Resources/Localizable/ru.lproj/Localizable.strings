@@ -26,6 +26,7 @@
 "address"               = "Адрес";
 
 // Home
+"see_all"               = "Видеть все!";
 "new_restaurants"       = "Новые Рестораны";
 "open_restaurants"      = "Открытые Рестораны";
 "rate_restaurants"      = "Рейтинговые Рестораны";

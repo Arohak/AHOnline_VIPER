@@ -26,6 +26,7 @@
 "address"               = "Հասցե";
 
 // Home
+"see_all"               = "See All";
 "new_restaurants"       = "Նոր Ռեստորաններ";
 "open_restaurants"      = "Բաց Ռեստորաններ";
 "rate_restaurants"      = "Ռեյտինգով Ռեստորաններ";

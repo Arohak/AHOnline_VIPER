@@ -26,6 +26,7 @@
 "address"               = "Address";
 
 // Home
+"see_all"               = "See all!";
 "new_restaurants"       = "New Restaurants";
 "open_restaurants"      = "Open Restaurants";
 "rate_restaurants"      = "Rate Restaurants";

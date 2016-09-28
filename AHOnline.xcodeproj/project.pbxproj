@@ -3075,7 +3075,7 @@
 				TargetAttributes = {
 					529E136B1D95A94C00927DEF = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = WK8C7HUHMZ;
+						DevelopmentTeam = 2H6Z4ZE4U8;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
@@ -3917,12 +3917,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = WK8C7HUHMZ;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2H6Z4ZE4U8;
 				INFOPLIST_FILE = "$(SRCROOT)/AHOnline/Supporting Files/Resources/Plists/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arohak.AHOnline;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/AHOnline/Supporting Files/Settings/AHOnline-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -3935,12 +3938,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = WK8C7HUHMZ;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2H6Z4ZE4U8;
 				INFOPLIST_FILE = "$(SRCROOT)/AHOnline/Supporting Files/Resources/Plists/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arohak.AHOnline;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/AHOnline/Supporting Files/Settings/AHOnline-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

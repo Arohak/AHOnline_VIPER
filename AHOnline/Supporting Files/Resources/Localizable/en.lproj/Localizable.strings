@@ -5,6 +5,7 @@
 "save"                  = "Save";
 "close"                 = "Close";
 "loading"               = "Loading ... ";
+"choose_date"            = "Choose Date";
 
 // Tab Bar
 "home"                  = "Home";
@@ -57,6 +58,7 @@
 
 // Cart
 "edit"                  = "Edit";
+"done"                  = "Done";
 "clear"                 = "Clear";
 "clear_cart"            = "Clear Cart";
 "clear_message"         = "Do you want to clear the cart?";

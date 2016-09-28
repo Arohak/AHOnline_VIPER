@@ -5,6 +5,7 @@
 "save"                  = "Պահպանել";
 "close"                 = "Փակել";
 "loading"               = "Բեռնում ... ";
+"choose_date"            = "Choose Date";
 
 // Tab Bar
 "home"                  = "Հիմնական";
@@ -57,6 +58,7 @@
 
 // Cart
 "edit"                  = "Խմբագրել";
+"done"                  = "Կատարված";
 "clear"                 = "Մաքրել";
 "clear_cart"            = "Մաքրել Զամբյուղը";
 "clear_message"         = "Դուք ուզում եք մաքրել զամբյուղը?";

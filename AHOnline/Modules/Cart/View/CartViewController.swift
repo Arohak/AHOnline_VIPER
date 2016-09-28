@@ -12,7 +12,7 @@ class CartViewController: BaseViewController {
     var output: CartViewOutput!
     
     internal var cartView = CartView()
-    internal var cleaButtonItem: UIBarButtonItem!
+    internal var clearButtonItem: UIBarButtonItem!
     internal let cellIdentifire                      = ["cellIdentifire1", "cellIdentifire2", "cellIdentifire3"]
     internal let heights: [CGFloat]                  = [CA_CELL_HEIGHT, CA_CELL_HEIGHT*0.6, CA_CELL_HEIGHT*0.6]
     internal var headers: [String]                   = []
@@ -38,8 +38,8 @@ class CartViewController: BaseViewController {
         super.viewDidLoad()
 
         navigationItem.setLeftBarButton(UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addAction)), animated: true)
-        cleaButtonItem = UIBarButtonItem(title: "clear".localizedString, style: .plain, target: self, action: #selector(clearAction))
-        navigationItem.rightBarButtonItems = [editButtonItem, cleaButtonItem]
+        clearButtonItem = UIBarButtonItem(title: "clear".localizedString, style: .plain, target: self, action: #selector(clearAction))
+        navigationItem.rightBarButtonItems = [editButtonItem, clearButtonItem]
         
         output.getDeliveries()
     }
@@ -74,8 +74,8 @@ class CartViewController: BaseViewController {
     }
 
     internal func setLocalizedStrings() {
-        cleaButtonItem.title    = "clear".localizedString
-        editButtonItem.title    = "edit".localizedString
+        clearButtonItem.title   = "clear".localizedString
+        editButtonItem.title    = isEditing ? "done".localizedString : "edit".localizedString
 
         headers                 = ["order".localizedString,
                                    "delivery".localizedString,
@@ -127,7 +127,7 @@ class CartViewController: BaseViewController {
         cartView.tableView.isHidden = (user?.cart?.products.count == 0 || user == nil) ? true : false
         cartView.footerView.isHidden = cartView.tableView.isHidden
         cartView.emptyView.isHidden = !cartView.tableView.isHidden
-        cleaButtonItem.isEnabled = !cartView.tableView.isHidden
+        clearButtonItem.isEnabled = !cartView.tableView.isHidden
         editButtonItem.isEnabled = !cartView.tableView.isHidden
     }
     
@@ -472,22 +472,30 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
                 
                 output.presentViewController(vc: actionSheet)
             case 3:
-                let datePicker = DatePickerViewController(date: NSDate() as Date) { date in
-                    self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = date.deliveryTimeFormat
-                    
-                    self.output.updateCart(phone: self.cart.mobileNumber,
-                                           address: self.cart.deliveryAddress,
-                                           city: self.cart.deliveryCity,
-                                           alias: self.cart.deliveryAlias,
-                                           deliveryPrice: self.cart.deliveryPrice,
-                                           date: date,
-                                           payment: self.cart.payment)
-                }
-                if let date = cart.deliveryDate {
-                    datePicker.pickerView.picker.setDate(date as Date, animated: true)
-                }
+                let selectedDate = cart.deliveryDate == nil ? Date() : cart.deliveryDate
+                let datePicker = ActionSheetDatePicker(title: "choose_date".localizedString,
+                                                       datePickerMode: .dateAndTime,
+                                                       selectedDate: selectedDate,
+                                                       doneBlock: { picker, value, index in
+                                                        
+                                                        let date = (value as! Date)
+                                                        self.deliveryCells[indexPath.row].cellContentView.deliveryLabel.text = date.deliveryTimeFormat
+                                                        self.output.updateCart(phone: self.cart.mobileNumber,
+                                                                               address: self.cart.deliveryAddress,
+                                                                               city: self.cart.deliveryCity,
+                                                                               alias: self.cart.deliveryAlias,
+                                                                               deliveryPrice: self.cart.deliveryPrice,
+                                                                               date: date,
+                                                                               payment: self.cart.payment)
+                            
+                                                        
+                    }, cancel: nil,
+                       origin: self.cartView)
                 
-                output.presentViewController(vc: datePicker)
+                datePicker?.minimumDate = Date()
+                datePicker?.locale = Locale(identifier: "en_GB")
+                datePicker?.show()
+
             default:
                 break
             }
@@ -550,6 +558,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         super.setEditing(editing, animated: animated)
         
         cartView.tableView.setEditing(editing, animated: animated)
+        editButtonItem.title = editing ? "done".localizedString : "edit".localizedString
     }
 }
 

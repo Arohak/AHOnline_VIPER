@@ -16,7 +16,7 @@ class ActionSheetPickerViewController: UIAlertController {
         
         title = nil
         message = "\n\n\n\n\n\n"
-        addAction(UIAlertAction(title: "cancel".localizedString, style: .cancel) { _ in })
+        addAction(UIAlertAction(title: "close".localizedString, style: .cancel) { _ in })
         
         pickerView = ManagePickerView(values: values, callback: callback)
     }
@@ -46,7 +46,7 @@ class ManageAddressActionSheetPickerViewController: UIAlertController {
         
         title = nil
         message = "\n\n\n\n\n\n"
-        addAction(UIAlertAction(title: "cancel".localizedString, style: .cancel) { _ in })
+        addAction(UIAlertAction(title: "close".localizedString, style: .cancel) { _ in })
         
         pickerView = ManageAddressPickerView(values: values, callback: callback)
     }
@@ -129,9 +129,9 @@ class DeliveryActionSheetPickerViewController: UIAlertController {
         super.viewDidLoad()
         
         self.view.addSubview(pickerView)
-        pickerView.autoPinEdge(toSuperviewEdge: .left, withInset: SE_OFFSET)
-        pickerView.autoPinEdge(toSuperviewEdge: .right, withInset: SE_OFFSET)
+        pickerView.autoPinEdge(toSuperviewEdge: .top)
         pickerView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 60)
+        pickerView.autoAlignAxis(toSuperviewAxis: .vertical)
         pickerView.autoSetDimension(.height, toSize: ScreenSize.HEIGHT*0.25)
     }
 }

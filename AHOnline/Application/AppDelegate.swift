@@ -38,9 +38,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func initApplicationNotificationSettings() {
-        let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in }
-        UIApplication.shared.registerForRemoteNotifications()
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in }
+            UIApplication.shared.registerForRemoteNotifications()
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     private func initServices() {

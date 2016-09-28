@@ -29,7 +29,7 @@ extension AccountInteractor: AccountInteractorInput {
     func manageSettings() {
         let actionSheet = UIAlertController(title: "settings".localizedString, message: nil, preferredStyle: .actionSheet)
         
-        actionSheet.addAction(UIAlertAction(title: "cancel".localizedString, style: .cancel, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "close".localizedString, style: .cancel, handler: nil))
         
         actionSheet.addAction(UIAlertAction(title: "manage_address".localizedString, style: .default, handler: { _ in
             let vc = ManageAddressViewController()

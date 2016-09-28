@@ -13,6 +13,7 @@ target 'AHOnline' do
     pod 'SwiftyJSON'
     pod 'iCarousel'
     pod 'Cosmos'
+    pod 'ActionSheetPicker-3.0'
     pod 'PKHUD', :git => 'https://github.com/toyship/PKHUD.git'
     pod 'AlamofireImage', '~> 3.0'
     pod 'RxSwift',    '~> 3.0.0-beta.1'

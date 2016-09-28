@@ -30,7 +30,7 @@ extension AccountPresenter: AccountViewOutput {
     func favoriteButtonClicked() {
         let vc = ProductViewController()
         _ = ProductModuleInitializer(viewController: vc)
-        vc.setParams(requestType: RequestType.FAVORITE, count: 3)
+        vc.setParams(requestType: RequestType.FAVORITE, count: 2)
         
         router.pushViewController(vc: vc)
     }

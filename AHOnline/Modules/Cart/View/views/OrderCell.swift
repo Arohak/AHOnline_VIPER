@@ -133,7 +133,8 @@ class OrderCellContentView: UIView {
         
         textField.autoPinEdge(.left, to: .right, of: priceLabel, withOffset: CA_INSET)
         textField.autoAlignAxis(.horizontal, toSameAxisOf: priceLabel)
-        textField.autoSetDimension(.width, toSize: CA_INSET*2)
+        textField.autoSetDimensions(to: CGSize(width: CA_INSET*5, height: CA_INSET*3))
+//        textField.autoSetDimension(.width, toSize: CA_INSET*2)
         
         totalPriceLabel.autoAlignAxis(.horizontal, toSameAxisOf: priceLabel)
         totalPriceLabel.autoPinEdge(toSuperviewEdge: .right, withInset: CA_INSET)

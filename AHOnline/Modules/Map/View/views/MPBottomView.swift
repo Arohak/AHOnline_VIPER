@@ -18,7 +18,7 @@ class MPBottomView: UIView {
     
     let closeRoutButton: UIButton = {
         let view = UIButton.newAutoLayout()
-        view.setBackgroundImage(UIImage(named: "img_delete_root"), for: .normal)
+        view.setBackgroundImage(UIImage(named: "img_map_delete"), for: .normal)
         view.isHidden = true
         
         return view
@@ -51,6 +51,6 @@ class MPBottomView: UIView {
         
         closeRoutButton.autoAlignAxis(toSuperviewAxis: .horizontal)
         closeRoutButton.autoPinEdge(toSuperviewEdge: .left, withInset: MP_INSET)
-        closeRoutButton.autoSetDimensions(to: CGSize(width: MP_BTN_SIZE, height: MP_BTN_SIZE))
+        closeRoutButton.autoSetDimensions(to: CGSize(width: MP_BTN_SIZE*0.84, height: MP_BTN_SIZE*0.84))
     }
 }

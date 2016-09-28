@@ -76,7 +76,7 @@ class ContryCodeActionSheetPickerViewController: UIAlertController {
         
         title = nil
         message = "\n\n\n\n\n\n"
-        addAction(UIAlertAction(title: "cancel".localizedString, style: .cancel) { _ in })
+        addAction(UIAlertAction(title: "close".localizedString, style: .cancel) { _ in })
         
         pickerView = ContryCodePickerView(values: values, callback: callback)
     }

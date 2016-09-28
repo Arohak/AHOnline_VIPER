@@ -33,16 +33,14 @@ class ProductCellContentView: UIView {
     //MARK: - Create UIElements -
     lazy var bgImageView: UIImageView = {
         let view = UIImageView.newAutoLayout()
-        view.contentMode = .scaleAspectFit
         view.backgroundColor = WHITE
         
         return view
     }()
     
-    lazy var imageView: UIImageView = {
+    lazy var saleImageView: UIImageView = {
         let view = UIImageView.newAutoLayout()
-        view.contentMode = .scaleAspectFit
-        view.isUserInteractionEnabled = true
+        view.image = UIImage(named: "img_pr_sale")
         
         return view
     }()
@@ -51,7 +49,13 @@ class ProductCellContentView: UIView {
         let view = HOButton.newAutoLayout()
         view.setBackgroundImage(UIImage(named: "img_favorites"), for: .normal)
         view.setBackgroundImage(UIImage(named: "img_favorites_selected"), for: .selected)
-
+        
+        return view
+    }()
+    
+    lazy var imageView: UIImageView = {
+        let view = UIImageView.newAutoLayout()
+        
         return view
     }()
     
@@ -108,7 +112,8 @@ class ProductCellContentView: UIView {
     private func addAllUIElements() {
         addSubview(bgImageView)
         addSubview(imageView)
-        imageView.addSubview(favoriteButton)
+        addSubview(saleImageView)
+        addSubview(favoriteButton)
         addSubview(nameLabel)
         addSubview(priceLabel)
         addSubview(addButton)
@@ -121,12 +126,16 @@ class ProductCellContentView: UIView {
     func setConstraints() {
         bgImageView.autoPinEdgesToSuperviewEdges()
         
-        imageView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), excludingEdge: .bottom)
-        imageView.autoPinEdge(.bottom, to: .top, of: nameLabel, withOffset: -PR_INSET)
-        
+        saleImageView.autoPinEdge(toSuperviewEdge: .top, withInset: PR_INSET)
+        saleImageView.autoPinEdge(toSuperviewEdge: .left, withInset: PR_INSET)
+        saleImageView.autoSetDimensions(to: CGSize(width: PR_INSET*2.5, height: PR_INSET*2.5))
+
+        favoriteButton.autoPinEdge(toSuperviewEdge: .top, withInset: PR_INSET)
         favoriteButton.autoPinEdge(toSuperviewEdge: .right, withInset: PR_INSET)
-        favoriteButton.autoPinEdge(toSuperviewEdge: .bottom, withInset: 0)
         favoriteButton.autoSetDimensions(to: CGSize(width: PR_INSET*3, height: PR_INSET*3*0.9))
+        
+        imageView.autoPinEdge(.bottom, to: .top, of: nameLabel)
+        imageView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), excludingEdge: .bottom)
         
         nameLabel.autoPinEdge(.bottom, to: .top, of: addButton, withOffset: -PR_INSET)
         nameLabel.autoPinEdge(toSuperviewEdge: .left, withInset: PR_INSET)
@@ -151,6 +160,16 @@ class ProductCellContentView: UIView {
         nameLabel.text              = product.name
         favoriteButton.isSelected   = product.favorite
         priceLabel.text             = "\(product.price.format)".dram
+        
+        let rNumber = Int(arc4random_uniform(3))
+        switch rNumber {
+        case 1:
+            saleImageView.image = UIImage(named: "img_pr_boom")
+        case 2:
+            saleImageView.image = UIImage(named: "img_pr_sale")
+        default:
+            saleImageView.image = UIImage(named: "img_transparent")
+        }
 
         updateCount(product: product)
     }

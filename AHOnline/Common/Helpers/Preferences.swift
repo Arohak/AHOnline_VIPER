@@ -73,7 +73,7 @@ struct Preferences {
             return lng
         }
         
-        return "eu"
+        return "en"
     }
     
     static func getToken() -> String? {

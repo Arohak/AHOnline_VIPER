@@ -17,6 +17,7 @@ target 'AHOnline' do
     pod 'PKHUD', :git => 'https://github.com/toyship/PKHUD.git'
     pod 'AlamofireImage', '~> 3.0'
     pod 'RxSwift',    '~> 3.0.0-beta.1'
+    pod 'ALThreeCircleSpinner', :git => 'https://github.com/AlexLittlejohn/ALThreeCircleSpinner.git'
 
   target 'AHOnlineTests' do
     inherit! :search_paths

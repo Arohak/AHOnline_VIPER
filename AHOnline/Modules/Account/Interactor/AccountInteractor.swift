@@ -11,7 +11,7 @@ class AccountInteractor {
     
     weak var output: AccountInteractorOutput!
     
-    internal let dict = ["English" : "eu", "Русский" : "ru", "Հայերեն" : "hy"]
+    internal let dict = ["English" : "en", "Русский" : "ru", "Հայերեն" : "hy"]
     internal let languages = ["English", "Русский", "Հայերեն"]
 
     var user: User? {

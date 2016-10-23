@@ -8,6 +8,7 @@
 
 import PKHUD
 import SwiftSpinner
+import ALThreeCircleSpinner
 
 struct UIHelper {
     
@@ -55,12 +56,30 @@ struct UIHelper {
         Wireframe.presentViewController(vc: alertController)
     }
     
-    static func showSpinner() {
-        SwiftSpinner.show(progress: 0.2, title: "loading".localizedString)
+    static func showSpinner(type: Int = 0) {
+        switch type {
+        case 0:
+            ALThreeCircleSpinner.show(color: RED)
+            
+        case 1:
+            SwiftSpinner.show(progress: 0.2, title: "loading".localizedString)
+            
+        default:
+            break
+        }
     }
     
-    static func hideSpinner() {
-        SwiftSpinner.hide()
+    static func hideSpinner(type: Int = 0) {
+        switch type {
+        case 0:
+            ALThreeCircleSpinner.hide()
+            
+        case 1:
+            SwiftSpinner.hide()
+            
+        default:
+            break
+        }
     }
     
     static func isValidPhoneTextField(field: UITextField) -> Bool {

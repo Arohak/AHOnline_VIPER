@@ -14,8 +14,8 @@ let HTTPS   = "http://"
 let IP      = "localhost"
 let PORT    = ":3000/"
 let AHO     = "api/v1/"
-let baseURL = HTTPS + IP + PORT + AHO
-//let baseURL = "http://buyonline-arohak.c9users.io/api/v1/"
+//let baseURL = HTTPS + IP + PORT + AHO
+let baseURL = "http://buyonline-arohak.c9users.io/api/v1/"
 //let baseURL = "https://ahonline.herokuapp.com/api/v1/"
 
 class APIHelper {
@@ -34,7 +34,10 @@ class APIHelper {
             if showProgress { UIHelper.showSpinner() }
             
             let URL = baseURL + url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-            Alamofire.request(URL, method: method, parameters: parameters, encoding: URLEncoding.default, headers: ["locale" : Preferences.getAppLanguage()])
+            Alamofire.request(URL, method: method,
+                              parameters: parameters,
+                              encoding: URLEncoding.default,
+                              headers: ["locale" : Preferences.getAppLanguage() == "en" ? "eu" : Preferences.getAppLanguage()])
                 .responseJSON { response in
                     switch response.result {
                     case .success(let data):

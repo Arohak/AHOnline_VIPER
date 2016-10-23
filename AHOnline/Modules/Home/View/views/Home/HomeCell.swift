@@ -75,9 +75,9 @@ class HomeCellContentView: UIView {
         return view
     }()
     
-    lazy var seellAllButton: HOButton = {
-        let view = HOButton.newAutoLayout()
-        view.setBackgroundImage(UIImage(named: "img_more"), for: .normal)
+    lazy var seellAllButton: InsetButton = {
+        let view = InsetButton.newAutoLayout()
+        view.setImage(UIImage(named: "img_more"), for: .normal)
         
         return view
     }()
@@ -128,8 +128,8 @@ class HomeCellContentView: UIView {
         titleLabel.text = text
 
         seellAllButton.autoAlignAxis(.horizontal, toSameAxisOf: titleLabel)
-        seellAllButton.autoPinEdge(toSuperviewEdge: .right, withInset: HO_INSET*2)
-        seellAllButton.autoSetDimensions(to: CGSize(width: HO_INSET*4.6*0.6, height: HO_INSET*0.6))
+        seellAllButton.autoPinEdge(toSuperviewEdge: .right, withInset: HO_INSET)
+        seellAllButton.autoSetDimensions(to: CGSize(width: BTN_SIZE, height: BTN_SIZE))
 
         titleLabel.autoPinEdge(toSuperviewEdge: .top, withInset: HO_INSET*2)
         titleLabel.autoPinEdge(toSuperviewEdge: .left, withInset: HO_INSET*2)

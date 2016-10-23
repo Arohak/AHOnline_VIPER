@@ -47,7 +47,9 @@ class VerifyPhoneNumberViewController: UIViewController {
         verifyPhoneNumberView.sendButton.addTarget(self, action: #selector(sendButtonAction), for: .touchUpInside)
         verifyPhoneNumberView.acceptButton.addTarget(self, action: #selector(acceptButtonAction), for: .touchUpInside)
         
-        self.tuple = getCountriesFromNSLocale(phone: countryCode)
+        tuple = getCountriesFromNSLocale(phone: countryCode)
+        
+        selectedCountry = Utils.countryFromLocale()
     }
     
     private func getCountriesFromNSLocale(phone: String) -> ([String:String], [String]) {

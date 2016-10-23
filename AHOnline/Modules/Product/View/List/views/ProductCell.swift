@@ -45,10 +45,10 @@ class ProductCellContentView: UIView {
         return view
     }()
     
-    lazy var favoriteButton: HOButton = {
-        let view = HOButton.newAutoLayout()
-        view.setBackgroundImage(UIImage(named: "img_favorites"), for: .normal)
-        view.setBackgroundImage(UIImage(named: "img_favorites_selected"), for: .selected)
+    lazy var favoriteButton: InsetButton = {
+        let view = InsetButton.newAutoLayout()
+        view.setImage(UIImage(named: "img_favorites"), for: .normal)
+        view.setImage(UIImage(named: "img_favorites_selected"), for: .selected)
         
         return view
     }()
@@ -72,9 +72,9 @@ class ProductCellContentView: UIView {
         return view
     }()
 
-    lazy var addButton: HOButton = {
-        let view = HOButton.newAutoLayout()
-        view.setBackgroundImage(UIImage(named: "img_pr_cart"), for: .normal)
+    lazy var addButton: InsetButton = {
+        let view = InsetButton.newAutoLayout()
+        view.setImage(UIImage(named: "img_pr_cart"), for: .normal)
         
         return view
     }()
@@ -130,9 +130,9 @@ class ProductCellContentView: UIView {
         saleImageView.autoPinEdge(toSuperviewEdge: .left, withInset: PR_INSET)
         saleImageView.autoSetDimensions(to: CGSize(width: PR_INSET*2.5, height: PR_INSET*2.5))
 
-        favoriteButton.autoPinEdge(toSuperviewEdge: .top, withInset: PR_INSET)
-        favoriteButton.autoPinEdge(toSuperviewEdge: .right, withInset: PR_INSET)
-        favoriteButton.autoSetDimensions(to: CGSize(width: PR_INSET*3, height: PR_INSET*3*0.9))
+        favoriteButton.autoPinEdge(toSuperviewEdge: .top, withInset: 0)
+        favoriteButton.autoPinEdge(toSuperviewEdge: .right, withInset: 0)
+        favoriteButton.autoSetDimensions(to: CGSize(width: BTN_SIZE, height: BTN_SIZE*0.9))
         
         imageView.autoPinEdge(.bottom, to: .top, of: nameLabel)
         imageView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), excludingEdge: .bottom)
@@ -145,9 +145,9 @@ class ProductCellContentView: UIView {
         priceLabel.autoPinEdge(toSuperviewEdge: .left, withInset: PR_INSET)
         priceLabel.autoPinEdge(.right, to: .left, of: addButton, withOffset: PR_INSET)
 
-        addButton.autoPinEdge(toSuperviewEdge: .bottom, withInset: PR_INSET)
-        addButton.autoPinEdge(toSuperviewEdge: .right, withInset: PR_INSET)
-        addButton.autoSetDimensions(to: CGSize(width: PR_INSET*3, height: PR_INSET*3))
+        addButton.autoPinEdge(toSuperviewEdge: .bottom, withInset: 0)
+        addButton.autoPinEdge(toSuperviewEdge: .right, withInset: 0)
+        addButton.autoSetDimensions(to: CGSize(width: BTN_SIZE, height: BTN_SIZE))
         
         countLabel.autoAlignAxis(.horizontal, toSameAxisOf: addButton, withOffset: -PR_INSET)
         countLabel.autoPinEdge(toSuperviewEdge: .right, withInset: PR_INSET*0.8)

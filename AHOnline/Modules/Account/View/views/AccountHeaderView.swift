@@ -29,7 +29,7 @@ class AccountHeaderView: UIView {
     let imageButton: HOButton = {
         let view = HOButton.newAutoLayout()
         view.setBackgroundImage(UIImage(named: "img_acc_user"), for: .normal)
-        view.layer.cornerRadius = AC_BTN_SIZE*0.5
+        view.layer.cornerRadius = AC_IMG_SIZE*0.5
         
         return view
     }()
@@ -41,9 +41,9 @@ class AccountHeaderView: UIView {
         return view
     }()
     
-    let favoriteButton: HOButton = {
-        let view = HOButton.newAutoLayout()
-        view.setBackgroundImage(UIImage(named: "img_favorites_selected"), for: .normal)
+    let favoriteButton: InsetButton = {
+        let view = InsetButton.newAutoLayout()
+        view.setImage(UIImage(named: "img_favorites_selected"), for: .normal)
 
         return view
     }()
@@ -55,9 +55,9 @@ class AccountHeaderView: UIView {
         return view
     }()
     
-    let historyButton: HOButton = {
-        let view = HOButton.newAutoLayout()
-        view.setBackgroundImage(UIImage(named: "img_acc_history"), for: .normal)
+    let historyButton: InsetButton = {
+        let view = InsetButton.newAutoLayout()
+        view.setImage(UIImage(named: "img_acc_history"), for: .normal)
 
         return view
     }()
@@ -106,21 +106,21 @@ class AccountHeaderView: UIView {
         
         imageButton.autoPinEdge(toSuperviewEdge: .top)
         imageButton.autoAlignAxis(toSuperviewAxis: .vertical)
-        imageButton.autoSetDimensions(to: CGSize(width: AC_BTN_SIZE, height: AC_BTN_SIZE))
+        imageButton.autoSetDimensions(to: CGSize(width: AC_IMG_SIZE, height: AC_IMG_SIZE))
 
         titleLabel.autoPinEdge(.top, to: .bottom, of: imageButton, withOffset: AC_INSET)
         titleLabel.autoAlignAxis(toSuperviewAxis: .vertical)
         
         favoriteButton.autoPinEdge(.top, to: .bottom, of: titleLabel, withOffset: AC_INSET)
         favoriteButton.autoAlignAxis(.vertical, toSameAxisOf: bgImageView, withOffset: AC_HEIGHT)
-        favoriteButton.autoSetDimensions(to: CGSize(width: AC_BTN_SIZE*0.3, height: AC_BTN_SIZE*0.3*0.9))
+        favoriteButton.autoSetDimensions(to: CGSize(width: BTN_SIZE, height: BTN_SIZE*0.9))
         
         favoriteLabel.autoPinEdge(.top, to: .bottom, of: favoriteButton, withOffset: 0)
         favoriteLabel.autoAlignAxis(.vertical, toSameAxisOf: favoriteButton)
         
         historyButton.autoAlignAxis(.horizontal, toSameAxisOf: favoriteButton)
         historyButton.autoAlignAxis(.vertical, toSameAxisOf: bgImageView, withOffset: -AC_HEIGHT)
-        historyButton.autoSetDimensions(to: CGSize(width: AC_BTN_SIZE*0.3, height: AC_BTN_SIZE*0.3))
+        historyButton.autoSetDimensions(to: CGSize(width: BTN_SIZE, height: BTN_SIZE))
         
         historyLabel.autoPinEdge(.top, to: .bottom, of: historyButton, withOffset: 0)
         historyLabel.autoAlignAxis(.vertical, toSameAxisOf: historyButton)

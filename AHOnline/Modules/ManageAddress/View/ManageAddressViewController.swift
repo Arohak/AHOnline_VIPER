@@ -55,7 +55,7 @@ class ManageAddressViewController: UIViewController {
     }
     
     internal func updateView() {
-        manageAddressView.cityView.isHidden = !(selectedCountry == "Armenia" && cities.count > 0)
+        manageAddressView.cityView.isHidden = !(selectedCountry == Utils.countryFromLocale() && cities.count > 0)
         manageAddressView.cityFieldView.isHidden = !manageAddressView.cityView.isHidden
         manageAddressView.cityFieldView.setValue(title: "")
     }
@@ -127,7 +127,7 @@ extension ManageAddressViewController: ManageAddressViewInput {
             selectedAlias = address.alias
             selectedAddress = address.add
         } else {
-            selectedCountry = "Armenia"
+            selectedCountry = Utils.countryFromLocale()
           if cities.count > 0 {
             selectedCity = citiesTuple.first!.0
             selectedAlias = citiesTuple.first!.1

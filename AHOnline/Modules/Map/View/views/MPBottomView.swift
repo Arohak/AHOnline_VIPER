@@ -9,16 +9,16 @@
 class MPBottomView: UIView {
     
     //MARK: - Create UIElements -
-    let locationButton: UIButton = {
-        let view = UIButton.newAutoLayout()
-        view.setBackgroundImage(UIImage(named: "img_map_pin"), for: .normal)
+    let locationButton: InsetButton = {
+        let view = InsetButton.newAutoLayout()
+        view.setImage(UIImage(named: "img_map_pin"), for: .normal)
         
         return view
     }()
     
-    let closeRoutButton: UIButton = {
-        let view = UIButton.newAutoLayout()
-        view.setBackgroundImage(UIImage(named: "img_map_delete"), for: .normal)
+    let closeRoutButton: InsetButton = {
+        let view = InsetButton.newAutoLayout()
+        view.setImage(UIImage(named: "img_map_delete"), for: .normal)
         view.isHidden = true
         
         return view
@@ -46,11 +46,11 @@ class MPBottomView: UIView {
     //MARK: - Constraints -
     func setConstraints() {
         locationButton.autoAlignAxis(toSuperviewAxis: .horizontal)
-        locationButton.autoPinEdge(toSuperviewEdge: .right, withInset: MP_INSET)
-        locationButton.autoSetDimensions(to: CGSize(width: MP_BTN_SIZE, height: MP_BTN_SIZE))
+        locationButton.autoPinEdge(toSuperviewEdge: .right, withInset: 0)
+        locationButton.autoSetDimensions(to: CGSize(width: BTN_SIZE, height: BTN_SIZE))
         
         closeRoutButton.autoAlignAxis(toSuperviewAxis: .horizontal)
-        closeRoutButton.autoPinEdge(toSuperviewEdge: .left, withInset: MP_INSET)
-        closeRoutButton.autoSetDimensions(to: CGSize(width: MP_BTN_SIZE*0.84, height: MP_BTN_SIZE*0.84))
+        closeRoutButton.autoPinEdge(.right, to: .left, of: locationButton, withOffset: 0)
+        closeRoutButton.autoSetDimensions(to: CGSize(width: BTN_SIZE*0.95, height: BTN_SIZE*0.95))
     }
 }

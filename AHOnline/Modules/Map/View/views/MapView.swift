@@ -60,11 +60,11 @@ class MapView: BaseView {
         tableView.autoPinEdge(toSuperviewEdge: .bottom, withInset: TAB_HEIGHT)
         tableView.autoPinEdge(toSuperviewEdge: .left)
         tableView.autoPinEdge(toSuperviewEdge: .right)
-        tableView.autoSetDimension(.height, toSize: ScreenSize.HEIGHT*0.4)
+        tableView.autoSetDimension(.height, toSize: ScreenSize.HEIGHT*0.3)
         
-        bottomView.autoPinEdge(toSuperviewEdge: .bottom, withInset: MP_INSET)
+        bottomView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 0)
         bottomView.autoPinEdge(toSuperviewEdge: .left)
         bottomView.autoPinEdge(toSuperviewEdge: .right)
-        bottomView.autoSetDimension(.height, toSize: MP_BTN_SIZE)
+        bottomView.autoSetDimension(.height, toSize: BTN_SIZE)
     }
 }

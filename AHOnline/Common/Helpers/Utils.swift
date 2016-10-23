@@ -127,5 +127,18 @@ struct Utils {
         
         return text == filtered && Int(text)! < 21
     }
+    
+    static func countryFromLocale() -> String {
+        switch Locale.current.languageCode! {
+        case "en":
+            return "Armenia"
+        case "ru":
+            return "Армения"
+        case "hy":
+            return "Հայաստան"
+        default:
+            return ""
+        }
+    }
 }
 

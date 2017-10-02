@@ -17,8 +17,8 @@ class ObjectsPresenter {
 //MARK: - extension for ObjectsViewOutput -
 extension ObjectsPresenter: ObjectsViewOutput {
     
-    func getObjects(params: JSON) {
-        interactor.getObjects(params: params)
+    func getObjects(_ type: ObjectsRequestType, params: JSON) {
+        interactor.getObjects(type, params: params)
     }
     
     func didSelectObject(object: AHObject) {

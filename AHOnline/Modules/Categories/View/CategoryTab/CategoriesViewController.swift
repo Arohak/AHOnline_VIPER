@@ -10,6 +10,7 @@ class CategoriesViewController: UIViewController {
 
     var output: CategoriesViewOutput!
     
+    var categoryView = CategoryView()
     var tabNavigation: CarbonTabSwipeNavigation!
     var viewControllers: [UIViewController] = []
     var selectedViewController: UIViewController!
@@ -19,14 +20,14 @@ class CategoriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = WHITE
+        self.view = categoryView
+        output.viewIsReady()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        output.viewIsReady()
+
+        navigationItem.title = "categories".localizedString
     }
     
     //MARK: -  Internal Methods -
@@ -43,11 +44,11 @@ class CategoriesViewController: UIViewController {
     
     internal func styleTab() {
         if let tabNavigation = tabNavigation {
-            tabNavigation.setIndicatorColor(RED)
+            tabNavigation.setIndicatorColor(.red_)
             tabNavigation.toolbar.isTranslucent = false
             tabNavigation.setTabExtraWidth(50)
-            tabNavigation.setNormalColor(BLACK.withAlphaComponent(0.6))
-            tabNavigation.setSelectedColor(RED, font: UIFont.boldSystemFont(ofSize: 14))
+            tabNavigation.setNormalColor(UIColor.black.withAlphaComponent(0.6))
+            tabNavigation.setSelectedColor(.red_, font: UIFont.boldSystemFont(ofSize: 14))
         }
     }
 }

@@ -59,13 +59,15 @@ extension CartPresenter: CartViewOutput {
                          "paypal".localizedString]
         
         switch historyOrder.payment {
-        case payments[0]:
+        case "":
             print(payments[0])
             interactor.addOrdernHistory(historyOrder: historyOrder)
-
-        case payments[1]:
+            break
+            
+        case "":
             print(payments[1])
             interactor.addOrdernHistory(historyOrder: historyOrder)
+            break
 
         default:
             interactor.addOrdernHistory(historyOrder: historyOrder)

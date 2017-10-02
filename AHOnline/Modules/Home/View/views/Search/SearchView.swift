@@ -11,7 +11,7 @@ class SearchView: UIView {
     //MARK: - Create UIElements -
     lazy var bgView: UIView = {
         let view = UIView.newAutoLayout()
-        view.backgroundColor = BLACK
+        view.backgroundColor = .black
         view.alpha = 0.7
         
         return view
@@ -25,7 +25,7 @@ class SearchView: UIView {
     
     lazy var textField: HOTextField = {
         let view = HOTextField.newAutoLayout()
-        view.backgroundColor = WHITE
+        view.backgroundColor = .white
         view.returnKeyType = .search
         
         return view

@@ -22,7 +22,7 @@ class Restaurant: Object {
     dynamic var min_amount_order: String!
     dynamic var rate = 0
     dynamic var totalHours = 0
-    dynamic var new = false
+    dynamic var restaurantNew = false
     
     dynamic var img: String!
     var newRestaurants = List<Restaurant>()
@@ -44,7 +44,7 @@ class Restaurant: Object {
         self.min_amount_order       = data["min_amount_order"].stringValue
         self.rate                   = data["rate"].intValue
         self.totalHours             = data["totalHours"].intValue
-        self.new                    = data["new"].boolValue
+        self.restaurantNew          = data["new"].boolValue
         
         self.img                    = data["img"].stringValue
     }

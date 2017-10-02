@@ -13,7 +13,7 @@ class HomeView: BaseView {
     lazy var tableView: UITableView = {
         let view = UITableView(frame: CGRect.zero, style: .grouped)
         view.separatorStyle = .none
-        view.backgroundColor = CLEAR
+        view.backgroundColor = .clear
 
         return view
     }()

@@ -14,7 +14,6 @@ class Product: Object {
     dynamic var categoryitem_id = 0
     dynamic var menu = 0
     dynamic var restaurant_menu_categories = 0
-    dynamic var new = false
     dynamic var name: String!
     dynamic var content: String!
     dynamic var item_number = 0
@@ -26,8 +25,8 @@ class Product: Object {
     dynamic var alias: String!
     dynamic var keywords: String!
     dynamic var src: String!
-    
     dynamic var favorite: Bool = false
+    dynamic var productNew = false
 
     dynamic var amount: String = "$"
     dynamic var countBuy = 0
@@ -48,7 +47,6 @@ class Product: Object {
         self.categoryitem_id                = data["categoryitem_id"].intValue
         self.menu                           = data["menu"].intValue
         self.restaurant_menu_categories     = data["restaurant_menu_categories"].intValue
-        self.new                            = data["new"].boolValue
         self.name                           = data["label"].stringValue
         self.content                        = data["content"].stringValue
         self.item_number                    = data["item_number"].intValue
@@ -61,5 +59,6 @@ class Product: Object {
         self.keywords                       = data["keywords"].stringValue
         self.src                            = data["src"].stringValue
         self.favorite                       = data["favorite"].boolValue
+        self.productNew                     = data["new"].boolValue
     }
 }

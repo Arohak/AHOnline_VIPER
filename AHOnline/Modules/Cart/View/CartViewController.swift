@@ -18,7 +18,7 @@ class CartViewController: BaseViewController {
     internal var headers: [String]                   = []
     internal var deliveryCells: [DeliveryCell]       = []
     internal var titleDeliveries: [(String, String)] = []
-    internal var paymentCells: [UITableViewCell]     = []
+    internal var paymentCells: [DeliveryCell]     = []
     internal var titlePayments: [(String, String)]   = []
     internal weak var AddAlertSaveAction: UIAlertAction?
 
@@ -86,9 +86,11 @@ class CartViewController: BaseViewController {
                                     ("img_cart_city", "cart_city".localizedString),
                                     ("img_cart_time", "cart_time".localizedString)]
         
-        titlePayments           = [("img_cash_logo", "pay_on_delivery".localizedString),
-                                   ("img_cart_logo", "credit_cart".localizedString),
-                                   ("img_paypal_logo", "paypal".localizedString)]
+        titlePayments           = [("img_cash_logo", "pay_on_delivery".localizedString)]
+        
+//        titlePayments           = [("img_cash_logo", "pay_on_delivery".localizedString),
+//                                   ("img_cart_logo", "credit_cart".localizedString),
+//                                   ("img_paypal_logo", "paypal".localizedString)]
     }
     
     internal func configTableViewCell() {
@@ -103,12 +105,11 @@ class CartViewController: BaseViewController {
         }
         
         for tuple in titlePayments {
-            let cell = UITableViewCell(style: .default, reuseIdentifier: cellIdentifire[2])
-            cell.backgroundColor = CLEAR
-            cell.imageView!.image = UIImage(named: tuple.0)
-            cell.textLabel?.text = tuple.1
-            cell.textLabel?.font = TITLE_FONT
-            cell.accessoryType = tuple.1 == cart.payment ? .checkmark : .none
+            let cell = DeliveryCell(style: .default, reuseIdentifier: cellIdentifire[2])
+            cell.cellContentView.imageView.image = UIImage(named: tuple.0)
+            cell.cellContentView.titleLabel.text = tuple.1
+            cell.accessoryType = .checkmark
+//            cell.accessoryType = tuple.1 == cart.payment ? .checkmark : .none
             paymentCells.append(cell)
         }
         
@@ -248,7 +249,7 @@ class CartViewController: BaseViewController {
             if AddAlertSaveAction == nil {
                 self.view.layoutIfNeeded()
                 UIView.animate(withDuration: animationDuration, animations: { _ in
-                    if ScreenSize.HEIGHT - y == 0 {
+                    if Screen.height - y == 0 {
                         self.cartView.heightTableViewConstraint.constant = y - (NAV_HEIGHT + TAB_HEIGHT + CA_CELL_HEIGHT*1.5)
                     } else {
                         self.cartView.heightTableViewConstraint.constant = y - (NAV_HEIGHT)

@@ -12,7 +12,7 @@ class CartInteractor {
     weak var output: CartInteractorOutput!
     
     var user: User? {
-        return DBManager.getUserCart()
+        return DBHelper.getUserCart()
     }
 }
 
@@ -26,48 +26,44 @@ extension CartInteractor: CartInteractorInput {
     }
     
     func getDeliveries() {
-        _ = APIManager.getDeliveries()
+        _ = DeliveryEndpoint.getDeliveries()
             .subscribe(onNext: { result in
-                if result != nil {
+                if let result = result {
                     var deliveries: [Delivery] = []
                     for item in result["data"].arrayValue {
                         deliveries.append(Delivery(data: item))
                     }
                     
-                    DBManager.storeDeliveries(deliveries: deliveries)
+                    DBHelper.storeDeliveries(deliveries: deliveries)
                 }
             })
     }
     
     func updateCartInfo(phone mobileNumber: String, address: String, city: String, alias: String, deliveryPrice: Double, date: Date, payment: String) {
-        DBManager.updateCartInfo(mobileNumber: mobileNumber, address: address, city: city, alias: alias, deliveryPrice: deliveryPrice, date: date, payment: payment)
+        DBHelper.updateCartInfo(mobileNumber: mobileNumber, address: address, city: city, alias: alias, deliveryPrice: deliveryPrice, date: date, payment: payment)
     }
     
     func updateOrder(product: Product, count: Int) {
-        DBManager.updateOrder(product: product, count: count)
+        DBHelper.updateOrder(product: product, count: count)
         
         output.updatePriceIsReady()
     }
     
     func removeOrder(product: Product) {
-        DBManager.removeOrder(product: product)
+        DBHelper.removeOrder(product: product)
         
         output.updatePriceIsReady()
     }
     
     func removeOrders() {
-        DBManager.removeOrders()
+        DBHelper.removeOrders()
     }
     
     func send(number: String) {
         if let user = user {
-            let json = JSON([
-                "id"            : user.id,
-                "mobile_number" : number])
-            
-            _ = APIManager.sendMobileNumber(json: json)
+            _ = UserEndpoint.sendPhone("\(user.id)", number: number)
                 .subscribe(onNext: { result in
-                    if result != nil {
+                    if let result = result {
                         self.output.sendPhoneIsReady()
                     }
                 })
@@ -75,11 +71,11 @@ extension CartInteractor: CartInteractorInput {
     }
     
     func accept(pin: String) {
-        _ = APIManager.verifyMobileNumber(pin: pin)
+        _ = UserEndpoint.verifyPhone(pin)
             .subscribe(onNext: { result in
-                if result != nil {
+                if let result = result {
                     let userInfo = UserInfo(data: result["data"])
-                    DBManager.updateUser(userInfo: userInfo)
+                    DBHelper.updateUser(userInfo: userInfo)
                     
                     self.output.acceptDataIsReady()
                 }
@@ -88,12 +84,12 @@ extension CartInteractor: CartInteractorInput {
     
     func addOrdernHistory(historyOrder: HistoryOrder) {
         if let user = user {
-            _ = APIManager.createOrder(user_id: "\(user.id)", order: historyOrder)
+            _ = OrderEndpoint.createOrder("\(user.id)", order: historyOrder)
                 .subscribe(onNext: { result in
-                    if result != nil {
+                    if let result = result {
                         let history = HistoryOrder(data: result["data"])
-                        DBManager.storeHistoryOrder(historyOrder: history)
-                        DBManager.removeOrders()
+                        DBHelper.storeHistoryOrder(historyOrder: history)
+                        DBHelper.removeOrders()
                         
                         self.output.placeOrderIsReady()
                     }

@@ -34,7 +34,7 @@ class ContuctUsHeaderView: UIView {
     
     let titleLabel: HOLabel = {
         let view = HOLabel.newAutoLayout()
-        view.textColor = BLUE
+        view.textColor = .blue_
         view.numberOfLines = 0
         view.text = "Certificate = Certificate getCertificate = Apply the certificate; AskYourBankLblText = Enter your email, mobile number and certificate code which Doocat emailed you.; EnterYourEmailLblText = Enter your email, mobile number and certificate code; ProvideMobileNumber = Enter the mobile number you provided to Doocat which will be used in Doocat; ProvidePinCode = Enter the certificate code the bank emailed you; CertificateExpired = Your security certificate has expired. Please contact Doocat to get a new certificate. RelauchApp= \nPlease, relaunch the application."
         

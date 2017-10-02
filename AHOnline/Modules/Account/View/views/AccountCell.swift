@@ -38,14 +38,16 @@ class AccountCellCellContentView: UIView {
     }()
     
     lazy var imageView: UIImageView = {
-        let view = UIImageView.newAutoLayout
+        let view = UIImageView.newAutoLayout()
+        view.layer.cornerRadius = AC_CELL_HEIGHT*0.45
+        view.clipsToBounds = true
         
-        return view()
+        return view
     }()
     
     lazy var nameLabel: TitleLabel = {
         let view = TitleLabel.newAutoLayout()
-        view.font = FONT_NAVBAR
+        view.font = CAC_TITLE_FONT
         
         return view
     }()

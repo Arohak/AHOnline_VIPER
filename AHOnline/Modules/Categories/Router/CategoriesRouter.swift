@@ -15,10 +15,10 @@ class CategoriesRouter {
 extension CategoriesRouter: CategoriesRouterInput {
     
     func presentNavigationViewController(vc: UIViewController) {
-        Wireframe.presentNavigationController(vc: vc)
+        Wireframe.presentNavigation(vc)
     }
     
     func pushViewController(vc: UIViewController) {
-        Wireframe.pushViewController(vc: vc)
+        Wireframe.push(vc)
     }
 }

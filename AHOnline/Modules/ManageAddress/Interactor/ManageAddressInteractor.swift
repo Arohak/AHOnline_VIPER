@@ -12,7 +12,7 @@ class ManageAddressInteractor {
     weak var output: ManageAddressInteractorOutput!
     
     var user: User {
-        return DBManager.getUser()!
+        return DBHelper.getUser()!
     }
     
     // MARK: - Internal Methods -
@@ -43,21 +43,21 @@ class ManageAddressInteractor {
 extension ManageAddressInteractor: ManageAddressInteractorInput {
     
     func getDeliveries() {
-        _ = APIManager.getDeliveries()
+        _ = DeliveryEndpoint.getDeliveries()
             .subscribe(onNext: { result in
-                if result != nil {
+                if let result = result {
                     var deliveries: [Delivery] = []
                     for item in result["data"].arrayValue {
                         deliveries.append(Delivery(data: item))
                     }
-                    DBManager.storeDeliveries(deliveries: deliveries)
+                    DBHelper.storeDeliveries(deliveries: deliveries)
                     self.output.dataIsReady(
                         user: self.user,
                         countries: self.getCountriesFromNSLocale(),
                         citiesTuple: self.getCitiesFromDelivery(deliveries: deliveries))
                 }
                 }, onError: { error in
-                    let deliveries = DBManager.getDeliveries()
+                    let deliveries = DBHelper.getDeliveries()
                     self.output.dataIsReady(
                         user: self.user,
                         countries: self.getCountriesFromNSLocale(),
@@ -75,11 +75,11 @@ extension ManageAddressInteractor: ManageAddressInteractorInput {
                 "address"   : json["address"].stringValue,
                 "def"       : json["def"].boolValue])
             
-            _ = APIManager.updateDeliveryAddress(id: "\(address.id)", json: json)
+            _ = DeliveryEndpoint.updateDeliveryAddress(id: "\(address.id)", json: json)
                 .subscribe(onNext: { result in
-                    if result != nil {
+                    if let result = result {
                         let info = DeliveryAddressInfo(data: result["data"])
-                        DBManager.updateDeliveryAddress(info: info)
+                        DBHelper.updateDeliveryAddress(info: info)
                         
                         self.output.saveAddressIsReady()
                     }
@@ -92,11 +92,11 @@ extension ManageAddressInteractor: ManageAddressInteractorInput {
                 "alias"     : json["alias"].stringValue,
                 "address"   : json["address"].stringValue])
             
-            _ = APIManager.createDeliveryAddress(json: json)
+            _ = DeliveryEndpoint.createDeliveryAddress(json: json)
                 .subscribe(onNext: { result in
-                    if result != nil {
+                    if let result = result {
                         let address = DeliveryAddress(data: result["data"])
-                        DBManager.storeDeliveryAddress(address: address)
+                        DBHelper.storeDeliveryAddress(address: address)
                         
                         self.output.saveAddressIsReady()
                     }

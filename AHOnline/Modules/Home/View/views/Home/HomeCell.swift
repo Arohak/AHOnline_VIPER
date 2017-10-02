@@ -30,7 +30,7 @@ class HomeCell: BaseTableViewCell {
                    title: String,
                    desc: String,
                    items: [AHObject],
-                   height: CGFloat = ScreenSize.HEIGHT*0.3,
+                   height: CGFloat = Screen.height*0.3,
                    inset: CGFloat = 0,
                    callBack: @escaping CollectionCallback) {
         
@@ -60,7 +60,7 @@ class HomeCellContentView: UIView {
     //MARK: - Create UIElements -
     lazy var titleLabel: TitleLabel = {
         let view = TitleLabel.newAutoLayout()
-        view.textColor = RED
+        view.textColor = .red_
         view.numberOfLines = 0
         view.textAlignment = .center
 
@@ -159,7 +159,7 @@ class HomeCellContentView: UIView {
                    title: String,
                    desc: String,
                    items: [AHObject],
-                   height: CGFloat = ScreenSize.HEIGHT*0.3,
+                   height: CGFloat = Screen.height*0.3,
                    inset: CGFloat = 0,
                    callBack: @escaping CollectionCallback)
     {

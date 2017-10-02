@@ -29,7 +29,7 @@ class ObjectView: BaseView {
     convenience init(object: AHObject, headerRect: CGRect) {
         self.init()
         
-        backgroundColor = WHITE
+        backgroundColor = .white
         headerView = ParallaxHeaderView(imageURL: object.src, frame: headerRect)
         tableView.tableHeaderView = headerView
         addHeaderUIElements(object: object)
@@ -46,13 +46,13 @@ class ObjectView: BaseView {
         
         if let _ = object.label {
             infoLabel = DescLabel.newAutoLayout()
-            infoLabel.textColor = WHITE
+            infoLabel.textColor = .white
             let time = "Time:  " + object.openTime.shortTime + " - " + object.closeTime.shortTime
             let rate = "Rate:  " + "\(object.rate)"
             infoLabel.text = object.desc + "\n" + time + "\n" + rate
             infoLabel.numberOfLines = 0
             bgView = UIView.newAutoLayout()
-            bgView.backgroundColor = BLUE_LIGHT
+            bgView.backgroundColor = .blue_light
             bgView.layer.cornerRadius = 5
             bgView.alpha = 0.5
             headerView.addSubview(bgView)

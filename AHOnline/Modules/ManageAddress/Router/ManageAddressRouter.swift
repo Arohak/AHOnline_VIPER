@@ -20,7 +20,7 @@ extension ManageAddressRouter: ManageAddressRouterInput {
 extension ManageAddressRouter: PresentViewControllerProtocol {
     
     func presentViewController(vc: UIViewController) {
-        Wireframe.presentViewController(vc: vc)
+        Wireframe.present(vc)
     }
 }
 
@@ -28,6 +28,6 @@ extension ManageAddressRouter: PresentViewControllerProtocol {
 extension ManageAddressRouter: DismissControllerProtocol {
     
     func dismissViewController() {
-        Wireframe.dismissViewController()
+        Wireframe.dismiss()
     }
 }

@@ -17,12 +17,16 @@ class MapPresenter {
 //MARK: - extension for MapViewOutput -
 extension MapPresenter: MapViewOutput {
     
-    func viewIsReady() {
-        interactor.getObjects()
+    func getObjects(json: JSON) {
+        interactor.getObjects(json: json)
     }
     
     func getNearestObjects(json: JSON) {
         interactor.getNearstObjects(json: json)
+    }
+    
+    func closeButtonClicked() {
+        router.dismissViewController()
     }
     
     func didSelectObject(object: AHObject) {

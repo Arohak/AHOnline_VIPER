@@ -8,7 +8,9 @@
 
 protocol HomeViewOutput: DidSelectObjectProtocol {
 
+    func checkUser()
     func viewIsReady()
+    func mapButtonClicked()
     func search(keyword: String, searchType: SearchType, sort: String, kitchen: [String])
     func didSelectObjectForType(type: ObjectsType)
 }

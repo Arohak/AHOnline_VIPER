@@ -27,7 +27,7 @@ class MapView: BaseView {
     
     let bottomView: MPBottomView = {
         let view = MPBottomView.newAutoLayout()
-        view.backgroundColor = CLEAR
+        view.backgroundColor = .clear
         
         return view
     }()
@@ -57,10 +57,10 @@ class MapView: BaseView {
         map.autoPinEdge(.bottom, to: .top, of: tableView)
         map.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: NAV_HEIGHT, left: 0, bottom: 0, right: 0), excludingEdge: .bottom)
         
-        tableView.autoPinEdge(toSuperviewEdge: .bottom, withInset: TAB_HEIGHT)
+        tableView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 0)
         tableView.autoPinEdge(toSuperviewEdge: .left)
         tableView.autoPinEdge(toSuperviewEdge: .right)
-        tableView.autoSetDimension(.height, toSize: ScreenSize.HEIGHT*0.3)
+        tableView.autoSetDimension(.height, toSize: Screen.height*0.4)
         
         bottomView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 0)
         bottomView.autoPinEdge(toSuperviewEdge: .left)

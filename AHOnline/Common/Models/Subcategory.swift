@@ -11,7 +11,8 @@ class Subcategory: Object {
     dynamic var id = 0
     dynamic var name: String!
     dynamic var src: String!
-    
+    dynamic var image: String!
+
     override static func primaryKey() -> String {
         return "name"
     }
@@ -19,8 +20,9 @@ class Subcategory: Object {
     convenience init(data: JSON) {
         self.init()
         
-        self.id         = data["id"].intValue
-        self.name       = data["name"].stringValue
-        self.src        = data["src"].stringValue
+        self.id     = data["id"].intValue
+        self.name   = data["name"].stringValue
+        self.src    = data["src"].stringValue
+        self.image  = kPath + data["image"]["url"].stringValue
     }
 }

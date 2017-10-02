@@ -9,9 +9,14 @@
 @import Foundation;
 @import PureLayout;
 @import GoogleMaps;
-@import CarbonKit;
-@import RealmSwift;
 @import SwiftyJSON;
+@import RealmSwift;
 @import RxSwift;
+@import CarbonKit;
 @import ActionSheetPicker_3_0;
+
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
+
 

@@ -19,14 +19,14 @@ class CAFooterView: UIView {
     lazy var totalPriceLabel: HOLabel = {
         let view = HOLabel.newAutoLayout()
         view.font = CA_TITLE_FONT
-        view.textColor = RED
+        view.textColor = .red_
         
         return view
     }()
     
     lazy var orderLabel: DescLabel = {
         let view = DescLabel.newAutoLayout()
-        view.textColor = GRAY
+        view.textColor = .gray_
         view.text = "order_price".localizedString
         
         return view
@@ -35,14 +35,14 @@ class CAFooterView: UIView {
     lazy var orderPriceLabel: HOLabel = {
         let view = HOLabel.newAutoLayout()
         view.font = DESC_FONT
-        view.textColor = GRAY
+        view.textColor = .gray_
         
         return view
     }()
     
     lazy var deliveryLabel: DescLabel = {
         let view = DescLabel.newAutoLayout()
-        view.textColor = GRAY
+        view.textColor = .gray_
         view.text = "delivery_price".localizedString
         
         return view
@@ -51,14 +51,14 @@ class CAFooterView: UIView {
     lazy var deliveryPriceLabel: HOLabel = {
         let view = HOLabel.newAutoLayout()
         view.font = DESC_FONT
-        view.textColor = GRAY
+        view.textColor = .gray_
         
         return view
     }()
     
     lazy var salaryLabel: HOLabel = {
         let view = HOLabel.newAutoLayout()
-        view.textColor = GRAY
+        view.textColor = .gray_
         view.font = TITLE_LBL_FONT
         
         return view
@@ -66,7 +66,7 @@ class CAFooterView: UIView {
     
     lazy var salaryPriceLabel: HOLabel = {
         let view = HOLabel.newAutoLayout()
-        view.textColor = GRAY
+        view.textColor = .gray_
         view.font = TITLE_LBL_FONT
         
         return view
@@ -74,7 +74,7 @@ class CAFooterView: UIView {
     
     lazy var orderButton: UIButton = {
         let view = UIButton.newAutoLayout()
-        view.backgroundColor = RED
+        view.backgroundColor = .red_
         view.setTitle("place_order".localizedString, for: .normal)
 
         return view

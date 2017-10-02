@@ -14,7 +14,7 @@ class FlowerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = RED
+        view.backgroundColor = .red_
     }
     
     //MARK: -  Private Methods -

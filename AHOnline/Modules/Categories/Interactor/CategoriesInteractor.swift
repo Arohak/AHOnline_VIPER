@@ -16,9 +16,9 @@ class CategoriesInteractor {
 extension CategoriesInteractor: CategoriesInteractorInput {
     
     func getCategories() {
-        _ = APIManager.getCategories()
+        _ = CategoryEndpoint.getCategories()
             .subscribe(onNext: { result in
-                if result != nil {
+                if let result = result {
                     var categories: [Category] = []
                     for item in result["data"].arrayValue {
                        categories.append(Category(data: item))

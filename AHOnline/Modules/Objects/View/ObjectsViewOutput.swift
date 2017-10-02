@@ -8,5 +8,5 @@
 
 protocol ObjectsViewOutput: DidSelectObjectProtocol {
 
-    func getObjects(params: JSON)
+    func getObjects(_ type: ObjectsRequestType, params: JSON)
 }

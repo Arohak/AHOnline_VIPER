@@ -25,13 +25,18 @@ class HomeViewController: BaseViewController {
     // MARK: - Life cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationItem.setRightBarButton(UIBarButtonItem(image: UIImage(named: "img_search"), style: .plain, target: self, action: #selector(searchAction)), animated: true)
-
+        
+//        configNavigationBar()
+        output.checkUser()
         output.viewIsReady()
     }
     
     // MARK: - Internal Method -
+    func configNavigationBar() {
+        navigationItem.setLeftBarButton(UIBarButtonItem(image: UIImage(named: "img_map"), style: .plain, target: self, action: #selector(mapAction)), animated: true)
+        navigationItem.setRightBarButton(UIBarButtonItem(image: UIImage(named: "img_search"), style: .plain, target: self, action: #selector(searchAction)), animated: true)
+    }
+    
     override func baseConfig() {
         self.view = homeView
         
@@ -46,29 +51,23 @@ class HomeViewController: BaseViewController {
     }
     
     override func updateLocalizedStrings() {
-        setLocalizedStrings()
-        
-        homeView.tableView.reloadData()
-    }
-    
-    // MARK: - Internal Methods -
-    internal func setLocalizedStrings() {
         navigationItem.title = "home".localizedString
-
+        
         titles  = ["new_restaurants".localizedString,
-                  "rate_restaurants".localizedString,
-                  "open_restaurants".localizedString]
+                   "rate_restaurants".localizedString,
+                   "open_restaurants".localizedString]
         
         descs   = ["", "", ""]
     }
     
     internal func scheduleCarouselScrolingTimer() {
-        carouselTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(scrollCarousel), userInfo: nil, repeats: true)
+        carouselTimer = Timer.scheduledTimer(timeInterval: 7, target: self, selector: #selector(scrollCarousel), userInfo: nil, repeats: true)
     }
     
     //MARK: - Timer Methods -
     func scrollCarousel() {
-        homeView.carousel.scrollToItem(at: homeView.carousel.currentItemIndex + 1, animated: true)
+        let index = homeView.carousel.currentItemIndex % 19 + 1
+        homeView.carousel.scrollToItem(at: index, animated: true)
     }
     
     //MARK: - CallBacks didSelectCollectionAtIndexPath Method -
@@ -78,6 +77,10 @@ class HomeViewController: BaseViewController {
     }
     
     //MARK: - Actions -
+    func mapAction() {
+        output.mapButtonClicked()
+    }
+    
     func searchAction() {
         animationSearchView()
         if !isFilterAnimation {
@@ -145,7 +148,9 @@ class HomeViewController: BaseViewController {
 extension HomeViewController: HomeViewInput {
     
     func setupInitialState(home: Home) {
-        heights = [ScreenSize.HEIGHT*0.25, ScreenSize.HEIGHT*0.25, ScreenSize.HEIGHT*0.3]
+        items.removeAll()
+        
+        heights = [Screen.height*0.25, Screen.height*0.25, Screen.height*0.3]
         
         items.append([AHObject]())
         items.append([AHObject]())
@@ -155,7 +160,17 @@ extension HomeViewController: HomeViewInput {
         items[1] = Array(home.rateRestaurants)
         items[2] = Array(home.openRestaurants.reversed())
         
+        updateAllData()
+    }
+    
+    private func updateAllData() {
+        updateLocalizedStrings()
+        
         homeView.tableView.reloadData()
+        for i in 0..<items.count {
+            let cell = homeView.tableView.cellForRow(at: IndexPath(row: i, section: 0)) as! HomeCell
+            cell.cellContentView.collection.reloadData()
+        }
     }
 }
 
@@ -192,7 +207,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        return ScreenSize.HEIGHT*0.3
+        return Screen.height*0.3
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -228,7 +243,7 @@ extension HomeViewController: UITextFieldDelegate {
 extension HomeViewController: iCarouselDataSource, iCarouselDelegate {
     
     public func numberOfItems(in carousel: iCarousel) -> Int {
-        return 10
+        return 20
     }
 
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
@@ -236,10 +251,11 @@ extension HomeViewController: iCarouselDataSource, iCarouselDelegate {
         var imageView: UIImageView!
         
         if (view == nil) {
-            itemView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenSize.WIDTH - HO_INSET*2, height: ScreenSize.HEIGHT*0.3))
+            let inset = HO_INSET*2
+            itemView = UIView(frame: CGRect(x: 0, y: inset, width: Screen.width - inset, height: Screen.height*0.3 - inset))
             imageView = UIImageView.newAutoLayout()
             itemView.addSubview(imageView)
-            imageView.image = UIImage(named: "\(index).png")
+            imageView.image = UIImage(named: "\(index % 4).png")
             imageView.autoPinEdgesToSuperviewEdges()
         } else {
             itemView = view

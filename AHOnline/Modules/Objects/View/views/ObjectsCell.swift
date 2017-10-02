@@ -74,9 +74,9 @@ class ObjectsCellContentView: UIView {
     lazy var cosmosView: CosmosView = {
         let view = CosmosView.newAutoLayout()
         view.settings.updateOnTouch = false
-        view.settings.filledColor = RED
-        view.settings.emptyBorderColor = RED
-        view.settings.filledBorderColor = RED
+        view.settings.filledColor = .red_
+        view.settings.emptyBorderColor = .red_
+        view.settings.filledBorderColor = .red_
         view.settings.starSize = Double(OB_IMG_SIZE)
         
         return view
@@ -149,10 +149,10 @@ class ObjectsCellContentView: UIView {
         
         if object.status == "open" {
             openImageView.image = UIImage(named: "img_clock_select")
-            openLabel.textColor = GREEN
+            openLabel.textColor = .green_
         } else {
             openImageView.image = UIImage(named: "img_clock")
-            openLabel.textColor = RED
+            openLabel.textColor = .red_
         }
     }
 }

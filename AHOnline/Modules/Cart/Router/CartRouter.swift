@@ -20,7 +20,7 @@ extension CartRouter: CartRouterInput {
 extension CartRouter: PresentViewControllerProtocol {
     
     func presentViewController(vc: UIViewController) {
-        Wireframe.presentViewController(vc: vc)
+        Wireframe.present(vc)
     }
 }
 
@@ -28,6 +28,6 @@ extension CartRouter: PresentViewControllerProtocol {
 extension CartRouter: SelectTabControllerProtocol {
     
     func selectTabControllerForIndex(index: Int) {
-        Wireframe.selectTabControllerForIndex(index: index)
+        Wireframe.selectTab(index)
     }
 }

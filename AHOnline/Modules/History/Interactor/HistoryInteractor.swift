@@ -12,7 +12,7 @@ class HistoryInteractor {
     weak var output: HistoryInteractorOutput!
     
     var user: User? {
-        return DBManager.getUserCart()
+        return DBHelper.getUserCart()
     }
 }
 
@@ -21,25 +21,25 @@ extension HistoryInteractor: HistoryInteractorInput {
     
     func getHistoryOrders() {
         if let user = user {
-            _ = APIManager.getOrders(user_id: "\(user.id)")
+            _ = OrderEndpoint.getOrders("\(user.id)")
                 .subscribe(onNext: { result in
-                    if result != nil {
+                    if let result = result {
                         for historyOrder in result["data"].arrayValue {
                             let order = HistoryOrder(data: historyOrder)
-                            DBManager.updateHistoryOrder(historyOrder: order)
+                            DBHelper.updateHistoryOrder(historyOrder: order)
                         }
                         
-                        let historyOrders = DBManager.getHistoryOrders()
+                        let historyOrders = DBHelper.getHistoryOrders()
                         self.output.historyOrdersDataIsReady(historyOrders: Array(historyOrders))
                     }
                     }, onError: { error in
-                        let historyOrders = DBManager.getHistoryOrders()
+                        let historyOrders = DBHelper.getHistoryOrders()
                         self.output.historyOrdersDataIsReady(historyOrders: Array(historyOrders))
                 })
         }
     }
     
     func configureCartViewControllerFromHistoryOrder(historyOrder: HistoryOrder) {
-        DBManager.configureCartFromHistoryOrder(historyOrder: historyOrder)
+        DBHelper.configureCartFromHistoryOrder(historyOrder: historyOrder)
     }
 }

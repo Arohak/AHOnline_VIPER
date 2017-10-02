@@ -6,34 +6,72 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
+import Foundation
 import Alamofire
 
-let apiHelper = APIHelper.sharedInstance
+typealias TupleRequest = (HTTPMethod, String, [String: Any]?, Bool)
 
-let HTTPS   = "http://"
-let IP      = "localhost"
-let PORT    = ":3000/"
-let AHO     = "api/v1/"
-//let baseURL = HTTPS + IP + PORT + AHO
-let baseURL = "http://buyonline-arohak.c9users.io/api/v1/"
-//let baseURL = "https://ahonline.herokuapp.com/api/v1/"
+//let kPath       = "http://buyonline-arohak.c9users.io/"
+//let kPath       = "https://ahonline.herokuapp.com/"
+let kPath       = "http://localhost:3000/api/"
+let kVersion    = "v1"
+let kURL        = kPath + kVersion
 
-class APIHelper {
+struct APIHelper {
     
-    static let sharedInstance = APIHelper()
+    static var poolRequests = Array<TupleRequest>()
+    static let network      = NetworkReachabilityManager()
     
-    //MARK: - Request -
-    func request(method: HTTPMethod,
-                        url: String,
-                        parameters: [String: Any]? = nil,
-                        showProgress: Bool = true)
-                        -> Observable<JSON>
+    //MARK: - API Config -
+    static let baseURL      = Config.getApiBaseUrl()
+    static let key          = Config.getApiKey()
+    
+    //MARK: - Public Methods -
+    static func startListeningNetwork() {
+        network?.startListening()
+        
+        network?.listener = { status in
+            switch status {
+            case .notReachable:
+                showAlertWithSettingsAndRetry()
+                break
+                
+            case .reachable(.ethernetOrWiFi), .reachable(.wwan):
+                hideAlertWithSettingsRetry()
+                _ = retryRequests()
+                break
+
+            case .unknown:
+                break
+            }
+        }
+    }
+    
+    static func request(_ method: HTTPMethod,
+                        _ url: String,
+                        _ parameters: [String: Any]? = nil,
+                        _ showProgress: Bool = true) -> Observable<JSON?>
     {
         return Observable.create { observer in
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            
+            // check internate connection
+            guard NetworkReachabilityManager()!.isReachable else {
+                if poolRequests.filter({ $0.1 == url }).count == 0 {
+                    poolRequests.append(method, url, parameters, showProgress)
+                }
+                
+                showAlertWithSettingsAndRetry()
+                
+                return Disposables.create { }
+            }
+            
+            if poolRequests.count > 0 {
+                poolRequests.removeAll()
+            }
+            
             if showProgress { UIHelper.showSpinner() }
             
-            let URL = baseURL + url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            let URL = kURL + url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             Alamofire.request(URL, method: method,
                               parameters: parameters,
                               encoding: URLEncoding.default,
@@ -47,29 +85,6 @@ class APIHelper {
                         observer.onError(error)
                     }
                     
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                    if showProgress { UIHelper.hideSpinner() }
-            }
-            
-            return Disposables.create { }
-        }
-    }
-    
-    func requestNSData(method: HTTPMethod,
-                    url: String,
-                    parameters: [String: Any]? = nil,
-                    showProgress: Bool = true)
-        -> Observable<Data>
-    {
-        return Observable.create { observer in
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            if showProgress { UIHelper.showSpinner() }
-            
-            let URL = baseURL + url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-            Alamofire.request(URL, method: method, parameters: parameters, encoding: URLEncoding.default)
-                .responseData { response in
-                    observer.onNext(response.data!)
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     if showProgress { UIHelper.hideSpinner() }
             }
             
@@ -78,7 +93,7 @@ class APIHelper {
     }
     
     //MARK: - Private Methods -
-    private func handleResponse(response: Any) -> JSON {
+    private static func handleResponse(response: Any) -> JSON? {
         let data = JSON(response)
         let result = Result(data: data["result"])
         
@@ -86,36 +101,43 @@ class APIHelper {
         case "SUCCESS":
             if !result.message.isEmpty { UIHelper.showHUD(message: result.message) }
             return data
-            
-        case "USER_SESSION_EXPIRED", "USER_SESSION_NOT_FOUND":
-            if !result.message.isEmpty { UIHelper.showHUD(message: result.message) }
-            Wireframe.start()
-            return JSON.null
-            
-        case "CERTIFICATE_NOT_FOUND":
-            if !result.message.isEmpty { UIHelper.showHUD(message: result.message) }
-            return JSON.null
-            
+             
         default:
             UIHelper.showHUD(message: result.message)
-            return JSON.null
+            return nil
         }
     }
     
-    private func handleError(response: AnyObject) {
-        let data = JSON(response)
-        let number = data.intValue
-        var error = "Error"
-        switch number {
-        case -1:
-            error = ""
-        case -2:
-            error = ""
-        case -3:
-            error = ""
-        default:
-            break
+    private static func showAlertWithSettingsAndRetry() {
+        let alertController = UIAlertController(title: "oops".localizedString, message: "no_internet".localizedString, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "settings".localizedString, style: .default) { _ in
+            guard let settingsUrl = NSURL(string:UIApplicationOpenSettingsURLString) as URL? else { return }
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(settingsUrl, options: [:]) { _ in }
+                } else {
+                    // Fallback on earlier versions
+                }
+            }
+        })
+        alertController.addAction(UIAlertAction(title: "retry".localizedString, style: .default) { _ in
+            _ = self.retryRequests()
+            if poolRequests.count == 0 && !NetworkReachabilityManager()!.isReachable {
+                showAlertWithSettingsAndRetry()
+            }
+        })
+        Wireframe.present(alertController)
+    }
+    
+    private static func hideAlertWithSettingsRetry() {
+        Wireframe.dismiss()
+    }
+    
+    private static func retryRequests() -> (Observable<JSON?>)? {
+        for tuple in poolRequests {
+            return self.request(tuple.0, tuple.1, tuple.2, tuple.3)
         }
-        UIHelper.showHUD(message: error)
+        
+        return nil
     }
 }

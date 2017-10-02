@@ -6,12 +6,14 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
+import FacebookLogin
+
 class VerifyPhoneNumberView: BaseScrollView {
     
     //MARK: - Create UIElements -
     lazy var countryCodeButton: HOButton = {
         let view = HOButton.newAutoLayout()
-        view.backgroundColor = WHITE
+        view.backgroundColor = .white
 
         return view
     }()
@@ -27,7 +29,7 @@ class VerifyPhoneNumberView: BaseScrollView {
     lazy var sendButton: HOButton = {
         let view = HOButton.newAutoLayout()
         view.setBackgroundImage(UIImage(named: "img_result"), for: .normal)
-        view.setTitleColor(WHITE, for: .normal)
+        view.setTitleColor(.white, for: .normal)
         view.setTitle("send".localizedString, for: .normal)
 
         return view
@@ -45,7 +47,7 @@ class VerifyPhoneNumberView: BaseScrollView {
     lazy var acceptButton: HOButton = {
         let view = HOButton.newAutoLayout()
         view.setBackgroundImage(UIImage(named: "img_result"), for: .normal)
-        view.setTitleColor(WHITE, for: .normal)
+        view.setTitleColor(.white, for: .normal)
         view.setTitle("accept".localizedString, for: .normal)
         view.isEnabled = false
 
@@ -56,7 +58,13 @@ class VerifyPhoneNumberView: BaseScrollView {
         let view = HOLabel.newAutoLayout()
         view.numberOfLines = 0
         view.text = "Enter your mobile number and press SEND, after access true enter secure code (pin code) and press ACCEPT"
-        view.textColor = WHITE
+        view.textColor = .white
+        
+        return view
+    }()
+    
+    lazy var loginButton: LoginButton = {
+        let view = LoginButton(readPermissions: [ .publicProfile ])
         
         return view
     }()
@@ -65,7 +73,7 @@ class VerifyPhoneNumberView: BaseScrollView {
     init() {
         super.init(frame: CGRect.zero)
         
-        backgroundColor = CLEAR
+        backgroundColor = .clear
         addAllUIElements()
     }
     
@@ -84,6 +92,7 @@ class VerifyPhoneNumberView: BaseScrollView {
         contentView.addSubview(pinTextField)
         contentView.addSubview(acceptButton)
         contentView.addSubview(titleLabel)
+        addSubview(loginButton)
 
         setConstraints()
     }
@@ -116,5 +125,9 @@ class VerifyPhoneNumberView: BaseScrollView {
         titleLabel.autoPinEdge(.top, to: .bottom, of: acceptButton, withOffset: VE_OFFSET)
         titleLabel.autoPinEdge(toSuperviewEdge: .left, withInset: VE_OFFSET)
         titleLabel.autoPinEdge(toSuperviewEdge: .right, withInset: VE_OFFSET)
+        
+        loginButton.autoPinEdge(toSuperviewEdge: .bottom, withInset: VE_OFFSET*10)
+        loginButton.autoAlignAxis(toSuperviewAxis: .vertical)
+        loginButton.autoSetDimensions(to: CGSize(width: VE_WIDTH, height: VE_HEIGHT))
     }
 }

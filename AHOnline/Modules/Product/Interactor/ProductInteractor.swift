@@ -12,29 +12,26 @@ class ProductInteractor {
     weak var output: ProductInteractorOutput!
     
     var user: User? {
-        return DBManager.getUser()
+        return DBHelper.getUser()
     }
     
     var storedProducts: Results<Product> {
-        return DBManager.getProducts()
+        return DBHelper.getProducts()
     }
 }
 
 //MARK: - extension for ProductInteractorInput -
 extension ProductInteractor: ProductInteractorInput {
     
-    func getProducts(requestType: RequestType, json: JSON) {
-        var js = json
-        if let  user = user { js["user_id"].stringValue = "\(user.id)" }
-        
-        _ = APIManager.getProducts(requestType: requestType, json: js)
+    func getProducts(_ type: ProductsRequestType, params: JSON) {
+        _ = ProductEndpoint.getProducts(type, json: params)
             .subscribe(onNext: { result in
-                if result != nil {
+                if let result = result {
                     var products: [Product] = []
                     for item in result["data"].arrayValue {
                         let product = Product(data: item)
                         
-                        if let findStoredProduct = DBManager.updatedProductInfo(product: product) {
+                        if let findStoredProduct = DBHelper.updatedProductInfo(product: product) {
                             products.append(findStoredProduct)
                         } else {
                             products.append(product)
@@ -43,9 +40,9 @@ extension ProductInteractor: ProductInteractorInput {
                     self.output.productsDataIsReady(products: products)
                 }
                 }, onError: { error in
-                    switch requestType {
-                    case .FAVORITE:
-                        let products = DBManager.getProductsLimitOffset(offset: json["offset"].intValue, limit: json["limit"].intValue)
+                    switch type {
+                    case .Favorite:
+                        let products = DBHelper.getProductsLimitOffset(offset: params["offset"].intValue, limit: params["limit"].intValue)
                         self.output.productsDataIsReady(products: Array(products))
                     default:
                         break
@@ -53,25 +50,25 @@ extension ProductInteractor: ProductInteractorInput {
             })
     }
     
-    func addProductBuy(product: Product) {
-        if product.countBuy < CA_COUNT - 1 {
-            DBManager.addProduct(product: product)
-            output.addProductIsReady(product: product)
-        } else {
-            UIHelper.showHUD(message: "max_message".localizedString)
-        }
-    }
-    
     func updateFavoriteProduct(product: Product) {
         if let  user = user {
-            _ = APIManager.updateFavoriteProduct(user_id: "\(user.id)", product_id: "\(product.id)")
+            _ = FavoriteEndpoint.updateFavorite(userId: "\(user.id)", productId: "\(product.id)")
                 .subscribe(onNext: { result in
-                    if result != nil {
-                        DBManager.updateFavoriteProduct(product: product)
+                    if let _ = result {
+                        DBHelper.updateFavoriteProduct(product: product)
                         
                         self.output.updateProductIsReady(product: product)
                     }
                 })
+        }
+    }
+    
+    func addProductBuy(product: Product) {
+        if product.countBuy < CA_COUNT - 1 {
+            DBHelper.addProduct(product: product)
+            output.addProductIsReady(product: product)
+        } else {
+            UIHelper.showHUD(message: "max_message".localizedString)
         }
     }
 }

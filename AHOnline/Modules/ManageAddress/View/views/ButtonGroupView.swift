@@ -11,18 +11,18 @@ class ButtonGroupView: UIView {
     //MARK: - Create UIElements -
     lazy var nameLabel: TitleLabel = {
         let view = TitleLabel.newAutoLayout()
-        view.textColor = WHITE
+        view.textColor = .white
         
         return view
     }()
     
     lazy var titleLabel: HOLabel = {
         let view = HOLabel.newAutoLayout()
-        view.backgroundColor = WHITE
+        view.backgroundColor = .white
         view.textAlignment = .center
-        view.textColor = RED
+        view.textColor = .red_
         view.layer.borderWidth = 0.5
-        view.layer.borderColor = BLACK.cgColor
+        view.layer.borderColor = UIColor.black.cgColor
         
         return view
     }()
@@ -30,14 +30,14 @@ class ButtonGroupView: UIView {
     lazy var arrowImageView: UIImageView = {
         let view = UIImageView.newAutoLayout()
         view.image = UIImage(named: "img_manage_arrow")
-        view.backgroundColor = WHITE
+        view.backgroundColor = .white
         
         return view
     }()
     
     lazy var button: HOButton = {
         let view = HOButton.newAutoLayout()
-        view.backgroundColor = CLEAR
+        view.backgroundColor = .clear
 
         return view
     }()

@@ -20,7 +20,7 @@ extension AccountRouter: AccountRouterInput {
 extension AccountRouter: PresentViewControllerProtocol {
     
     func presentViewController(vc: UIViewController) {
-        Wireframe.presentViewController(vc: vc)
+        Wireframe.present(vc)
     }
 }
 
@@ -28,7 +28,7 @@ extension AccountRouter: PresentViewControllerProtocol {
 extension AccountRouter: ModalPresentViewControllerProtocol {
     
     func modalPresentViewController(vc: UIViewController) {
-        Wireframe.modalPresentViewController(vc: vc)
+        Wireframe.modalPresent(vc)
     }
 }
 
@@ -36,6 +36,6 @@ extension AccountRouter: ModalPresentViewControllerProtocol {
 extension AccountRouter: PushViewControllerProtocol {
     
     func pushViewController(vc: UIViewController) {
-        Wireframe.pushViewController(vc: vc)
+        Wireframe.push(vc)
     }
 }

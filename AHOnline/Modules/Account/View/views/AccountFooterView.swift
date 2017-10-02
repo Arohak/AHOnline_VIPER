@@ -11,7 +11,7 @@ class AccountFooterView: UIView {
     //MARK: - Create UIElements -
     let facebookButton: HOButton = {
         let view = HOButton.newAutoLayout()
-        view.backgroundColor = RED
+        view.backgroundColor = .red_
 //        view.setBackgroundImage(UIImage(named: "img_mapview_location"), forState: .Normal)
         
         return view
@@ -19,15 +19,15 @@ class AccountFooterView: UIView {
     
     let youtubeButton: HOButton = {
         let view = HOButton.newAutoLayout()
-        view.backgroundColor = RED
-        //        view.setBackgroundImage(UIImage(named: "img_mapview_location"), forState: .Normal)
+        view.backgroundColor = .red_
+//        view.setBackgroundImage(UIImage(named: "img_mapview_location"), forState: .Normal)
         
         return view
     }()
     
     let twitterButton: HOButton = {
         let view = HOButton.newAutoLayout()
-        view.backgroundColor = RED
+        view.backgroundColor = .red_
 //        view.setBackgroundImage(UIImage(named: "img_mapview_hospital"), forState: .Normal)
         
         return view

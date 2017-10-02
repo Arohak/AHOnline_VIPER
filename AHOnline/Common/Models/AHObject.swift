@@ -22,7 +22,7 @@ class AHObject: Object {
     dynamic var min_amount_order: String!
     dynamic var rate = 0
     dynamic var totalHours = 0
-    dynamic var new = false
+    dynamic var objectNew = false
     
     dynamic var img: String!
     var menus = List<ObjectMenu>()
@@ -49,7 +49,7 @@ class AHObject: Object {
         self.min_amount_order       = data["min_amount_order"].stringValue
         self.rate                   = data["rate"].intValue
         self.totalHours             = data["totalHours"].intValue
-        self.new                    = data["new"].boolValue
+        self.objectNew              = data["new"].boolValue
         
         self.img                    = data["img"].stringValue
         

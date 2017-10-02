@@ -20,7 +20,7 @@ extension HomeRouter: HomeRouterInput {
 extension HomeRouter: PushViewControllerProtocol {
     
     func pushViewController(vc: UIViewController) {
-        Wireframe.pushViewController(vc: vc)
+        Wireframe.push(vc)
     }
 }
 
@@ -28,6 +28,6 @@ extension HomeRouter: PushViewControllerProtocol {
 extension HomeRouter: ModalPresentViewControllerProtocol {
     
     func modalPresentViewController(vc: UIViewController) {
-        Wireframe.modalPresentViewController(vc: vc)
+        Wireframe.modalPresent(vc)
     }
 }

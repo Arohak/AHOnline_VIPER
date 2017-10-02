@@ -45,7 +45,7 @@ class HistoryCellContentView: UIView {
     
     lazy var dateLabel: TitleLabel = {
         let view = TitleLabel.newAutoLayout()
-        view.textColor = RED
+        view.textColor = .red_
         
         return view
     }()
@@ -118,6 +118,6 @@ class HistoryCellContentView: UIView {
         dateLabel.text              = historyOrder.dateCreate
         paymentLabel.text           = "payment_title".localizedString + historyOrder.payment
         priceLabel.text             = "total_price".localizedString + "\(historyOrder.totalPrice.format)".dram
-        bgImageView.backgroundColor = historyOrder.isVerified ? CLEAR : GRAY_200
+        bgImageView.backgroundColor = historyOrder.isVerified ? .clear : .gray_200
     }
 }

@@ -40,9 +40,9 @@ class MapViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        output.viewIsReady()
         startUpdatingLocation { _ in }
         getNearestObjects()
+//        getObjects()
     }
     
     // MARK: - Internal Method -
@@ -61,10 +61,15 @@ class MapViewController: BaseViewController {
     override func updateLocalizedStrings() {
         
         navigationItem.title = "map".localizedString
+        navigationItem.setRightBarButton(UIBarButtonItem(title: "close".localizedString, style: .plain, target: self, action: #selector(closeAction)), animated: true)
         navigationItem.setLeftBarButton(UIBarButtonItem(title: "distance".localizedString, style: .plain, target: self, action: #selector(chooseDistanceAction)), animated: true)
     }
     
     //MARK: - Actions -
+    func closeAction() {
+        output.closeButtonClicked()
+    }
+
     func clearPolyline(sender: UIButton) {
         drewPolyline.map = nil
         mapView.bottomView.closeRoutButton.isHidden = true
@@ -101,6 +106,15 @@ class MapViewController: BaseViewController {
         }
     }
     
+    func getObjects() {
+        let params = JSON([
+            "limit"             : "5",
+            "offset"            : "0",
+            "type"              : "all"])
+        
+        output.getObjects(json: params)
+    }
+    
     //MARK: - Internal Methods -
     internal func showMyMarkerInMap(location: CLLocation?) {
         if let location = location {
@@ -129,8 +143,8 @@ class MapViewController: BaseViewController {
             
             locationHelper.getDirections(origin: originLocation, destination: markerLocation, waypoints: nil, travelMode: nil, completionHandler: { (status, polyline, success) in
                 if success {
-                    polyline!.strokeColor = RED
-                    polyline!.strokeWidth = DeviceType.IS_IPAD ? 5 : 3
+                    polyline!.strokeColor = .red_
+                    polyline!.strokeWidth = Device.ipad ? 5 : 3
                     polyline!.map = self.mapView.map
                     if let drewPolyline = self.drewPolyline { drewPolyline.map = nil }
                     if self.myMarker == nil { self.showMyMarkerInMap(location: location) }
@@ -153,7 +167,7 @@ class MapViewController: BaseViewController {
         if allGMSMarkers.count == 1 {
             mapView.map.animate(to: GMSCameraPosition.camera(withLatitude: allGMSMarkers[0].position.latitude, longitude: allGMSMarkers[0].position.longitude, zoom: 17))
         } else if  allGMSMarkers.count > 1 {
-            mapView.map.animate(with: GMSCameraUpdate.fit(bounds, withPadding: DeviceType.IS_IPAD ? 100 : 70))
+            mapView.map.animate(with: GMSCameraUpdate.fit(bounds, withPadding: Device.ipad ? 100 : 70))
         }
     }
     
@@ -166,7 +180,7 @@ class MapViewController: BaseViewController {
                 bounds = bounds.includingCoordinate(position)
             }
         }
-        mapView.map.animate(with: GMSCameraUpdate.fit(bounds, withPadding: DeviceType.IS_IPAD ? 100 : 50))
+        mapView.map.animate(with: GMSCameraUpdate.fit(bounds, withPadding: Device.ipad ? 100 : 50))
     }
     
     internal func showMarkersInMap(pins: [Address]) {

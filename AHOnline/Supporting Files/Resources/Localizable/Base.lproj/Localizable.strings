@@ -1,0 +1,112 @@
+// All
+"caption"               = "Buy Online";
+"ok"                    = "Ok";
+"cancel"                = "Cancel";
+"save"                  = "Save";
+"close"                 = "Close";
+"loading"               = "Loading ... ";
+"choose_date"            = "Choose Date";
+
+// Tab Bar
+"home"                  = "Home";
+"categories"            = "Categories";
+"cart"                  = "Cart";
+"map"                   = "Map";
+"profile"               = "Profile";
+
+// Mobile Verify
+"verify"                = "Verify Mobile Number";
+"phone"                 = "Mobile Number";
+"send"                  = "Send";
+"accept"                = "Accept";
+"pin"                   = "pin code";
+
+// Delivery Address
+"delivery_address"      = "Delivery Address";
+"country"               = "Country";
+"city"                  = "City";
+"address"               = "Address";
+
+// Home
+"new_restaurants"       = "New Restaurants";
+"open_restaurants"      = "Open Restaurants";
+"rate_restaurants"      = "Rate Restaurants";
+"new_products"          = "New Products";
+"sale_products"         = "Sale Products";
+"search_message"        = "search text min 3 simbol";
+"type"                  = "Type";
+"sort"                  = "Sort";
+"kitchen"               = "Kitchen";
+"restaurant"            = "Restaurant";
+"product"               = "Product";
+"alphabet"              = "Alphabet";
+"new"                   = "New";
+"favorite"              = "Favorite";
+"best"                  = "Best";
+"best_offer"            = "Best Offer";
+"eastern"               = "Eastern";
+"european"              = "European";
+"armenia"               = "Armenia";
+"georgian"              = "Georgian";
+"italian"               = "Italian";
+"french"                = "French";
+"greek"                 = "Greek";
+"american"              = "American";
+"mexican"               = "Mexican";
+
+// Categories
+
+// Cart
+"edit"                  = "Edit";
+"done"                  = "Done";
+"clear"                 = "Clear";
+"clear_cart"            = "Clear Cart";
+"clear_message"         = "Do you want to clear the cart?";
+"order"                 = "ORDER";
+"delivery"              = "DELIVERY";
+"payment"               = "PAYMENT";
+"mobile_number"         = "Mobile Number";
+"delivery_address"      = "Delivery Address";
+"delivery_address_pl"   = "street, apartment, house";
+"cart_call"             = "Set Mobile Number";
+"cart_address"          = "Set Address";
+"cart_city"             = "Choose City";
+"cart_time"             = "Choose Time";
+"pay_on_delivery"       = "Pay on delivery";
+"credit_cart"           = "Credit Cart";
+"paypal"                = "Paypal";
+"max_message"           = "max value 9";
+"payment_title"         = "Payment:  ";
+"price"                 = "Price:  ";
+"total_price"           = "Total Price:  ";
+"order_price"           = "Order Price:  ";
+"delivery_price"        = "Delivery Price:  ";
+"invalid_params"        = "Please fill in required fields";
+"place_order"           = "PLACE ORDER";
+"place_order_msg"       = "Are you sure place this order?";
+"please_add_order"      = "Please Add Order";
+"send_verify_message"   = "A verification code has been sent to your mobile. Please fill it in below.";
+
+// Map
+"distance"              = "Distance";
+"km"                    = "KM";
+
+// Profile
+"history"               = "History";
+"settings"              = "Settings";
+"favorite"              = "Favorite";
+"language"              = "Language";
+"notification"          = "Notification";
+"contact_us"            = "Contact Us";
+"help"                  = "Help";
+"guest"                 = "Guest";
+"manage_address"        = "Manage Delivery Address";
+"manage_number"         = "Manage Phone Number";
+
+// Restaurant
+"restaurants"           = "Restaurants";
+
+// Product
+"products"              = "Products";
+"results"               = "Products";
+"favorites"             = "Favorites";

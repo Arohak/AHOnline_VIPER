@@ -19,7 +19,10 @@ class SubcategoryCell: UICollectionViewCell {
     }
     
     func setValues(subcategory: Subcategory) {
-        cellContentView.imageView.af_setImage(withURL: URL(string: subcategory.src)!, placeholderImage: UIImage(named: "img_placeholder"))
+        let imageURL = URL(string: subcategory.image)
+        if let imageURL = imageURL {
+            cellContentView.imageView.af_setImage(withURL: imageURL, placeholderImage: UIImage(named: "img_placeholder"))
+        }
         cellContentView.nameLabel.text = subcategory.name
     }
     
@@ -34,6 +37,8 @@ class SubcategoryCellContentView: UIView {
     //MARK: - Create UIElements -
     lazy var imageView: UIImageView = {
         let view = UIImageView.newAutoLayout()
+        view.layer.cornerRadius = 5
+        view.clipsToBounds = true
         
         return view
     }()

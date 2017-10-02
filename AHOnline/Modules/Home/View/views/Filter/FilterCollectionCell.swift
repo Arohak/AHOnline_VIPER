@@ -29,7 +29,7 @@ class FilterCollectionCellContentView: UIView {
     //MARK: - Create UIElements -
     lazy var button: HOButton = {
         let view = HOButton.newAutoLayout()
-        view.setTitleColor(WHITE, for: .normal)
+        view.setTitleColor(.white, for: .normal)
         view.titleLabel?.font = CA_TITLE_FONT
         view.setBackgroundImage(UIImage(named: "img_result"), for: .normal)
         view.setBackgroundImage(UIImage(named: "img_result_select"), for: .selected)

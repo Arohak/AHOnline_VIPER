@@ -14,14 +14,15 @@ target 'AHOnline' do
     pod 'iCarousel'
     pod 'Cosmos'
     pod 'ActionSheetPicker-3.0'
-    pod 'PKHUD', :git => 'https://github.com/toyship/PKHUD.git'
-    pod 'AlamofireImage', '~> 3.0'
-    pod 'RxSwift',    '~> 3.0.0-beta.1'
-    pod 'ALThreeCircleSpinner', :git => 'https://github.com/AlexLittlejohn/ALThreeCircleSpinner.git'
+    pod 'PKHUD', :git => 'https://github.com/pkluz/PKHUD.git', :branch => 'release/swift4'
+    pod 'AlamofireImage'
+    pod 'RxSwift'
+    pod 'ALThreeCircleSpinner'
 
-  target 'AHOnlineTests' do
-    inherit! :search_paths
-
-  end
+    pod 'FacebookCore'
+    pod 'FacebookLogin'
+    
+    pod 'HockeySDK'
+    pod 'GoogleAnalytics'
 
 end

@@ -45,7 +45,7 @@ class FavoriteCellContentView: UIView {
     
     lazy var nameLabel: TitleLabel = {
         let view = TitleLabel.newAutoLayout()
-        view.textColor = RED
+        view.textColor = .red_
         
         return view
     }()

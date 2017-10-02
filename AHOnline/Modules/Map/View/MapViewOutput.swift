@@ -8,6 +8,7 @@
 
 protocol MapViewOutput: DidSelectObjectProtocol, PresentViewControllerProtocol {
 
-    func viewIsReady()
     func getNearestObjects(json: JSON)
+    func getObjects(json: JSON)
+    func closeButtonClicked()
 }

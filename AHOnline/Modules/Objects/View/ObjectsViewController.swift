@@ -15,6 +15,13 @@ enum ObjectsType: String {
     case Open = "open"
 }
 
+enum ObjectsRequestType: String {
+    case Category = "Category"
+    case WithType = "WithType"
+    case WithSearch = "WithSearch"
+    case WithLimit = "WithLimit"
+}
+
 //MARK: - class ObjectsViewController -
 class ObjectsViewController: BaseViewController {
 
@@ -60,31 +67,36 @@ class ObjectsViewController: BaseViewController {
     
     //MARK: -  Private Methods -
     private func getObjects() {
+        var requestType = ObjectsRequestType.Category
         var params = JSON.null
+
         if !categoryID.isEmpty {
+            requestType = .Category
             params = JSON([
                 "category_id"       : "\(categoryID)",
                 "subcategory_id"    : "\(subcategoryID)",
                 "limit"             : "\(limit)",
+                "offset"            : "\(offset)"])
+            
+            
+        } else if !search.isEmpty {
+            requestType = .WithType
+            params = JSON([
+                "limit"             : "\(limit)",
                 "offset"            : "\(offset)",
                 "type"              : "\(type.rawValue)"])
             
-        } else if !search.isEmpty {
+        } else {
+            requestType = .WithSearch
             params = JSON([
                 "limit"             : "\(limit)",
                 "offset"            : "\(offset)",
                 "search"            : "\(search)"])
-            
-        } else {
-            params = JSON([
-                "limit"             : "\(limit)",
-                "offset"            : "\(offset)",
-                "type"              : "\(type.rawValue)"])
         }
         
-        output.getObjects(params: params)
+        output.getObjects(requestType, params: params)
     }
-    
+
     //MARK: - Public Methods -
     func setParams(categoryID: String = "", subcategoryID: String = "", search: String = "", type: ObjectsType = .ALL) {
         self.categoryID     = categoryID

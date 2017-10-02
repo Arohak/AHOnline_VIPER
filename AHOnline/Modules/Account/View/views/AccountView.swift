@@ -34,7 +34,7 @@ class AccountView: BaseView {
         addSubview(tableView)
         tableView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: NAV_HEIGHT, left: 0, bottom: TAB_HEIGHT, right: 0))
         
-        backgroundColor = WHITE
+        backgroundColor = .white
         tableView.tableHeaderView = headerView
     }
     

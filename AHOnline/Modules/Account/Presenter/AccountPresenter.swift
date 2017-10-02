@@ -21,20 +21,6 @@ extension AccountPresenter: AccountViewOutput {
         interactor.getUserData()
     }
     
-    func historyButtonClicked() {
-        let vc = HistoryViewController()
-        _ = HistoryModuleInitializer(viewController: vc)
-        router.pushViewController(vc: vc)
-    }
-    
-    func favoriteButtonClicked() {
-        let vc = ProductViewController()
-        _ = ProductModuleInitializer(viewController: vc)
-        vc.setParams(requestType: RequestType.FAVORITE, count: 2)
-        
-        router.pushViewController(vc: vc)
-    }
-    
     func settingsButtonClicked() {
         interactor.manageSettings()
     }
@@ -42,7 +28,9 @@ extension AccountPresenter: AccountViewOutput {
     func didSelectRow(index: Int) {        
         switch index {
         case 0:
-            interactor.manageLanguage()
+            let vc = HistoryViewController()
+            _ = HistoryModuleInitializer(viewController: vc)
+            router.pushViewController(vc: vc)
             
         case 1:
             let vc = NotificationViewController()
@@ -50,14 +38,7 @@ extension AccountPresenter: AccountViewOutput {
             router.pushViewController(vc: vc)
             
         case 2:
-            let vc = ContuctUsViewController()
-            _ = ContuctUsModuleInitializer(viewController: vc)
-            router.pushViewController(vc: vc)
-            
-        case 3:
-            let vc = HelpViewController()
-            _ = HelpModuleInitializer(viewController: vc)
-            router.pushViewController(vc: vc)
+            interactor.manageLanguage()
 
         default:
             break
@@ -90,5 +71,34 @@ extension AccountPresenter: AccountInteractorOutput {
     
     func changeLanguageIsReady() {
         view.updateLocalizedStrings()
+
+//        updateTabBarTitles()
+        updateTabBarPages()
+    }
+    
+    private func updateTabBarTitles() {
+        let tabArray = Wireframe.root().tabBar.items
+        
+        let titles = ["home".localizedString,
+                      "categories".localizedString,
+                      "cart".localizedString,
+                      "favorite".localizedString,
+                      "profile".localizedString]
+        
+        for (index, tab) in tabArray!.enumerated() {
+            tab.title = titles[index]
+        }
+    }
+    
+    private func updateTabBarPages() {
+        let navHome = Wireframe.root().viewControllers![0] as! UINavigationController
+        navHome.popToRootViewController(animated: true)
+        let homeVC = Wireframe.getTab(0) as! HomeViewController
+        homeVC.output.viewIsReady()
+
+        let navCategory = Wireframe.root().viewControllers![1] as! UINavigationController
+        navCategory.popToRootViewController(animated: true)
+        let categoryVC = Wireframe.getTab(1) as! CategoriesViewController
+        categoryVC.output.viewIsReady()
     }
 }

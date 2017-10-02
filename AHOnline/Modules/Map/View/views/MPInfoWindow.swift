@@ -14,7 +14,7 @@ class MPInfoWindow: UIView {
     //MARK: - Create UIElements -
     let bgView: UIView = {
         let view = UIView.newAutoLayout()
-        view.backgroundColor = WHITE
+        view.backgroundColor = .white
         view.layer.cornerRadius = 5
         view.clipsToBounds = true
         
@@ -30,7 +30,7 @@ class MPInfoWindow: UIView {
     
     let titleLabel: HOLabel = {
         let view = HOLabel.newAutoLayout()
-        view.textColor = BLUE
+        view.textColor = .blue_
         view.numberOfLines = 1
         
         return view

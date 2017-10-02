@@ -6,6 +6,6 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-protocol MapRouterInput: PushViewControllerProtocol, PresentViewControllerProtocol {
+protocol MapRouterInput: PushViewControllerProtocol, PresentViewControllerProtocol, DismissControllerProtocol {
 
 }

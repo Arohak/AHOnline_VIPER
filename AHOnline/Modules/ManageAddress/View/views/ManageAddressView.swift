@@ -44,7 +44,7 @@ class ManageAddressView: BaseScrollView {
     lazy var saveButton: HOButton = {
         let view = HOButton.newAutoLayout()
         view.setBackgroundImage(UIImage(named: "img_result"), for: .normal)
-        view.setTitleColor(WHITE, for: .normal)
+        view.setTitleColor(.white, for: .normal)
         view.setTitle("save".localizedString, for: .normal)
 
         return view
@@ -55,7 +55,7 @@ class ManageAddressView: BaseScrollView {
     init() {
         super.init(frame: CGRect.zero)
         
-        backgroundColor = CLEAR
+        backgroundColor = .clear
         addAllUIElements()
     }
     

@@ -20,7 +20,7 @@ extension VerifyPhoneNumberRouter: VerifyPhoneNumberRouterInput {
 extension VerifyPhoneNumberRouter: PresentViewControllerProtocol {
     
     func presentViewController(vc: UIViewController) {
-        Wireframe.presentViewController(vc: vc)
+        Wireframe.present(vc)
     }
 }
 
@@ -28,7 +28,7 @@ extension VerifyPhoneNumberRouter: PresentViewControllerProtocol {
 extension VerifyPhoneNumberRouter: ModalPresentViewControllerProtocol {
     
     func modalPresentViewController(vc: UIViewController) {
-        Wireframe.modalPresentViewController(vc: vc)
+        Wireframe.modalPresent(vc)
     }
 }
 
@@ -36,6 +36,6 @@ extension VerifyPhoneNumberRouter: ModalPresentViewControllerProtocol {
 extension VerifyPhoneNumberRouter: DismissControllerProtocol {
     
     func dismissViewController() {
-        Wireframe.dismissViewController()
+        Wireframe.dismiss()
     }
 }

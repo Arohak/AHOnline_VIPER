@@ -11,14 +11,14 @@ class OrderGroupView: UIView {
     //MARK: - Create UIElements -
     lazy var addButton: UIButton = {
         let view = UIButton.newAutoLayout()
-        view.backgroundColor = RED
+        view.backgroundColor = .red_
         
         return view
     }()
     
     lazy var removeButton: UIButton = {
         let view = UIButton.newAutoLayout()
-        view.backgroundColor = RED
+        view.backgroundColor = .red_
 
         return view
     }()
@@ -26,7 +26,7 @@ class OrderGroupView: UIView {
     lazy var titleLabel: HOLabel = {
         let view = HOLabel.newAutoLayout()
         view.textAlignment = .center
-        view.textColor = GRAY
+        view.textColor = .gray_
         view.text = "Count"
         
         return view

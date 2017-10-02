@@ -12,7 +12,7 @@ class VerifyPhoneNumberInteractor {
     weak var output: VerifyPhoneNumberInteractorOutput!
     
     var user: User {
-        return DBManager.getUser()!
+        return DBHelper.getUser()!
     }
 }
 
@@ -20,11 +20,7 @@ class VerifyPhoneNumberInteractor {
 extension VerifyPhoneNumberInteractor: VerifyPhoneNumberInteractorInput {
     
     func send(number: String) {
-        let json = JSON([
-            "id"            : user.id,
-            "mobile_number" : number])
-        
-        _ = APIManager.sendMobileNumber(json: json)
+        _ = UserEndpoint.sendPhone("\(user.id)", number: number)
             .subscribe(onNext: { result in
                 if result != nil {
                    self.output.sendPhoneIsReady()
@@ -33,11 +29,11 @@ extension VerifyPhoneNumberInteractor: VerifyPhoneNumberInteractorInput {
     }
     
     func accept(pin: String) {
-        _ = APIManager.verifyMobileNumber(pin: pin)
+        _ = UserEndpoint.verifyPhone(pin)
             .subscribe(onNext: { result in
-                if result != nil {
+                if let result = result {
                     let userInfo = UserInfo(data: result["data"])
-                    DBManager.updateUser(userInfo: userInfo)
+                    DBHelper.updateUser(userInfo: userInfo)
                     
                     self.output.acceptDataIsReady()
                 }

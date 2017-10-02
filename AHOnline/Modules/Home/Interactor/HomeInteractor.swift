@@ -12,7 +12,7 @@ class HomeInteractor {
     weak var output: HomeInteractorOutput!
     
     var user: User? {
-        return DBManager.getUser()
+        return DBHelper.getUser()
     }
 }
 
@@ -21,21 +21,21 @@ extension HomeInteractor: HomeInteractorInput {
     
     func createUser() {
         if let user = user {
-            _ = APIManager.getUser(id: "\(user.id)")
+            _ = UserEndpoint.getUser("\(user.id)")
                 .subscribe(onNext: { result in
-                    if result != nil {
+                    if let result = result {
                         let userInfo = UserInfo(data: result["data"])
-                        DBManager.updateUser(userInfo: userInfo)
+                        DBHelper.updateUser(userInfo: userInfo)
                         
                         self.output.createUserIsReady(user: user)
                     }
                 })
         } else {
-            _ = APIManager.createUser()
+            _ = UserEndpoint.createUser()
                 .subscribe(onNext: { result in
-                    if result != nil {
+                    if let result = result {
                         let user = User(data: result["data"])
-                        DBManager.storeUser(user: user)
+                        DBHelper.storeUser(user: user)
                         
                         self.output.createUserIsReady(user: user)
                     }
@@ -44,9 +44,9 @@ extension HomeInteractor: HomeInteractorInput {
     }
     
     func getRestaurantsHome() {
-        _ = APIManager.getRestaurantsHome()
+        _ = MainEndpoint.getFeeds(false)
             .subscribe(onNext: { result in
-                if result != nil {
+                if let result = result {
                     let home = Home(data: result["data"])
                     self.output.homeDataIsReady(home: home)
                 }
@@ -54,9 +54,9 @@ extension HomeInteractor: HomeInteractorInput {
     }
     
     func getObject(id: Int) {
-        _ = APIManager.getObject(id: "\(id)")
+        _ = ObjectEndpoint.getObject("\(id)")
             .subscribe(onNext: { result in
-                if result != nil {
+                if let result = result {
                     let object = AHObject(data: result["data"])
                     self.output.objectDataIsReady(object: object)
                 }

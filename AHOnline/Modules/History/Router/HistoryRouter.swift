@@ -15,7 +15,7 @@ class HistoryRouter {
 extension HistoryRouter: HistoryRouterInput {
     
     func getTabControllerForIndex(index: Int) -> UIViewController {
-        return Wireframe.getTabControllerForIndex(index: index)
+        return Wireframe.getTab(index)
     }
 }
 
@@ -23,6 +23,6 @@ extension HistoryRouter: HistoryRouterInput {
 extension HistoryRouter: SelectTabControllerProtocol {
     
     func selectTabControllerForIndex(index: Int) {
-        Wireframe.selectTabControllerForIndex(index: index)
+        Wireframe.selectTab(index)
     }
 }

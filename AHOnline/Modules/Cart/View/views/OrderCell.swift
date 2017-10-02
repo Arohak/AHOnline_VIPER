@@ -41,7 +41,8 @@ class OrderCellContentView: UIView {
     lazy var imageView: UIImageView = {
         let view = UIImageView.newAutoLayout()
         view.contentMode = .scaleAspectFit
-        view.backgroundColor = GREEN
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 4
         
         return view
     }()
@@ -59,7 +60,7 @@ class OrderCellContentView: UIView {
         view.keyboardType = .numberPad
         view.textAlignment = .center
         view.font = TITLE_BTN_FONT
-        view.backgroundColor = WHITE
+        view.backgroundColor = .white
 
         return view
     }()

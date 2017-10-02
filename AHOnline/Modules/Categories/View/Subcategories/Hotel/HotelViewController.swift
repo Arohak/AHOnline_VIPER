@@ -14,7 +14,7 @@ class HotelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = GRAY
+        view.backgroundColor = .gray_
     }
     
     //MARK: -  Private Methods -

@@ -8,7 +8,7 @@
 
 protocol ProductInteractorInput {
 
-    func getProducts(requestType: RequestType, json: JSON)
+    func getProducts(_ type: ProductsRequestType, params: JSON)
     func addProductBuy(product: Product)
     func updateFavoriteProduct(product: Product)
 }

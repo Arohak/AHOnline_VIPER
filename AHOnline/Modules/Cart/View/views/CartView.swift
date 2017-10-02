@@ -20,7 +20,7 @@ class CartView: BaseView {
     
     lazy var footerView: CAFooterView = {
         let view = CAFooterView.newAutoLayout()
-        view.backgroundColor = WHITE
+        view.backgroundColor = .white
         
         return view
     }()
@@ -43,7 +43,7 @@ class CartView: BaseView {
         tableView.autoPinEdge(toSuperviewEdge: .top, withInset: NAV_HEIGHT)
         tableView.autoPinEdge(toSuperviewEdge: .left, withInset: 0)
         tableView.autoPinEdge(toSuperviewEdge: .right, withInset: 0)
-        heightTableViewConstraint = tableView.autoSetDimension(.height, toSize: ScreenSize.HEIGHT - (NAV_HEIGHT + TAB_HEIGHT + CA_CELL_HEIGHT*1.5))
+        heightTableViewConstraint = tableView.autoSetDimension(.height, toSize: Screen.height - (NAV_HEIGHT + TAB_HEIGHT + CA_CELL_HEIGHT*1.5))
         
         footerView.autoPinEdge(.top, to: .bottom, of: tableView)
         footerView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 0, left: 0, bottom: TAB_HEIGHT, right: 0), excludingEdge: .top)

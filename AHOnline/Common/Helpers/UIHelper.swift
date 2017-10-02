@@ -17,24 +17,18 @@ struct UIHelper {
         UIApplication.shared.statusBarStyle = .lightContent
         
         let navBarAppearance = UINavigationBar.appearance()
-//        navBarAppearance.setBackgroundImage(UIImage(), forBarMetrics: .Default)
-//        navBarAppearance.shadowImage = UIImage()
-//        navBarAppearance.translucent = true
-        navBarAppearance.tintColor = RED
-        navBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: RED, NSFontAttributeName : FONT_NAVBAR]
+        navBarAppearance.tintColor = .red_
+        navBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.red_, NSFontAttributeName : FONT_NAVBAR]
         
         let tabBarAppearance = UITabBar.appearance()
-        tabBarAppearance.tintColor = RED
-//        tabBarAppearance.barStyle = .Black
-//        tabBarAppearance.translucent = false
-//        tabBarAppearance.barTintColor = CLEAR
+        tabBarAppearance.tintColor = .red_
         
         let tabBarItem = UITabBarItem.appearance()
-        tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: GRAY, NSFontAttributeName : FONT_TABBAR], for: .normal)
-        tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: RED, NSFontAttributeName : FONT_TABBAR], for: .selected)
+        tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.gray_, NSFontAttributeName : FONT_TABBAR], for: .normal)
+        tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.red_, NSFontAttributeName : FONT_TABBAR], for: .selected)
         
         let cell = UITableViewCell.appearance()
-        cell.tintColor = RED
+        cell.tintColor = .red_
     }
     
     static func showHUD(message: String) {
@@ -47,19 +41,21 @@ struct UIHelper {
     static func showAlert(message: String) {
         let alertController = UIAlertController(title: "caption".localizedString, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "ok".localizedString, style: .cancel, handler: nil))
-        Wireframe.presentViewController(vc: alertController)
+        Wireframe.present(alertController)
     }
     
     static func showAlertHandler(message: String, handler: ((UIAlertAction) -> Void)?) {
         let alertController = UIAlertController(title: "caption".localizedString, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "ok".localizedString, style: .cancel, handler: handler))
-        Wireframe.presentViewController(vc: alertController)
+        Wireframe.present(alertController)
     }
     
     static func showSpinner(type: Int = 0) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+
         switch type {
         case 0:
-            ALThreeCircleSpinner.show(color: RED)
+            ALThreeCircleSpinner.show(color: .red)
             
         case 1:
             SwiftSpinner.show(progress: 0.2, title: "loading".localizedString)
@@ -70,6 +66,8 @@ struct UIHelper {
     }
     
     static func hideSpinner(type: Int = 0) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+
         switch type {
         case 0:
             ALThreeCircleSpinner.hide()

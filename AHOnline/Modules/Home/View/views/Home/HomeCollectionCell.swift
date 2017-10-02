@@ -34,7 +34,7 @@ class HomeCollectionCellContentView: UIView {
     lazy var bgImageView: UIImageView = {
         let view = UIImageView.newAutoLayout()
         view.contentMode = .scaleAspectFit
-        view.backgroundColor = GRAY_239
+        view.backgroundColor = .gray_239
         view.layer.cornerRadius = HO_INSET
         view.clipsToBounds = true
         
@@ -50,7 +50,7 @@ class HomeCollectionCellContentView: UIView {
     
     lazy var nameLabel: HOLabel = {
         let view = HOLabel.newAutoLayout()
-        view.textColor = BLACK
+        view.textColor = .black
         view.numberOfLines = 0
         
         return view
@@ -61,7 +61,7 @@ class HomeCollectionCellContentView: UIView {
         super.init(frame: CGRect.zero)
         
 //        backgroundColor = GRAY_239
-        backgroundColor = CLEAR
+        backgroundColor = .clear
         addAllUIElements()
     }
     

@@ -5,7 +5,7 @@
 "save"                  = "Save";
 "close"                 = "Close";
 "loading"               = "Loading ... ";
-"choose_date"            = "Choose Date";
+"choose_date"           = "Choose Date";
 
 // Tab Bar
 "home"                  = "Home";

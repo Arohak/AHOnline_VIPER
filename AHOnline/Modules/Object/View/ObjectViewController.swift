@@ -20,7 +20,7 @@ class ObjectViewController: BaseViewController {
         super.init(nibName: nil, bundle: nil)
         
         title = object.label
-        objectView = ObjectView(object: object, headerRect: CGRect(x: 0, y: 0, width: ScreenSize.WIDTH, height: ScreenSize.HEIGHT*0.3))
+        objectView = ObjectView(object: object, headerRect: CGRect(x: 0, y: 0, width: Screen.width, height: Screen.height*0.3))
         self.object = object
     }
     

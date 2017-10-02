@@ -11,7 +11,7 @@ class FieldGroupView: UIView {
     //MARK: - Create UIElements -
     lazy var nameLabel: TitleLabel = {
         let view = TitleLabel.newAutoLayout()
-        view.textColor = WHITE
+        view.textColor = .white
         
         return view
     }()

@@ -19,8 +19,8 @@ class Category: Object {
     convenience init(data: JSON) {
         self.init()
         
-        self.id         = data["id"].intValue
-        self.name       = data["name"].stringValue
+        self.id     = data["id"].intValue
+        self.name   = data["name"].stringValue
         
         for item in data["subcategories"].arrayValue {
             subcategories.append(Subcategory(data: item))

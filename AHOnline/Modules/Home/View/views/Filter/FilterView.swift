@@ -57,14 +57,14 @@ class FilterView: UIView {
     
     lazy var footerView: UIView = {
         let view = UIView.newAutoLayout()
-        view.backgroundColor = GREEN
+        view.backgroundColor = .green_
         
         return view
     }()
     
     lazy var tableView: BaseTableView = {
         let view = BaseTableView.newAutoLayout()
-        view.backgroundColor = WHITE
+        view.backgroundColor = .white
         view.alpha  = 0.9
         view.dataSource = self
         view.delegate = self
@@ -138,10 +138,10 @@ class FilterView: UIView {
                     
                     if cellItems[i][j] == selectedItems[i]  {
                         cell.accessoryType = .checkmark
-                        cell.textLabel?.textColor = RED
+                        cell.textLabel?.textColor = .red_
                     } else {
                         cell.accessoryType = .none
-                        cell.textLabel?.textColor = BLUE_LIGHT
+                        cell.textLabel?.textColor = .blue_light
                     }
                     temp.append(cell)
                 }
@@ -188,19 +188,19 @@ extension FilterView: UITableViewDataSource, UITableViewDelegate {
         case 0:
             for cell in cells[0] {
                 cell.accessoryType = .none
-                cell.textLabel?.textColor = BLUE_LIGHT
+                cell.textLabel?.textColor = .blue_light
             }
         case 1:
             for cell in cells[1] {
                 cell.accessoryType = .none
-                cell.textLabel?.textColor = BLUE_LIGHT
+                cell.textLabel?.textColor = .blue_light
             }
         default:
             break
         }
         let cell = cells[indexPath.section][indexPath.row]
         cell.accessoryType = .checkmark
-        cell.textLabel?.textColor = RED
+        cell.textLabel?.textColor = .red_
         selectedItems[indexPath.section] = cellItems[indexPath.section][indexPath.row]
     }
 }

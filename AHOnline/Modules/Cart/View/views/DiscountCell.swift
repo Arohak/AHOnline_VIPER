@@ -41,7 +41,7 @@ class DiscountCellContentView: UIView {
     lazy var imageView: UIImageView = {
         let view = UIImageView.newAutoLayout()
         view.contentMode = .scaleAspectFit
-        view.backgroundColor = GREEN
+        view.backgroundColor = .green
         
         return view
     }()

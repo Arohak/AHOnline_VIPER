@@ -15,6 +15,6 @@ class ObjectRouter {
 extension ObjectRouter: ObjectRouterInput {
     
     func pushViewController(vc: UIViewController) {
-        Wireframe.pushViewController(vc: vc)
+        Wireframe.push(vc)
     }
 }

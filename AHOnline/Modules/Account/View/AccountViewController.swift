@@ -18,15 +18,13 @@ class AccountViewController: BaseViewController {
     
     // MARK: - Life cycle -
     override func viewDidLoad() {
-        super.viewDidLoad()        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewDidLoad()
         
+        navigationItem.setRightBarButton(UIBarButtonItem(image: UIImage(named: "img_acc_settings"), style: .plain, target: self, action: #selector(settingsAction)), animated: true)
+
         output.viewIsReady()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -38,24 +36,26 @@ class AccountViewController: BaseViewController {
     override func baseConfig() {
         self.view = accountView
         
-        navigationItem.setRightBarButton(UIBarButtonItem(image: UIImage(named: "img_acc_settings"), style: .plain, target: self, action: #selector(settingsAction)), animated: true)
-
         accountView.tableView.dataSource = self
         accountView.tableView.delegate = self
         accountView.tableView.register(AccountCell.self, forCellReuseIdentifier: cellIdentifire)
-        
-        accountView.accountHeaderView.historyButton.addTarget(self, action: #selector(historyAction), for: .touchUpInside)
-        accountView.accountHeaderView.favoriteButton.addTarget(self, action: #selector(favoriteAction), for: .touchUpInside)
-        
-        updateLocalizedStrings()
     }
     
-    // MARK: - Internal Method -
-    internal func configTableViewCell() {
-        let menus = [("img_language_logo" , "language".localizedString),
-                     ("img_notification_logo" , "notification".localizedString),
-                     ("img_contuct_logo" , "contact_us".localizedString),
-                     ("img_help_logo" , "help".localizedString)]
+    override func updateLocalizedStrings() {
+        navigationItem.title = "profile".localizedString
+        
+        cells.removeAll()
+        configTableViewCell()
+        accountView.tableView.reloadData()
+    }
+    
+    // MARK: - Private Method -
+    private func configTableViewCell() {
+        let menus = [
+            ("img_history_logo"         , "history".localizedString),
+            ("img_notification_logo"    , "notification".localizedString),
+            ("img_language_logo"        , "language".localizedString)
+        ]
         
         for tuple in menus {
             let cell = AccountCell(style: .default, reuseIdentifier: cellIdentifire)
@@ -65,26 +65,11 @@ class AccountViewController: BaseViewController {
         }
     }
     
-    internal func updateTabBarTitles() {
-        let tabArray = Wireframe.root().tabBar.items
-        let titles = ["home".localizedString, "categories".localizedString, "cart".localizedString, "map".localizedString, "profile".localizedString]
-        for (index, tab) in tabArray!.enumerated() { tab.title = titles[index] }
-    }
-    
     //MARK: - Actions -
-    func historyAction() {
-        output.historyButtonClicked()
-    }
-    
-    func favoriteAction() {
-        output.favoriteButtonClicked()
-    }
-    
     func settingsAction() {
         output.settingsButtonClicked()
     }
 }
-
 
 //MARK: - extension for AccountViewInput -
 extension AccountViewController: AccountViewInput {
@@ -92,19 +77,8 @@ extension AccountViewController: AccountViewInput {
     func setupInitialState(user: User) {
         self.user = user
         
-        navigationItem.title = user.name.isEmpty ? "guest".localizedString : user.name
-        accountView.accountHeaderView.titleLabel.text = user.phone.isEmpty ? "+374 xxxxxx" : user.phone
-    }
-    
-    override func updateLocalizedStrings() {
-        if let user = user { navigationItem.title = user.name.isEmpty ? "guest".localizedString : user.name }
-
-        updateTabBarTitles()
-        accountView.accountHeaderView.updateLocalizedStrings()
-        
-        cells.removeAll()
-        configTableViewCell()
-        accountView.tableView.reloadData()
+        accountView.accountHeaderView.nameLabel.text = user.name.isEmpty ? "Guest" : user.name
+        accountView.accountHeaderView.phoneLabel.text = user.phone.isEmpty ? "+374 xxxxxx" : user.phone
     }
 }
 

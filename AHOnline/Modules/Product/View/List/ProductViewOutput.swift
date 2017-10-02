@@ -8,7 +8,7 @@
 
 protocol ProductViewOutput {
 
-    func getProducts(requestType: RequestType, json: JSON)
+    func getProducts(_ type: ProductsRequestType, json: JSON)
     func addProductBuy(product: Product)
     func favoriteButtonClicked(product: Product)
 }

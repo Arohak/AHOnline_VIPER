@@ -34,37 +34,16 @@ class AccountHeaderView: UIView {
         return view
     }()
     
-    let titleLabel: HOLabel = {
-        let view = HOLabel.newAutoLayout()
-        view.textColor = BLUE
+    let nameLabel: TitleLabel = {
+        let view = TitleLabel.newAutoLayout()
+        view.textColor = .blue_
         
         return view
     }()
     
-    let favoriteButton: InsetButton = {
-        let view = InsetButton.newAutoLayout()
-        view.setImage(UIImage(named: "img_favorites_selected"), for: .normal)
-
-        return view
-    }()
-    
-    let favoriteLabel: HOLabel = {
+    let phoneLabel: HOLabel = {
         let view = HOLabel.newAutoLayout()
-        view.textColor = BLUE
-        
-        return view
-    }()
-    
-    let historyButton: InsetButton = {
-        let view = InsetButton.newAutoLayout()
-        view.setImage(UIImage(named: "img_acc_history"), for: .normal)
-
-        return view
-    }()
-    
-    let historyLabel: HOLabel = {
-        let view = HOLabel.newAutoLayout()
-        view.textColor = BLUE
+        view.textColor = .blue_
         
         return view
     }()
@@ -85,11 +64,8 @@ class AccountHeaderView: UIView {
         addSubview(bgImageView)
         addSubview(parentView)
         parentView.addSubview(imageButton)
-        parentView.addSubview(titleLabel)
-        parentView.addSubview(favoriteButton)
-        parentView.addSubview(favoriteLabel)
-        parentView.addSubview(historyButton)
-        parentView.addSubview(historyLabel)
+        parentView.addSubview(nameLabel)
+        parentView.addSubview(phoneLabel)
 
         setConstraints()
     }
@@ -102,34 +78,16 @@ class AccountHeaderView: UIView {
         parentView.autoPinEdge(toSuperviewEdge: .left)
         parentView.autoPinEdge(toSuperviewEdge: .right)
         parentView.autoPinEdge(.top, to: .top, of: imageButton)
-        parentView.autoPinEdge(.bottom, to: .bottom, of: historyLabel)
+        parentView.autoPinEdge(.bottom, to: .bottom, of: phoneLabel)
         
         imageButton.autoPinEdge(toSuperviewEdge: .top)
         imageButton.autoAlignAxis(toSuperviewAxis: .vertical)
         imageButton.autoSetDimensions(to: CGSize(width: AC_IMG_SIZE, height: AC_IMG_SIZE))
 
-        titleLabel.autoPinEdge(.top, to: .bottom, of: imageButton, withOffset: AC_INSET)
-        titleLabel.autoAlignAxis(toSuperviewAxis: .vertical)
+        nameLabel.autoPinEdge(.top, to: .bottom, of: imageButton, withOffset: AC_INSET)
+        nameLabel.autoAlignAxis(toSuperviewAxis: .vertical)
         
-        favoriteButton.autoPinEdge(.top, to: .bottom, of: titleLabel, withOffset: AC_INSET)
-        favoriteButton.autoAlignAxis(.vertical, toSameAxisOf: bgImageView, withOffset: AC_HEIGHT)
-        favoriteButton.autoSetDimensions(to: CGSize(width: BTN_SIZE, height: BTN_SIZE*0.9))
-        
-        favoriteLabel.autoPinEdge(.top, to: .bottom, of: favoriteButton, withOffset: 0)
-        favoriteLabel.autoAlignAxis(.vertical, toSameAxisOf: favoriteButton)
-        
-        historyButton.autoAlignAxis(.horizontal, toSameAxisOf: favoriteButton)
-        historyButton.autoAlignAxis(.vertical, toSameAxisOf: bgImageView, withOffset: -AC_HEIGHT)
-        historyButton.autoSetDimensions(to: CGSize(width: BTN_SIZE, height: BTN_SIZE))
-        
-        historyLabel.autoPinEdge(.top, to: .bottom, of: historyButton, withOffset: 0)
-        historyLabel.autoAlignAxis(.vertical, toSameAxisOf: historyButton)
-    }
-    
-    //MARK: - Public Methods -
-    func updateLocalizedStrings()  {
-        historyLabel.text = "history".localizedString
-        favoriteLabel.text = "favorite".localizedString
-
+        phoneLabel.autoPinEdge(.top, to: .bottom, of: nameLabel, withOffset: 0)
+        phoneLabel.autoAlignAxis(toSuperviewAxis: .vertical)
     }
 }

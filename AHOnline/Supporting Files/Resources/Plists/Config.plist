@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>api</key>
+	<dict>
+		<key>url</key>
+		<string>https://api.imusic.am</string>
+		<key>key</key>
+		<string>497be894e46fc2725177699a61560889</string>
+	</dict>
+	<key>realm</key>
+	<dict>
+		<key>version</key>
+		<string>0</string>
+	</dict>
+	<key>firebase</key>
+	<dict>
+		<key>email</key>
+		<string>radio@imusic.am</string>
+		<key>password</key>
+		<string>Barev123</string>
+		<key>radio</key>
+		<string>im-radio</string>
+	</dict>
+	<key>hockeyapp</key>
+	<dict>
+		<key>identifier</key>
+		<string>23450a194b8d418582cf42c7a99d9e11</string>
+	</dict>
+	<key>google</key>
+	<dict>
+		<key>map_key</key>
+		<string>AIzaSyC0ZOSD0RDLsrraE7iID3jQDSG0j-L35rU</string>
+		<key>analytics_id</key>
+		<string>UA-18915116-1</string>
+	</dict>
+</dict>
+</plist>

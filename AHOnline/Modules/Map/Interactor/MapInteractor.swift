@@ -15,10 +15,10 @@ class MapInteractor {
 //MARK: - extension for MapInteractorInput -
 extension MapInteractor: MapInteractorInput {
     
-    func getObjects() {
-        _ = APIManager.getObjectsForLimit(limit: "4")
+    func getObjects(json: JSON) {
+        _ = ObjectEndpoint.getObjects(.WithLimit, json: json)
             .subscribe(onNext: { result in
-                if result != nil {
+                if let result = result {
                     var objects: [AHObject] = []
                     for item in result["data"].arrayValue {
                         objects.append(AHObject(data: item))
@@ -30,9 +30,9 @@ extension MapInteractor: MapInteractorInput {
     }
     
     func getNearstObjects(json: JSON) {
-        _ = APIManager.getNearsObjects(json: json)
+        _ = ObjectEndpoint.getNeartObjects(json)
             .subscribe(onNext: { result in
-                if result != nil {
+                if let result = result {
                     var objects: [AHObject] = []
                     for item in result["data"].arrayValue {
                         objects.append(AHObject(data: item))

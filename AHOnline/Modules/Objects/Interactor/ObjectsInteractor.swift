@@ -15,10 +15,10 @@ class ObjectsInteractor {
 //MARK: - extension for ObjectsInteractorInput -
 extension ObjectsInteractor: ObjectsInteractorInput {
     
-    func getObjects(params: JSON) {
-        _ = APIManager.getObjects(json: params)
+    func getObjects(_ type: ObjectsRequestType, params: JSON) {
+        _ = ObjectEndpoint.getObjects(type, json: params)
             .subscribe(onNext: { result in
-                if result != nil {
+                if let result = result {
                     var objects: [AHObject] = []
                     for item in result["data"].arrayValue {
                         objects.append(AHObject(data: item))

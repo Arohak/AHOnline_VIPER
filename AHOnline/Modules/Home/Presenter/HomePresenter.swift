@@ -18,8 +18,17 @@ class HomePresenter {
 extension HomePresenter: HomeViewOutput {
     
     func viewIsReady() {
-        interactor.createUser()
         interactor.getRestaurantsHome()
+    }
+    
+    func checkUser() {
+        interactor.createUser()
+    }
+    
+    func mapButtonClicked() {
+        let vc = MapViewController()
+        _ = MapModuleInitializer(viewController: vc)
+        router.modalPresentViewController(vc: UINavigationController(rootViewController: vc))
     }
     
     func didSelectObject(object: AHObject) {
@@ -46,7 +55,7 @@ extension HomePresenter: HomeViewOutput {
         case .Product:
             vc = ProductViewController()
             _ = ProductModuleInitializer(viewController: vc)
-            (vc as! ProductViewController).setParams(requestType: .SEARCH, search: keyword)
+            (vc as! ProductViewController).setParams(requestType: .Search, search: keyword)
         }
 
         router.pushViewController(vc: vc)

@@ -7,6 +7,8 @@
 //
 
 import UserNotifications
+import FacebookCore
+import PushKit
 
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
@@ -16,9 +18,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        //fb
+        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+
         startApplication()
         
         return true
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        
+        return SDKApplicationDelegate.shared.application(application, open: url)
+    }
+    
+    @available(iOS 9.0, *)
+    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+        
+        return SDKApplicationDelegate.shared.application(application, open: url, options: options)
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        
+        AppEventsLogger.activate(application)
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -27,29 +49,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Preferences.savePushNotificationToken(value: token)
     }
-    
-    // MARK: - Private Method -
-    private func startApplication() {
-        UIHelper.configurateApplicationApperance()
-        initApplicationNotificationSettings()
-        initServices()
+}
+
+    //MARK: - Private Methods -
+extension AppDelegate {
+
+    fileprivate func startApplication() {
         
+        // start listening network
+        APIHelper.startListeningNetwork()
+        
+        // configurate application apperance
+        UIHelper.configurateApplicationApperance()
+        
+        // update realm schema version
+        DBHelper.updateRealmSchemaVersion()
+        
+        // configurate google analitics
+        GoogleHelper.configurateAnalytics()
+        
+        // configurate google map
+        GoogleHelper.configurateMap()
+        
+        // use hockeyapp for crash report
+        HockeyAppHelper.configurate()
+        
+        // use firebase for observe radios
+        FirebaseHelper.configurate()
+
+        // config root view controller
         Wireframe.start()
     }
     
-    private func initApplicationNotificationSettings() {
+    private func registerRemoteNotifications() {
         if #available(iOS 10.0, *) {
             let center = UNUserNotificationCenter.current()
             center.requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in }
             UIApplication.shared.registerForRemoteNotifications()
         } else {
-            // Fallback on earlier versions
+            let notificationSettings = UIUserNotificationSettings(types: [.badge, .alert, .sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(notificationSettings)
         }
     }
-    
-    private func initServices() {
-//        Fabric.with([Crashlytics.self])
-        GMSServices.provideAPIKey("AIzaSyC0ZOSD0RDLsrraE7iID3jQDSG0j-L35rU")
-    }
 }
-

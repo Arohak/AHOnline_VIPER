@@ -52,7 +52,7 @@ class DeliveryCellContentView: UIView {
     
     lazy var deliveryLabel: DeliveryLabel = {
         let view = DeliveryLabel.newAutoLayout()
-        view.textColor = RED
+        view.textColor = .red_
         
         return view
     }()

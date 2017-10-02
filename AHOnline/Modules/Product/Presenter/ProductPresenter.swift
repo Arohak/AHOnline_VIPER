@@ -17,8 +17,8 @@ class ProductPresenter {
 //MARK: - extension for ProductViewOutput -
 extension ProductPresenter: ProductViewOutput {
 
-    func getProducts(requestType: RequestType, json: JSON) {
-        interactor.getProducts(requestType: requestType, json: json)
+    func getProducts(_ type: ProductsRequestType, json: JSON) {
+        interactor.getProducts(type, params: json)
     }
 
     func addProductBuy(product: Product) {

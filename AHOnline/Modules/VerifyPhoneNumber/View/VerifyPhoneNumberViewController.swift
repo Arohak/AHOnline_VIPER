@@ -6,6 +6,9 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
+import FacebookCore
+import FacebookLogin
+
 //MARK: - class VerifyPhoneNumberViewController -
 class VerifyPhoneNumberViewController: UIViewController {
 
@@ -37,6 +40,8 @@ class VerifyPhoneNumberViewController: UIViewController {
     // MARK: - Private Method -
     private func baseConfig() {
         self.view = verifyPhoneNumberView
+        
+        verifyPhoneNumberView.loginButton.delegate = self
         
         verifyPhoneNumberView.phoneTextField.text = mobileNumber
         verifyPhoneNumberView.countryCodeButton.setBackgroundImage(UIImage(named: code), for: .normal)
@@ -133,5 +138,26 @@ extension VerifyPhoneNumberViewController: UITextFieldDelegate {
         }
         
         return true
+    }
+}
+
+extension VerifyPhoneNumberViewController: LoginButtonDelegate {
+    
+    func loginButtonDidCompleteLogin(_ loginButton: LoginButton, result: LoginResult) {
+        switch result {
+        case .cancelled:
+            UIHelper.showAlert(message: "User cancelled login.")
+        case .failed(let error):
+            UIHelper.showAlert(message: "Login failed with error \(error)")
+        case .success(let grantedPermissions, _, _):
+            UIHelper.showAlert(message: "Login succeeded with granted permissions: \(grantedPermissions)")
+            if let accessToken = AccessToken.current {
+                print(accessToken.authenticationToken)
+            }
+        }
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FacebookLogin.LoginButton) {
+        
     }
 }

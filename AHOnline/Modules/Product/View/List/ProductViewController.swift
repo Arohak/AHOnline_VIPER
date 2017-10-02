@@ -6,10 +6,10 @@
 //  Copyright © 2016 AroHak LLC. All rights reserved.
 //
 
-enum RequestType: String {
-    case DEFAULT    = "products"
-    case SEARCH     = "results"
-    case FAVORITE   = "favorites"
+enum ProductsRequestType: String {
+    case Default    = "products"
+    case Search     = "results"
+    case Favorite   = "favorites"
 }
 
 class ProductViewController: BaseViewController {
@@ -21,11 +21,11 @@ class ProductViewController: BaseViewController {
     internal var count: CGFloat              = 2
     internal var inset: CGFloat              = 5
     internal var products: [Product]         = []
-    internal var requestType                 = RequestType.DEFAULT
     internal var search                      = ""
     internal var id                          = ""
     internal var limit                       = LIMIT
     internal var offset                      = OFFSET
+    internal var requestType                 = ProductsRequestType.Default
 
     
     // MARK: - Life cycle -
@@ -40,7 +40,7 @@ class ProductViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         switch requestType {
-        case .FAVORITE:
+        case .Favorite:
             getProducts()
 
         default:
@@ -49,7 +49,7 @@ class ProductViewController: BaseViewController {
     }
     
     override func updateLocalizedStrings() {
-        title = requestType.rawValue.localizedString
+        navigationItem.title = requestType.rawValue.localizedString
     }
     
     //MARK: -  Internal Methods -
@@ -94,11 +94,11 @@ class ProductViewController: BaseViewController {
         }
         
         
-        output.getProducts(requestType: requestType, json: params)
+        output.getProducts(requestType, json: params)
     }
     
     //MARK: - Public Methods -
-    func setParams(requestType: RequestType = .DEFAULT, id: String = "", search: String = "", count: CGFloat = 2, inset: CGFloat = 5) {
+    func setParams(requestType: ProductsRequestType = .Default, id: String = "", search: String = "", count: CGFloat = 2, inset: CGFloat = 5) {
         self.requestType    = requestType
         self.id             = id
         self.search         = search
@@ -148,7 +148,7 @@ extension ProductViewController: ProductViewInput {
     
     func updateProduct(product: Product) {
         switch requestType {
-        case .FAVORITE:
+        case .Favorite:
             deleteFavorite(product: product)
 
         default:
@@ -208,7 +208,7 @@ extension ProductViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let width = (ScreenSize.WIDTH - inset*count*2)/count
+        let width = (Screen.width - inset*count*2)/count
         return CGSize(width: width, height: width*1.25)
     }
     

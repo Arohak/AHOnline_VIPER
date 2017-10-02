@@ -15,7 +15,7 @@ class AccountInteractor {
     internal let languages = ["English", "Русский", "Հայերեն"]
 
     var user: User? {
-        return DBManager.getUser()
+        return DBHelper.getUser()
     }
 }
 
